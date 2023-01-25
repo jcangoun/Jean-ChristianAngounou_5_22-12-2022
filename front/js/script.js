@@ -11,8 +11,9 @@ imgArticleBloc.setAttribute("alt", "Lorem ipsum dolor sit amet, Kanap name1");
     console.log(imgArticleBloc);
 const nomProduct = document.createElement("h3");
 nomProduct.classList.add("productName");
-imgArticleBloc.append(nomProduct);
+// articleBloc.append(nomProduct);
 
 newDiv.appendChild(lienBloc);
+console.log(newDiv);
 // articleBloc.appendChild(imgArticleBloc);
 
