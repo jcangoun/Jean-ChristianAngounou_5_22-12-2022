@@ -13,7 +13,7 @@ const nomProduct = document.createElement("h3");
 nomProduct.classList.add("productName");
 // articleBloc.append(nomProduct);
 
-newDiv.appendChild(lienBloc);
+newDiv.append(lienBloc);
 console.log(newDiv);
 // articleBloc.appendChild(imgArticleBloc);
 
