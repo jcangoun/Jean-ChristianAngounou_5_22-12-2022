@@ -2,7 +2,7 @@ console.log('ca marche et a suivre product bloc')
 let b = document.body;
 const productPhotoArticle = document.querySelector("div.item__content")
 let productImg = document.createElement("img")
-let newProductImg = productPhotoArticle.appendChild(productImg)
+let newProductImg = productPhotoArticle.append(productImg)
 productImg.setAttribute("src", "../images/logo.png")
 productImg.setAttribute("alt","Photographie d'un canapé")
 console.log(newProductImg)
@@ -26,8 +26,8 @@ phraseDescription.innerHTML = 'Dis enim malesuada risus sapien gravida nulla nis
 
 
 // console.log('console  derniere suite pour page product');
-const firstSelectForm = document.querySelector("select.color-select");
-const optionValue = document.createElement('option', 'option', 'option');
+let firstSelectForm = document.querySelector('option');
+console.log()
 optionValue.setAttribute("value", "vert")
 optionValue.innerHTML = 'vert';
 
