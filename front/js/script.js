@@ -1,19 +1,31 @@
 const newDiv = document.querySelector("section#items");
     console.log(newDiv);
-let lienBloc = document.createElement("a");
+const lienBloc = document.createElement("a");
 lienBloc.setAttribute("href", "./product.html?id=42")
     console.log(lienBloc);
-    
-const articleBloc = document.querySelector("a article");
-let imgArticleBloc = document.createElement("img");
+   newDiv.append(lienBloc)
+   const articleDuLienProdt = document.createElement('article')
+   lienBloc.append(articleDuLienProdt)
+   console.log(articleDuLienProdt)
+
+
+  const imgArticleBloc = document.createElement("img");
+//   Ici il y a un problème avec le lien product 01!!!!!!!!!!!
+
 // imgArticleBloc.setAttribute("src", "../product01.jpg");
 imgArticleBloc.setAttribute("alt", "Lorem ipsum dolor sit amet, Kanap name1");
-    console.log(imgArticleBloc);
+
+
+articleDuLienProdt.append(imgArticleBloc)
+console.log(articleDuLienProdt)
+
 const nomProduct = document.createElement("h3");
 nomProduct.classList.add("productName");
-// articleBloc.append(nomProduct);
+articleDuLienProdt.append(nomProduct);
 
-newDiv.append(lienBloc);
-console.log(newDiv);
-// articleBloc.appendChild(imgArticleBloc);
+const phraseCleProdt = document.createElement('p')
+phraseCleProdt.classList.add('productDescription')
+phraseCleProdt.innerHTML= 'Dis enim malesuada risus sapien gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida nulla nisl arcu.'
 
+articleDuLienProdt.append(phraseCleProdt)
+console.log(lienBloc)
