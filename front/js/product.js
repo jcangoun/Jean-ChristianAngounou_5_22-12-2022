@@ -13,22 +13,21 @@ console.log(b)
 
 
 // console.log('console suite nom produit');
-
 const produitNomPrix = document.querySelector("h1#title")
 produitNomPrix.innerHTML = "Nom Produit"
-    console.log(produitNomPrix.innerHTML)
+    console.log(produitNomPrix)
 
 
 
     // console.log("console suite produit explique")
-
 const phraseDescription = document.querySelector("p#description")
 phraseDescription.innerHTML = 'Dis enim malesuada risus sapien gravida nulla nisl arcu.';
-    console.log(phraseDescription.innerHTML)
+    console.log(phraseDescription)
 
 
 
 // console.log('console  derniere suite pour page product');
+
 const firstSelectForm = document.querySelector("#colors");
 console.log(firstSelectForm)
 const premiereOptionValue = document.createElement('option');
