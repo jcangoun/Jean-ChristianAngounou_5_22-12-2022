@@ -1,7 +1,7 @@
 console.log('ca marche et a suivre product bloc')
 
 
-let b = document.body;
+let b = document.main;
 const productPhotoArticle = document.querySelector("div.item__content")
 let productImg = document.createElement("img")
 let newProductImg = productPhotoArticle.append(productImg)
@@ -9,6 +9,7 @@ productImg.setAttribute("src", "../images/logo.png")
 productImg.setAttribute("alt","Photographie d'un canapé")
 console.log(newProductImg)
 
+console.log(b)
 
 
 // console.log('console suite nom produit');
@@ -45,3 +46,4 @@ firstSelectForm.append(deuxiemeOptionValue)
 
 console.log(firstSelectForm)
 
+console.log(b)
