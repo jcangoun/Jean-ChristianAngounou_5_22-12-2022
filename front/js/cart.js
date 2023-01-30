@@ -74,7 +74,7 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  
  const supprimerArticl = document.createElement('p')
  supprimerArticl.classList.add('deleteItem')
- supprimerArticl.innerHTML = 'Supprimer'
- caseAnnuleConfigCotenuCartArticl.append('supprimerArticl')
-    console.log(detailArticl.contenuCartItem)
+  supprimerArticl.innerHTML = 'Supprimer'
+ caseAnnuleConfigCotenuCartArticl.append(supprimerArticl) 
+
 
