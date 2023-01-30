@@ -44,7 +44,37 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 
  const descriptionPrixProduit = document.createElement('p')
  descriptionPrixProduit.innerHTML = '42'
-
  descriptonContenuCartItem.append(descriptionPrixProduit)
-    console.log(detailArticl)
+
+ const fixationContenuCartArticle = document.createElement('div')
+ fixationContenuCartArticle.classList.add('cart__item__content_settings')
+ contenuCartItem.append(fixationContenuCartArticle)
+
+ const quantiteContenuCarteArticle = document.createElement('div')
+ quantiteContenuCarteArticle.classList.add('cart__item__content__settings__quantity')
+ fixationContenuCartArticle.append(quantiteContenuCarteArticle)
+
+ const valeurQuantite = document.createElement('p')
+ valeurQuantite.innerHTML = 'Qté:'
+ fixationContenuCartArticle.append(valeurQuantite)
+
+
+ const resultatValeurQuantite = document.createElement('input')
+ resultatValeurQuantite.classList.add('itemQuantity')
+ resultatValeurQuantite.setAttribute('type', 'number')
+ resultatValeurQuantite.setAttribute('name', 'itemQuantity')
+ resultatValeurQuantite.setAttribute('min', '1')
+ resultatValeurQuantite.setAttribute('max', '100')
+ resultatValeurQuantite.setAttribute('value', 42)
+ fixationContenuCartArticle.append(resultatValeurQuantite)
+
+ const caseAnnuleConfigCotenuCartArticl = document.createElement('div')
+ caseAnnuleConfigCotenuCartArticl.classList.add('cart__item__content__settings__delete')  
+ contenuCartItem.append(caseAnnuleConfigCotenuCartArticl)
+ 
+ const supprimerArticl = document.createElement('p')
+ supprimerArticl.classList.add('deleteItem')
+ supprimerArticl.innerHTML = 'Supprimer'
+ caseAnnuleConfigCotenuCartArticl.append('supprimerArticl')
+    console.log(detailArticl.contenuCartItem)
 
