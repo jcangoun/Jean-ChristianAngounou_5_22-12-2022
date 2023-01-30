@@ -17,16 +17,21 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 //  ci dessous créée l'image enfant avec attribut alt phot canapé et src ../images/product01.jpg
  const imageCArtItemArtcl = document.createElement("img")
  imageCArtItemArtcl.setAttribute("alt", "Photographie d'un canapé")
-//  imageCArtItemArtcl.setAttribute("src", "../images/product01.jpg")
- detailArticl.append(imageCArtItemArtcl)
+//  imageCArtItemArtcl.setAttribute("src", "../images/product01.jpg") voir avec 
+//  http://localhost:3000/images/kanap01.jpeg
+                                       
+ photoArticleCart.append(imageCArtItemArtcl)
  console.log(detailArticl)
 
  const contenuCartItem = document.createElement('div')
  contenuCartItem.classList.add("cart__item__content")
+detailArticl.append(contenuCartItem)
+
 
  const descriptonContenuCartItem = document.createElement("div")
  descriptonContenuCartItem.classList.add("cart__item__content__description")
-
+contenuCartItem.append.descriptonContenuCartItem
  const nomProduitCarteItem = document.createElement("h2")
  nomProduitCarteItem.innerHTML = 'Nom du produit'
+ console.log(detailArticl)
 
