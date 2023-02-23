@@ -20,13 +20,20 @@ function articles(products) {
 }
 
 const articlePage = (product) => {
+
+  // chargement du noeud section ou on va creer la page 
   const newDiv = document.querySelector("section#items");
-  // console.log(newDiv);
+
+  // creation du noe <a> pas d'attributs
   const lienBloc = document.createElement("a");
-  lienBloc.setAttribute("href", "./product.html?id=42");
+  //  a revoir
+  lienBloc.setAttribute("href", "./product.html?id=_id");
   // console.log(lienBloc);
   newDiv.append(lienBloc);
+
+// creation du noeud <article>, pas attributs
   const articleDuLienProdt = document.createElement("article");
+  // ci dessous ajout de <img>
   lienBloc.append(articleDuLienProdt);
   // console.log(articleDuLienProdt);
 
@@ -34,10 +41,10 @@ const articlePage = (product) => {
   const imgArticleBloc = document.createElement("img");
   imgArticleBloc.setAttribute("src", product.imageUrl);
   imgArticleBloc.setAttribute("alt", product.altTxt);
+  // console.log(articleDuLienProdt);
 
   
-  console.log(articleDuLienProdt);
-//noeud product.name h3 class
+//noeud <h3> class product.name
   const nomProduct = document.createElement("h3");
   nomProduct.classList.add("productName");
   nomProduct.innerHTML = product.name;
@@ -53,6 +60,3 @@ const articlePage = (product) => {
   articleDuLienProdt.append(phraseCleProdt);
   // console.log(lienBloc);
 };
-
-
-// Ajouter titre qui a ete oublie

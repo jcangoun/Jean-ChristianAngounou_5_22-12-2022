@@ -1,4 +1,6 @@
     console.log('ca marche et a suivre product bloc')
+
+    // utiliser searchParams pour recupere l'id d'un produit dans l'url
 // fetch("http://localhost:3000/api/products")
 //     .then (function(res) {
 //         if (res.ok)
