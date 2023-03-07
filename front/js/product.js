@@ -31,15 +31,12 @@ let newProductImg = productPhotoArticle.append(productImg);
 productImg.setAttribute("src", "../images/logo.png");
 productImg.setAttribute("alt", "Photographie d'un canapé");
 // console.log(newProductImg)
-// console.log(b)
 
 // console.log('console suite nom produit');
 const produitNomPrix = document.querySelector("h1#title");
 produitNomPrix.innerHTML = "Nom Produit";
-// console.log(produitNomPrix)
 
 const valeurPrix = (document.querySelector("span#price").innerHTML = "42");
-// console.log(valeurPrix)
 
 // console.log("console suite produit explique")
 const phraseDescription = document.querySelector("p#description");
