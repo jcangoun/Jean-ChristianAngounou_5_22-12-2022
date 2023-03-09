@@ -58,4 +58,5 @@ const articlePage = (product) => {
   phraseCleProdt.innerText = description;
   articleDuLienProdt.append(phraseCleProdt);
   // console.log(lienBloc);
+  
 };
