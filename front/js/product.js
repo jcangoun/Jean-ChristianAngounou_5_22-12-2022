@@ -72,27 +72,37 @@ phraseDescription.innerHTML = description;
 // console.log('console  derniere suite pour page product');
 
 const firstSelectForm = document.querySelector("#colors");
-// console.log(firstSelectForm)
+console.log(firstSelectForm)
 const premiereOptionValue = document.createElement("option");
-premiereOptionValue.setAttribute("value", "vert");
-                        premiereOptionValue.innerHTML = "vert";
+premiereOptionValue.setAttribute("value", colors[0]);
+                        premiereOptionValue.innerHTML = colors[0];
+                        
+                        // LA couleur insére en haut n'est plus verte en brute. Maintenant je dois insérer le for je le fais par secu a Ligne 90.
 firstSelectForm.append(premiereOptionValue);
 
 const deuxiemeOptionValue = document.createElement("option");
-deuxiemeOptionValue.setAttribute("value", "blanc");
-                        deuxiemeOptionValue.innerHTML = "blanc";
+deuxiemeOptionValue.setAttribute("value", colors[1]);
+                          deuxiemeOptionValue.innerHTML = colors[1] ;
+                        
 firstSelectForm.append(deuxiemeOptionValue);
+
+
+  console.log(firstSelectForm.children)
+
+  
+  // for (let i = 0 ; i < colors.length ; i++) {
+  //   const couleurs = document.createElement("option"[i]);
+
+  //   console.log(couleurs)
+    
+  //   couleurs.setAttribute("value", colors[i]);
+  //   couleurs.innerHTML = colors;
+  //   firstSelectForm.append(couleurs[i])
+  //   premiereOptionValue.innerHTML = colors[i];
+  //   deuxiemeOptionValue.innerHTML = colors[i];
+  // }
 
   }
 
-
-
-// console.log(firstSelectForm)
-// console.log(b)
-
-// const articlProdt = document.querySelector('article')
-// const detailProdt = document.createElement('div')
-//   detailProdt.classList.add('detail-produit')
-//   articlProdt.append(detailProdt)
-
-//   console.log(articles)
+  
+  

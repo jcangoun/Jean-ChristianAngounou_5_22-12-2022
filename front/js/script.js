@@ -20,7 +20,7 @@ function articles(products) {
 }
 
 const articlePage = (product) => {
-  const { _id, imageUrl, altTxt, name, description, price } = product;
+  const { _id, imageUrl, altTxt, name, description, price, colors } = product;
   // chargement du noeud section ou on va creer la page
   const newDiv = document.querySelector("section#items");
 
@@ -57,6 +57,6 @@ const articlePage = (product) => {
   phraseCleProdt.classList.add("productDescription");
   phraseCleProdt.innerText = description;
   articleDuLienProdt.append(phraseCleProdt);
-  // console.log(lienBloc);
+ 
   
 };
