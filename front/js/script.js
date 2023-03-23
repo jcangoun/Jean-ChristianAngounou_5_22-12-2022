@@ -30,7 +30,7 @@ const exploitInfo = function () {
   localStorage.setItem('colors', colors)
 }
 
-// exploitInfo();
+
 
 const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
