@@ -13,20 +13,15 @@ console.log("ca marche et a suivre product bloc");
 //   console.log(name)
 // }
 
+// recup des infosproduits
+
+
 const info = window.location.search;
 console.log("valeurs", info);
 // console.log("window Location:", window.location);
 const urlParams = new URLSearchParams(info);
 console.log(urlParams);
 
-// const general = urlParams.get(info);
-
-// const ParamAltTxt = urlParams.get("altTxt");
-// const ParamColors = urlParams.get("colors");
-// const ParamDexcription = urlParams.get("description");
-// const ParamimageUrl = urlParams.get("imageUrl");
-// const ParamName = urlParams.get("name");
-// const ParamPrice = urlParams.get("price");
 const paramId = urlParams.get("id");
 console.log(paramId);
 
@@ -41,14 +36,15 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
     getArticle(product);
     console.log(product)
   })
-  .catch(function (error) {
-    console.error(`probleme : ${error}`);
-  });
+  // .catch(function (error) {
+  //   console.error(`probleme : ${error}`);
+  // });
 
 
   function getArticle (product) 
   {
     const { _id, colors, imageUrl, altTxt, name, description, price } = product;
+    console.log(product.colors)
     
     let b = document.main;
 const productPhotoArticle = document.querySelector("div.item__img");
@@ -73,36 +69,74 @@ phraseDescription.innerHTML = description;
 
 const firstSelectForm = document.querySelector("#colors");
 console.log(firstSelectForm)
-const premiereOptionValue = document.createElement("option");
-premiereOptionValue.setAttribute("value", colors[0]);
-                        premiereOptionValue.innerHTML = colors[0];
-                        
-                        // LA couleur insére en haut n'est plus verte en brute. Maintenant je dois insérer le for je le fais par secu a Ligne 90.
-firstSelectForm.append(premiereOptionValue);
-
-const deuxiemeOptionValue = document.createElement("option");
-deuxiemeOptionValue.setAttribute("value", colors[1]);
-                          deuxiemeOptionValue.innerHTML = colors[1] ;
-                        
-firstSelectForm.append(deuxiemeOptionValue);
-
 
   console.log(firstSelectForm.children)
 
   
-  // for (let i = 0 ; i < colors.length ; i++) {
-  //   const couleurs = document.createElement("option"[i]);
-
-  //   console.log(couleurs)
+  for (let i = 0 ; i < colors.length ; i++) {
     
-  //   couleurs.setAttribute("value", colors[i]);
-  //   couleurs.innerHTML = colors;
-  //   firstSelectForm.append(couleurs[i])
-  //   premiereOptionValue.innerHTML = colors[i];
-  //   deuxiemeOptionValue.innerHTML = colors[i];
-  // }
+    console.log(colors[i])
+    // const selectForm = document.createElement("option"[i]);
+
+    const optionValue = document.createElement("option");
+    optionValue.setAttribute("value", colors[i]);
+                            optionValue.innerHTML = colors[i];
+    firstSelectForm.append(optionValue);
 
   }
+
+  console.log(colors);
+
+                
+// const accesImageUrl  =  localStorage.getItem('imageUrl')
+//                         localStorage.setItem('imageUrl', imageUrl)
+
+// const accesAltTxt  = localStorage.getItem('altTxt')
+//                      localStorage.setItem('altTxt', altTxt)
+               
+// const accesDescription  = localStorage.getItem('description')
+//                      localStorage.setItem('description', description)
+                 
+
+
+// const accesProdt = function () {
+
+// }
+
+
+const ajoutBtn = document.querySelector('button');
+ajoutBtn.addEventListener('click', function () {
+  console.log('capasse');
+ 
+  // localStorage.getItem('_id')
+  localStorage.setItem('identifiant', _id)
+
+  // localStorage.getItem('name')
+  localStorage.setItem('name', name)
+
+  // localStorage.getItem('colors')
+  localStorage.setItem('couleur',colors)
+
+  // localStorage.getItem('price')
+  localStorage.setItem('prix', price)
+
+  
+ // const categorieProdtPanier = 
+
+
+// const onVide = localStorage.clear()
+
+//   onVide;
+
+
+
+
+            })
+
+
+  }
+
+
 
   
   

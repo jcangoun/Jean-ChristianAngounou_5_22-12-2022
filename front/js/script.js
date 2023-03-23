@@ -1,5 +1,5 @@
 // fetch a faire en first line
-fetch("http://localhost:3000/api/products")
+const info = fetch("http://localhost:3000/api/products")
   .then(function (res) {
     if (res.ok) {
       return res.json();
@@ -18,6 +18,19 @@ function articles(products) {
     articlePage(product);
   });
 }
+console.log(info)
+
+const exploitInfo = function () {
+  localStorage.setItem('_id', _id)
+  localStorage.setItem('imageUrl', imageUrl)
+  localStorage.setItem('altTxt', altTxt)
+  localStorage.setItem('name', name)
+  localStorage.setItem('description', description)
+  localStorage.setItem('price', price)
+  localStorage.setItem('colors', colors)
+}
+
+// exploitInfo();
 
 const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
@@ -58,5 +71,8 @@ const articlePage = (product) => {
   phraseCleProdt.innerText = description;
   articleDuLienProdt.append(phraseCleProdt);
  
-  
 };
+
+// recuperation d infos pour le panier
+// const extractInfo = res.json.stringitfy();
+// console.log(extractInfo);
