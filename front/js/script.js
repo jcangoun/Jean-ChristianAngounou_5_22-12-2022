@@ -1,12 +1,26 @@
+
+const info = window.location.search;
+console.log("valeurs", info);
+// console.log("window Location:", window.location);
+const urlParams = new URLSearchParams(info);
+console.log(urlParams);
+
+const paramId = urlParams.get("id");
+console.log(paramId);
+
+// utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
+// fetch(`http://localhost:3000/api/products/${paramId}`)
 // fetch devrait avoir un AWAIT  a faire en first line
-const info = fetch("http://localhost:3000/api/products")
+const api = fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok) {
+
       return res.json();
     }
   })
   .then(function (products) {
     articles(products);
+          console.log(products);
   })
   .catch(function (err) {
     // Une erreur est survenue
@@ -18,21 +32,10 @@ function articles(products) {
     articlePage(product);
   });
 }
-console.log(info)
+
 
 const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
-
-  
-const exploitInfo = function () {
-  localStorage.setItem('_id', _id)
-  localStorage.setItem('imageUrl', imageUrl)
-  localStorage.setItem('altTxt', altTxt)
-  localStorage.setItem('name', name)
-  localStorage.setItem('description', description)
-  localStorage.setItem('price', price)
-  localStorage.setItem('colors', colors)
-}
 
   // chargement du noeud section ou on va creer la page
   const newDiv = document.querySelector("section#items");
@@ -70,13 +73,9 @@ const exploitInfo = function () {
   phraseCleProdt.classList.add("productDescription");
   phraseCleProdt.innerText = description;
   articleDuLienProdt.append(phraseCleProdt);
- 
 };
 
 
-// const onVide = localStorage.clear()
-
-//   onVide;
 // recuperation d infos pour le panier
 // const extractInfo = res.json.stringitfy();
 // console.log(extractInfo);

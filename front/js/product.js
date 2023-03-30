@@ -17,116 +17,77 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   })
   .then(function (product) {
     getArticle(product);
-    console.log(product)
+    console.log(product);
   })
   .catch(function (error) {
     console.error(`probleme : ${error}`);
   });
 
+function getArticle(product) {
+  const { _id, colors, imageUrl, altTxt, name, description, price } = product;
+  console.log(product.colors);
 
-  function getArticle (product) 
-  {
-    
-    const { _id, colors, imageUrl, altTxt, name, description, price } = product;
-    console.log(product.colors)
+  const panier = {
+    _id,
+    imageUrl,
+    altTxt,
+    name,
+    description,
+    price,
+    colors,
+  };
 
-async function fech() {
-     await fetch(`http://localhost:3000/api/products/${paramId}`)
-    }
-fech();
-console.log(fech)
+  localStorage.setItem("panier", JSON.stringify(panier));
 
-    
-    let b = document.main;
-const productPhotoArticle = document.querySelector("div.item__img");
-let productImg = document.createElement("img");
-let newProductImg = productPhotoArticle.append(productImg);
-productImg.setAttribute("src", "../images/logo.png");
-productImg.setAttribute("alt", "Photographie d'un canapé");
-// console.log(newProductImg)
+  let b = document.main;
+  const productPhotoArticle = document.querySelector("div.item__img");
+  let productImg = document.createElement("img");
+  let newProductImg = productPhotoArticle.append(productImg);
+  productImg.setAttribute("src", "../images/logo.png");
+  productImg.setAttribute("alt", "Photographie d'un canapé");
+  // console.log(newProductImg)
 
-// console.log('console suite nom produit');
-const produitNomPrix = document.querySelector("h1#title");
-produitNomPrix.innerHTML = name;
+  // console.log('console suite nom produit');
+  const produitNomPrix = document.querySelector("h1#title");
+  produitNomPrix.innerHTML = name;
 
-const valeurPrix = (document.querySelector("span#price").innerHTML = price);
+  const valeurPrix = (document.querySelector("span#price").innerHTML = price);
 
-// console.log("console suite produit explique")
-const phraseDescription = document.querySelector("p#description");
-phraseDescription.innerHTML = description;
-// console.log(phraseDescription)
+  // console.log("console suite produit explique")
+  const phraseDescription = document.querySelector("p#description");
+  phraseDescription.innerHTML = description;
+  // console.log(phraseDescription)
 
-// console.log('console  derniere suite pour page product');
-const firstSelectForm = document.querySelector("#colors");
-console.log(firstSelectForm)
+  // console.log('console  derniere suite pour page product');
+  const firstSelectForm = document.querySelector("#colors");
+  console.log(firstSelectForm);
 
-  console.log(firstSelectForm.children)
+  console.log(firstSelectForm.children);
 
-  
-  for (let i = 0 ; i < colors.length ; i++) {
-    
-    console.log(colors[i])
+  for (let i = 0; i < colors.length; i++) {
+    console.log(colors[i]);
 
     // const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
-                            optionValue.innerHTML = colors[i];
+    optionValue.innerHTML = colors[i];
     firstSelectForm.append(optionValue);
   }
 
-// const accesImageUrl  =  localStorage.getItem('imageUrl')
-//                         localStorage.setItem('imageUrl', imageUrl)
+  // const accesImageUrl  =  localStorage.getItem('imageUrl')
+  //                         localStorage.setItem('imageUrl', imageUrl)
 
-// const accesAltTxt  = localStorage.getItem('altTxt')
-//                      localStorage.setItem('altTxt', altTxt)
-               
-// const accesDescription  = localStorage.getItem('description')
-//                      localStorage.setItem('description', description)
-                 
+  // const accesAltTxt  = localStorage.getItem('altTxt')
+  //                      localStorage.setItem('altTxt', altTxt)
 
-console.log(colors);
+  // const accesDescription  = localStorage.getItem('description')
+  //                      localStorage.setItem('description', description)
 
-const ajoutBtn = document.querySelector('button');
-ajoutBtn.addEventListener('click', function () {
-  console.log('capasse');
- 
+  console.log(colors);
 
-  localStorage.setItem('identifiant', _id)
-    localStorage.getItem('_id')
+  // const ajoutBtn = document.querySelector('button');
+  // ajoutBtn.addEventListener('click', function () {
+  //   console.log('capasse');
 
-
-  localStorage.setItem('name', name)
-  localStorage.getItem('name')
-  // localStorage.getItem('colors')
-  localStorage.setItem('couleur',colors)
-  localStorage.getItem('couleur')
-
-  // localStorage.getItem('price')
-  localStorage.setItem('prix', price)
-  localStorage.getItem('prix')
-
-
-  localStorage.setItem('imageUrl', imageUrl)
-  localStorage.getItem('imageUrl')
-
-  localStorage.setItem('altTxt', altTxt)
-  localStorage.getItem('altTxt')
-
-  localStorage.setItem('description', description)
-  localStorage.getItem('description')
-    
- // const categorieProdtPanier = 
-
-
-// const onVide = localStorage.clear()
-
-//   onVide;
-            })
-
-
-  }
-
-
-
-  
-  
+  //             })
+}

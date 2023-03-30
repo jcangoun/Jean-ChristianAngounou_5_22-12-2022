@@ -30,9 +30,9 @@ function getIdKanap () {
 }
 
 
-function sectionPanier () {
+// function sectionPanier (fetch) {
 
-const info = fetch("http://localhost:3000/api/products")
+const info = fetch(`http://localhost:3000/api/products/${paramId}`)
 .then(function (res) {
    if (res.ok) {
      return res.json();
@@ -44,14 +44,19 @@ const info = fetch("http://localhost:3000/api/products")
  .catch(function (err) {
    // Une erreur est survenue
  });
- console.log(info.ok)
+
 
 function articles(products) {
  products.forEach((product) => {
-   console.log(product);
+
    articlePage(product);
  });
 }
+info;
+
+ getIdKanap();
+
+console.log(getIdKanap);
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -86,7 +91,7 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  contenuCartItem.append(descriptonContenuCartItem)
 
  const nomProduitCarteItem = document.createElement("h2")
- nomProduitCarteItem.innerHTML = name;
+ nomProduitCarteItem.innerHTML = 'Nom du produit';
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
  const descriptionCouleurProduit = document.createElement('p')
@@ -129,23 +134,15 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
-}
-sectionPanier();
+// }
+
  getIdKanap();
 
 console.log(getIdKanap);
 
 // const ajoutBtn = document.querySelector('button');
 // ajoutBtn.addEventListener('click', function () {
-//   console.log('capasse');
+//   console.log('ca paniasse');
 
-// // const onVide = localStorage.clear()
 
-// //   onVide;
 // })
-
-
-
-// const onVide = localStorage.clear()
-
-//   onVide;
