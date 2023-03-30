@@ -1,5 +1,38 @@
 console.log('test')
 
+
+const windowe = window.location.search;
+console.log("valeurs", windowe);
+windowe
+const urlParams = new URLSearchParams(windowe);
+console.log(urlParams);
+
+const paramId = urlParams.get("id");
+console.log(paramId);
+
+// utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
+// fetch(`http://localhost:3000/api/products/${paramId}`)
+
+const info = fetch(`http://localhost:3000/api/products/${paramId}`)
+.then(function (res) {
+   if (res.ok) {
+     return res.json();
+   }
+ })
+ .then(function (products) {
+   articles(products);
+ })
+ .catch(function (err) {
+   // Une erreur est survenue
+ });
+
+function articles(products) {
+ products.forEach((product) => {
+   console.log(product);
+   articlePage(product);
+ });
+}
+
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
 const detailArticl = document.createElement('article')
@@ -17,8 +50,7 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 //  ci dessous créée l'img enfant avec attribut >> alt photo canapé, et src >> ../images/product01.jpg
  const imageCArtItemArtcl = document.createElement("img")
  imageCArtItemArtcl.setAttribute("alt", "Photographie d'un canapé")
-//  imageCArtItemArtcl.setAttribute("src", "../images/product01.jpg") voir avec 
-//  http://localhost:3000/images/kanap01.jpeg
+
                                        
  photoArticleCart.append(imageCArtItemArtcl)
     console.log(detailArticl)
@@ -75,6 +107,39 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  const supprimerArticl = document.createElement('p')
  supprimerArticl.classList.add('deleteItem')
   supprimerArticl.innerHTML = 'Supprimer'
- caseAnnuleConfigCotenuCartArticl.append(supprimerArticl) 
+ caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
 
+
+function getIdKanap () {
+  
+}
+
+// const onVide = localStorage.clear()
+
+//   onVide;
+
+const ajoutBtn = document.querySelector('button');
+ajoutBtn.addEventListener('click', function () {
+  console.log('capasse');
+ 
+  localStorage.getItem('_id')
+  // localStorage.setItem('identifiant', _id)
+
+  // localStorage.getItem('name')
+  // localStorage.setItem('name', name)
+
+  // localStorage.getItem('colors')
+  // localStorage.setItem('couleur',colors)
+
+  // localStorage.getItem('price')
+  // localStorage.setItem('prix', price)
+
+  
+ // const categorieProdtPanier = 
+
+
+// const onVide = localStorage.clear()
+
+//   onVide;
+})

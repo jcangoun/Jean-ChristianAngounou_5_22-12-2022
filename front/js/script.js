@@ -1,4 +1,4 @@
-// fetch a faire en first line
+// fetch devrait avoir un AWAIT  a faire en first line
 const info = fetch("http://localhost:3000/api/products")
   .then(function (res) {
     if (res.ok) {
@@ -34,6 +34,8 @@ const exploitInfo = function () {
 
 const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
+
+
   // chargement du noeud section ou on va creer la page
   const newDiv = document.querySelector("section#items");
 
@@ -76,3 +78,8 @@ const articlePage = (product) => {
 // recuperation d infos pour le panier
 // const extractInfo = res.json.stringitfy();
 // console.log(extractInfo);
+
+
+// const onVide = localStorage.clear()
+
+//   onVide;

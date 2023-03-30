@@ -1,20 +1,6 @@
 console.log("ca marche et a suivre product bloc");
 
-// var tesse = "https://waytolearnx.com/t.html?name=alex-babtise&age=25&address=paris";
-// var url = new URL(tesse);
-// const idhet = url.searchParams.get("id");
-// // console.log("test window Location:", window.location);
-
-// const str = "http://localhost:3000/api/products/";
-// const url = new URL(str);
-// const search_params = new URLSearchParams(url.search);
-// if(search_params.has('name')) {
-//   const name = search_params.get('name');
-//   console.log(name)
-// }
-
 // recup des infosproduits
-
 
 const info = window.location.search;
 console.log("valeurs", info);
@@ -28,7 +14,7 @@ console.log(paramId);
 // utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
-    if (res.ok) {
+    if (res.ok === true) {
       return res.json();
     }
   })
@@ -36,15 +22,23 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
     getArticle(product);
     console.log(product)
   })
-  // .catch(function (error) {
-  //   console.error(`probleme : ${error}`);
-  // });
+  .catch(function (error) {
+    console.error(`probleme : ${error}`);
+  });
 
 
   function getArticle (product) 
   {
+    
     const { _id, colors, imageUrl, altTxt, name, description, price } = product;
     console.log(product.colors)
+
+async function fech() {
+     await fetch(`http://localhost:3000/api/products/${paramId}`)
+    }
+fech();
+console.log(fech)
+
     
     let b = document.main;
 const productPhotoArticle = document.querySelector("div.item__img");
@@ -66,7 +60,6 @@ phraseDescription.innerHTML = description;
 // console.log(phraseDescription)
 
 // console.log('console  derniere suite pour page product');
-
 const firstSelectForm = document.querySelector("#colors");
 console.log(firstSelectForm)
 
@@ -76,18 +69,14 @@ console.log(firstSelectForm)
   for (let i = 0 ; i < colors.length ; i++) {
     
     console.log(colors[i])
-    // const selectForm = document.createElement("option"[i]);
 
+    // const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
                             optionValue.innerHTML = colors[i];
     firstSelectForm.append(optionValue);
-
   }
 
-  console.log(colors);
-
-                
 // const accesImageUrl  =  localStorage.getItem('imageUrl')
 //                         localStorage.setItem('imageUrl', imageUrl)
 
@@ -98,11 +87,7 @@ console.log(firstSelectForm)
 //                      localStorage.setItem('description', description)
                  
 
-
-// const accesProdt = function () {
-
-// }
-
+console.log(colors);
 
 const ajoutBtn = document.querySelector('button');
 ajoutBtn.addEventListener('click', function () {
@@ -127,10 +112,6 @@ ajoutBtn.addEventListener('click', function () {
 // const onVide = localStorage.clear()
 
 //   onVide;
-
-
-
-
             })
 
 
