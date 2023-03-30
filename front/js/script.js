@@ -20,6 +20,10 @@ function articles(products) {
 }
 console.log(info)
 
+const articlePage = (product) => {
+  const { _id, imageUrl, altTxt, name, description, price, colors } = product;
+
+  
 const exploitInfo = function () {
   localStorage.setItem('_id', _id)
   localStorage.setItem('imageUrl', imageUrl)
@@ -29,12 +33,6 @@ const exploitInfo = function () {
   localStorage.setItem('price', price)
   localStorage.setItem('colors', colors)
 }
-
-
-
-const articlePage = (product) => {
-  const { _id, imageUrl, altTxt, name, description, price, colors } = product;
-
 
   // chargement du noeud section ou on va creer la page
   const newDiv = document.querySelector("section#items");
@@ -75,11 +73,10 @@ const articlePage = (product) => {
  
 };
 
-// recuperation d infos pour le panier
-// const extractInfo = res.json.stringitfy();
-// console.log(extractInfo);
-
 
 // const onVide = localStorage.clear()
 
 //   onVide;
+// recuperation d infos pour le panier
+// const extractInfo = res.json.stringitfy();
+// console.log(extractInfo);

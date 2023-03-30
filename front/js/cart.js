@@ -1,9 +1,6 @@
-console.log('test')
-
-
 const windowe = window.location.search;
 console.log("valeurs", windowe);
-windowe
+
 const urlParams = new URLSearchParams(windowe);
 console.log(urlParams);
 
@@ -13,7 +10,29 @@ console.log(paramId);
 // utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
 // fetch(`http://localhost:3000/api/products/${paramId}`)
 
-const info = fetch(`http://localhost:3000/api/products/${paramId}`)
+
+
+
+function getIdKanap () {
+  
+  // localStorage.setItem('identifiant', _id)
+  // localStorage.getItem('_id')
+  
+  localStorage.setItem('name', name)
+  // localStorage.getItem('name')
+  
+
+  localStorage.getItem('colors')
+  // localStorage.setItem('couleur',colors)
+
+  localStorage.getItem('price')
+  // localStorage.setItem('prix', price)
+}
+
+
+function sectionPanier () {
+
+const info = fetch("http://localhost:3000/api/products")
 .then(function (res) {
    if (res.ok) {
      return res.json();
@@ -25,6 +44,7 @@ const info = fetch(`http://localhost:3000/api/products/${paramId}`)
  .catch(function (err) {
    // Une erreur est survenue
  });
+ console.log(info.ok)
 
 function articles(products) {
  products.forEach((product) => {
@@ -66,7 +86,7 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  contenuCartItem.append(descriptonContenuCartItem)
 
  const nomProduitCarteItem = document.createElement("h2")
- nomProduitCarteItem.innerHTML = 'Nom du produit'
+ nomProduitCarteItem.innerHTML = name;
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
  const descriptionCouleurProduit = document.createElement('p')
@@ -109,37 +129,23 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
-
-
-function getIdKanap () {
-  
 }
+sectionPanier();
+ getIdKanap();
 
-// const onVide = localStorage.clear()
+console.log(getIdKanap);
 
-//   onVide;
+// const ajoutBtn = document.querySelector('button');
+// ajoutBtn.addEventListener('click', function () {
+//   console.log('capasse');
 
-const ajoutBtn = document.querySelector('button');
-ajoutBtn.addEventListener('click', function () {
-  console.log('capasse');
- 
-  localStorage.getItem('_id')
-  // localStorage.setItem('identifiant', _id)
+// // const onVide = localStorage.clear()
 
-  // localStorage.getItem('name')
-  // localStorage.setItem('name', name)
+// //   onVide;
+// })
 
-  // localStorage.getItem('colors')
-  // localStorage.setItem('couleur',colors)
-
-  // localStorage.getItem('price')
-  // localStorage.setItem('prix', price)
-
-  
- // const categorieProdtPanier = 
 
 
 // const onVide = localStorage.clear()
 
 //   onVide;
-})

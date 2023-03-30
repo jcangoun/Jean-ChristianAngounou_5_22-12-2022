@@ -1,7 +1,4 @@
-console.log("ca marche et a suivre product bloc");
-
 // recup des infosproduits
-
 const info = window.location.search;
 console.log("valeurs", info);
 // console.log("window Location:", window.location);
@@ -93,19 +90,31 @@ const ajoutBtn = document.querySelector('button');
 ajoutBtn.addEventListener('click', function () {
   console.log('capasse');
  
-  // localStorage.getItem('_id')
+
   localStorage.setItem('identifiant', _id)
+    localStorage.getItem('_id')
 
-  // localStorage.getItem('name')
+
   localStorage.setItem('name', name)
-
+  localStorage.getItem('name')
   // localStorage.getItem('colors')
   localStorage.setItem('couleur',colors)
+  localStorage.getItem('couleur')
 
   // localStorage.getItem('price')
   localStorage.setItem('prix', price)
+  localStorage.getItem('prix')
 
-  
+
+  localStorage.setItem('imageUrl', imageUrl)
+  localStorage.getItem('imageUrl')
+
+  localStorage.setItem('altTxt', altTxt)
+  localStorage.getItem('altTxt')
+
+  localStorage.setItem('description', description)
+  localStorage.getItem('description')
+    
  // const categorieProdtPanier = 
 
 
