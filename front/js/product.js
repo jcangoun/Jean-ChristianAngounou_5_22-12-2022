@@ -37,7 +37,18 @@ function getArticle(product) {
     colors,
   };
 
-  localStorage.setItem("panier", JSON.stringify(panier));
+  // localStorage.setItem("panier", JSON.stringify(panier));
+  // const panierChoisi = JSON.parse(localStorage.getItem('panier'));
+  // console.log(panierChoisi);
+
+  // const colorPanierSelected = panierChoisi.colors;
+  // console.log(panierChoisi.colors);
+
+  // const namePanierSelected = panierChoisi.name;
+  // console.log(panierChoisi.name)
+  
+  // const pricePanierSelected = panierChoisi.name;
+  // console.log(panierChoisi.price)
 
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
@@ -85,9 +96,18 @@ function getArticle(product) {
 
   console.log(colors);
 
-  // const ajoutBtn = document.querySelector('button');
-  // ajoutBtn.addEventListener('click', function () {
-  //   console.log('capasse');
+  const ajoutBtn = document.querySelector('button');
+  ajoutBtn.addEventListener('click', function () {
+    console.log('capasse');
 
-  //             })
+    const colorPanierSelected = panier.colors;
+    console.log(panier.colors);
+  
+    const namePanierSelected = panier.name;
+    console.log(panier.name)
+    
+    const pricePanierSelected = panier.name;
+    console.log(panier.price)
+
+              })
 }
