@@ -8,9 +8,9 @@ console.log(urlParams);
 const paramId = urlParams.get("id");
 console.log(paramId);
 
-// utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
+
 // fetch(`http://localhost:3000/api/products/${paramId}`)
-// fetch devrait avoir un AWAIT  a faire en first line
+
 const api = fetch(`http://localhost:3000/api/products`)
   .then(function (res) {
     if (res.ok) {

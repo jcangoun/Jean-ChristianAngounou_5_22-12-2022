@@ -12,26 +12,7 @@ console.log(paramId);
 
 
 
-
-function getIdKanap () {
-  
-  // localStorage.setItem('identifiant', _id)
-  // localStorage.getItem('_id')
-  
-  localStorage.setItem('name', name)
-  // localStorage.getItem('name')
-  
-
-  localStorage.getItem('colors')
-  // localStorage.setItem('couleur',colors)
-
-  localStorage.getItem('price')
-  // localStorage.setItem('prix', price)
-}
-
-
-// function sectionPanier (fetch) {
-
+// const info = fetch(`http://localhost:3000/api/products/${paramId}`)
 const info = fetch(`http://localhost:3000/api/products/${paramId}`)
 .then(function (res) {
    if (res.ok) {
@@ -52,11 +33,8 @@ function articles(products) {
    articlePage(product);
  });
 }
-info;
 
- getIdKanap();
 
-console.log(getIdKanap);
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -134,15 +112,16 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
-// }
-
- getIdKanap();
-
-console.log(getIdKanap);
-
-// const ajoutBtn = document.querySelector('button');
-// ajoutBtn.addEventListener('click', function () {
-//   console.log('ca paniasse');
 
 
-// })
+const ajoutBtn = document.querySelector('#order');
+ajoutBtn.addEventListener('click', function () {
+
+    console.log('ca paniasse');
+
+// localStorage.setItem("panier", JSON.stringify(panier));
+//   const panierChoisi = JSON.parse(localStorage.getItem('panier'));
+
+
+
+})

@@ -18,10 +18,10 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (product) {
     getArticle(product);
     console.log(product);
-  })
-  .catch(function (error) {
-    console.error(`probleme : ${error}`);
   });
+// .catch(function (error) {
+//   console.error(`probleme : ${error}`);
+// });
 
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
@@ -37,16 +37,12 @@ function getArticle(product) {
     colors,
   };
 
-  // localStorage.setItem("panier", JSON.stringify(panier));
-  // const panierChoisi = JSON.parse(localStorage.getItem('panier'));
-  // console.log(panierChoisi);
-
   // const colorPanierSelected = panierChoisi.colors;
   // console.log(panierChoisi.colors);
 
   // const namePanierSelected = panierChoisi.name;
   // console.log(panierChoisi.name)
-  
+
   // const pricePanierSelected = panierChoisi.name;
   // console.log(panierChoisi.price)
 
@@ -96,18 +92,44 @@ function getArticle(product) {
 
   console.log(colors);
 
-  const ajoutBtn = document.querySelector('button');
-  ajoutBtn.addEventListener('click', function () {
-    console.log('capasse');
+  const colorPanierSelected = panier.colors;
+  // console.log(panier);
 
-    const colorPanierSelected = panier.colors;
-    console.log(panier.colors);
+  const namePanierSelected = panier.name;
+  // console.log(panier.name)
+
+  const pricePanierSelected = panier.name;
+  // console.log(panier.price)
+
+  const choixKanapCouleur = document.querySelector("#color");
+  const palettCouleur = document.querySelectorAll('option')
+  console.log(palettCouleur);
+
   
-    const namePanierSelected = panier.name;
-    console.log(panier.name)
-    
-    const pricePanierSelected = panier.name;
-    console.log(panier.price)
+  for (let c =0; c < palettCouleur.length; c++) {
+    console.log(palettCouleur[c]);
+    if (palettCouleur == true) {
+      console.log(palettCouleur.value)
+      return palettCouleur.value
+    }
+    else { console.log("on dirait qu'il n'ya pas de color saved")}
+  }
 
-              })
+  const ajoutBtn = document.querySelector("#addToCart");
+  ajoutBtn.addEventListener("click", function () {
+    console.log("capasse");
+
+    localStorage.setItem("choix couleur", JSON.stringify(palettCouleur.value))
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+    const panierChoisi = JSON.parse(localStorage.getItem("panier"));
+    const qteArticle = document.querySelector("#quantity");
+    console.log(quantity.value);
+    return qteArticle.value;
+
+
+    // const saveQteArticle =
+    // console.log(panier);
+    // return colorPanierSelected;
+  });
 }
