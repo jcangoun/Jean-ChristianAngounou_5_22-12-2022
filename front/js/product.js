@@ -9,6 +9,7 @@ const paramId = urlParams.get("id");
 console.log(paramId);
 
 // utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
+            //    GROS PROBLEME AVEC  /${paramId}         il ne veut pas afficher les valeurs id
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -96,37 +97,48 @@ function getArticle(product) {
   // console.log(panier);
 
   const namePanierSelected = panier.name;
-  // console.log(panier.name)
+  console.log(panier.name)
 
   const pricePanierSelected = panier.name;
   // console.log(panier.price)
 
-  const choixKanapCouleur = document.querySelector("#color");
   const palettCouleur = document.querySelectorAll('option')
   console.log(palettCouleur);
 
-  
-  for (let c =0; c < palettCouleur.length; c++) {
-    console.log(palettCouleur[c]);
-    if (palettCouleur == true) {
-      console.log(palettCouleur.value)
-      return palettCouleur.value
+
+  for (let c = 0; c < colors.length; c++) {
+    console.log(colors);
+    if (colors.value > 0) {
+      console.log(colors.value)
+      return colors.value
     }
-    else { console.log("on dirait qu'il n'ya pas de color saved")}
+    else { console.log("pas de color saved")}
   }
 
+
+ 
   const ajoutBtn = document.querySelector("#addToCart");
   ajoutBtn.addEventListener("click", function () {
     console.log("capasse");
 
-    localStorage.setItem("choix couleur", JSON.stringify(palettCouleur.value))
+
 
     localStorage.setItem("panier", JSON.stringify(panier));
     const panierChoisi = JSON.parse(localStorage.getItem("panier"));
-    const qteArticle = document.querySelector("#quantity");
-    console.log(quantity.value);
-    return qteArticle.value;
+    panierChoisi;
+    
 
+    localStorage.setItem("colors", JSON.stringify(product.colors))
+    const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
+    // couleurChoisi;
+
+
+    const qteArticle = document.querySelector("#quantity");
+    localStorage.setItem("quantité", quantity.value)
+    JSON.parse(localStorage.getItem(quantity.value));
+    console.log(quantity.value);
+
+   
 
     // const saveQteArticle =
     // console.log(panier);
