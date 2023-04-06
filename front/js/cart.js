@@ -35,7 +35,6 @@ function articles(products) {
 }
 
 
-
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
 const detailArticl = document.createElement('article')
@@ -113,6 +112,14 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
 
+//  imageCArtItemArtcl.textContent = "";
+
+const btnEffacer = document.getElementsByClassName('deleteItem');
+console.log(btnEffacer)
+// btnEffacer.addEventListener("click", function () {
+//     localStorage.clear;
+//     console.log('ca supprime')
+// })
 
 const ajoutBtn = document.querySelector('#order');
 ajoutBtn.addEventListener('click', function () {

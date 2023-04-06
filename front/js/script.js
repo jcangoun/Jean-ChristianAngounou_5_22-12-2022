@@ -1,6 +1,8 @@
 
 const info = window.location.search;
 console.log("valeurs", info);
+// Ici notre fameux info ne renvoit pas de valeurs .... remettre paramId quand ce sera resolu,
+//  AA VOIR
 // console.log("window Location:", window.location);
 const urlParams = new URLSearchParams(info);
 console.log(urlParams);
@@ -32,7 +34,6 @@ function articles(products) {
     articlePage(product);
   });
 }
-
 
 const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
@@ -75,7 +76,3 @@ const articlePage = (product) => {
   articleDuLienProdt.append(phraseCleProdt);
 };
 
-
-// recuperation d infos pour le panier
-// const extractInfo = res.json.stringitfy();
-// console.log(extractInfo);

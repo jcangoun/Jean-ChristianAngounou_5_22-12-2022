@@ -1,3 +1,5 @@
+
+
 // recup des infosproduits
 const info = window.location.search;
 console.log("valeurs", info);
@@ -91,62 +93,55 @@ function getArticle(product) {
   // const accesDescription  = localStorage.getItem('description')
   //                      localStorage.setItem('description', description)
 
-  console.log(colors);
-
+  // console.log(colors);
   const colorPanierSelected = panier.colors;
-  // console.log(panier);
+  console.log(panier.value);
 
   const namePanierSelected = panier.name;
   console.log(panier.name)
 
-  const pricePanierSelected = panier.name;
-  // console.log(panier.price)
+  const pricePanierSelected = panier.price;
+  console.log(panier.price)
 
-  const palettCouleur = document.querySelectorAll('option')
-  console.log(palettCouleur);
+  // const palettCouleur = document.querySelectorAll('option')
+  // console.log(palettCouleur);
 
 const choixKanapCouleur = document.querySelector('#colors');
-choixKanapCouleur.addEventListener("click", function() {
 
-  //   for (let c = 0; c < palettCouleur.length; c++) {
-  //   console.log(palettCouleur[c]);
-  //   if (palettCouleur.value > 0) {
-  //     console.log(palettCouleur.value)
-  //     return palettCouleur.value
-  //   }
-  //   else { console.log("pas de color saved")}
-  // }
+// choixKanapCouleur.addEventListener("click", function() {
 
-})
+//     for (let c = 0; c < palettCouleur.length; c++) {
+//     console.log(palettCouleur[c]);
+//     if (palettCouleur.value > 0) {
+//       console.log(palettCouleur.value)
+//       return palettCouleur.value
+//     }
+//     else { console.log("pas de color saved")}
+//   }
+// })
 
-
-
- 
   const ajoutBtn = document.querySelector("#addToCart");
   ajoutBtn.addEventListener("click", function () {
     console.log("capasse");
 
 
-
+    // Stockage produit choisi, avec tous les details du produit
     localStorage.setItem("panier", JSON.stringify(panier));
     const panierChoisi = JSON.parse(localStorage.getItem("panier"));
     panierChoisi;
     
-
+    //  stockage de la couleurchoisie  produit choisi
     localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
     const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
     console.log(couleurChoisi);
 
-
+    // Stockage de la quantité du produit choisi
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantité", quantity.value)
     JSON.parse(localStorage.getItem(quantity.value));
     console.log(quantity.value);
 
-   
-
-    // const saveQteArticle =
-    // console.log(panier);
-    // return colorPanierSelected;
   });
 }
+
+// localStorage.clear();
