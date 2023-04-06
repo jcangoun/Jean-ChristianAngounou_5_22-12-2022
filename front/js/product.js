@@ -105,15 +105,20 @@ function getArticle(product) {
   const palettCouleur = document.querySelectorAll('option')
   console.log(palettCouleur);
 
+const choixKanapCouleur = document.querySelector('#colors');
+choixKanapCouleur.addEventListener("click", function() {
 
-  for (let c = 0; c < colors.length; c++) {
-    console.log(colors);
-    if (colors.value > 0) {
-      console.log(colors.value)
-      return colors.value
-    }
-    else { console.log("pas de color saved")}
-  }
+  //   for (let c = 0; c < palettCouleur.length; c++) {
+  //   console.log(palettCouleur[c]);
+  //   if (palettCouleur.value > 0) {
+  //     console.log(palettCouleur.value)
+  //     return palettCouleur.value
+  //   }
+  //   else { console.log("pas de color saved")}
+  // }
+
+})
+
 
 
  
@@ -128,9 +133,9 @@ function getArticle(product) {
     panierChoisi;
     
 
-    localStorage.setItem("colors", JSON.stringify(product.colors))
+    localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
     const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
-    // couleurChoisi;
+    console.log(couleurChoisi);
 
 
     const qteArticle = document.querySelector("#quantity");
