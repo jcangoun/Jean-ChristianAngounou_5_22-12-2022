@@ -10,8 +10,7 @@ console.log(urlParams);
 const paramId = urlParams.get("id");
 console.log(paramId);
 
-// utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
-            //    GROS PROBLEME AVEC  /${paramId}         il ne veut pas afficher les valeurs id
+
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -36,18 +35,10 @@ function getArticle(product) {
     altTxt,
     name,
     description,
-    price,
+    // price,
+    quantity,
     colors,
   };
-
-  // const colorPanierSelected = panierChoisi.colors;
-  // console.log(panierChoisi.colors);
-
-  // const namePanierSelected = panierChoisi.name;
-  // console.log(panierChoisi.name)
-
-  // const pricePanierSelected = panierChoisi.name;
-  // console.log(panierChoisi.price)
 
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
@@ -83,7 +74,6 @@ function getArticle(product) {
     optionValue.innerHTML = colors[i];
     firstSelectForm.append(optionValue);
   }
-
   // const accesImageUrl  =  localStorage.getItem('imageUrl')
   //                         localStorage.setItem('imageUrl', imageUrl)
 
@@ -93,7 +83,6 @@ function getArticle(product) {
   // const accesDescription  = localStorage.getItem('description')
   //                      localStorage.setItem('description', description)
 
-  // console.log(colors);
   const colorPanierSelected = panier.colors;
   console.log(panier.value);
 
@@ -103,27 +92,14 @@ function getArticle(product) {
   const pricePanierSelected = panier.price;
   console.log(panier.price)
 
-  // const palettCouleur = document.querySelectorAll('option')
-  // console.log(palettCouleur);
-
 const choixKanapCouleur = document.querySelector('#colors');
-
-// choixKanapCouleur.addEventListener("click", function() {
-
-//     for (let c = 0; c < palettCouleur.length; c++) {
-//     console.log(palettCouleur[c]);
-//     if (palettCouleur.value > 0) {
-//       console.log(palettCouleur.value)
-//       return palettCouleur.value
-//     }
-//     else { console.log("pas de color saved")}
-//   }
-// })
 
   const ajoutBtn = document.querySelector("#addToCart");
   ajoutBtn.addEventListener("click", function () {
     console.log("capasse");
 
+    panier.colors = choixKanapCouleur.value;
+    panier.quantity = quantity.value
 
     // Stockage produit choisi, avec tous les details du produit
     localStorage.setItem("panier", JSON.stringify(panier));

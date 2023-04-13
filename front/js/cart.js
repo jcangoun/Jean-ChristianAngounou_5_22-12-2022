@@ -35,6 +35,13 @@ function articles(products) {
 }
 
 
+// localStorage.getItem("colors");
+// localStorage.getItem("quantite.value");
+// localStorage.getItem("imageUrl");
+// localStorage.getItem("name");
+
+
+
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
 const detailArticl = document.createElement('article')
@@ -126,9 +133,7 @@ ajoutBtn.addEventListener('click', function () {
 
     console.log('ca paniasse');
 
-// localStorage.setItem("panier", JSON.stringify(panier));
 //   const panierChoisi = JSON.parse(localStorage.getItem('panier'));
-
 
 
 })

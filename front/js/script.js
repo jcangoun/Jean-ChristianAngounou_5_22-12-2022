@@ -1,18 +1,3 @@
-
-const info = window.location.search;
-console.log("valeurs", info);
-// Ici notre fameux info ne renvoit pas de valeurs .... remettre paramId quand ce sera resolu,
-//  AA VOIR
-// console.log("window Location:", window.location);
-const urlParams = new URLSearchParams(info);
-console.log(urlParams);
-
-const paramId = urlParams.get("id");
-console.log(paramId);
-
-
-// fetch(`http://localhost:3000/api/products/${paramId}`)
-
 const api = fetch(`http://localhost:3000/api/products`)
   .then(function (res) {
     if (res.ok) {
