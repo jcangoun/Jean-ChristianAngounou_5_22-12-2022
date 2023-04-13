@@ -35,7 +35,7 @@ function getArticle(product) {
     altTxt,
     name,
     description,
-    // price,
+    price,
     quantity,
     colors,
   };
@@ -103,19 +103,32 @@ const choixKanapCouleur = document.querySelector('#colors');
 
     // Stockage produit choisi, avec tous les details du produit
     localStorage.setItem("panier", JSON.stringify(panier));
-    const panierChoisi = JSON.parse(localStorage.getItem("panier"));
+    const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
     panierChoisi;
     
-    //  stockage de la couleurchoisie  produit choisi
-    localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
-    const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
-    console.log(couleurChoisi);
 
-    // Stockage de la quantité du produit choisi
-    const qteArticle = document.querySelector("#quantity");
-    localStorage.setItem("quantité", quantity.value)
-    JSON.parse(localStorage.getItem(quantity.value));
-    console.log(quantity.value);
+
+    // //  stockage de la couleurchoisie  produit choisi
+    // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
+    // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
+    // console.log(couleurChoisi);
+
+    // // Stockage de la quantité du produit choisi
+    // const qteArticle = document.querySelector("#quantity");
+    // localStorage.setItem("quantité", quantity.value)
+    // JSON.parse(localStorage.getItem(quantity.value));
+    // console.log(quantity.value);
+
+
+
+    // // Et pour la carte on recrute ceci en bas 
+
+    // const nomArticle = document.querySelector("h2 ");
+    // localStorage.setItem("quantité", quantity.value)
+    // JSON.parse(localStorage.getItem(quantity.value));
+    // console.log(quantity.value);
+
+    
 
   });
 }

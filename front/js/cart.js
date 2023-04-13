@@ -7,7 +7,9 @@ console.log(urlParams);
 const paramId = urlParams.get("id");
 console.log(paramId);
 
-// utiliser searchParams pour recupere l'id d'un produit dans l'url Au fait await cause probleme
+
+// fetch est dans les boucles de select de  l id et search params est a enlever
+
 // fetch(`http://localhost:3000/api/products/${paramId}`)
 
 
@@ -34,12 +36,19 @@ function articles(products) {
  });
 }
 
-
 // localStorage.getItem("colors");
-// localStorage.getItem("quantite.value");
-// localStorage.getItem("imageUrl");
-// localStorage.getItem("name");
+// localStorage.getItem("colors")
+if (localStorage.getItem("colors") != null)
 
+
+// localStorage.getItem("quantite.value");
+localStorage.getItem("quantite.value");
+// localStorage.getItem("imageUrl");
+// localStorage.setItem("image Produit", imageUrl);
+
+
+localStorage.setItem("nom", name);
+localStorage.getItem("nom");
 
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
@@ -121,10 +130,27 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 
 //  imageCArtItemArtcl.textContent = "";
 
+// localStorage.getItem("colors")
+if (localStorage.getItem("colors") != null)
+descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
+
+// localStorage.getItem("quantite.value");
+// localStorage.getItem("quantite.value");
+
+if (localStorage.getItem("quantite.value") != null)
+itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
+// localStorage.getItem("imageUrl");
+localStorage.getItem("name");
+if (localStorage.getItem("name") != null)
+itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
+// localStorage.getItem("name");
+localStorage.getItem("name");
+
+
 const btnEffacer = document.getElementsByClassName('deleteItem');
 console.log(btnEffacer)
 // btnEffacer.addEventListener("click", function () {
-//     localStorage.clear;
+    // localStorage.clear();
 //     console.log('ca supprime')
 // })
 
