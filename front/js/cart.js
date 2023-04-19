@@ -1,54 +1,57 @@
-const windowe = window.location.search;
-console.log("valeurs", windowe);
+// const windowe = window.location.search;
+// console.log("valeurs", windowe);
 
-const urlParams = new URLSearchParams(windowe);
-console.log(urlParams);
+// const urlParams = new URLSearchParams(windowe);
+// console.log(urlParams);
 
-const paramId = urlParams.get("id");
-console.log(paramId);
-
+// const paramId = urlParams.get("id");
+// console.log(paramId);
 
 // fetch est dans les boucles de select de  l id et search params est a enlever
 
-// fetch(`http://localhost:3000/api/products/${paramId}`)
-
-
-
+// // const info = fetch(`http://localhost:3000/api/products/${paramId}`)
 // const info = fetch(`http://localhost:3000/api/products/${paramId}`)
-const info = fetch(`http://localhost:3000/api/products/${paramId}`)
-.then(function (res) {
-   if (res.ok) {
-     return res.json();
-   }
- })
- .then(function (products) {
-   articles(products);
- })
- .catch(function (err) {
-   // Une erreur est survenue
- });
+// .then(function (res) {
+//    if (res.ok) {
+//      return res.json();
+//    }
+//  })
+//  .then(function (products) {
+//    articles(products);
+//  })
+//  .catch(function (err) {
+//    // Une erreur est survenue
+//  });
 
 
-function articles(products) {
- products.forEach((product) => {
+// function articles(products) {
+//  products.forEach((product) => {
 
-   articlePage(product);
- });
-}
+//    articlePage(product);
+//  });
+// }
 
-// localStorage.getItem("colors");
+
+
+
+
+
+
+
+
 // localStorage.getItem("colors")
-if (localStorage.getItem("colors") != null)
-
+// if (localStorage.getItem("colors") != null)
 
 // localStorage.getItem("quantite.value");
-localStorage.getItem("quantite.value");
+// localStorage.getItem("quantite.value");
+
+
 // localStorage.getItem("imageUrl");
 // localStorage.setItem("image Produit", imageUrl);
 
 
-localStorage.setItem("nom", name);
-localStorage.getItem("nom");
+// localStorage.setItem("nom", name);
+// localStorage.getItem("nom");
 
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
@@ -134,8 +137,6 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 if (localStorage.getItem("colors") != null)
 descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
 
-// localStorage.getItem("quantite.value");
-// localStorage.getItem("quantite.value");
 
 if (localStorage.getItem("quantite.value") != null)
 itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
@@ -160,6 +161,5 @@ ajoutBtn.addEventListener('click', function () {
     console.log('ca paniasse');
 
 //   const panierChoisi = JSON.parse(localStorage.getItem('panier'));
-
 
 })
