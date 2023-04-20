@@ -109,15 +109,17 @@ const choixKanapCouleur = document.querySelector('#colors');
 
 
     // //  stockage de la couleurchoisie  produit choisi
+      localStorage.setItem("le produit", JSON.stringify(panier))
+    
     // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
     // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
     // console.log(couleurChoisi);
 
     // // Stockage de la quantité du produit choisi
-    // const qteArticle = document.querySelector("#quantity");
-    // localStorage.setItem("quantité", quantity.value)
-    // JSON.parse(localStorage.getItem(quantity.value));
-    // console.log(quantity.value);
+    const qteArticle = document.querySelector("#quantity");
+    localStorage.setItem("quantité", quantity.value)
+    JSON.parse(localStorage.getItem(quantity.value));
+    console.log(quantity.value);
 
 
 

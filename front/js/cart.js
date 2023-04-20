@@ -31,11 +31,14 @@
 //  });
 // }
 
+   const cartPanier = JSON.parse(localStorage.getItem("le produit"));
+   console.log(cartPanier)
+
+   console.log(cartPanier.altTxt)
 
 
-
-localStorage.setItem("panier", panier)
-
+  //  cartPanier.map(leProduit => fetch(`http://localhost:3000/api/products/${paramId}`))
+// localStorage.setItem("panier", panier)
 // if (localStorage.getItem("colors") != null)
 
 // console.log(localStorage.getItem(colors))
@@ -85,16 +88,16 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  contenuCartItem.append(descriptonContenuCartItem)
 
  const nomProduitCarteItem = document.createElement("h2")
- nomProduitCarteItem.innerHTML = 'Nom du produit';
+ nomProduitCarteItem.innerHTML = `${cartPanier.name}`;
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
  const descriptionCouleurProduit = document.createElement('p')
- descriptionCouleurProduit.innerHTML = 'Vert'
+ descriptionCouleurProduit.innerHTML = `${cartPanier.colors}`;
 
  descriptonContenuCartItem.append(descriptionCouleurProduit)
 
  const descriptionPrixProduit = document.createElement('p')
- descriptionPrixProduit.innerHTML = '42'
+ descriptionPrixProduit.innerHTML = `${cartPanier.price}`
  descriptonContenuCartItem.append(descriptionPrixProduit)
 
  const fixationContenuCartArticle = document.createElement('div')
