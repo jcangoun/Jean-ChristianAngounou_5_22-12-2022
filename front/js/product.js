@@ -29,7 +29,8 @@ function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
   console.log(product.colors);
 
-  const panier = {
+  const panier = [{
+    
     _id,
     imageUrl,
     altTxt,
@@ -38,7 +39,7 @@ function getArticle(product) {
     price,
     quantity,
     colors,
-  };
+  }];
 
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
@@ -86,10 +87,10 @@ function getArticle(product) {
   const colorPanierSelected = panier.colors;
   console.log(panier.value);
 
-  const namePanierSelected = panier.name;
+  const namePanierSelected = panier[0].name;
   console.log(panier.name)
 
-  const pricePanierSelected = panier.price;
+  const pricePanierSelected = panier[0].price;
   console.log(panier.price)
 
 const choixKanapCouleur = document.querySelector('#colors');

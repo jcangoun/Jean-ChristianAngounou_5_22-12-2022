@@ -1,42 +1,22 @@
-// const windowe = window.location.search;
-// console.log("valeurs", windowe);
 
-// const urlParams = new URLSearchParams(windowe);
-// console.log(urlParams);
-
-// const paramId = urlParams.get("id");
-// console.log(paramId);
-
-// fetch est dans les boucles de select de  l id et search params est a enlever
-
-// // const info = fetch(`http://localhost:3000/api/products/${paramId}`)
-// const info = fetch(`http://localhost:3000/api/products/${paramId}`)
-
+   
    const cartPanierGet = JSON.parse(localStorage.getItem("le produit"));
    console.log(cartPanierGet)
    console.log(cartPanierGet.altTxt)
 
 
-
   const cartNbreProdts = JSON.parse(localStorage.getItem("quantite"));
   console.log(JSON.parse(localStorage.getItem("quantite")))
+console.log(typeof cartPanierGet)
 
-  //  cartPanierGet.map(leProduit => fetch(`http://localhost:3000/api/products/${paramId}`))
-// localStorage.setItem("panier", panier)
-// if (localStorage.getItem("colors") != null)
-
-// console.log(localStorage.getItem(colors))
-
-// localStorage.getItem("quantite.value");
-// localStorage.getItem("quantite.value");
-
-
-// localStorage.getItem("imageUrl");
-// localStorage.setItem("image Produit", imageUrl);
-
-
-// localStorage.setItem("nom", name);
-// localStorage.getItem("nom");
+   cartPanierGet.forEach(produit => {
+    fetch(`http://localhost:3000/api/products/${produit._id}`)
+    .then (response => response.json() )
+    .then (data => {
+      console.log(data)
+    })
+ console.log(produit._id)
+  } ) 
 
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
@@ -123,8 +103,6 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
-
-//  imageCArtItemArtcl.textContent = "";
 
 // localStorage.getItem("colors")
 if (localStorage.getItem("colors") != null)
