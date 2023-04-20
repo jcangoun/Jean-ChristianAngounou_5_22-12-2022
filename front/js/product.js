@@ -117,10 +117,12 @@ const choixKanapCouleur = document.querySelector('#colors');
 
     // // Stockage de la quantité du produit choisi
     const qteArticle = document.querySelector("#quantity");
-    localStorage.setItem("quantité", quantity.value)
+    localStorage.setItem("quantite", quantity.value)
     JSON.parse(localStorage.getItem(quantity.value));
     console.log(quantity.value);
 
+  const accesImageUrl  =  localStorage.getItem('imageUrl')
+                          localStorage.setItem('imageUrl', imageUrl)
 
 
     // // Et pour la carte on recrute ceci en bas 

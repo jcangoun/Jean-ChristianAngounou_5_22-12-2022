@@ -11,33 +11,17 @@
 
 // // const info = fetch(`http://localhost:3000/api/products/${paramId}`)
 // const info = fetch(`http://localhost:3000/api/products/${paramId}`)
-// .then(function (res) {
-//    if (res.ok) {
-//      return res.json();
-//    }
-//  })
-//  .then(function (products) {
-//    articles(products);
-//  })
-//  .catch(function (err) {
-//    // Une erreur est survenue
-//  });
+
+   const cartPanierGet = JSON.parse(localStorage.getItem("le produit"));
+   console.log(cartPanierGet)
+   console.log(cartPanierGet.altTxt)
 
 
-// function articles(products) {
-//  products.forEach((product) => {
 
-//    articlePage(product);
-//  });
-// }
+  const cartNbreProdts = JSON.parse(localStorage.getItem("quantite"));
+  console.log(JSON.parse(localStorage.getItem("quantite")))
 
-   const cartPanier = JSON.parse(localStorage.getItem("le produit"));
-   console.log(cartPanier)
-
-   console.log(cartPanier.altTxt)
-
-
-  //  cartPanier.map(leProduit => fetch(`http://localhost:3000/api/products/${paramId}`))
+  //  cartPanierGet.map(leProduit => fetch(`http://localhost:3000/api/products/${paramId}`))
 // localStorage.setItem("panier", panier)
 // if (localStorage.getItem("colors") != null)
 
@@ -88,16 +72,23 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  contenuCartItem.append(descriptonContenuCartItem)
 
  const nomProduitCarteItem = document.createElement("h2")
- nomProduitCarteItem.innerHTML = `${cartPanier.name}`;
+ nomProduitCarteItem.innerHTML = 'Nom Produit';
+//  En haut on remplacera par ceci en bas
+  // nomProduitCarteItem.innerHTML = `${cartPanierGet.name}`;
+ 
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
  const descriptionCouleurProduit = document.createElement('p')
- descriptionCouleurProduit.innerHTML = `${cartPanier.colors}`;
+ descriptionCouleurProduit.innerHTML = 'Vert';
+
+
+//  descriptionCouleurProduit.innerHTML = `${cartPanierGet.colors}`;
 
  descriptonContenuCartItem.append(descriptionCouleurProduit)
 
  const descriptionPrixProduit = document.createElement('p')
- descriptionPrixProduit.innerHTML = `${cartPanier.price}`
+ descriptionPrixProduit.innerHTML = '42'
+//  descriptionPrixProduit.innerHTML = `${cartPanierGet.price}`
  descriptonContenuCartItem.append(descriptionPrixProduit)
 
  const fixationContenuCartArticle = document.createElement('div')
@@ -119,7 +110,8 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  resultatValeurQuantite.setAttribute('name', 'itemQuantity')
  resultatValeurQuantite.setAttribute('min', '1')
  resultatValeurQuantite.setAttribute('max', '100')
- resultatValeurQuantite.setAttribute('value', 42)
+ resultatValeurQuantite.setAttribute('value', cartNbreProdts)
+//  en haut là cartNbreProdts a remplace '42'
  fixationContenuCartArticle.append(resultatValeurQuantite)
 
  const caseAnnuleConfigCotenuCartArticl = document.createElement('div')
