@@ -34,13 +34,11 @@
 
 
 
+localStorage.setItem("panier", panier)
 
-
-
-
-
-// localStorage.getItem("colors")
 // if (localStorage.getItem("colors") != null)
+
+// console.log(localStorage.getItem(colors))
 
 // localStorage.getItem("quantite.value");
 // localStorage.getItem("quantite.value");

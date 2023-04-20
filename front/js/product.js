@@ -128,8 +128,9 @@ const choixKanapCouleur = document.querySelector('#colors');
     // JSON.parse(localStorage.getItem(quantity.value));
     // console.log(quantity.value);
 
-    
-
+    // localStorage.setItem('couleur', panier.colors)
+    // localStorage.setItem('nom', panier.name)
+    localStorage.setItem("panier", panier)
   });
 }
 
