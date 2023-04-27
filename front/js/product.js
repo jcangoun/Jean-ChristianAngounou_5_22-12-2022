@@ -74,6 +74,7 @@ function getArticle(product) {
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
     firstSelectForm.append(optionValue);
+
   }
   // const accesImageUrl  =  localStorage.getItem('imageUrl')
   //                         localStorage.setItem('imageUrl', imageUrl)
@@ -96,9 +97,9 @@ function getArticle(product) {
 const choixKanapCouleur = document.querySelector('#colors');
 
   const ajoutBtn = document.querySelector("#addToCart");
-  ajoutBtn.addEventListener("click", function () {
-    console.log("capasse");
-
+  ajoutBtn.addEventListener("click", function (e) {
+    console.log("capasse le bouton");
+    e.preventDefault;
     panier.colors = choixKanapCouleur.value;
     panier.quantity = quantity.value
 
@@ -122,8 +123,8 @@ const choixKanapCouleur = document.querySelector('#colors');
     JSON.parse(localStorage.getItem(quantity.value));
     console.log(quantity.value);
 
-  const accesImageUrl  =  localStorage.getItem('imageUrl')
-                          localStorage.setItem('imageUrl', imageUrl)
+  // const accesImageUrl  =  localStorage.getItem('imageUrl')
+  //                         localStorage.setItem('imageUrl', imageUrl)
 
 
     // // Et pour la carte on recrute ceci en bas 
@@ -135,7 +136,25 @@ const choixKanapCouleur = document.querySelector('#colors');
 
     // localStorage.setItem('couleur', panier.colors)
     // localStorage.setItem('nom', panier.name)
-    localStorage.setItem("panier", panier)
+    localStorage.setItem("panier", panier[0]);
+    localStorage.setItem("panier", panier[0].name);
+    localStorage.setItem("panier", panier[0].colors);
+    localStorage.setItem("panier", panier[0].description);
+    localStorage.setItem("panier", panier[0].price);
+
+     
+    if (!panier) {
+      localStorage.setItem("produit", JSON.stringify(panier))
+console.log(JSON.stringify(panier))
+    }
+      else {panier.length++}
+    
+    console.log(panier.length)
+  
+      console.log(panier);
+      // localStorage.setItem
+    
+    
   });
 }
 

@@ -18,6 +18,7 @@ console.log(typeof cartPanierGet)
  console.log(produit._id)
   } ) 
 
+//ici il semble bien qu'on va devoir faire une variable de tout ce qui est crée pour  le html ici en bas 
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -53,8 +54,8 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 
  const nomProduitCarteItem = document.createElement("h2")
  nomProduitCarteItem.innerHTML = 'Nom Produit';
-//  En haut on remplacera par ceci en bas
-  // nomProduitCarteItem.innerHTML = `${cartPanierGet.name}`;
+//  En test en haut on remplacera par ceci en bas
+  nomProduitCarteItem.innerHTML = `${cartPanierGet[0].name}`;
  
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
@@ -62,13 +63,13 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  descriptionCouleurProduit.innerHTML = 'Vert';
 
 
-//  descriptionCouleurProduit.innerHTML = `${cartPanierGet.colors}`;
+//  descriptionCouleurProduit.innerHTML = `${cartPanierGet[0].colors}`;
 
  descriptonContenuCartItem.append(descriptionCouleurProduit)
 
  const descriptionPrixProduit = document.createElement('p')
  descriptionPrixProduit.innerHTML = '42'
-//  descriptionPrixProduit.innerHTML = `${cartPanierGet.price}`
+//  descriptionPrixProduit.innerHTML = `${cartPanierGet[0].price}`
  descriptonContenuCartItem.append(descriptionPrixProduit)
 
  const fixationContenuCartArticle = document.createElement('div')
