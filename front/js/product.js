@@ -157,5 +157,4 @@ console.log(JSON.stringify(panier))
     
   });
 }
-
 // localStorage.clear();
