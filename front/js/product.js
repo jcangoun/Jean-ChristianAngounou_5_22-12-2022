@@ -29,7 +29,7 @@ function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
   console.log(product.colors);
 
-  const panier = [{
+  let panier = [{
     
     _id,
     imageUrl,
@@ -77,48 +77,60 @@ function getArticle(product) {
     firstSelectForm.append(optionValue);
 
   }
-  // const accesImageUrl  =  localStorage.getItem('imageUrl')
-  //                         localStorage.setItem('imageUrl', imageUrl)
 
-  // const accesAltTxt  = localStorage.getItem('altTxt')
-  //                      localStorage.setItem('altTxt', altTxt)
-
-  // const accesDescription  = localStorage.getItem('description')
-  //                      localStorage.setItem('description', description)
 
   const colorPanierSelected = panier.colors;
-  console.log(panier.value);
+  console.log(panier[0]);
 
-  const namePanierSelected = panier[0].name;
-  console.log(panier.name)
 
-  const pricePanierSelected = panier[0].price;
-  console.log(panier.price)
+const choixKanapCouleur = document.getElementById('colors');
 
-const choixKanapCouleur = document.querySelector('#colors');
-
+//Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
+
+  //Gestion du bouton au click sur rajouter au panier
   ajoutBtn.addEventListener("click", function (e) {
     console.log("capasse le bouton");
     e.preventDefault;
+
+
+
+
+
+    panier._id = product._id;
+    panier.imageUrl = product.imageUrl;
+    panier.altTxt = product.altTxt;
+    panier.name = product.name;
+    panier.description = product.description;
     panier.colors = choixKanapCouleur.value;
-    panier.quantity = quantity.value
+    console.log(choixKanapCouleur.value);
+    panier.quantity = quantity.value;
 
-    // Stockage produit choisi, avec tous les details du produit
-    localStorage.setItem("panier", JSON.stringify(panier));
-    const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
-    panierChoisi;
-    
+    const leProduit = JSON.parse(localStorage.getItem("le produit"));
+    console.log(leProduit);
+      if (leProduit === null) {
+
+      //  stockage de seulement la couleurchoisie  produit choisi dans le localStorage
+      localStorage.setItem("le produit", JSON.stringify(panier));
+
+    }
+    // Je souhaite verifier que l'id de product est diiferent du panier en conditions if et tout .id- productt et id panier { pas rajout new line , sauf si === }
+      else {panier.push(product)
+        console.log(panier)
+        localStorage.setItem("le produit", JSON.stringify(panier));
+
+        
+      }
 
 
-    // //  stockage de la couleurchoisie  produit choisi
-      localStorage.setItem("le produit", JSON.stringify(panier))
-    
+
+      const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
+      panierChoisi;
     // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
     // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
     // console.log(couleurChoisi);
 
-    // // Stockage de la quantité du produit choisi
+    // // Stockage de la quantité du produit choisi a test suppr
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantite", quantity.value)
     JSON.parse(localStorage.getItem(quantity.value));
@@ -137,26 +149,7 @@ const choixKanapCouleur = document.querySelector('#colors');
 
     // localStorage.setItem('couleur', panier.colors)
     // localStorage.setItem('nom', panier.name)
-    localStorage.setItem("panier", panier[0]);
-    localStorage.setItem("panier", panier[0].name);
-    localStorage.setItem("panier", panier[0].colors);
-    localStorage.setItem("panier", panier[0].description);
-    localStorage.setItem("panier", panier[0].price);
 
-     
-    if (!panier) {
-      localStorage.setItem("produit", JSON.stringify(panier))
-console.log(JSON.stringify(panier))
-console.log("y avait rien")
-    }
-      else {panier.push(product)
-      console.log ("y a ")}
-    
-    console.log(panier.length)
-  
-      console.log(panier.length);
-      // localStorage.setItem
-    
     
   });
 
