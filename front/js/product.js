@@ -41,6 +41,7 @@ function getArticle(product) {
     colors,
   }];
 
+    console.log(panier)
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
@@ -146,15 +147,19 @@ const choixKanapCouleur = document.querySelector('#colors');
     if (!panier) {
       localStorage.setItem("produit", JSON.stringify(panier))
 console.log(JSON.stringify(panier))
+console.log("y avait rien")
     }
-      else {panier.length++}
+      else {panier.push(product)
+      console.log ("y a ")}
     
     console.log(panier.length)
   
-      console.log(panier);
+      console.log(panier.length);
       // localStorage.setItem
     
     
   });
+
 }
 // localStorage.clear();
+
