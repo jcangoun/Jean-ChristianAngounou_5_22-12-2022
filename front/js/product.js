@@ -11,6 +11,10 @@ const paramId = urlParams.get("id");
 console.log(paramId);
 
 
+// variable bouton ajoutPanier
+const ajoutPanier = document.querySelector("#addToCart");
+
+
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -48,8 +52,8 @@ function getArticle(product) {
   let newProductImg = productPhotoArticle.append(productImg);
   productImg.setAttribute("src", "../images/logo.png");
   productImg.setAttribute("alt", "Photographie d'un canapé");
-  // console.log(newProductImg)
 
+  
   // console.log('console suite nom produit');
   const produitNomPrix = document.querySelector("h1#title");
   produitNomPrix.innerHTML = name;
@@ -70,7 +74,7 @@ function getArticle(product) {
   for (let i = 0; i < colors.length; i++) {
     console.log(colors[i]);
 
-    // const selectForm = document.createElement("option"[i]);
+    const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
@@ -94,9 +98,6 @@ const choixKanapCouleur = document.getElementById('colors');
     e.preventDefault;
 
 
-
-
-
     panier._id = product._id;
     panier.imageUrl = product.imageUrl;
     panier.altTxt = product.altTxt;
@@ -114,6 +115,16 @@ const choixKanapCouleur = document.getElementById('colors');
       localStorage.setItem("le produit", JSON.stringify(panier));
 
     }
+    else if (panier.id === product.id ) { 
+      if (panier.colors === product.colors && panier.quantity ) {
+
+        console.log("bien egal")
+       panier.quantity++;
+      }
+      
+    }
+
+
     // Je souhaite verifier que l'id de product est diiferent du panier en conditions if et tout .id- productt et id panier { pas rajout new line , sauf si === }
       else {panier.push(product)
         console.log(panier)
@@ -134,8 +145,7 @@ const choixKanapCouleur = document.getElementById('colors');
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantite", quantity.value)
     JSON.parse(localStorage.getItem(quantity.value));
-    console.log(quantity.value);
-
+    console.log(panier.quantity);
   // const accesImageUrl  =  localStorage.getItem('imageUrl')
   //                         localStorage.setItem('imageUrl', imageUrl)
 
