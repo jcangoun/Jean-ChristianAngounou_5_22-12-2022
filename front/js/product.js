@@ -108,25 +108,30 @@ const choixKanapCouleur = document.getElementById('colors');
     const leProduit = JSON.parse(localStorage.getItem("le produit"));
     console.log(leProduit);
 
-      if (leProduit === null) {
-        console.log("Maintenant il y a un produit ajouté")
-      //  stockage de seulement la couleurchoisie  produit choisi dans le localStorage
-      localStorage.setItem("le produit", JSON.stringify(panier));
+    //   if (leProduit === null) {
+    //     console.log("Maintenant il y a " + quantity.value + " produit ajouté")
+    //   //  stockage de seulement la couleurchoisie  produit choisi dans le localStorage
+    //   localStorage.setItem("le produit", JSON.stringify(panier));
 
-    }
+    // }
     
-    else if (panier.id === product.id && panier.colors === choixKanapCouleur.value && panier.quantity === quantity.value) { 
-        console.log("bien egal", panier.quantity.length)         
-    }
+    // else if (panier._id === product._id && panier.colors === choixKanapCouleur.value && panier.quantity === quantity.value) { 
+    //   panier.quantity++
+    //    const quantiteLeMemeId = panier._id;
+    //   console.log("bien egal à " + quantiteLeMemeId);   
+           
+    // }
 
-    // Je souhaite verifier que l'id de product est diiferent du panier en conditions if et tout .id- productt et id panier { pas rajout new line , sauf si === }
-      else {panier.push(product)
+    // // Je souhaite verifier que l'id de product est diiferent du panier en conditions if et tout .id- productt et id panier { pas rajout new line , sauf si === }
+    //   else {
+        panier.push(product)
         console.log(panier)
         localStorage.setItem("le produit", JSON.stringify(panier));
         console.log("paniercolor", choixKanapCouleur.value)
-        // const qttyLeproduit = leProduit.length;
+    
         // localStorage.setItem("qté produitID", qttyLeproduit)
-      }
+        // console.log(panier.quantity.length);
+      // }
 
 
       const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
@@ -138,7 +143,7 @@ const choixKanapCouleur = document.getElementById('colors');
     // // Stockage de la quantité du produit choisi a test suppr
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantite", quantity.value)
-    console.log(panier.quantity.length);
+    // console.log(panier.quantity.length);
   // const accesImageUrl  =  localStorage.getItem('imageUrl')
   //                         localStorage.setItem('imageUrl', imageUrl)
 
