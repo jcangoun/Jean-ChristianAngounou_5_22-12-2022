@@ -1,15 +1,15 @@
 
-
 // recup des infosproduits
 const info = window.location.search;
 console.log("valeurs", info);
 // console.log("window Location:", window.location);
 const urlParams = new URLSearchParams(info);
-console.log(urlParams);
 
 const paramId = urlParams.get("id");
-console.log(paramId);
+// console.log(paramId);
 
+// variable deu formulaire section choix de la couleur
+const caseOptionSelectionPAnier = document.querySelector('#colors')
 
 // variable bouton ajoutPanier
 const ajoutPanier = document.querySelector("#addToCart");
@@ -23,7 +23,7 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   })
   .then(function (product) {
     getArticle(product);
-    console.log(product);
+    // console.log(product);
   });
 // .catch(function (error) {
 //   console.error(`probleme : ${error}`);
@@ -44,8 +44,8 @@ function getArticle(product) {
     quantity,
     colors,
   }];
+    // console.log(panier)
 
-    console.log(panier)
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
@@ -72,14 +72,13 @@ function getArticle(product) {
   console.log(firstSelectForm.children);
 
   for (let i = 0; i < colors.length; i++) {
-    console.log(colors[i]);
-
+    // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
-    firstSelectForm.append(optionValue);
-
+    console.log(optionValue)
+    firstSelectForm.append(optionValue);    
   }
 
 
@@ -97,7 +96,6 @@ const choixKanapCouleur = document.getElementById('colors');
     console.log("capasse le bouton");
     e.preventDefault;
 
-
     panier._id = product._id;
     panier.imageUrl = product.imageUrl;
     panier.altTxt = product.altTxt;
@@ -109,30 +107,26 @@ const choixKanapCouleur = document.getElementById('colors');
 
     const leProduit = JSON.parse(localStorage.getItem("le produit"));
     console.log(leProduit);
-      if (leProduit === null) {
 
+      if (leProduit === null) {
+        console.log("Maintenant il y a un produit ajouté")
       //  stockage de seulement la couleurchoisie  produit choisi dans le localStorage
       localStorage.setItem("le produit", JSON.stringify(panier));
 
     }
-    else if (panier.id === product.id ) { 
-      if (panier.colors === product.colors && panier.quantity ) {
-
-        console.log("bien egal")
-       panier.quantity++;
-      }
-      
+    
+    else if (panier.id === product.id && panier.colors === choixKanapCouleur.value && panier.quantity === quantity.value) { 
+        console.log("bien egal", panier.quantity.length)         
     }
-
 
     // Je souhaite verifier que l'id de product est diiferent du panier en conditions if et tout .id- productt et id panier { pas rajout new line , sauf si === }
       else {panier.push(product)
         console.log(panier)
         localStorage.setItem("le produit", JSON.stringify(panier));
-
-        
+        console.log("paniercolor", choixKanapCouleur.value)
+        // const qttyLeproduit = leProduit.length;
+        // localStorage.setItem("qté produitID", qttyLeproduit)
       }
-
 
 
       const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
@@ -144,8 +138,7 @@ const choixKanapCouleur = document.getElementById('colors');
     // // Stockage de la quantité du produit choisi a test suppr
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantite", quantity.value)
-    JSON.parse(localStorage.getItem(quantity.value));
-    console.log(panier.quantity);
+    console.log(panier.quantity.length);
   // const accesImageUrl  =  localStorage.getItem('imageUrl')
   //                         localStorage.setItem('imageUrl', imageUrl)
 
