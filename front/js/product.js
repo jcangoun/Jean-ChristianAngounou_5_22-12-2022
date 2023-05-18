@@ -46,6 +46,14 @@ function getArticle(product) {
   }];
     // console.log(panier)
 
+// creation de la page de section de produits avec le DOM 
+
+const blocDeLaPageProduit = () => {
+
+
+}
+// on m mettra toute la section de page qui est en bas ... là dessus.
+
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
@@ -104,6 +112,9 @@ const choixKanapCouleur = document.getElementById('colors');
     panier.colors = choixKanapCouleur.value;
     console.log(choixKanapCouleur.value);
     panier.quantity = quantity.value;
+
+    console.log(product.colors);
+
 
     const leProduit = JSON.parse(localStorage.getItem("le produit"));
     console.log(leProduit);
