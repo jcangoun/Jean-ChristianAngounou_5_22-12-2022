@@ -77,7 +77,7 @@ const blocDeLaPageProduit = () => {
 
   console.log(firstSelectForm.children);
 
-  for (let i = 0; i < colors.length; i++) {
+  for (let i in colors) {
     // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
@@ -122,7 +122,10 @@ const choixKanapCouleur = document.getElementById('colors');
 
 console.log("on sauve" + JSON.parse(localStorage.getItem("quantite")) + "pluss" + quantity.value + "qui donne" + JSON.parse(localStorage.getItem("quantite")) + quantity.value)
 const qtelocalStock = JSON.parse(localStorage.getItem("quantite"))
+qtelocalStock
 
+localStorage.setItem("couleur choisie", choixKanapCouleur.value)
+console.log(localStorage.getItem("couleur choisie"));
   //Gestion du bouton au click sur rajouter au panier
   ajoutBtn.addEventListener("click", function (e) {
     console.log("capasse le bouton");
@@ -137,21 +140,45 @@ const qtelocalStock = JSON.parse(localStorage.getItem("quantite"))
     console.log(choixKanapCouleur.value);
     panier.quantity = quantity.value;
 
+    const panierId = panier._id;
+
+    localStorage.setItem("couleur choisie", choixKanapCouleur.value)
 
     let laQteChoisie = quantity.value;
     // console.log(product.colors);
-
 
     const leProduit = JSON.parse(localStorage.getItem("le produit"));
 console.log("calcul", qtelocalStock + laQteChoisie)
 
 // cette fonction ne veut pâs marcher.
-    function qteProduitType (qtelocalStock, laQteChoisie) {
-        return qtelocalStock + laQteChoisie;
-    }
-    
+    // function qteProduitType (qtelocalStock, laQteChoisie) {
+    //     return qtelocalStock + laQteChoisie;
+    // }
+    // 
     console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie))
  
+
+    function ajoutArticl (panier, quantity) {
+
+      // là en ajoutant un article si ca correspond a un article du panier, et ben  ....
+
+      for (articles of panier) {
+        if (panier._id == panier._id) {
+          panier.qute += quantity.value
+          return;
+        }
+
+        else if (panier._id !== panier._id) {
+          panier.push(new Array);
+          panier.push(JSON.parse(localStorage.getItem("panier")))
+        }
+      }
+    }
+
+    // Voici l'ancienne version ci dessous
+
+   
+
     //   if (leProduit === null) {
     //     console.log("Maintenant il y a " + quantity.value + " produit ajouté")
     //   //  stockage de seulement la couleurchoisie  produit choisi dans le localStorage
