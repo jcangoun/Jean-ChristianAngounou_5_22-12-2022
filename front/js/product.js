@@ -52,6 +52,8 @@ function getArticle(product) {
     console.log(panier.colors);
 // creation de la page de section de produits avec le DOM 
 
+
+
 const blocDeLaPageProduit = () => {
 
 
@@ -81,8 +83,16 @@ const blocDeLaPageProduit = () => {
 
   console.log(firstSelectForm.children);
 
+  const choixKanapCouleur = document.getElementById('colors');
+
+  //Debt section btn
+  const ajoutBtn = document.querySelector("#addToCart");
+
+
+  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch  
+
   for (let i in colors) {
-    // console.log(colors[i]);
+    console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
@@ -90,23 +100,17 @@ const blocDeLaPageProduit = () => {
     console.log(optionValue)
     firstSelectForm.append(optionValue);    
 
-    // petit test
+    // petit test, panier[i] là sera undefined
     // console.log(panier[i]);
 
   }
+    console.log(panier[0]);
 
+// Muitage test de cette section local ci dessous
+    // localStorage.setItem("quantité", quantity.value)
+    // JSON.parse(localStorage.getItem(quantity.value));
+    // localStorage.setItem('couleur', choixKanapCouleur.value)
 
-  console.log(panier[0]);
-
-
-const choixKanapCouleur = document.getElementById('colors');
-
-//Debt section btn
-  const ajoutBtn = document.querySelector("#addToCart");
-
-    localStorage.setItem("quantité", quantity.value)
-    JSON.parse(localStorage.getItem(quantity.value));
-    localStorage.setItem('couleur', choixKanapCouleur.value)
     // localStorage.setItem('nom',JSON.stringify(product.description))
 
 
@@ -162,24 +166,34 @@ console.log("calcul", qtelocalStock + laQteChoisie)
     console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie))
  
 
-    function ajoutArticl (panier, quantity) {
+// Voici l'ensembles des anciennes version dans ce bloc  =====================================================
 
-      // là en ajoutant un article si ca correspond a un article du panier, et ben  ....
 
-      for (articles of panier) {
-        if (panier._id == panier._id) {
-          panier.qute += quantity.value
-          return;
-        }
+    // version 2e plus ancienne ==============================================
 
-        else if (panier._id !== panier._id) {
-          panier.push(new Array);
-          panier.push(JSON.parse(localStorage.getItem("panier")))
-        }
-      }
-    }
+    // function ajoutArticl (panier, quantity) {
 
-    // Voici l'ancienne version ci dessous
+    //   // là en ajoutant un article si ca correspond a un article du panier, et ben  ....
+
+    //   for (articles of panier) {
+    //     if (panier._id == panier._id) {
+    //       panier.qute += quantity.value
+    //       return;
+    //     }
+
+    //     else if (panier._id !== panier._id) {
+    //       panier.push(new Array);
+    //       panier.push(JSON.parse(localStorage.getItem("panier")))
+    //     }
+    //   }
+    // }
+
+          // Fin version la 2e plus ancienne ===============================================
+
+
+
+
+    // Voici l'ancienne version la plus vielle ici en dessous ancienne "1st".
 
    
 
@@ -212,6 +226,9 @@ console.log("calcul", qtelocalStock + laQteChoisie)
     //   }
 
 
+// fin des version ici ======================================================================
+    // =============================================================================
+
       const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
       panierChoisi;
     // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
@@ -221,22 +238,7 @@ console.log("calcul", qtelocalStock + laQteChoisie)
     // // Stockage de la quantité du produit choisi a test suppr
     const qteArticle = document.querySelector("#quantity");
     localStorage.setItem("quantite", quantity.value)
-    // console.log(panier.quantity.length);
-  // const accesImageUrl  =  localStorage.getItem('imageUrl')
-  //                         localStorage.setItem('imageUrl', imageUrl)
 
-
-    // // Et pour la carte on recrute ceci en bas 
-
-    // const nomArticle = document.querySelector("h2 ");
-    // localStorage.setItem("quantité", quantity.value)
-    // JSON.parse(localStorage.getItem(quantity.value));
-    // console.log(quantity.value);
-
-    // localStorage.setItem('couleur', panier.colors)
-    // localStorage.setItem('nom', panier.name)
-
-    
   });
 
 }
