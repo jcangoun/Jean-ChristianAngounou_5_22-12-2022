@@ -15,10 +15,9 @@ const caseOptionSelectionPAnier = document.querySelector('#colors')
 const ajoutPanier = document.querySelector("#addToCart");
 
 
-// là je rajoute le premier élémént test
-
+// là je rajoute le premier élément test 
 const elemtItemImg = document.querySelector("div.item__img");
-console.log(elemtItemImg)
+
 
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
@@ -28,7 +27,7 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   })
   .then(function (product) {
     getArticle(product);
-    // console.log(product);
+    console.log("c'est l'article que je viens de fetcher", product);
   });
 // .catch(function (error) {
 //   console.error(`probleme : ${error}`);
