@@ -15,6 +15,11 @@ const caseOptionSelectionPAnier = document.querySelector('#colors')
 const ajoutPanier = document.querySelector("#addToCart");
 
 
+// là je rajoute le premier élémént test
+
+const elemtItemImg = document.querySelector("div.item__img");
+console.log(elemtItemImg)
+
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
