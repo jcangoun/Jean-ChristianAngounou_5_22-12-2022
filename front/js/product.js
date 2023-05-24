@@ -119,8 +119,9 @@ function getArticle(product) {
   const qtelocalStock = JSON.parse(localStorage.getItem("quantite"));
   qtelocalStock;
 
-  localStorage.setItem("couleur choisie", choixKanapCouleur.value);
-  console.log(localStorage.getItem("couleur choisie"));
+  // Je mute pour voir ce qu'il se passe avec les new conditions
+  // localStorage.setItem("couleur", choixKanapCouleur.value);
+  // console.log(localStorage.getItem("couleur"));
 
   //Gestion du bouton au click sur rajouter au panier
 
@@ -128,35 +129,73 @@ function getArticle(product) {
     console.log("capasse le bouton");
     e.preventDefault;
 
-// ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
+    // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
+
+    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+
+    const newproduitKanap = {};
+
+    if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
+      // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
+      
+      // nouveau bug a debug dans mes conditions 
+      // (nouveauProduitKanap.name = name),
+      //   (nouveauProduitKanap._id = _id),
+      //   (nouveauProduitKanap.description = description),
+      //   (nouveauProduitKanap.colors = colors),
+      //   (nouveauProduitKanap.quantity = quantity.value);
 
 
-// Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+      panier._id = _id;
+      panier.imageUrl = imageUrl;
+      panier.altTxt = altTxt;
+      panier.name = name;
+      panier.description = description;
+      panier.colors = choixKanapCouleur.value;
+      console.log(choixKanapCouleur.value);
+      panier.quantity = quantity.value;
+    
+      const lePanier = localStorage.getItem("panier");
 
-const newproduitKanap = {};
+      // Si on a déjà un panier ds localStoraghe on consoleLog  "y a pas encore panier";
 
-if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
+      if (panier === null) {
+        console.log("y a pas encore de panier là");
 
-  
-}
-//  Fin Nouveau bloc conditon préparé sur ma feuille de travail ===============================================================
+        // Et là si pas de panier on ajoute un panier comme ci dessous
+
+        const leNouveauPanier = [];
+        leNouveauPanier.push(nouveauProduitKanap);
+
+        localStorage.setItem("panier", JSON.stringify(leNouveauPanier));
+        // 
+      } 
+      else {
+        console.log("il y a déjà un panier il faut juste le remplir");
+
+
+        // On regarde le panier actuel ceci est un nouvel element à la 
+
+        const panierActuel = JSON.parse(panier);
+        console.log("le panier courant", panierActuel)
+
+
+      }
+    }
+    //  Fin Nouveau bloc conditon préparé sur ma feuille de travail ===============================================================
 
     // Je mute aussi la copie de panier._id et autres ci dessous, temporairement pour utiliser celui de dessus
 
-    // panier._id = product._id;
-    // panier.imageUrl = product.imageUrl;
-    // panier.altTxt = product.altTxt;
-    // panier.name = product.name;
-    // panier.description = product.description;
-    // panier.colors = choixKanapCouleur.value;
-    // console.log(choixKanapCouleur.value);
-    // panier.quantity = quantity.value;
+    panier._id = product._id;
+    panier.imageUrl = product.imageUrl;
+    panier.altTxt = product.altTxt;
+    panier.name = product.name;
+    panier.description = product.description;
+    panier.colors = choixKanapCouleur.value;
+    console.log(choixKanapCouleur.value);
+    panier.quantity = quantity.value;
 
     // const panierId = panier._id;
-
-
-
-
 
     // localStorage.setItem("couleur choisie", choixKanapCouleur.value);
 
@@ -229,15 +268,15 @@ if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
     // fin des version ici ======================================================================
     // =============================================================================
 
-    const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
-    panierChoisi;
-    // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
-    // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
-    // console.log(couleurChoisi);
+    // const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
+    // panierChoisi;
+    // // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
+    // // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
+    // // console.log(couleurChoisi);
 
-    // // Stockage de la quantité du produit choisi a test suppr
-    const qteArticle = document.querySelector("#quantity");
-    localStorage.setItem("quantite", quantity.value);
+    // // // Stockage de la quantité du produit choisi a test suppr
+    // const qteArticle = document.querySelector("#quantity");
+    // localStorage.setItem("quantite", quantity.value);
   });
 }
 // localStorage.clear();
