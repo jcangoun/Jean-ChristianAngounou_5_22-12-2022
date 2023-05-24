@@ -84,12 +84,12 @@ function getArticle(product) {
   // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
 
   for (let i in colors) {
-    console.log(colors[i]);
+    // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
-    console.log(optionValue);
+    // console.log(optionValue);
     firstSelectForm.append(optionValue);
 
     // petit test, panier[i] là sera undefined
@@ -171,14 +171,20 @@ function getArticle(product) {
         // 
       } 
       else {
-        console.log("il y a déjà un panier il faut juste le remplir");
+        console.log("il y a déjà un panier il faut juste le remplir    ", panier);
 
 
-        // On regarde le panier actuel ceci est un nouvel element à la 
+// On regarde le panier actuel ceci est un élément testé récemment =================================
 
-        const panierActuel = JSON.parse(panier);
-        console.log("le panier courant", panierActuel)
+  // Ne pas oublier,  a partir d'ici , panierActuel devrait normalement être egal à
+     // const panierActuel = JSON.parse(panier);
+        const panierActuel = panier;
+        console.log("le panier actuel", panierActuel)
 
+//  Et c'est ici que j'utilise les fameuses methodes de selections
+    // Je voies d'abord qu'il y a le meme produit qui existe ou pas 
+
+    const produiPresent = panierActuel.filter(function(kanap))
 
       }
     }
@@ -186,14 +192,14 @@ function getArticle(product) {
 
     // Je mute aussi la copie de panier._id et autres ci dessous, temporairement pour utiliser celui de dessus
 
-    panier._id = product._id;
-    panier.imageUrl = product.imageUrl;
-    panier.altTxt = product.altTxt;
-    panier.name = product.name;
-    panier.description = product.description;
-    panier.colors = choixKanapCouleur.value;
-    console.log(choixKanapCouleur.value);
-    panier.quantity = quantity.value;
+    // panier._id = product._id;
+    // panier.imageUrl = product.imageUrl;
+    // panier.altTxt = product.altTxt;
+    // panier.name = product.name;
+    // panier.description = product.description;
+    // panier.colors = choixKanapCouleur.value;
+    // console.log(choixKanapCouleur.value);
+    // panier.quantity = quantity.value;
 
     // const panierId = panier._id;
 
