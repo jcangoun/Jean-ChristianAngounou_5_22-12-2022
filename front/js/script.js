@@ -15,7 +15,7 @@ const api = fetch(`http://localhost:3000/api/products`)
 
 function articles(products) {
   products.forEach((product) => {
-    console.log(product);
+    // console.log(product);
     articlePage(product);
   });
 }
@@ -30,7 +30,7 @@ const articlePage = (product) => {
   const lienBloc = document.createElement("a");
   //  a revoir
   lienBloc.setAttribute("href", `./product.html?id=${_id}`);
-  console.log(lienBloc);
+  // console.log(lienBloc);
   newDiv.append(lienBloc);
 
   // creation du noeud <article>, pas attributs

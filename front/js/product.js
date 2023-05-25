@@ -199,7 +199,10 @@ function getArticle(product) {
         if (produitPresent) {
           // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
           produitPresent.quantity = parseInt(produitPresent.quantity) + parseInt(quantity.value);
+          
           refreshPanier.push(produitPresent);
+          console.log(produitPresent.quantity);
+          return produitPresent.quantity;
         } else {
           refreshPanier.push(newproduitKanap);
         }
@@ -220,31 +223,31 @@ function getArticle(product) {
 
     // Je mute aussi la copie de panier._id et autres ci dessous, temporairement pour utiliser celui de dessus
 
-    // panier._id = product._id;
-    // panier.imageUrl = product.imageUrl;
-    // panier.altTxt = product.altTxt;
-    // panier.name = product.name;
-    // panier.description = product.description;
-    // panier.colors = choixKanapCouleur.value;
-    // console.log(choixKanapCouleur.value);
-    // panier.quantity = quantity.value;
+    panier._id = product._id;
+    panier.imageUrl = product.imageUrl;
+    panier.altTxt = product.altTxt;
+    panier.name = product.name;
+    panier.description = product.description;
+    panier.colors = choixKanapCouleur.value;
+    console.log(choixKanapCouleur.value);
+    panier.quantity = quantity.value;
 
-    // const panierId = panier._id;
+    const panierId = panier._id;
 
     // localStorage.setItem("couleur choisie", choixKanapCouleur.value);
 
-    // let laQteChoisie = quantity.value;
-    // // console.log(product.colors);
+    let laQteChoisie = quantity.value;
+    // console.log(product.colors);
 
-    // const leProduit = JSON.parse(localStorage.getItem("le produit"));
-    // console.log("calcul", qtelocalStock + laQteChoisie);
+    const leProduit = JSON.parse(localStorage.getItem("le produit"));
+    console.log("calcul", qtelocalStock + laQteChoisie);
 
     // cette fonction ne veut pâs marcher.
-    // function qteProduitType (qtelocalStock, laQteChoisie) {
-    //     return qtelocalStock + laQteChoisie;
-    // }
-    //
-    // console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie));
+    function qteProduitType (qtelocalStock, laQteChoisie) {
+        return qtelocalStock + laQteChoisie;
+    }
+    
+    console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie));
 
     // Voici l'ensembles des anciennes version dans ce bloc  =====================================================
 
