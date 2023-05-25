@@ -184,7 +184,23 @@ function getArticle(product) {
 //  Et c'est ici que j'utilise les fameuses methodes de selections
     // Je voies d'abord qu'il y a le meme produit qui existe ou pas 
 
-    const produiPresent = panierActuel.filter(function(kanap))
+    const filtragePanierActuel = panierActuel.filter(kanap => kanap._id !== _id);
+
+    // Si le panier n'a pas le même id, Je crée un nouveau tableau où je rajoute les nouveauxtableaux que j'ai créés
+
+    // variable pour nouveautableau const panier rafraichi
+        const refreshPanier = [...filtragePanierActuel];
+
+        
+        // On voit si on a un produit identique .......
+        //  C'est ici que je m'arrete pour faire un nouveau test sur mon ordi
+     
+
+    // petit test sur filtragePanierActuel
+        // console.log(filtragePanierActuel);
+        // console.log([filtragePanierActuel]);
+        // console.log([...filtragePanierActuel]);
+
 
       }
     }
