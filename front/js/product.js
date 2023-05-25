@@ -191,18 +191,30 @@ function getArticle(product) {
     // variable pour nouveautableau const panier rafraichi
         const refreshPanier = [...filtragePanierActuel];
 
-        
         // On voit si on a un produit identique .......
         //  C'est ici que je m'arrete pour faire un nouveau test sur mon ordi
-     
+     const produitPresent = panierActuel.filter(kanap => kanap._id === _id) [0];
+     console.log(produitPresent);
+
+        if (produitPresent) {
+          // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
+          produitPresent.quantity = parseInt(produitPresent.quantity) + parseInt(quantity.value);
+          refreshPanier.push(produitPresent);
+        } else {
+          refreshPanier.push(newproduitKanap);
+        }
+
+
+        localStorage.setItem("Ce panier", JSON.stringify(refreshPanier));
 
     // petit test sur filtragePanierActuel
         // console.log(filtragePanierActuel);
         // console.log([filtragePanierActuel]);
         // console.log([...filtragePanierActuel]);
 
-
       }
+    } else {
+      alert("Pas de bras, pas de chocolat :), sans blague faut au moins une quantity quand même!!")
     }
     //  Fin Nouveau bloc conditon préparé sur ma feuille de travail ===============================================================
 
