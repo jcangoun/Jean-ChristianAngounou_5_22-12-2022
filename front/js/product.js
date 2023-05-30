@@ -95,7 +95,7 @@ function getArticle(product) {
     // petit test, panier[i] là sera undefined
     // console.log(panier[i]);
   }
-  console.log(panier[0]);
+  // console.log(panier[0]);
 
   // Muitage test de cette section local ci dessous
 
@@ -114,10 +114,11 @@ function getArticle(product) {
   console.log(choixKanapCouleur.value);
   panier.quantity = quantity.value;
 
-  console.log(panier._id, panier.name, choixKanapCouleur.value, quantity.value),
-    console.log("on sauve" + JSON.parse(localStorage.getItem("quantite")) + "pluss" + quantity.value + "qui donne" + JSON.parse(localStorage.getItem("quantite")) + quantity.value);
-  const qtelocalStock = JSON.parse(localStorage.getItem("quantite"));
-  qtelocalStock;
+  // Ci dessous je vais tester encore le parseInt()
+  // console.log(panier._id, panier.name, choixKanapCouleur.value, quantity.value),
+  //   console.log("on sauve" + JSON.parse(localStorage.getItem("quantite")) + "pluss" + quantity.value + "qui donne" + JSON.parse(localStorage.getItem("quantite")) + quantity.value);
+  // const qtelocalStock = JSON.parse(localStorage.getItem("quantite"));
+  // qtelocalStock;
 
   // Je mute pour voir ce qu'il se passe avec les new conditions
   // localStorage.setItem("couleur", choixKanapCouleur.value);
@@ -132,7 +133,6 @@ function getArticle(product) {
     // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
 
     // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-
     const newproduitKanap = {};
 
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
@@ -198,19 +198,23 @@ function getArticle(product) {
 
         if (produitPresent) {
           // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
-          produitPresent.quantity = parseInt(produitPresent.quantity) + parseInt(quantity.value);
+          console.log(produitPresent.quantity.value);
+          console.log(quantity);
+          console.log(quantity.value);
+          produitPresent.quantity = parseInt(produitPresent.quantity.value) + parseInt(quantity.value);
           
           refreshPanier.push(produitPresent);
           console.log(produitPresent.quantity);
-          return produitPresent.quantity;
+
         } else {
           refreshPanier.push(newproduitKanap);
+          console.log(newproduitKanap);
         }
 
 
         localStorage.setItem("Ce panier", JSON.stringify(refreshPanier));
 
-    // petit test sur filtragePanierActuel
+    // petit test sur filtragePanierActuel 
         // console.log(filtragePanierActuel);
         // console.log([filtragePanierActuel]);
         // console.log([...filtragePanierActuel]);
@@ -223,31 +227,31 @@ function getArticle(product) {
 
     // Je mute aussi la copie de panier._id et autres ci dessous, temporairement pour utiliser celui de dessus
 
-    panier._id = product._id;
-    panier.imageUrl = product.imageUrl;
-    panier.altTxt = product.altTxt;
-    panier.name = product.name;
-    panier.description = product.description;
-    panier.colors = choixKanapCouleur.value;
-    console.log(choixKanapCouleur.value);
-    panier.quantity = quantity.value;
+    // panier._id = product._id;
+    // panier.imageUrl = product.imageUrl;
+    // panier.altTxt = product.altTxt;
+    // panier.name = product.name;
+    // panier.description = product.description;
+    // panier.colors = choixKanapCouleur.value;
+    // console.log(choixKanapCouleur.value);
+    // panier.quantity = quantity.value;
 
-    const panierId = panier._id;
+    // const panierId = panier._id;
 
-    // localStorage.setItem("couleur choisie", choixKanapCouleur.value);
+    // // localStorage.setItem("couleur choisie", choixKanapCouleur.value);
 
-    let laQteChoisie = quantity.value;
-    // console.log(product.colors);
+    // let laQteChoisie = quantity.value;
+    // // console.log(product.colors);
 
-    const leProduit = JSON.parse(localStorage.getItem("le produit"));
-    console.log("calcul", qtelocalStock + laQteChoisie);
+    // const leProduit = JSON.parse(localStorage.getItem("le produit"));
+    // console.log("calcul", qtelocalStock + laQteChoisie);
 
-    // cette fonction ne veut pâs marcher.
-    function qteProduitType (qtelocalStock, laQteChoisie) {
-        return qtelocalStock + laQteChoisie;
-    }
+    // // cette fonction ne veut pâs marcher.
+    // function qteProduitType (qtelocalStock, laQteChoisie) {
+    //     return qtelocalStock + laQteChoisie;
+    // }
     
-    console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie));
+    // console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie));
 
     // Voici l'ensembles des anciennes version dans ce bloc  =====================================================
 
