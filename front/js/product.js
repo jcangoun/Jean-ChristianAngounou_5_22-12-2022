@@ -115,17 +115,11 @@ function getArticle(product) {
   panier.quantity = quantity.value;
 
   // Ci dessous je vais tester encore le parseInt()
-  // console.log(panier._id, panier.name, choixKanapCouleur.value, quantity.value),
-  //   console.log("on sauve" + JSON.parse(localStorage.getItem("quantite")) + "pluss" + quantity.value + "qui donne" + JSON.parse(localStorage.getItem("quantite")) + quantity.value);
-  // const qtelocalStock = JSON.parse(localStorage.getItem("quantite"));
-  // qtelocalStock;
 
-  // Je mute pour voir ce qu'il se passe avec les new conditions
-  // localStorage.setItem("couleur", choixKanapCouleur.value);
-  // console.log(localStorage.getItem("couleur"));
 
+  // panier.push("hello");
+  console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
-
   ajoutBtn.addEventListener("click", function (e) {
     console.log("capasse le bouton");
     e.preventDefault;
@@ -133,7 +127,7 @@ function getArticle(product) {
     // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
 
     // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-    const newproduitKanap = {};
+    const newProduitKanap = {};
 
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
       // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
@@ -163,7 +157,6 @@ function getArticle(product) {
         console.log("y a pas encore de panier là");
 
         // Et là si pas de panier on ajoute un panier comme ci dessous
-
         const leNouveauPanier = [];
         leNouveauPanier.push(nouveauProduitKanap);
 
@@ -199,25 +192,21 @@ function getArticle(product) {
         if (produitPresent) {
           // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
           console.log(produitPresent.quantity.value);
-          console.log(quantity);
+          console.log("la balise inout d'it quantity", quantity, "vaut", quantity.value);
           console.log(quantity.value);
+          console.log(produitPresent)
           produitPresent.quantity = parseInt(produitPresent.quantity.value) + parseInt(quantity.value);
           
           refreshPanier.push(produitPresent);
           console.log(produitPresent.quantity);
 
         } else {
-          refreshPanier.push(newproduitKanap);
-          console.log(newproduitKanap);
+          refreshPanier.push(newProduitKanap);
+          console.log(newProduitKanap);
         }
 
 
         localStorage.setItem("Ce panier", JSON.stringify(refreshPanier));
-
-    // petit test sur filtragePanierActuel 
-        // console.log(filtragePanierActuel);
-        // console.log([filtragePanierActuel]);
-        // console.log([...filtragePanierActuel]);
 
       }
     } else {
