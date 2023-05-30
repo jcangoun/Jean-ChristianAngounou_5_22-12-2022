@@ -47,7 +47,10 @@ function getArticle(product) {
     },
   ];
   console.log(panier);
-  console.log(panier.colors);
+  // console.log(panier.name);
+  
+
+
   // creation de la page de section de produits avec le DOM
 
   const blocDeLaPageProduit = () => {};
@@ -77,12 +80,14 @@ function getArticle(product) {
   console.log(firstSelectForm.children);
 
   const choixKanapCouleur = document.getElementById("colors");
+  // const caseQte = document.querySelector("#quantity");
+
 
   //Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
 
   // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
-
+      
   for (let i in colors) {
     // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
@@ -91,20 +96,18 @@ function getArticle(product) {
     optionValue.innerHTML = colors[i];
     // console.log(optionValue);
     firstSelectForm.append(optionValue);
-
-    // petit test, panier[i] là sera undefined
-    // console.log(panier[i]);
+    
   }
   // console.log(panier[0]);
-
+  
   // Muitage test de cette section local ci dessous
-
+  
   // localStorage.setItem("quantité", quantity.value)
   // JSON.parse(localStorage.getItem(quantity.value));
   // localStorage.setItem('couleur', choixKanapCouleur.value)
-
+  
   // localStorage.setItem('nom',JSON.stringify(product.description))
-
+  
   panier._id = product._id;
   panier.imageUrl = product.imageUrl;
   panier.altTxt = product.altTxt;
@@ -114,10 +117,8 @@ function getArticle(product) {
   console.log(choixKanapCouleur.value);
   panier.quantity = quantity.value;
 
-  // Ci dessous je vais tester encore le parseInt()
-
-
-  // panier.push("hello");
+ console.log(panier.name)
+  panier.push("hello");
   console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
   ajoutBtn.addEventListener("click", function (e) {
@@ -127,17 +128,17 @@ function getArticle(product) {
     // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
 
     // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-    const newProduitKanap = {};
+    const nouveauProduitKanap = {};
 
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
       // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
-      
-      // nouveau bug a debug dans mes conditions 
-      // (nouveauProduitKanap.name = name),
-      //   (nouveauProduitKanap._id = _id),
-      //   (nouveauProduitKanap.description = description),
-      //   (nouveauProduitKanap.colors = colors),
-      //   (nouveauProduitKanap.quantity = quantity.value);
+      console.log(choixKanapCouleur.value)
+      // nouveau bug a debug dans mes conditions  pan,ier en bas est tres utile
+      // nouveauProduitKanap.name = name,
+      //   nouveauProduitKanap._id = _id,
+      // nouveauProduitKanap.description = description,
+      //   nouveauProduitKanap.colors = choixKanapCouleur.value,
+      //   nouveauProduitKanap.quantity = quantity.value;
 
 
       panier._id = _id;
@@ -172,7 +173,7 @@ function getArticle(product) {
   // Ne pas oublier,  a partir d'ici , panierActuel devrait normalement être egal à
      // const panierActuel = JSON.parse(panier);
         const panierActuel = panier;
-        console.log("le panier actuel", panierActuel)
+        console.log("le panier actuel", panierActuel, 'donc panier')
 
 //  Et c'est ici que j'utilise les fameuses methodes de selections
     // Je voies d'abord qu'il y a le meme produit qui existe ou pas 
@@ -183,7 +184,7 @@ function getArticle(product) {
 
     // variable pour nouveautableau const panier rafraichi
         const refreshPanier = [...filtragePanierActuel];
-
+        console.log(refreshPanier)
         // On voit si on a un produit identique .......
         //  C'est ici que je m'arrete pour faire un nouveau test sur mon ordi
      const produitPresent = panierActuel.filter(kanap => kanap._id === _id) [0];
@@ -192,17 +193,19 @@ function getArticle(product) {
         if (produitPresent) {
           // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
           console.log(produitPresent.quantity.value);
-          console.log("la balise inout d'it quantity", quantity, "vaut", quantity.value);
+          console.log("la balise inout d'id #quantity", quantity, "vaut dans sa quantite", quantity.value);
           console.log(quantity.value);
           console.log(produitPresent)
+          console.log(produitPresent.quantity.value)
+
           produitPresent.quantity = parseInt(produitPresent.quantity.value) + parseInt(quantity.value);
           
           refreshPanier.push(produitPresent);
           console.log(produitPresent.quantity);
 
         } else {
-          refreshPanier.push(newProduitKanap);
-          console.log(newProduitKanap);
+          refreshPanier.push(nouveauProduitKanap);
+          console.log(nouveauProduitKanap);
         }
 
 
