@@ -25,10 +25,10 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (product) {
     getArticle(product);
     console.log("c'est l'article que je viens de fetcher", product);
-  });
-// .catch(function (error) {
-//   console.error(`probleme : ${error}`);
-// });
+  })
+.catch(function (error) {
+  console.error(`probleme : ${error}`);
+});
 
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
@@ -190,7 +190,9 @@ function getArticle(product) {
      const produitPresent = panierActuel.filter(kanap => kanap._id === _id) [0];
      console.log(produitPresent);
 
+     console.log(panier)
         if (produitPresent) {
+        
           // Ci dessous on utilise le fameux parseInt testé en meme temps que les différentes insertions tableaux
           console.log(produitPresent.quantity.value);
           console.log("la balise inout d'id #quantity", quantity, "vaut dans sa quantite", quantity.value);
@@ -203,7 +205,10 @@ function getArticle(product) {
           refreshPanier.push(produitPresent);
           console.log(produitPresent.quantity);
 
-        } else {
+        }
+        
+        // ici prochain else if
+        else {
           refreshPanier.push(nouveauProduitKanap);
           console.log(nouveauProduitKanap);
         }
@@ -218,34 +223,6 @@ function getArticle(product) {
     //  Fin Nouveau bloc conditon préparé sur ma feuille de travail ===============================================================
 
     // Je mute aussi la copie de panier._id et autres ci dessous, temporairement pour utiliser celui de dessus
-
-    // panier._id = product._id;
-    // panier.imageUrl = product.imageUrl;
-    // panier.altTxt = product.altTxt;
-    // panier.name = product.name;
-    // panier.description = product.description;
-    // panier.colors = choixKanapCouleur.value;
-    // console.log(choixKanapCouleur.value);
-    // panier.quantity = quantity.value;
-
-    // const panierId = panier._id;
-
-    // // localStorage.setItem("couleur choisie", choixKanapCouleur.value);
-
-    // let laQteChoisie = quantity.value;
-    // // console.log(product.colors);
-
-    // const leProduit = JSON.parse(localStorage.getItem("le produit"));
-    // console.log("calcul", qtelocalStock + laQteChoisie);
-
-    // // cette fonction ne veut pâs marcher.
-    // function qteProduitType (qtelocalStock, laQteChoisie) {
-    //     return qtelocalStock + laQteChoisie;
-    // }
-    
-    // console.log("on sauve " + qtelocalStock + "pluss " + quantity.value + "qui donnent" + (qtelocalStock + laQteChoisie));
-
-    // Voici l'ensembles des anciennes version dans ce bloc  =====================================================
 
     // version 2e plus ancienne ==============================================
 
@@ -301,15 +278,6 @@ function getArticle(product) {
     // fin des version ici ======================================================================
     // =============================================================================
 
-    // const panierChoisi = JSON.parse(localStorage.getItem("panier", "panier.name", "panier.imageUrl"));
-    // panierChoisi;
-    // // localStorage.setItem("colors", JSON.stringify(choixKanapCouleur.value))
-    // // const couleurChoisi = JSON.parse(localStorage.getItem("colors"));
-    // // console.log(couleurChoisi);
-
-    // // // Stockage de la quantité du produit choisi a test suppr
-    // const qteArticle = document.querySelector("#quantity");
-    // localStorage.setItem("quantite", quantity.value);
   });
 }
 // localStorage.clear();
