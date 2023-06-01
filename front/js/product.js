@@ -1,136 +1,138 @@
 // recup des infosproduits
-
 const info = window.location.search;
-
+console.log("valeurs", info);
 // console.log("window Location:", window.location);
-
 const urlParams = new URLSearchParams(info);
 
-// on recup l'id de notre url
-
 const paramId = urlParams.get("id");
-
- 
+// console.log(paramId);
 
 // variable deu formulaire section choix de la couleur
-
-const caseOptionSelectionPAnier = document.querySelector('#colors');
+const caseOptionSelectionPAnier = document.querySelector("#colors");
 
 // variable bouton ajoutPanier
-
 const ajoutPanier = document.querySelector("#addToCart");
 
-const productPhotoArticle = document.querySelector("div.item__img");
-
- 
+// là je rajoute le premier élément test
+const elemtItemImg = document.querySelector("div.item__img");
 
 fetch(`http://localhost:3000/api/products/${paramId}`)
-
   .then(function (res) {
-
     if (res.ok === true) {
-
       return res.json();
-
     }
-
   })
-
   .then(function (product) {
-
     getArticle(product);
-
-    console.log("produit fetcher",product);
-
+    console.log("c'est l'article que je viens de fetcher", product);
   })
-
-  .catch(function (error) {
-
-    console.error(`probleme : ${error}`);
-
-  });
-
- 
+.catch(function (error) {
+  console.error(`probleme : ${error}`);
+});
 
 function getArticle(product) {
-
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
-
   console.log(product.colors);
 
-   
+  let panier = 
+    {
+      _id,
+      imageUrl,
+      altTxt,
+      name,
+      description,
+      price,
+      quantity,
+      colors,
+    };
+  console.log(panier);
+  // console.log(panier.name);
+  
 
-  // on recuper le select
 
-  const firstSelectForm = document.querySelector("#colors");
+  // creation de la page de section de produits avec le DOM
 
- 
+  const blocDeLaPageProduit = () => {};
+  // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
 
-  // ici on ajoute a notre balise select les valeurs colors de notre fetch
-
-  for (let i in colors) {
-
-    const optionValue = document.createElement("option");
-
-    optionValue.setAttribute("value", colors[i]);
-
-    optionValue.innerHTML = colors[i];
-
-    console.log(optionValue)
-
-    firstSelectForm.append(optionValue);
-
-  }
-
- 
-
+  let b = document.main;
+  const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
-
-  productPhotoArticle.append(productImg);
-
+  let newProductImg = productPhotoArticle.append(productImg);
   productImg.setAttribute("src", "../images/logo.png");
-
   productImg.setAttribute("alt", "Photographie d'un canapé");
 
- 
-
+  // console.log('console suite nom produit');
   const produitNomPrix = document.querySelector("h1#title");
-
   produitNomPrix.innerHTML = name;
 
- 
+  const valeurPrix = (document.querySelector("span#price").innerHTML = price);
 
-  document.querySelector("span#price").innerHTML = price;
-
- 
-
-  // on recup la description
-
+  // console.log("console suite produit explique")
   const phraseDescription = document.querySelector("p#description");
-
-  // on injecte la description a notre balise
-
   phraseDescription.innerHTML = description;
+  // console.log(phraseDescription)
 
- 
+  const firstSelectForm = document.querySelector("#colors");
+  console.log(firstSelectForm);
 
-  const choixKanapCouleur = document.getElementById('colors');
+  console.log(firstSelectForm.children);
 
-  const ajoutBtn = document.getElementById("addToCart");
+  const choixKanapCouleur = document.getElementById("colors");
+  // const caseQte = document.querySelector("#quantity");
 
- 
 
+  //Debt section btn
+  const ajoutBtn = document.querySelector("#addToCart");
+
+  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
+      
+  for (let i in colors) {
+    // console.log(colors[i]);
+    const selectForm = document.createElement("option"[i]);
+    const optionValue = document.createElement("option");
+    optionValue.setAttribute("value", colors[i]);
+    optionValue.innerHTML = colors[i];
+    // console.log(optionValue);
+    firstSelectForm.append(optionValue);
+    
+  }
+  // console.log(panier[0]);
+  
+  // Muitage test de cette section local ci dessous
+  
+  // localStorage.setItem("quantité", quantity.value)
+  // JSON.parse(localStorage.getItem(quantity.value));
+  // localStorage.setItem('couleur', choixKanapCouleur.value)
+  
+  // localStorage.setItem('nom',JSON.stringify(product.description))
+  
+  panier._id = product._id;
+  panier.imageUrl = product.imageUrl;
+  panier.altTxt = product.altTxt;
+  panier.name = product.name;
+  panier.description = product.description;
+  panier.colors = choixKanapCouleur.value;
+  console.log(choixKanapCouleur.value);
+  panier.quantity = quantity.value;
+
+ console.log(panier.name)
+  // panier.push("hello");
+  console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
-
   ajoutBtn.addEventListener("click", function (e) {
-
+    console.log("capasse le bouton");
     e.preventDefault;
 
- 
+    // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
 
-    console.log("color", choixKanapCouleur.value)
+    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+    const nouveauProduitKanap = {};
 
-    // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
+    if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
+      // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
+      console.log(choixKanapCouleur.value)
+      // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
 
     const nouveauProduit = {};
 
@@ -203,11 +205,20 @@ function getArticle(product) {
           majPanier.push(nouveauProduit);
 
         }
+
+ 
+
         localStorage.setItem("panier", JSON.stringify(majPanier));
 
  
+
       }
+
     } else {
+
       alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
     }
+  }
   });
+}
+// localStorage.clear();

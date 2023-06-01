@@ -280,3 +280,4 @@ function getArticle(product) {
   });
 }
 // localStorage.clear();
+ 
