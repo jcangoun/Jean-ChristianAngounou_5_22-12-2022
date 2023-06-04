@@ -148,10 +148,10 @@ function getArticle(product) {
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
 
       } else {
-        console.log("on a deja un panier faut le remplirr");  
+        // console.log("on a deja un panier faut le remplirr");  
 
         const panierCourant = JSON.parse(panier);
-        console.log("panier courant", panierCourant)
+        // console.log("panier courant", panierCourant)
 
         const panierCourantFiltrer = panierCourant.filter(item => item._id !== _id);
 
@@ -160,21 +160,31 @@ function getArticle(product) {
 
         // faut verifier qu'on a deja un prduit avec un id sililaire
         const produitExiste = panierCourant.filter(item => item._id === _id)[0];
-
-        if (produitExiste) {
+        // const produitPasExiste = panierCourant.filter(item => item._id === _id && item.colors !== choixKanapCouleur.value)
+        if (produitExiste && produitExiste._id === _id || choixKanapCouleur.value === produitExiste.colors) {
           produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
 
           majPanier.push(produitExiste);
+          console.log(produitExiste)
+          console.log("memekanap "+ produitExiste.name + "," + produitExiste._id + "normalement = " + _id + "ET" + choixKanapCouleur.value + " = à " + produitExiste.colors);
+        
+      // } else if (produitExiste && produitExiste._id === _id && choixKanapCouleur.value !== produitExiste.colors) {
+    
+      //       majPanier.push(nouveauProduit);
+      //       console.log("autre kanap difeerent")
+        
 
         } else {
           majPanier.push(nouveauProduit);
+          console.log("else")
         }
         localStorage.setItem("panier", JSON.stringify(majPanier));
 
       }
-    } else {
-      alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
-    }
+    } 
+    // else {
+    //   alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
+    // }
   }
   });
 }
