@@ -112,20 +112,18 @@ function getArticle(product) {
     console.log("capasse le bouton");
     e.preventDefault;
 
-    // ======   Nouveau bloc conditon préparé sur ma feuille de travail ========================
+    // ======   Nouveau bloc conditon ========================
 
-    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-    const nouveauProduitKanap = {};
-
-    if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
-
-      // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
+      
       console.log(choixKanapCouleur.value)
+      
+      // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
       // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
 
     const nouveauProduit = {};
     
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
+      // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
 
       nouveauProduit._id =_id,
       nouveauProduit.name =name,
@@ -160,24 +158,28 @@ function getArticle(product) {
 
         // faut verifier qu'on a deja un prduit avec un id sililaire
         const produitExiste = panierCourant.filter(item => item._id === _id)[0];
-        // const produitPasExiste = panierCourant.filter(item => item._id === _id && item.colors !== choixKanapCouleur.value)
-        if (produitExiste && produitExiste._id === _id || choixKanapCouleur.value === produitExiste.colors) {
+        
+        console.log(produitExiste)
+
+
+        if (produitExiste && nouveauProduit._id === _id && nouveauProduit.colors === produitExiste.colors) {
           produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
 
           majPanier.push(produitExiste);
           console.log(produitExiste)
-          console.log("memekanap "+ produitExiste.name + "," + produitExiste._id + "normalement = " + _id + "ET" + choixKanapCouleur.value + " = à " + produitExiste.colors);
-        
-      // } else if (produitExiste && produitExiste._id === _id && choixKanapCouleur.value !== produitExiste.colors) {
-    
-      //       majPanier.push(nouveauProduit);
-      //       console.log("autre kanap difeerent")
-        
+          console.log("si produit et " + nouveauProduit.colors + produitExiste.colors )
+          
 
-        } else {
+        } else if ( produitPasExiste ) {
           majPanier.push(nouveauProduit);
-          console.log("else")
+          console.log("autre")
         }
+
+
+        else { majPanier.push(nouveauProduit);
+          console.log("else")
+        } 
+
         localStorage.setItem("panier", JSON.stringify(majPanier));
 
       }
@@ -185,7 +187,7 @@ function getArticle(product) {
     // else {
     //   alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
     // }
-  }
+  
   });
 }
 // localStorage.clear();
