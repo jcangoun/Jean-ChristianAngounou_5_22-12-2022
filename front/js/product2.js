@@ -281,3 +281,28 @@ function getArticle(product) {
 }
 // localStorage.clear();
  
+
+
+
+
+// ligne 162 a 177  apres const produitExiste
+
+if (produitExiste && produitExiste._id === _id || choixKanapCouleur.value === produitExiste.colors) {
+  produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
+
+  majPanier.push(produitExiste);
+  console.log(produitExiste)
+  console.log("memekanap "+ produitExiste.name + "," + produitExiste._id + "normalement = " + _id + "ET" + produitExiste.colors + "= à " + choixKanapCouleur.value);
+
+} else if ( produitExiste._id === _id && choixKanapCouleur.value !== produitExiste.colors) {
+
+    // nouveauProduit;
+    // nouveauPanier.push(produitExiste)
+    majPanier.push(panierCourant);
+    console.log("autre kanap difeerent")
+
+
+}
+
+
+// Fin ligne 162 a 177

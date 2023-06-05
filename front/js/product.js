@@ -26,9 +26,9 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
     getArticle(product);
     console.log("c'est l'article que je viens de fetcher", product);
   })
-.catch(function (error) {
-  console.error(`probleme : ${error}`);
-});
+// .catch(function (error) {
+//   console.error(`probleme : ${error}`);
+// });
 
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
@@ -50,7 +50,7 @@ function getArticle(product) {
   
 
   // creation de la page de section de produits avec le DOM
-  const blocDeLaPageProduit = () => {};
+  const blocDeLaPageProduit = () => {
 
   // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
   let b = document.main;
@@ -95,6 +95,7 @@ function getArticle(product) {
     firstSelectForm.append(optionValue);   
   }
 
+};
   panier._id = product._id;
   panier.imageUrl = product.imageUrl;
   panier.altTxt = product.altTxt;
@@ -155,13 +156,13 @@ function getArticle(product) {
 
         // ici on remet l'ancier paniener sans le meme id d'office
         const majPanier = [...panierCourantFiltrer];
-
         // faut verifier qu'on a deja un prduit avec un id sililaire
         const produitExiste = panierCourant.filter(item => item._id === _id)[0];
         
         console.log(produitExiste)
 
-
+        // const produitPasExiste = panierCourant.filter(item =>  item.colors !== choixKanapCouleur )[0]
+        // console.log(produitPasExiste)
         if (produitExiste && nouveauProduit._id === _id && nouveauProduit.colors === produitExiste.colors) {
           produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
 
@@ -170,11 +171,10 @@ function getArticle(product) {
           console.log("si produit et " + nouveauProduit.colors + produitExiste.colors )
           
 
-        } else if ( produitPasExiste ) {
+        } else if ( panierCourant._id === _id && nouveauProduit.colors === produitExiste.colors ) {
           majPanier.push(nouveauProduit);
           console.log("autre")
         }
-
 
         else { majPanier.push(nouveauProduit);
           console.log("else")

@@ -1,7 +1,7 @@
 
    
-   const cartPanierGet = JSON.parse(localStorage.getItem("le produit"));
-   console.log(cartPanierGet)
+   const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
+   console.log(JSON.parse(cartPanierGet))
    console.log(cartPanierGet.altTxt)
 
 
