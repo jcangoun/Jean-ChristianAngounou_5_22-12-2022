@@ -26,9 +26,9 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
     getArticle(product);
     console.log("c'est l'article que je viens de fetcher", product);
   })
-// .catch(function (error) {
-//   console.error(`probleme : ${error}`);
-// });
+.catch(function (error) {
+  console.error(`probleme : ${error}`);
+});
 
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
@@ -94,7 +94,7 @@ function getArticle(product) {
 
     firstSelectForm.append(optionValue);   
   }
-
+  
 };
   panier._id = product._id;
   panier.imageUrl = product.imageUrl;
