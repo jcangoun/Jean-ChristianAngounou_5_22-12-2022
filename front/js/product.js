@@ -16,6 +16,22 @@ const ajoutPanier = document.querySelector("#addToCart");
 // là je rajoute le premier élément test
 const elemtItemImg = document.querySelector("div.item__img");
 
+// tonton fetchage = 
+
+// async function fetchage() {
+//   try {
+//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
+//   if (!responseFetch.ok) {
+//     throw new error('Erreur au moment du fetchage.');
+//   }
+//   const product = await responseFetch.json();
+//   getArticle(product);
+//   console.log("c'est l'article que je viens de fetcher", product);
+// }
+//   catch (error) {console.error('PEtit Problème : ${error')};
+// }
+// ca va me permettre de recuperer mon fetch test de la feuille de travail , sans la perdre vu que je reprends tout là  
+
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -49,10 +65,12 @@ function getArticle(product) {
   // console.log(panier.name);
   
 
-  // creation de la page de section de produits avec le DOM
-  const blocDeLaPageProduit = () => {
 
+  // creation de la page de section de produits avec le DOM
+
+  const blocDeLaPageProduit = () => {};
   // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
+
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
@@ -83,7 +101,8 @@ function getArticle(product) {
   //Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
 
-  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch     
+  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
+      
   for (let i in colors) {
     // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
@@ -91,11 +110,19 @@ function getArticle(product) {
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
     // console.log(optionValue);
-
-    firstSelectForm.append(optionValue);   
+    firstSelectForm.append(optionValue);
+    
   }
+  // console.log(panier[0]);
   
-};
+  // Muitage test de cette section local ci dessous
+  
+  // localStorage.setItem("quantité", quantity.value)
+  // JSON.parse(localStorage.getItem(quantity.value));
+  // localStorage.setItem('couleur', choixKanapCouleur.value)
+  
+  // localStorage.setItem('nom',JSON.stringify(product.description))
+  
   panier._id = product._id;
   panier.imageUrl = product.imageUrl;
   panier.altTxt = product.altTxt;
