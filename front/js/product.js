@@ -192,7 +192,7 @@ function getArticle(product) {
           item => item.description === description ,item => item.colors === choixKanapCouleur.value,item => item.quantity === quantity.value)[0];
 
           console.log(produitPleinExiste)
-        debugger
+    debugger
 
         // const produitPasExiste = panierCourant.filter(item =>  item.colors !== choixKanapCouleur )[0]
         // console.log(produitPasExiste)
