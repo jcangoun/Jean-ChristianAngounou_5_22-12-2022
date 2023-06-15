@@ -97,7 +97,6 @@ function getArticle(product) {
   const choixKanapCouleur = document.getElementById("colors");
   // const caseQte = document.querySelector("#quantity");
 
-
   //Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
 
@@ -110,8 +109,7 @@ function getArticle(product) {
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
     // console.log(optionValue);
-    firstSelectForm.append(optionValue);
-    
+    firstSelectForm.append(optionValue);    
   }
   // console.log(panier[0]);
   
@@ -130,7 +128,7 @@ function getArticle(product) {
   panier.description = product.description;
   panier.colors = choixKanapCouleur.value;
   console.log(choixKanapCouleur.value);
-  panier.quantity = quantity.value;
+  panier.quantity = parseInt(quantity.value, 10);
 
  console.log(panier.name)
   // panier.push("hello");
@@ -158,10 +156,10 @@ function getArticle(product) {
       nouveauProduit.description =description,
       nouveauProduit.colors = choixKanapCouleur.value,
       nouveauProduit.quantity = quantity.value;
+      nouveauProduit.quantity = parseInt(quantity.value, 10);
 
 
       const panier = localStorage.getItem("panier");
-      // test pâniernew
 
       // on check si on a déja un panier actif dans le localStorage
       if (panier === null) {
@@ -199,12 +197,13 @@ function getArticle(product) {
           console.log("si produit et " + nouveauProduit.colors + produitExiste.colors )
           
 
-        } else if ( panierCourant._id === _id && nouveauProduit.colors === produitExiste.colors ) {
+        } else if ( produitExiste && produitExiste._id === _id && produitExiste.colors !== produitExiste.colors ) {
           majPanier.push(nouveauProduit);
           console.log("autre")
         }
 
-        else { majPanier.push(nouveauProduit);
+        else { 
+          panierCourant.push(nouveauProduit);
           console.log("else")
         } 
 
