@@ -1,24 +1,27 @@
 
    
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
-   console.log(JSON.parse(cartPanierGet))
-   console.log(cartPanierGet.altTxt)
+   console.log(cartPanierGet)
+
 
 
   const cartNbreProdts = JSON.parse(localStorage.getItem("quantite"));
   console.log(JSON.parse(localStorage.getItem("quantite")))
-console.log(typeof cartPanierGet)
 
-   cartPanierGet.forEach(produit => {
-    fetch(`http://localhost:3000/api/products/${produit._id}`)
-    .then (response => response.json() )
-    .then (data => {
-      console.log(data)
-    })
- console.log(produit._id)
-  } ) 
 
-//ici il semble bien qu'on va devoir faire une variable de tout ce qui est crée pour  le html ici en bas 
+//    cartPanierGet.forEach(produit => {
+//     fetch(`http://localhost:3000/api/products/${produit._id}`)
+//     .then (response => response.json() )
+//     .then (data => {
+//       console.log(data)
+//     })
+//  console.log(produit._id)
+//   } ) 
+
+
+//On crée une fonction articlePAnier 
+const articlePanier = function () {}
+
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -103,6 +106,8 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  supprimerArticl.classList.add('deleteItem')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
+
+
 
 
 // localStorage.getItem("colors")

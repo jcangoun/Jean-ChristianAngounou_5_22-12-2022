@@ -130,7 +130,6 @@ function getArticle(product) {
   console.log(choixKanapCouleur.value);
   panier.quantity = parseInt(quantity.value, 10);
 
- console.log(panier.name)
   // panier.push("hello");
   console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
