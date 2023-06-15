@@ -140,81 +140,66 @@ function getArticle(product) {
 
     // ======   Nouveau bloc conditon ========================
 
-      
-      console.log(choixKanapCouleur.value)
-      
-      // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-      // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
+    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+    // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
 
     const nouveauProduit = {};
-    
+
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
       // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
 
-      nouveauProduit._id =_id,
-      nouveauProduit.name =name,
-      nouveauProduit.description =description,
-      nouveauProduit.colors = choixKanapCouleur.value,
-      nouveauProduit.quantity = quantity.value;
+      nouveauProduit._id = _id;
+      nouveauProduit.name = name;
+      nouveauProduit.description = description;
+      nouveauProduit.colors = choixKanapCouleur.value;
       nouveauProduit.quantity = parseInt(quantity.value, 10);
-
 
       const panier = localStorage.getItem("panier");
 
       // on check si on a déja un panier actif dans le localStorage
       if (panier === null) {
-        console.log("ici on a pas de panier")
+        console.log("ici on a pas de panier");
 
         // alors si pas de panier on ajoute un panier
         const nouveauPanier = [];
 
         nouveauPanier.push(nouveauProduit);
-        
+
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
-
       } else {
-        // console.log("on a deja un panier faut le remplirr");  
-
+        // console.log("on a deja un panier faut le remplirr");
         const panierCourant = JSON.parse(panier);
+        console.log("pc", panierCourant);
         // console.log("panier courant", panierCourant)
+        const produitExiste = panierCourant.filter(
+          (item) => item._id === _id && item.colors === choixKanapCouleur.value
+        )[0];
 
-        const panierCourantFiltrer = panierCourant.filter(item => item._id !== _id);
-
-        // ici on remet l'ancier paniener sans le meme id d'office
-        const majPanier = [...panierCourantFiltrer];
-        // faut verifier qu'on a deja un prduit avec un id sililaire
-        const produitExiste = panierCourant.filter(item => item._id === _id)[0];
-        
-        console.log(produitExiste)
-
-        // const produitPasExiste = panierCourant.filter(item =>  item.colors !== choixKanapCouleur )[0]
-        // console.log(produitPasExiste)
-        if (produitExiste && nouveauProduit._id === _id && nouveauProduit.colors === produitExiste.colors) {
-          produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
-
-          majPanier.push(produitExiste);
-          console.log(produitExiste)
-          console.log("si produit et " + nouveauProduit.colors + produitExiste.colors )
-          
-
-        } else if ( produitExiste && produitExiste._id === _id && produitExiste.colors !== produitExiste.colors ) {
+        if (produitExiste) {
+          produitExiste.quantity =
+            produitExiste.quantity + nouveauProduit.quantity;
+          localStorage.setItem("panier", JSON.stringify(panierCourant));
+        } else {
+          const panierCourantFiltrer = panierCourant.filter(
+            (item) =>
+              !(item._id === _id && item.colors === choixKanapCouleur.value)
+          );
+          // ici on remet l'ancier paniener sans le meme id d'office
+          const majPanier = [...panierCourantFiltrer];
+          // faut verifier qu'on a deja un prduit avec un id sililaire
+          console.log("panierCourant", panierCourant);
+          console.log("_id", _id);
           majPanier.push(nouveauProduit);
-          console.log("autre")
+          localStorage.setItem("panier", JSON.stringify(majPanier));
         }
 
-        else { 
-          panierCourant.push(nouveauProduit);
-          console.log("else")
-        } 
-
-        localStorage.setItem("panier", JSON.stringify(majPanier));
-
+        console.log("produitExiste", produitExiste);
       }
-    } 
-    // else {
-    //   alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
-    // }
-  
+    } else {
+      alert(
+        "pas de bras pas de chocolat :), sans blaque faut au moin une quatity"
+      );
+    }
   });
 }
 // localStorage.clear();
