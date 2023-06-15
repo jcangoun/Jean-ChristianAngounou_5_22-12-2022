@@ -161,6 +161,7 @@ function getArticle(product) {
 
 
       const panier = localStorage.getItem("panier");
+      // test pâniernew
 
       // on check si on a déja un panier actif dans le localStorage
       if (panier === null) {
@@ -174,25 +175,19 @@ function getArticle(product) {
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
 
       } else {
-
         // console.log("on a deja un panier faut le remplirr");  
 
         const panierCourant = JSON.parse(panier);
         // console.log("panier courant", panierCourant)
 
         const panierCourantFiltrer = panierCourant.filter(item => item._id !== _id);
-        
+
         // ici on remet l'ancier paniener sans le meme id d'office
         const majPanier = [...panierCourantFiltrer];
         // faut verifier qu'on a deja un prduit avec un id sililaire
-        const produitExiste = panierCourant.filter(item => item === nouveauProduit)[0];
+        const produitExiste = panierCourant.filter(item => item._id === _id)[0];
+        
         console.log(produitExiste)
-
-        const produitPleinExiste = panierCourant.filter(item => item._id === _id,item => item.name === name , 
-          item => item.description === description ,item => item.colors === choixKanapCouleur.value,item => item.quantity === quantity.value)[0];
-
-          console.log(produitPleinExiste)
-    debugger
 
         // const produitPasExiste = panierCourant.filter(item =>  item.colors !== choixKanapCouleur )[0]
         // console.log(produitPasExiste)
@@ -200,34 +195,26 @@ function getArticle(product) {
           produitExiste.quantity = parseInt(produitExiste.quantity) + parseInt(quantity.value);
 
           majPanier.push(produitExiste);
-          console.log(panierCourantFiltrer)
-          console.log("si produit" + nouveauProduit.colors + "et " + produitExiste.colors )
+          console.log(produitExiste)
+          console.log("si produit et " + nouveauProduit.colors + produitExiste.colors )
           
-          // gros test en dessous
-        } else if ( produitExiste && panierCourant[0]._id === _id && nouveauProduit.colors !== produitPleinExiste.colors ) {
-        
+
+        } else if ( panierCourant._id === _id && nouveauProduit.colors === produitExiste.colors ) {
           majPanier.push(nouveauProduit);
-          console.log("autre",nouveauProduit, panierCourant)
-          console.log(produitExiste.colors, nouveauProduit.colors)
+          console.log("autre")
         }
 
-        // else { majPanier.push(nouveauProduit);
-        //   console.log("else")
-        // } 
+        else { majPanier.push(nouveauProduit);
+          console.log("else")
+        } 
 
         localStorage.setItem("panier", JSON.stringify(majPanier));
 
       }
-
-
-
-
-
-      
     } 
-    else {
-      alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
-    }
+    // else {
+    //   alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity")
+    // }
   
   });
 }
