@@ -9,17 +9,17 @@
   console.log(JSON.parse(localStorage.getItem("quantite")))
 
 
-//    cartPanierGet.forEach(produit => {
-//     fetch(`http://localhost:3000/api/products/${produit._id}`)
-//     .then (response => response.json() )
-//     .then (data => {
-//       console.log(data)
-//     })
-//  console.log(produit._id)
-//   } ) 
+   cartPanierGet.forEach(produit => {
+    fetch(`http://localhost:3000/api/products/${produit._id}`)
+    .then (response => response.json() )
+    .then (data => {
+      console.log(data)
+    })
+ console.log(produit._id)
+  } ) 
+// const cartLoc
 
-
-//On crée une fonction articlePAnier 
+//On crée une fonction articlePAnier ligne 25 a 109
 const articlePanier = function () {}
 
 

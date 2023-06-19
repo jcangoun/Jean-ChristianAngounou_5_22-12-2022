@@ -100,8 +100,7 @@ function getArticle(product) {
   //Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
 
-  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
-      
+  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch   
   for (let i in colors) {
     // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
@@ -111,16 +110,7 @@ function getArticle(product) {
     // console.log(optionValue);
     firstSelectForm.append(optionValue);    
   }
-  // console.log(panier[0]);
-  
-  // Muitage test de cette section local ci dessous
-  
-  // localStorage.setItem("quantité", quantity.value)
-  // JSON.parse(localStorage.getItem(quantity.value));
-  // localStorage.setItem('couleur', choixKanapCouleur.value)
-  
-  // localStorage.setItem('nom',JSON.stringify(product.description))
-  
+
   panier._id = product._id;
   panier.imageUrl = product.imageUrl;
   panier.altTxt = product.altTxt;
@@ -128,7 +118,7 @@ function getArticle(product) {
   panier.description = product.description;
   panier.colors = choixKanapCouleur.value;
   console.log(choixKanapCouleur.value);
-  panier.quantity = parseInt(quantity.value, 10);
+  panier.quantity = parseInt(quantity.value);
 
   // panier.push("hello");
   console.log(panier);
@@ -151,8 +141,9 @@ function getArticle(product) {
       nouveauProduit.name = name;
       nouveauProduit.description = description;
       nouveauProduit.colors = choixKanapCouleur.value;
-      nouveauProduit.quantity = parseInt(quantity.value, 10);
+      nouveauProduit.quantity = parseInt(quantity.value);
 
+      console.log(parseInt(101010))
       const panier = localStorage.getItem("panier");
 
       // on check si on a déja un panier actif dans le localStorage
@@ -169,25 +160,29 @@ function getArticle(product) {
         // console.log("on a deja un panier faut le remplirr");
         const panierCourant = JSON.parse(panier);
         console.log("pc", panierCourant);
-        // console.log("panier courant", panierCourant)
+
         const produitExiste = panierCourant.filter(
           (item) => item._id === _id && item.colors === choixKanapCouleur.value
         )[0];
 
         if (produitExiste) {
-          produitExiste.quantity =
-            produitExiste.quantity + nouveauProduit.quantity;
+          produitExiste.quantity = produitExiste.quantity + nouveauProduit.quantity;
           localStorage.setItem("panier", JSON.stringify(panierCourant));
         } else {
           const panierCourantFiltrer = panierCourant.filter(
             (item) =>
               !(item._id === _id && item.colors === choixKanapCouleur.value)
           );
-          // ici on remet l'ancier paniener sans le meme id d'office
+// test ca a marché
+          // for (let produitExiste in panierCourant) {
+
+          //   console.table(produitExiste)
+          // }
+
+          // ici on remet l'ancien panier sans le meme id d'office
           const majPanier = [...panierCourantFiltrer];
+
           // faut verifier qu'on a deja un prduit avec un id sililaire
-          console.log("panierCourant", panierCourant);
-          console.log("_id", _id);
           majPanier.push(nouveauProduit);
           localStorage.setItem("panier", JSON.stringify(majPanier));
         }
