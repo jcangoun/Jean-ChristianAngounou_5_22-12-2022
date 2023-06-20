@@ -128,7 +128,11 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 const contenuPanierPurPanier = JSON.parse(contenuPanierLocalstoragePanier)
 console.log("produitPur", contenuPanierPurPanier)
 
+for ( let i = 0; i < contenuPanierPurPanier.length; i++) {
+  let produitPanier = contenuPanierPurPanier[i];
+  console.log(produitPanier);
 
+}
 
 // localStorage.getItem("colors")
 if (localStorage.getItem("colors") != null)
