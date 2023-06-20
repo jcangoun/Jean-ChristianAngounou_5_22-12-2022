@@ -109,6 +109,26 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 
 
 
+// test ca a marché
+          // for (let produitExiste in panierCourant) {
+
+          //   console.table(produitExiste)
+          // }
+
+          // function articles(products) {
+          //   products.forEach((product) => {
+          //     // console.log(product);
+          //     articlePage(product);
+          //   });
+          // }          
+          const  localVide = [];
+          localVide;
+    const contenuPanierLocalstoragePanier = localStorage.getItem("panier");
+
+const contenuPanierPurPanier = JSON.parse(contenuPanierLocalstoragePanier)
+console.log("produitPur", contenuPanierPurPanier)
+
+
 
 // localStorage.getItem("colors")
 if (localStorage.getItem("colors") != null)

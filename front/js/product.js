@@ -173,11 +173,6 @@ function getArticle(product) {
             (item) =>
               !(item._id === _id && item.colors === choixKanapCouleur.value)
           );
-// test ca a marché
-          // for (let produitExiste in panierCourant) {
-
-          //   console.table(produitExiste)
-          // }
 
           // ici on remet l'ancien panier sans le meme id d'office
           const majPanier = [...panierCourantFiltrer];
