@@ -1,26 +1,23 @@
-
    
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
    console.log(cartPanierGet)
 
 
+  //  cartPanierGet.forEach(produit => {
+  //   fetch(`http://localhost:3000/api/products/${produit._id}`)
+  //   .then (response => response.json() )
+  //   .then (data => {
+  //     console.log(data)
+  //   })
+  // } ) 
+  
 
-  const cartNbreProdts = JSON.parse(localStorage.getItem("quantite"));
-  console.log(JSON.parse(localStorage.getItem("quantite")))
+  // console.log(produit._id, produit.name, produit.price, produit.imageUrl)
 
-
-   cartPanierGet.forEach(produit => {
-    fetch(`http://localhost:3000/api/products/${produit._id}`)
-    .then (response => response.json() )
-    .then (data => {
-      console.log(data)
-    })
- console.log(produit._id)
-  } ) 
 // const cartLoc
 
 //On crée une fonction articlePAnier ligne 25 a 109
-const articlePanier = function () {}
+const articlePanier = function () {
 
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
@@ -94,8 +91,9 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  resultatValeurQuantite.setAttribute('name', 'itemQuantity')
  resultatValeurQuantite.setAttribute('min', '1')
  resultatValeurQuantite.setAttribute('max', '100')
- resultatValeurQuantite.setAttribute('value', cartNbreProdts)
-//  en haut là cartNbreProdts a remplace '42'
+ //  en bas là y a la variable de quantite pour remplace '42'
+ resultatValeurQuantite.setAttribute('value', '42')
+
  fixationContenuCartArticle.append(resultatValeurQuantite)
 
  const caseAnnuleConfigCotenuCartArticl = document.createElement('div')
@@ -107,22 +105,8 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
+}
 
-
-// test ca a marché
-          // for (let produitExiste in panierCourant) {
-
-          //   console.table(produitExiste)
-          // }
-
-          // function articles(products) {
-          //   products.forEach((product) => {
-          //     // console.log(product);
-          //     articlePage(product);
-          //   });
-          // }          
-          const  localVide = [];
-          localVide;
     const contenuPanierLocalstoragePanier = localStorage.getItem("panier");
 
 const contenuPanierPurPanier = JSON.parse(contenuPanierLocalstoragePanier)
@@ -131,20 +115,33 @@ console.log("produitPur", contenuPanierPurPanier)
 for ( let i = 0; i < contenuPanierPurPanier.length; i++) {
   let produitPanier = contenuPanierPurPanier[i];
   console.log(produitPanier);
+console .log(produitPanier.name)
+  articlePanier();
 
+  // nomProduitCarteItem.innerHTML = `${cartPanierGet[0].name}`;
+
+  // descriptionCouleurProduit.innerHTML = 'Vert';
+
+  // descriptionPrixProduit.innerHTML = '42'
+
+  // valeurQuantite.innerHTML = 'Qté:'
 }
+
+
+
+
+
 
 // localStorage.getItem("colors")
 if (localStorage.getItem("colors") != null)
 descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
-
 
 if (localStorage.getItem("quantite.value") != null)
 itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
 // localStorage.getItem("imageUrl");
 localStorage.getItem("name");
 if (localStorage.getItem("name") != null)
-itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
+// itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
 // localStorage.getItem("name");
 localStorage.getItem("name");
 
