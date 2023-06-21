@@ -30,6 +30,7 @@ const elemtItemImg = document.querySelector("div.item__img");
 // }
 //   catch (error) {console.error('PEtit Problème : ${error')};
 // }
+
 // ca va me permettre de recuperer mon fetch test de la feuille de travail , sans la perdre vu que je reprends tout là  
 
 fetch(`http://localhost:3000/api/products/${paramId}`)

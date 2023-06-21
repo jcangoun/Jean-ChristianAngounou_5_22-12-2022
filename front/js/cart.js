@@ -1,15 +1,49 @@
-   
+   // recup des infosproduits
+const info = window.location.search;
+console.log("valeurs", info);
+// console.log("window Location:", window.location);
+const urlParams = new URLSearchParams(info);
+
+const paramIdDePage = urlParams.get("id");
+// console.log(paramIdDePage);
+
+
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
    console.log(cartPanierGet)
 
+   function fetchElementsDeLocalStoragePanier() {
+    console.log(cartPanierGet)
 
-  //  cartPanierGet.forEach(produit => {
-  //   fetch(`http://localhost:3000/api/products/${produit._id}`)
-  //   .then (response => response.json() )
-  //   .then (data => {
-  //     console.log(data)
-  //   })
-  // } ) 
+    for (let canap = 0; canap < cartPanierGet.length; canap++ ) {
+      const canapChoisi = cartPanierGet[canap];
+      const panierParamId = canapChoisi.panierParamId;
+// async function fetchage() {
+//   try {
+//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
+//   if (!responseFetch.ok) {
+//     throw new error('Erreur au moment du fetchage.');
+//   }
+//   const product = await responseFetch.json();
+//   getArticle(product);
+//   console.log("c'est l'article que je viens de fetcher", product);
+// }
+//   catch (error) {console.error('PEtit Problème : ${error')};
+// }
+
+    cartPanierGet.forEach(produit => {
+      fetch(`http://localhost:3000/api/products/${produit._id}`)
+      .then (response => response.json() )
+      .then (dataPanier => {
+        console.log(dataPanier)
+      })
+
+    })
+
+  }
+  }
+   fetchElementsDeLocalStoragePanier();
+
+  
   
 
   // console.log(produit._id, produit.name, produit.price, produit.imageUrl)
