@@ -62,9 +62,6 @@ function getArticle(product) {
       colors,
     };
   console.log(panier);
-  // console.log(panier.name);
-  
-
 
   // creation de la page de section de produits avec le DOM
 
@@ -129,13 +126,13 @@ function getArticle(product) {
 
     // ======   Nouveau bloc conditon ========================
 
-    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+   
     // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
 
     const nouveauProduit = {};
 
+ // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
-      // Ici je vais essayer de ne pas nommer avec des "nom.qulquechose mais plutot "nom" et c'est tout
 
       nouveauProduit._id = _id;
       nouveauProduit.name = name;
@@ -143,7 +140,6 @@ function getArticle(product) {
       nouveauProduit.colors = choixKanapCouleur.value;
       nouveauProduit.quantity = parseInt(quantity.value);
 
-      console.log(parseInt(101010))
       const panier = localStorage.getItem("panier");
 
       // on check si on a déja un panier actif dans le localStorage
@@ -191,4 +187,4 @@ function getArticle(product) {
     }
   });
 }
-// localStorage.clear();
+

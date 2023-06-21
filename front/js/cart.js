@@ -117,7 +117,7 @@ for ( let i = 0; i < contenuPanierPurPanier.length; i++) {
   console.log(produitPanier);
 console .log(produitPanier.name)
   articlePanier();
-
+ 
   // nomProduitCarteItem.innerHTML = `${cartPanierGet[0].name}`;
 
   // descriptionCouleurProduit.innerHTML = 'Vert';
@@ -125,11 +125,12 @@ console .log(produitPanier.name)
   // descriptionPrixProduit.innerHTML = '42'
 
   // valeurQuantite.innerHTML = 'Qté:'
+
+
+const elemntDeContenuDuPanier = contenuPanierPurPanier[i];
+console.log(contenuPanierPurPanier[i])
+
 }
-
-
-
-
 
 
 // localStorage.getItem("colors")
@@ -148,6 +149,7 @@ localStorage.getItem("name");
 
 const btnEffacer = document.getElementsByClassName('deleteItem');
 console.log(btnEffacer)
+
 // btnEffacer.addEventListener("click", function () {
     // localStorage.clear();
 //     console.log('ca supprime')
@@ -161,3 +163,5 @@ ajoutBtn.addEventListener('click', function () {
 //   const panierChoisi = JSON.parse(localStorage.getItem('panier'));
 
 })
+
+// localStorage.clear();
