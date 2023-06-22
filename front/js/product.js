@@ -16,23 +16,6 @@ const ajoutPanier = document.querySelector("#addToCart");
 // là je rajoute le premier élément test
 const elemtItemImg = document.querySelector("div.item__img");
 
-//fetchage = 
-
-// async function fetchage() {
-//   try {
-//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
-//   if (!responseFetch.ok) {
-//     throw new error('Erreur au moment du fetchage.');
-//   }
-//   const product = await responseFetch.json();
-//   getArticle(product);
-//   console.log("c'est l'article que je viens de fetcher", product);
-// }
-//   catch (error) {console.error('PEtit Problème : ${error')};
-// }
-
-// ca va me permettre de recuperer mon fetch test de la feuille de travail , sans la perdre vu que je reprends tout là  
-
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -118,7 +101,6 @@ function getArticle(product) {
   console.log(choixKanapCouleur.value);
   panier.quantity = parseInt(quantity.value);
 
-  // panier.push("hello");
   console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
   ajoutBtn.addEventListener("click", function (e) {
@@ -127,9 +109,8 @@ function getArticle(product) {
 
     // ======   Nouveau bloc conditon ========================
 
-   
+    
     // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
-
     const nouveauProduit = {};
 
  // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur

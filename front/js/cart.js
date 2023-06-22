@@ -1,169 +1,96 @@
-   // recup des infosproduits
+// recup des infosproduits
 const info = window.location.search;
 console.log("valeurs", info);
-// console.log("window Location:", window.location);
 const urlParams = new URLSearchParams(info);
 
 const paramIdDePage = urlParams.get("id");
-// console.log(paramIdDePage);
 
+const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
+console.log(cartPanierGet);
 
-   const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
-   console.log(cartPanierGet)
+const carteArticle = document.querySelector('.cart > #cart__items');
 
+const fetchEtVisualSection = async () => {
+  for (let canap = 0; canap < cartPanierGet.length; canap++) {
+    const produitPanier = cartPanierGet[canap];
 
-  //  function fetchElementsDeLocalStoragePanier() {
-    
+    const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
+    if (!response.ok) {
+      throw new Error('Il y a 1 erreur lors de la récupération des données.');
+    }
+    const dataPanier = await response.json();
+    console.log(dataPanier);
 
-    for ( let canap = 0; canap < cartPanierGet.length; canap++) {
-      let produitPanier = cartPanierGet[canap];
-      // const panierParamId = produitPanier.panierParamId;
+    const detailArticl = document.createElement('article');
+    detailArticl.classList.add('cart__item');
+    detailArticl.setAttribute('data-id', `${dataPanier._id}`);
+    detailArticl.setAttribute('data-color', `${produitPanier.colors}`);
+    carteArticle.append(detailArticl);
 
-      console.log(produitPanier);
-      console.log(cartPanierGet[canap].name)
-      console.log(produitPanier.name)
+    const photoArticleCart = document.createElement('div');
+    photoArticleCart.classList.add('cart__item__img');
+    detailArticl.append(photoArticleCart);
 
-// async function fetchage() {
-//   try {
-//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
-//   if (!responseFetch.ok) {
-//     throw new error('Erreur au moment du fetchage.');
-//   }
-//   const product = await responseFetch.json();
-//   getArticle(product);
-//   console.log("c'est l'article que je viens de fetcher", product);
-// }
-//   catch (error) {console.error('PEtit Problème : ${error')};
-// }
+    const imageCartItemArtcl = document.createElement('img');
+    imageCartItemArtcl.setAttribute('alt', "Photographie d'un canapé");
+    imageCartItemArtcl.setAttribute('src', `${dataPanier.imageUrl}`);
+    photoArticleCart.append(imageCartItemArtcl);
 
-        cartPanierGet.forEach(canap => {
-          fetch(`http://localhost:3000/api/products/${canap._id}`)
-          .then (response => response.json() )
-          .then (dataPanier => {
-            console.log(dataPanier)
-            console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
-          
-            // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
-            console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
-          })
-        })
+    const contenuCartItem = document.createElement('div');
+    contenuCartItem.classList.add('cart__item__content');
+    detailArticl.append(contenuCartItem);
 
-    //     // les infos de localStorage 
-  //   console.log("local", cartPanierGet[canap].name, cartPanierGet[canap].quantity, cartPanierGet[canap].description, cartPanierGet[canap].colors)
-    
-  //   }
-  // }
-  //  fetchElementsDeLocalStoragePanier();
+    const descriptonContenuCartItem = document.createElement('div');
+    descriptonContenuCartItem.classList.add('cart__item__content__description');
+    contenuCartItem.append(descriptonContenuCartItem);
 
-      
-// const cartLoc
+    const nomProduitCarteItem = document.createElement('h2');
+    nomProduitCarteItem.innerHTML = `${dataPanier.name}`;
+    descriptonContenuCartItem.append(nomProduitCarteItem);
 
-//On crée une fonction articlePAnier ligne 25 a 109
-  const articlePanier = function () {
+    const descriptionCouleurProduit = document.createElement('p');
+    descriptionCouleurProduit.innerHTML = `${produitPanier.colors}`;
+    descriptonContenuCartItem.append(descriptionCouleurProduit);
 
-// crée l'article de classe cart__item d'attribut data-id et aussi data-color
-const carteArticle = document.querySelector('.cart > #cart__items')
-const detailArticl = document.createElement('article')
-detailArticl.classList.add('cart__item')
-detailArticl.setAttribute ('data-id', '{product-ID}"')
-detailArticl.setAttribute ('data-color', '{product-color}')
- carteArticle.append(detailArticl)
- console.log(carteArticle)
+    const descriptionPrixProduit = document.createElement('p');
+    descriptionPrixProduit.innerHTML = `${dataPanier.price}`;
+    descriptonContenuCartItem.append(descriptionPrixProduit);
 
-// ci dessous crée la div de class "cart__item__img"
- const photoArticleCart = document.createElement("div")
- photoArticleCart.classList.add("cart__item__img")
- detailArticl.append(photoArticleCart)
+    const fixationContenuCartArticle = document.createElement('div');
+    fixationContenuCartArticle.classList.add('cart__item__content_settings');
+    contenuCartItem.append(fixationContenuCartArticle);
 
-//  ci dessous créée l'img enfant avec attribut >> alt photo canapé, et src >> ../images/product01.jpg
- const imageCartItemArtcl = document.createElement("img")
- imageCartItemArtcl.setAttribute("alt", "Photographie d'un canapé")
-// imageCartItemArtcl.setAttribute("src", "../images/product01.jpg")
-                                       
- photoArticleCart.append(imageCartItemArtcl)
-    console.log(detailArticl)
+    const quantiteContenuCarteArticle = document.createElement('div');
+    quantiteContenuCarteArticle.classList.add('cart__item__content__settings__quantity');
+    fixationContenuCartArticle.append(quantiteContenuCarteArticle);
 
-    // crée la div de class cart__item__content, enfant de cart__items
- const contenuCartItem = document.createElement('div')
- contenuCartItem.classList.add("cart__item__content")
- detailArticl.append(contenuCartItem)
+    const valeurQuantite = document.createElement('p');
+    valeurQuantite.innerHTML = 'Qté:';
+    fixationContenuCartArticle.append(valeurQuantite);
 
+    const resultatValeurQuantite = document.createElement('input');
+    resultatValeurQuantite.classList.add('itemQuantity');
+    resultatValeurQuantite.setAttribute('type', 'number');
+    resultatValeurQuantite.setAttribute('name', 'itemQuantity');
+    resultatValeurQuantite.setAttribute('min', '1');
+    resultatValeurQuantite.setAttribute('max', '100');
+    resultatValeurQuantite.setAttribute('value', `${produitPanier.quantity}`);
+    fixationContenuCartArticle.append(resultatValeurQuantite);
 
- const descriptonContenuCartItem = document.createElement("div")
- descriptonContenuCartItem.classList.add("cart__item__content__description")
- contenuCartItem.append(descriptonContenuCartItem)
+    const caseAnnuleConfigCotenuCartArticl = document.createElement('div');
+    caseAnnuleConfigCotenuCartArticl.classList.add('cart__item__content__settings__delete');
+    contenuCartItem.append(caseAnnuleConfigCotenuCartArticl);
 
- const nomProduitCarteItem = document.createElement("h2")
- nomProduitCarteItem.innerHTML = 'Nom Produit';
-//  En test en haut on remplacera par ceci en bas
-  nomProduitCarteItem.innerHTML = `${cartPanierGet[canap].name}`;
- 
- descriptonContenuCartItem.append(nomProduitCarteItem)
-
- const descriptionCouleurProduit = document.createElement('p')
- descriptionCouleurProduit.innerHTML = `${cartPanierGet[canap].colors}`;
-
- descriptonContenuCartItem.append(descriptionCouleurProduit)
-
- const descriptionPrixProduit = document.createElement('p')
- descriptionPrixProduit.innerHTML = '42'
-//  descriptionPrixProduit.innerHTML = `${cartPanierGet[0].price}`
- descriptonContenuCartItem.append(descriptionPrixProduit)
-
- const fixationContenuCartArticle = document.createElement('div')
- fixationContenuCartArticle.classList.add('cart__item__content_settings')
- contenuCartItem.append(fixationContenuCartArticle)
-
- const quantiteContenuCarteArticle = document.createElement('div')
- quantiteContenuCarteArticle.classList.add('cart__item__content__settings__quantity')
- fixationContenuCartArticle.append(quantiteContenuCarteArticle)
-
- const valeurQuantite = document.createElement('p')
- valeurQuantite.innerHTML = 'Qté:'
- fixationContenuCartArticle.append(valeurQuantite)
-
-
- const resultatValeurQuantite = document.createElement('input')
- resultatValeurQuantite.classList.add('itemQuantity')
- resultatValeurQuantite.setAttribute('type', 'number')
- resultatValeurQuantite.setAttribute('name', 'itemQuantity')
- resultatValeurQuantite.setAttribute('min', '1')
- resultatValeurQuantite.setAttribute('max', '100')
- //  en bas là y a la variable de quantite pour remplace '42'
- resultatValeurQuantite.setAttribute('value', `${cartPanierGet[canap].quantity}`)
-
- fixationContenuCartArticle.append(resultatValeurQuantite)
-
- const caseAnnuleConfigCotenuCartArticl = document.createElement('div')
- caseAnnuleConfigCotenuCartArticl.classList.add('cart__item__content__settings__delete')  
- contenuCartItem.append(caseAnnuleConfigCotenuCartArticl)
- 
- const supprimerArticl = document.createElement('p')
- supprimerArticl.classList.add('deleteItem')
-  supprimerArticl.innerHTML = 'Supprimer'
- caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
-
-  
-  const btnEffacer = document.getElementsByClassName('deleteItem');
-console.log(btnEffacer)
-
-// btnEffacer.addEventListener("click", function () {
-//     localStorage.clear();
-//     console.log('ca supprime')
-// })
-
-    const ajoutBtn = document.querySelector('#order');
-    ajoutBtn.addEventListener('click', function () {
-    
-        console.log('ca paniasse');
-
-    })
-
+    const supprimerArticl = document.createElement('p');
+    supprimerArticl.classList.add('deleteItem');
+    supprimerArticl.innerHTML = 'Supprimer';
+    caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
   }
-      articlePanier();
-  
-}
+};
 
+fetchEtVisualSection();
 
-
-// localStorage.clear();
+const ajoutBtn = document.querySelector('#order');
+ajoutBtn.addEventListener('click', function() {
+  console.log('ca paniasse');
+});
