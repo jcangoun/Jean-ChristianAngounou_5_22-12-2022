@@ -11,7 +11,7 @@ const paramIdDePage = urlParams.get("id");
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
    console.log(cartPanierGet)
 
-  //  puis onremettra ces fetch quand les 
+
   //  function fetchElementsDeLocalStoragePanier() {
     
 
@@ -20,10 +20,8 @@ const paramIdDePage = urlParams.get("id");
       // const panierParamId = produitPanier.panierParamId;
 
       console.log(produitPanier);
-    console.log(cartPanierGet[canap].name)
-    console.log(produitPanier.name)
-
-
+      console.log(cartPanierGet[canap].name)
+      console.log(produitPanier.name)
 
 // async function fetchage() {
 //   try {
@@ -38,25 +36,19 @@ const paramIdDePage = urlParams.get("id");
 //   catch (error) {console.error('PEtit Problème : ${error')};
 // }
 
-
-
-
-
-
-  //       cartPanierGet.forEach(canap => {
-  //         fetch(`http://localhost:3000/api/products/${canap._id}`)
-  //         .then (response => response.json() )
-  //         .then (dataPanier => {
-  //           console.log(dataPanier)
-  //           console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+        cartPanierGet.forEach(canap => {
+          fetch(`http://localhost:3000/api/products/${canap._id}`)
+          .then (response => response.json() )
+          .then (dataPanier => {
+            console.log(dataPanier)
+            console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
           
-  //           // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
+            // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
+            console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+          })
+        })
 
-  //   console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
-  //         })
-  //       })
-
-  //     // les infos de localStorage 
+    //     // les infos de localStorage 
   //   console.log("local", cartPanierGet[canap].name, cartPanierGet[canap].quantity, cartPanierGet[canap].description, cartPanierGet[canap].colors)
     
   //   }
@@ -67,7 +59,7 @@ const paramIdDePage = urlParams.get("id");
 // const cartLoc
 
 //On crée une fonction articlePAnier ligne 25 a 109
-const articlePanier = function () {
+  const articlePanier = function () {
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -111,9 +103,6 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  const descriptionCouleurProduit = document.createElement('p')
  descriptionCouleurProduit.innerHTML = `${cartPanierGet[canap].colors}`;
 
-
-//  descriptionCouleurProduit.innerHTML = `${cartPanierGet[0].colors}`;
-
  descriptonContenuCartItem.append(descriptionCouleurProduit)
 
  const descriptionPrixProduit = document.createElement('p')
@@ -154,26 +143,27 @@ detailArticl.setAttribute ('data-color', '{product-color}')
   supprimerArticl.innerHTML = 'Supprimer'
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
-}
-    articlePanier();
-
-}
-
-
-const btnEffacer = document.getElementsByClassName('deleteItem');
+  
+  const btnEffacer = document.getElementsByClassName('deleteItem');
 console.log(btnEffacer)
 
 // btnEffacer.addEventListener("click", function () {
-    // localStorage.clear();
+//     localStorage.clear();
 //     console.log('ca supprime')
 // })
 
-const ajoutBtn = document.querySelector('#order');
-ajoutBtn.addEventListener('click', function () {
+    const ajoutBtn = document.querySelector('#order');
+    ajoutBtn.addEventListener('click', function () {
+    
+        console.log('ca paniasse');
 
-    console.log('ca paniasse');
+    })
+
+  }
+      articlePanier();
+  
+}
 
 
-})
 
 // localStorage.clear();
