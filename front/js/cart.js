@@ -14,9 +14,6 @@ const paramIdDePage = urlParams.get("id");
   //  puis onremettra ces fetch quand les 
   //  function fetchElementsDeLocalStoragePanier() {
     
-  //   for (let canap = 0; canap < cartPanierGet.length; canap++ ) {
-  //     const canapChoisi = cartPanierGet[canap];
-  //     const panierParamId = canapChoisi.panierParamId;
 
     for ( let canap = 0; canap < cartPanierGet.length; canap++) {
       let produitPanier = cartPanierGet[canap];
@@ -27,6 +24,19 @@ const paramIdDePage = urlParams.get("id");
     console.log(produitPanier.name)
 
 
+
+// async function fetchage() {
+//   try {
+//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
+//   if (!responseFetch.ok) {
+//     throw new error('Erreur au moment du fetchage.');
+//   }
+//   const product = await responseFetch.json();
+//   getArticle(product);
+//   console.log("c'est l'article que je viens de fetcher", product);
+// }
+//   catch (error) {console.error('PEtit Problème : ${error')};
+// }
 
 
 
@@ -58,7 +68,6 @@ const paramIdDePage = urlParams.get("id");
 
 //On crée une fonction articlePAnier ligne 25 a 109
 const articlePanier = function () {
-
 
 // crée l'article de classe cart__item d'attribut data-id et aussi data-color
 const carteArticle = document.querySelector('.cart > #cart__items')
@@ -146,33 +155,9 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  caseAnnuleConfigCotenuCartArticl.append(supprimerArticl)
 
 }
-
     articlePanier();
 
-
-// nomProduitCarteItem.innerHTML = `${cartPanierGet[canap].name}`;
-
-  // nomProduitCarteItem.innerHTML = `${canapChoisi.name}`;
-  // descriptionCouleurProduit.innerHTML = 'Vert';
-
-  // descriptionPrixProduit.innerHTML = '42'
-
-  // valeurQuantite.innerHTML = 'Qté:'
-  
 }
-
-// // localStorage.getItem("colors")
-// if (localStorage.getItem("colors") != null)
-// descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
-
-// if (localStorage.getItem("quantite.value") != null)
-// itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
-// // localStorage.getItem("imageUrl");
-// localStorage.getItem("name");
-// if (localStorage.getItem("name") != null)
-// // itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
-// // localStorage.getItem("name");
-// localStorage.getItem("name");
 
 
 const btnEffacer = document.getElementsByClassName('deleteItem');
@@ -188,7 +173,6 @@ ajoutBtn.addEventListener('click', function () {
 
     console.log('ca paniasse');
 
-//   const panierChoisi = JSON.parse(localStorage.getItem('panier'));
 
 })
 
