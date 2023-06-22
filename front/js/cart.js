@@ -85,14 +85,12 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
-
+ console.log(dataPanier)
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
-      for (let panier = 0; panier < cartPanierGet.length; panier++) {
-        const supCanap = cartPanierGet[panier];
 
-      }
-    localStorage.removeItem(cartPanierGet[panier]);
+  localStorage.removeItem("panier");
+  console.log(cartPanierGet[canap])
     
     });
   }
