@@ -16,7 +16,7 @@ const ajoutPanier = document.querySelector("#addToCart");
 // là je rajoute le premier élément test
 const elemtItemImg = document.querySelector("div.item__img");
 
-// tonton fetchage = 
+//fetchage = 
 
 // async function fetchage() {
 //   try {

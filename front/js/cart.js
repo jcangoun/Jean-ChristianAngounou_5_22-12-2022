@@ -11,12 +11,13 @@ const paramIdDePage = urlParams.get("id");
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
    console.log(cartPanierGet)
 
+  //  pui
    function fetchElementsDeLocalStoragePanier() {
-    console.log(cartPanierGet)
-
+    
     for (let canap = 0; canap < cartPanierGet.length; canap++ ) {
       const canapChoisi = cartPanierGet[canap];
       const panierParamId = canapChoisi.panierParamId;
+
 // async function fetchage() {
 //   try {
 //   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
@@ -30,23 +31,25 @@ const paramIdDePage = urlParams.get("id");
 //   catch (error) {console.error('PEtit Problème : ${error')};
 // }
 
-    cartPanierGet.forEach(produit => {
-      fetch(`http://localhost:3000/api/products/${produit._id}`)
+    cartPanierGet.forEach(canap => {
+      fetch(`http://localhost:3000/api/products/${canap._id}`)
       .then (response => response.json() )
       .then (dataPanier => {
         console.log(dataPanier)
-      })
+        console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+      
+        // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
 
+console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+      })
     })
+
+    // les infos de localStorage 
+  console.log("local", cartPanierGet[canap].name, cartPanierGet[canap].quantity, cartPanierGet[canap].description, cartPanierGet[canap].colors)
 
   }
   }
    fetchElementsDeLocalStoragePanier();
-
-  
-  
-
-  // console.log(produit._id, produit.name, produit.price, produit.imageUrl)
 
 // const cartLoc
 
@@ -151,19 +154,18 @@ for ( let i = 0; i < contenuPanierPurPanier.length; i++) {
   console.log(produitPanier);
 console .log(produitPanier.name)
   articlePanier();
- 
-  // nomProduitCarteItem.innerHTML = `${cartPanierGet[0].name}`;
 
+console.log(cartPanierGet[2].name)
+const elemntDeContenuDuPanier = contenuPanierPurPanier[i];
+console.log(contenuPanierPurPanier[i])
+
+  // nomProduitCarteItem.innerHTML = `${canapChoisi.name}`;
   // descriptionCouleurProduit.innerHTML = 'Vert';
 
   // descriptionPrixProduit.innerHTML = '42'
 
   // valeurQuantite.innerHTML = 'Qté:'
-
-
-const elemntDeContenuDuPanier = contenuPanierPurPanier[i];
-console.log(contenuPanierPurPanier[i])
-
+  
 }
 
 
