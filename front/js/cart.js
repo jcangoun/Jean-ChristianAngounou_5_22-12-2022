@@ -11,46 +11,49 @@ const paramIdDePage = urlParams.get("id");
    const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
    console.log(cartPanierGet)
 
-  //  pui
-   function fetchElementsDeLocalStoragePanier() {
+  //  puis onremettra ces fetch quand les 
+  //  function fetchElementsDeLocalStoragePanier() {
     
-    for (let canap = 0; canap < cartPanierGet.length; canap++ ) {
-      const canapChoisi = cartPanierGet[canap];
-      const panierParamId = canapChoisi.panierParamId;
+  //   for (let canap = 0; canap < cartPanierGet.length; canap++ ) {
+  //     const canapChoisi = cartPanierGet[canap];
+  //     const panierParamId = canapChoisi.panierParamId;
 
-// async function fetchage() {
-//   try {
-//   const responseFetch = await fetch(`http://localhost:3000/api/products/${paramId}`);
-//   if (!responseFetch.ok) {
-//     throw new error('Erreur au moment du fetchage.');
-//   }
-//   const product = await responseFetch.json();
-//   getArticle(product);
-//   console.log("c'est l'article que je viens de fetcher", product);
-// }
-//   catch (error) {console.error('PEtit Problème : ${error')};
-// }
+    for ( let canap = 0; canap < cartPanierGet.length; canap++) {
+      let produitPanier = cartPanierGet[canap];
+      // const panierParamId = produitPanier.panierParamId;
 
-    cartPanierGet.forEach(canap => {
-      fetch(`http://localhost:3000/api/products/${canap._id}`)
-      .then (response => response.json() )
-      .then (dataPanier => {
-        console.log(dataPanier)
-        console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+      console.log(produitPanier);
+    console.log(cartPanierGet[canap].name)
+    console.log(produitPanier.name)
+
+
+
+
+
+
+
+
+  //       cartPanierGet.forEach(canap => {
+  //         fetch(`http://localhost:3000/api/products/${canap._id}`)
+  //         .then (response => response.json() )
+  //         .then (dataPanier => {
+  //           console.log(dataPanier)
+  //           console.log(dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+          
+  //           // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
+
+  //   console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
+  //         })
+  //       })
+
+  //     // les infos de localStorage 
+  //   console.log("local", cartPanierGet[canap].name, cartPanierGet[canap].quantity, cartPanierGet[canap].description, cartPanierGet[canap].colors)
+    
+  //   }
+  // }
+  //  fetchElementsDeLocalStoragePanier();
+
       
-        // Je vais insérer ci dessous les données dataPanier pour le htmlpanier , ici ca marcheet très peu dehors
-
-console.log("fetch", dataPanier.imageUrl, dataPanier.name , "prix égal " + dataPanier.price + " euros")
-      })
-    })
-
-    // les infos de localStorage 
-  console.log("local", cartPanierGet[canap].name, cartPanierGet[canap].quantity, cartPanierGet[canap].description, cartPanierGet[canap].colors)
-
-  }
-  }
-   fetchElementsDeLocalStoragePanier();
-
 // const cartLoc
 
 //On crée une fonction articlePAnier ligne 25 a 109
@@ -72,11 +75,11 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  detailArticl.append(photoArticleCart)
 
 //  ci dessous créée l'img enfant avec attribut >> alt photo canapé, et src >> ../images/product01.jpg
- const imageCArtItemArtcl = document.createElement("img")
- imageCArtItemArtcl.setAttribute("alt", "Photographie d'un canapé")
-
+ const imageCartItemArtcl = document.createElement("img")
+ imageCartItemArtcl.setAttribute("alt", "Photographie d'un canapé")
+// imageCartItemArtcl.setAttribute("src", "../images/product01.jpg")
                                        
- photoArticleCart.append(imageCArtItemArtcl)
+ photoArticleCart.append(imageCartItemArtcl)
     console.log(detailArticl)
 
     // crée la div de class cart__item__content, enfant de cart__items
@@ -92,12 +95,12 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  const nomProduitCarteItem = document.createElement("h2")
  nomProduitCarteItem.innerHTML = 'Nom Produit';
 //  En test en haut on remplacera par ceci en bas
-  nomProduitCarteItem.innerHTML = `${cartPanierGet[0].name}`;
+  nomProduitCarteItem.innerHTML = `${cartPanierGet[canap].name}`;
  
  descriptonContenuCartItem.append(nomProduitCarteItem)
 
  const descriptionCouleurProduit = document.createElement('p')
- descriptionCouleurProduit.innerHTML = 'Vert';
+ descriptionCouleurProduit.innerHTML = `${cartPanierGet[canap].colors}`;
 
 
 //  descriptionCouleurProduit.innerHTML = `${cartPanierGet[0].colors}`;
@@ -129,7 +132,7 @@ detailArticl.setAttribute ('data-color', '{product-color}')
  resultatValeurQuantite.setAttribute('min', '1')
  resultatValeurQuantite.setAttribute('max', '100')
  //  en bas là y a la variable de quantite pour remplace '42'
- resultatValeurQuantite.setAttribute('value', '42')
+ resultatValeurQuantite.setAttribute('value', `${cartPanierGet[canap].quantity}`)
 
  fixationContenuCartArticle.append(resultatValeurQuantite)
 
@@ -144,20 +147,10 @@ detailArticl.setAttribute ('data-color', '{product-color}')
 
 }
 
-    const contenuPanierLocalstoragePanier = localStorage.getItem("panier");
+    articlePanier();
 
-const contenuPanierPurPanier = JSON.parse(contenuPanierLocalstoragePanier)
-console.log("produitPur", contenuPanierPurPanier)
 
-for ( let i = 0; i < contenuPanierPurPanier.length; i++) {
-  let produitPanier = contenuPanierPurPanier[i];
-  console.log(produitPanier);
-console .log(produitPanier.name)
-  articlePanier();
-
-console.log(cartPanierGet[2].name)
-const elemntDeContenuDuPanier = contenuPanierPurPanier[i];
-console.log(contenuPanierPurPanier[i])
+// nomProduitCarteItem.innerHTML = `${cartPanierGet[canap].name}`;
 
   // nomProduitCarteItem.innerHTML = `${canapChoisi.name}`;
   // descriptionCouleurProduit.innerHTML = 'Vert';
@@ -168,19 +161,18 @@ console.log(contenuPanierPurPanier[i])
   
 }
 
+// // localStorage.getItem("colors")
+// if (localStorage.getItem("colors") != null)
+// descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
 
-// localStorage.getItem("colors")
-if (localStorage.getItem("colors") != null)
-descriptionCouleurProduit.innerHTML = `${localStorage.getItem("colors")}.`;
-
-if (localStorage.getItem("quantite.value") != null)
-itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
-// localStorage.getItem("imageUrl");
-localStorage.getItem("name");
-if (localStorage.getItem("name") != null)
-// itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
+// if (localStorage.getItem("quantite.value") != null)
+// itemQuantity.innerHTML = `${localStorage.getItem("quantite.value")};`
+// // localStorage.getItem("imageUrl");
 // localStorage.getItem("name");
-localStorage.getItem("name");
+// if (localStorage.getItem("name") != null)
+// // itemQuantity.innerHTML = `${localStorage.getItem("panier.name")};`
+// // localStorage.getItem("name");
+// localStorage.getItem("name");
 
 
 const btnEffacer = document.getElementsByClassName('deleteItem');
