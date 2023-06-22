@@ -85,6 +85,16 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
+
+    supprimerArticl.addEventListener('click', function () {
+      console.log("ca supprime")
+      for (let panier = 0; panier < cartPanierGet.length; panier++) {
+        const supCanap = cartPanierGet[panier];
+
+      }
+    localStorage.removeItem(cartPanierGet[panier]);
+    
+    });
   }
 };
 
