@@ -1,6 +1,6 @@
 // recup des infosproduits
 const info = window.location.search;
-console.log("valeurs", info);
+// console.log("valeurs", info);
 const urlParams = new URLSearchParams(info);
 
 const paramIdDePage = urlParams.get("id");
@@ -85,12 +85,13 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
+
+    
  console.log(cartPanierGet)
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
 
    const cartFilter = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors ); 
-    console.log(cartFilter);
      localStorage.removeItem("panier");
     const cartFilterApresSup = localStorage.setItem("panier", JSON.stringify(cartFilter));
    console.log(cartFilter);
