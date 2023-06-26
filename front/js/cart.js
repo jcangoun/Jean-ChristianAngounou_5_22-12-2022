@@ -85,11 +85,20 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
- console.log(dataPanier)
+ console.log(cartPanierGet)
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
 
-  localStorage.removeItem("panier");
+   const cartFilter = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors ); 
+    console.log(cartFilter);
+     localStorage.removeItem("panier");
+    const cartFilterApresSup = localStorage.setItem("panier", JSON.stringify(cartFilter));
+   console.log(cartFilter);
+
+   if (cartFilter) {
+    cartFilterApresSup;
+   }
+  
   console.log(cartPanierGet[canap])
     
     });
