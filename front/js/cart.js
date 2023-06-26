@@ -91,17 +91,20 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
 
-   const cartFilter = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors ); 
-     localStorage.removeItem("panier");
-    const cartFilterApresSup = localStorage.setItem("panier", JSON.stringify(cartFilter));
-   console.log(cartFilter);
+      for (canap in cartPanierGet) {
 
-   if (cartFilter) {
-    cartFilterApresSup;
-   }
+  //  const cartFilter = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors ); 
+  //    localStorage.removeItem("panier");
+  //   const cartFilterApresSup = localStorage.setItem("lePanier", JSON.stringify(cartFilter));
+  //  console.log(cartFilter);
+   
+// 
+  //  if (cartFilter) {
+  //   cartFilterApresSup;
+  //  }
   
   console.log(cartPanierGet[canap])
-    
+       }
     });
   }
 };
