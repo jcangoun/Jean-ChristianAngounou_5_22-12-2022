@@ -71,7 +71,6 @@ function getArticle(product) {
   // console.log(phraseDescription)
 
   const firstSelectForm = document.querySelector("#colors");
-  console.log(firstSelectForm);
 
   console.log(firstSelectForm.children);
 
@@ -98,7 +97,7 @@ function getArticle(product) {
   panier.name = product.name;
   panier.description = product.description;
   panier.colors = choixKanapCouleur.value;
-  console.log(choixKanapCouleur.value);
+  // console.log(choixKanapCouleur.value);
   panier.quantity = parseInt(quantity.value);
 
   console.log(panier);

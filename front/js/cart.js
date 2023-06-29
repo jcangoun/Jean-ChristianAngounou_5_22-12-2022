@@ -86,25 +86,61 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    
- console.log(cartPanierGet)
+
+ // const produitPanier = cartFilterNot[canap];
+//  console.log(produitPanier)
+
+
+
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
+    
+      // console.log(cartFilterNot.length)
+               
+   const john =   localStorage.setItem("panier", JSON.stringify(cartFilterNot));
+console.log(john)
 
-      for (canap in cartPanierGet) {
+const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors );
+    
+    console.log(cartPanierGet.filter(canap=> canap._id == produitPanier._id && canap.colors === produitPanier.colors))
 
-  //  const cartFilter = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors ); 
-  //    localStorage.removeItem("panier");
-  //   const cartFilterApresSup = localStorage.setItem("lePanier", JSON.stringify(cartFilter));
-  //  console.log(cartFilter);
-   
-// 
-  //  if (cartFilter) {
-  //   cartFilterApresSup;
-  //  }
-  
-  console.log(cartPanierGet[canap])
-       }
+    
+    console.log(cartFilterNot)
+    console.log(cartPanierGet)
+ 
+
+
+
+       
+        // for (let a = 0; a < cartFilterNot.length; a++) {
+        //   const articleCartPanier = cartFilterNot[a];
+        //   console.log(cartFilterNot[a])
+        //   console.log(cartFilterNot.indexOf(cartFilterNot[a]));
+
+          
+        //   //  const newCartPanierGet = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot))
+
+        //   localStorage.setItem("panier", JSON.stringify(cartFilterNot))
+        //   // localStorage.removeItem("lepanier")
+        //   // cartPanierGet;
+
+
+
+        //   // location.reload(true)
+        //   // est ce quil faut le rappeler en bas pour qu'il s allume 
+        //   // newCartPanierGet;
+
+        //   // nomProduitCarteItem.innerHTML = `${dataPanier.name}`;
+        //   //           descriptionCouleurProduit.innerHTML = `${produitPanier.colors}`;
+        //   //           descriptionPrixProduit.innerHTML = `${dataPanier.price}`;
+        //   //           resultatValeurQuantite.setAttribute('value', `${produitPanier.quantity}`);
+
+
+        //   return articleCartPanier;
+        // }
+
+  // console.log(cartPanierGet[canap])
+      //  const cartFilterNotApresSup = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot));
     });
   }
 };
