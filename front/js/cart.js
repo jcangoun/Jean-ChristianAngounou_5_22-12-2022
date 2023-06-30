@@ -144,7 +144,6 @@ const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier.
     });
   }
 };
-
 fetchEtVisualSection();
 
 const ajoutBtn = document.querySelector('#order');
