@@ -91,42 +91,47 @@ const fetchEtVisualSection = async () => {
 //  console.log(produitPanier)
 
 
-
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
     
-      // console.log(cartFilterNot.length)
-               
-   const john =   localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-console.log(john)
 
-const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors );
+               
+  //  const john =   localStorage.setItem("panier", JSON.stringify(cartFilterNot));
+// console.log(john)
+
+const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
     
-    console.log(cartPanierGet.filter(canap=> canap._id == produitPanier._id && canap.colors === produitPanier.colors))
+    // console.log(cartPanierGet.filter(canap=> canap._id == produitPanier._id && canap.colors === produitPanier.colors))
 
     
     console.log(cartFilterNot)
     console.log(cartPanierGet)
  
 
-
+      // carteArticle.innerHTML = "";
 
        
-        // for (let a = 0; a < cartFilterNot.length; a++) {
-        //   const articleCartPanier = cartFilterNot[a];
-        //   console.log(cartFilterNot[a])
-        //   console.log(cartFilterNot.indexOf(cartFilterNot[a]));
+        for (let a = 0; a < cartFilterNot.length; a++) {
+          const articleCartPanier = cartFilterNot[a];
+          console.log(cartFilterNot[a])
+          console.log(cartFilterNot.indexOf(cartFilterNot[a]));
+          console.log(cartFilterNot)
+          console.log(cartPanierGet)
 
-          
-        //   //  const newCartPanierGet = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot))
+          localStorage.setItem("panier", JSON.stringify(cartFilterNot));
+if ( cartFilterNot.length < 1) {
+    localStorage.removeItem("panier");
+}
+          //  const newCartPanierGet = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot))
 
-        //   localStorage.setItem("panier", JSON.stringify(cartFilterNot))
-        //   // localStorage.removeItem("lepanier")
+          // localStorage.setItem("panier", JSON.stringify(cartFilterNot))
+          // localStorage.removeItem("lepanier")
         //   // cartPanierGet;
 
 
 
-        //   // location.reload(true)
+          location.reload(true)
+
         //   // est ce quil faut le rappeler en bas pour qu'il s allume 
         //   // newCartPanierGet;
 
@@ -135,9 +140,8 @@ const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier.
         //   //           descriptionPrixProduit.innerHTML = `${dataPanier.price}`;
         //   //           resultatValeurQuantite.setAttribute('value', `${produitPanier.quantity}`);
 
-
         //   return articleCartPanier;
-        // }
+        }
 
   // console.log(cartPanierGet[canap])
       //  const cartFilterNotApresSup = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot));
