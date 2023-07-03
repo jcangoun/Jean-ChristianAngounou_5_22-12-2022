@@ -86,6 +86,8 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
+    console.log(cartPanierGet)
+    console.log(cartPanierGet.length)
 
     supprimerArticl.addEventListener('click', function () {
     console.log("ca supprime")
@@ -93,8 +95,8 @@ const fetchEtVisualSection = async () => {
       const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
         
       console.log(cartFilterNot)
+      console.log(cartFilterNot.length)
       console.log(cartPanierGet)
- 
       // carteArticle.innerHTML = "";
        
         for (let a = 0; a < cartFilterNot.length; a++) {
@@ -104,13 +106,17 @@ const fetchEtVisualSection = async () => {
           console.log(cartFilterNot)
           console.log(cartPanierGet)
 
+          // localStorage.setItem("lepanier", JSON.stringify(cartPanierGet));
           localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-          if ( cartFilterNot.length < 1) {
-              localStorage.removeItem("panier");
-          }
-        location.reload(true)
-
+      
         }
+        if (cartFilterNot.length === 1) {
+          console.log("il y a 1 produit dans le localS et le panier")
+        } else if ( cartFilterNot.length < 1) {
+    localStorage.removeItem("panier");
+    console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
+          } 
+            location.reload(true)
     });
   }
 };
