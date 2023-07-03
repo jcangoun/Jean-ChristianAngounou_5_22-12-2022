@@ -87,29 +87,15 @@ const fetchEtVisualSection = async () => {
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
 
- // const produitPanier = cartFilterNot[canap];
-//  console.log(produitPanier)
-
-
     supprimerArticl.addEventListener('click', function () {
-      console.log("ca supprime")
-    
+    console.log("ca supprime")
 
-               
-  //  const john =   localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-// console.log(john)
-
-const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
-    
-    // console.log(cartPanierGet.filter(canap=> canap._id == produitPanier._id && canap.colors === produitPanier.colors))
-
-    
-    console.log(cartFilterNot)
-    console.log(cartPanierGet)
+      const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
+        
+      console.log(cartFilterNot)
+      console.log(cartPanierGet)
  
-
       // carteArticle.innerHTML = "";
-
        
         for (let a = 0; a < cartFilterNot.length; a++) {
           const articleCartPanier = cartFilterNot[a];
@@ -119,32 +105,12 @@ const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier.
           console.log(cartPanierGet)
 
           localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-if ( cartFilterNot.length < 1) {
-    localStorage.removeItem("panier");
-}
-          //  const newCartPanierGet = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot))
+          if ( cartFilterNot.length < 1) {
+              localStorage.removeItem("panier");
+          }
+        location.reload(true)
 
-          // localStorage.setItem("panier", JSON.stringify(cartFilterNot))
-          // localStorage.removeItem("lepanier")
-        //   // cartPanierGet;
-
-
-
-          location.reload(true)
-
-        //   // est ce quil faut le rappeler en bas pour qu'il s allume 
-        //   // newCartPanierGet;
-
-        //   // nomProduitCarteItem.innerHTML = `${dataPanier.name}`;
-        //   //           descriptionCouleurProduit.innerHTML = `${produitPanier.colors}`;
-        //   //           descriptionPrixProduit.innerHTML = `${dataPanier.price}`;
-        //   //           resultatValeurQuantite.setAttribute('value', `${produitPanier.quantity}`);
-
-        //   return articleCartPanier;
         }
-
-  // console.log(cartPanierGet[canap])
-      //  const cartFilterNotApresSup = localStorage.setItem("lepanier", JSON.stringify(cartFilterNot));
     });
   }
 };
