@@ -19,7 +19,7 @@ const fetchEtVisualSection = async () => {
       throw new Error('Il y a 1 erreur lors de la récupération des données.');
     }
     const dataPanier = await response.json();
-    console.log(dataPanier);
+    // console.log(dataPanier);
 
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
@@ -86,19 +86,14 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    console.log(cartPanierGet)
-    console.log(cartPanierGet.length)
-
+        console.log(resultatValeurQuantite.value)
     supprimerArticl.addEventListener('click', function () {
     console.log("ca supprime")
 
       const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
         
-      console.log(cartFilterNot)
-      console.log(cartFilterNot.length)
-      console.log(cartPanierGet)
-      // carteArticle.innerHTML = "";
-       
+
+      // carteArticle.innerHTML = "";       
         for (let a = 0; a < cartFilterNot.length; a++) {
           const articleCartPanier = cartFilterNot[a];
           console.log(cartFilterNot[a])
@@ -106,9 +101,15 @@ const fetchEtVisualSection = async () => {
           console.log(cartFilterNot)
           console.log(cartPanierGet)
 
-          // localStorage.setItem("lepanier", JSON.stringify(cartPanierGet));
+
           localStorage.setItem("panier", JSON.stringify(cartFilterNot));
       
+
+            console.log(resultatValeurQuantite)
+            console.log(resultatValeurQuantite)
+            console.log(resultatValeurQuantite.Value)
+            console.log(document.getElementsByClassName('itemQuantity'))
+
         }
         if (cartFilterNot.length === 1) {
           console.log("il y a 1 produit dans le localS et le panier")
@@ -116,7 +117,10 @@ const fetchEtVisualSection = async () => {
     localStorage.removeItem("panier");
     console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
           } 
-            location.reload(true)
+          
+          
+         
+          location.reload(true)
     });
   }
 };
@@ -125,4 +129,12 @@ fetchEtVisualSection();
 const ajoutBtn = document.querySelector('#order');
 ajoutBtn.addEventListener('click', function() {
   console.log('ca paniasse');
+
+
+
+
+//  if (resultatValeurQuantite.Value !== cartFilterNot.quantity) {
+//             localStorage.setItem("panier", JSON.stringify(cartFilterNot));
+//           }
+  
 });
