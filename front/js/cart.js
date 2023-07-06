@@ -130,11 +130,22 @@ const ajoutBtn = document.querySelector('#order');
 ajoutBtn.addEventListener('click', function() {
   console.log('ca paniasse');
 
+  // const tesProd = localStorage.setItem('test panier', JSON.stringify(cartPanierGet))
+  const articleQuantiteInput = document.querySelector('.itemQuantity');
+  const majcart = [...cartPanierGet];
+  console.log(majcart)
+for (let i = 0; i < articleQuantiteInput.length; i++) {
+     majcart[i].quantity = parseInt(input.value);
+}
 
+const recupPRenom = localStorage.getItem('firstname', recupPRenom)
+const recupNom = localStorage.getItem('firstname', recupNnom)
+const recupAdress = localStorage.getItem('firstname', recupAdress)
+const recupVille = localStorage.getItem('firstname', recupVille)
+const recupEmail = localStorage.getItem('firstname', recupEmail)
+ 
 
+  localStorage.setItem("panier", JSON.stringify(majcart));
+  console.log(localStorage.setItem("panier", JSON.stringify(majcart)));
 
-//  if (resultatValeurQuantite.Value !== cartFilterNot.quantity) {
-//             localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-//           }
-  
 });
