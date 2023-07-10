@@ -107,7 +107,6 @@ const fetchEtVisualSection = async () => {
             localStorage.setItem("panier", JSON.stringify(cartFilterNot));
         
               console.log(resultatValeurQuantite.Value)
-              console.log(document.getElementsByClassName('itemQuantity'))
 
           }
           if (cartFilterNot.length === 1) {
@@ -119,43 +118,61 @@ const fetchEtVisualSection = async () => {
           location.reload(true)
       });
 
-// C'est ici que je dois ajouter mes essais du btomm bouton 
+          // C'est ici que je dois ajouter mes essais du btomm bouton 
 
       console.log(resultatValeurQuantite.value)
-      // console.log(cartFilterNot.length)
+
 
       // Ici articleQuantite ........
       
+      // const modifQuantityValue = resultatValeurQuantite.value
+      // modifQuantityValue;
+      //   const majcart = [...cartPanierGet];
+      //   console.log(majcart)
+      //           console.log(modifQuantityValue)
+      //           majcart.forEach(input => {
+      //             console.log("each")
+
+      //           });
+// En haut  fin de la 1ere version test de muted qui est en bas de fecthVisual
+
+      const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
+      const majcart = [...cartPanierGet];
+      console.log(majcart)
+      console.log(articleQuantiteInput)
+      console.log(resultatValeurQuantite)
+      
+
+
   }  
 };
 fetchEtVisualSection();
 
 // Ici dessous etait la zone articleQuzntite
 
-const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
-  const majcart = [...cartPanierGet];
-  console.log(majcart)
-        console.log(articleQuantiteInput)
+// const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
+//   const majcart = [...cartPanierGet];
+//   console.log(majcart)
+//         console.log(articleQuantiteInput)
 
-  articleQuantiteInput.forEach( input => { 
+//   articleQuantiteInput.forEach( input => { 
     
-    input.addEventListener( 'change', changeQuantity)
+//     input.addEventListener( 'change', changeQuantity)
 
-      const changeQuantity = (e) => {
-        console.log("test", e.target.value)
-        alert("oohooo")
-      } 
-    }  
-  ); 
+//       const changeQuantity = (e) => {
+//         console.log("test", e.target.value)
+//         alert("oohooo")
+//       } 
+//     }  
+//   ); 
 
-  const ajoutBtn = document.querySelector('#order');
-  ajoutBtn.addEventListener('click', function() {
-  console.log('ca paniasse');
-  alert("oooh")
+  // const ajoutBtn = document.querySelector('#order');
+  // ajoutBtn.addEventListener('click', function() {
+  // console.log('ca paniasse');
+  // alert("oooh")
 
 
-
-  });
+  // });
 
   
   // articleQuantiteInput.forEach( input => 
