@@ -86,66 +86,80 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-        console.log(resultatValeurQuantite.value)
-    supprimerArticl.addEventListener('click', function () {
-    console.log("ca supprime")
+    
+    
+    console.log(resultatValeurQuantite.value)
+      supprimerArticl.addEventListener('click', function () {
+        console.log("ca supprime")
 
-      const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
+        const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
+          
+
+        // carteArticle.innerHTML = "";       
+          for (let a = 0; a < cartFilterNot.length; a++) {
+            const articleCartPanier = cartFilterNot[a];
+            console.log(cartFilterNot[a])
+            console.log(cartFilterNot.indexOf(cartFilterNot[a]));
+            console.log(cartFilterNot)
+            console.log(cartPanierGet)
+
+
+            localStorage.setItem("panier", JSON.stringify(cartFilterNot));
         
+              console.log(resultatValeurQuantite.Value)
+              console.log(document.getElementsByClassName('itemQuantity'))
 
-      // carteArticle.innerHTML = "";       
-        for (let a = 0; a < cartFilterNot.length; a++) {
-          const articleCartPanier = cartFilterNot[a];
-          console.log(cartFilterNot[a])
-          console.log(cartFilterNot.indexOf(cartFilterNot[a]));
-          console.log(cartFilterNot)
-          console.log(cartPanierGet)
-
-
-          localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-      
-
-            console.log(resultatValeurQuantite)
-            console.log(resultatValeurQuantite)
-            console.log(resultatValeurQuantite.Value)
-            console.log(document.getElementsByClassName('itemQuantity'))
-
-        }
-        if (cartFilterNot.length === 1) {
-          console.log("il y a 1 produit dans le localS et le panier")
-        } else if ( cartFilterNot.length < 1) {
-    localStorage.removeItem("panier");
-    console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
-          } 
-          
-          
-         
+          }
+          if (cartFilterNot.length === 1) {
+            console.log("il y a 1 produit dans le localS et le panier")
+          } else if ( cartFilterNot.length < 1) {
+            localStorage.removeItem("panier");
+            console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
+          }                               
           location.reload(true)
-    });
-  }
+      });
+
+// C'est ici que je dois ajouter mes essais du btomm bouton 
+
+      console.log(resultatValeurQuantite.value)
+      // console.log(cartFilterNot.length)
+
+      // Ici articleQuantite ........
+      
+  }  
 };
 fetchEtVisualSection();
 
-const ajoutBtn = document.querySelector('#order');
-ajoutBtn.addEventListener('click', function() {
-  console.log('ca paniasse');
+// Ici dessous etait la zone articleQuzntite
 
-  // const tesProd = localStorage.setItem('test panier', JSON.stringify(cartPanierGet))
-  const articleQuantiteInput = document.querySelector('.itemQuantity');
+const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
   const majcart = [...cartPanierGet];
   console.log(majcart)
-for (let i = 0; i < articleQuantiteInput.length; i++) {
-     majcart[i].quantity = parseInt(input.value);
-}
+        console.log(articleQuantiteInput)
 
-const recupPRenom = localStorage.getItem('firstname', recupPRenom)
-const recupNom = localStorage.getItem('firstname', recupNnom)
-const recupAdress = localStorage.getItem('firstname', recupAdress)
-const recupVille = localStorage.getItem('firstname', recupVille)
-const recupEmail = localStorage.getItem('firstname', recupEmail)
- 
+  articleQuantiteInput.forEach( input => { 
+    
+    input.addEventListener( 'change', changeQuantity)
 
-  localStorage.setItem("panier", JSON.stringify(majcart));
-  console.log(localStorage.setItem("panier", JSON.stringify(majcart)));
+      const changeQuantity = (e) => {
+        console.log("test", e.target.value)
+        alert("oohooo")
+      } 
+    }  
+  ); 
 
-});
+  const ajoutBtn = document.querySelector('#order');
+  ajoutBtn.addEventListener('click', function() {
+  console.log('ca paniasse');
+  alert("oooh")
+
+
+
+  });
+
+  
+  // articleQuantiteInput.forEach( input => 
+  //   { 
+  //       input.addEventListener( 'change', changeQuantity)
+  //   }  
+  // ); 
