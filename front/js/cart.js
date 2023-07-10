@@ -142,6 +142,12 @@ const fetchEtVisualSection = async () => {
       console.log(articleQuantiteInput)
       console.log(resultatValeurQuantite)
       
+      for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
+        const panelPersoChoix = majcart[linDesChoix];
+        console.log(panelPersoChoix.quantity)
+        // if ()
+      }
+      
 
 
   }  
