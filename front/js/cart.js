@@ -136,32 +136,37 @@ const fetchEtVisualSection = async () => {
       //           });
 // En haut  fin de la 1ere version test de muted qui est en bas de fecthVisual
 
-      const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
+      const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart)
-      console.log(articleQuantiteInput)
-      console.log(resultatValeurQuantite)
+      console.log(allArticleQuantiteInput)
+      console.log(resultatValeurQuantite.value)
+      const quanteModifiableProductInput = resultatValeurQuantite.value;
       
       for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
         const panelPersoChoix = majcart[linDesChoix];
-        console.log(panelPersoChoix.quantity)
-        // if ()
+        // console.log(panelPersoChoix.quantity)
+        if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
+          console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
+
+        } else { 
+          console.log("linput est bon dans local")
+        }
       }
       
-
-
+      
   }  
 };
 fetchEtVisualSection();
 
 // Ici dessous etait la zone articleQuzntite
 
-// const articleQuantiteInput = document.querySelectorAll('.itemQuantity');
+// const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
 //   const majcart = [...cartPanierGet];
 //   console.log(majcart)
-//         console.log(articleQuantiteInput)
+//         console.log(allArticleQuantiteInput)
 
-//   articleQuantiteInput.forEach( input => { 
+//   allArticleQuantiteInput.forEach( input => { 
     
 //     input.addEventListener( 'change', changeQuantity)
 
@@ -181,7 +186,7 @@ fetchEtVisualSection();
   // });
 
   
-  // articleQuantiteInput.forEach( input => 
+  // allArticleQuantiteInput.forEach( input => 
   //   { 
   //       input.addEventListener( 'change', changeQuantity)
   //   }  
