@@ -104,8 +104,7 @@ const fetchEtVisualSection = async () => {
             console.log(cartPanierGet)
 
 
-            localStorage.setItem("panier", JSON.stringify(cartFilterNot));
-        
+            localStorage.setItem("panier", JSON.stringify(cartFilterNot));        
               console.log(resultatValeurQuantite.Value)
 
           }
@@ -122,7 +121,6 @@ const fetchEtVisualSection = async () => {
 
       console.log(resultatValeurQuantite.value)
 
-
       // Ici articleQuantite ........
       
       // const modifQuantityValue = resultatValeurQuantite.value
@@ -136,6 +134,14 @@ const fetchEtVisualSection = async () => {
       //           });
 // En haut  fin de la 1ere version test de muted qui est en bas de fecthVisual
 
+
+      const elo = () => {
+        console.log("elo")
+      }
+      function ancienlo () {
+        console.log("ancienlo");
+      }
+function modifQuantite () {}
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart)
@@ -148,13 +154,27 @@ const fetchEtVisualSection = async () => {
         // console.log(panelPersoChoix.quantity)
         if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
           console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
-
+        elo();
+        ancienlo();
+        
         } else { 
           console.log("linput est bon dans local")
         }
+
+        function boutonPanierComander () {
+      // const ajoutBtn = document.querySelector('#order');
+      // ajoutBtn.addEventListener('click', function() {
+      // console.log('ca paniasse');
+      // alert("oooh")
+
+        }
+
+
+  // });
+        
       }
       
-      
+
   }  
 };
 fetchEtVisualSection();
