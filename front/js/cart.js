@@ -141,39 +141,60 @@ const fetchEtVisualSection = async () => {
       function ancienlo () {
         console.log("ancienlo");
       }
-function modifQuantite () {}
+
+      function modifQuantite () {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart)
       console.log(allArticleQuantiteInput)
       console.log(resultatValeurQuantite.value)
       const quanteModifiableProductInput = resultatValeurQuantite.value;
+    
       
-      for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
-        const panelPersoChoix = majcart[linDesChoix];
-        // console.log(panelPersoChoix.quantity)
-        if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
-          console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
-        elo();
-        ancienlo();
-        
-        } else { 
-          console.log("linput est bon dans local")
-        }
+const changeQuantity = (e) => {
+        console.log("test", e.target.value)
+        alert("oohooo")
+      } 
+        allArticleQuantiteInput.forEach( input => { 
+    
+    input.addEventListener( 'change', changeQuantity)
 
-        function boutonPanierComander () {
-      // const ajoutBtn = document.querySelector('#order');
-      // ajoutBtn.addEventListener('click', function() {
-      // console.log('ca paniasse');
-      // alert("oooh")
+      
+    }  
+  ); 
 
-        }
+        // for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
+        //   const panelPersoChoix = majcart[linDesChoix];
+        //   console.log(quanteModifiableProductInput)
+        //   console.log(panelPersoChoix.quantity)
 
+        //   if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
+        //     console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
+        //   elo();
+        //   ancienlo();
+        //   quanteModifiableProductInput;
+        //   console.log(quanteModifiableProductInput)
 
-  // });
-        
+        //   } else { 
+        //     console.log("linput est bon dans local")
+        //   }
+
+        // }
+
       }
+      modifQuantite ();
+
+      function boutonPanierComander () {
+      const ajoutBtn = document.querySelector('#order');
+      ajoutBtn.addEventListener('click', function() {
+      console.log('ca paniasse');
+      alert("oooh")
       
+      // modifQuantite ();
+      });
+
+        }  
+
 
   }  
 };
