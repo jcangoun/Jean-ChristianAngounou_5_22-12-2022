@@ -149,18 +149,24 @@ const fetchEtVisualSection = async () => {
       console.log(allArticleQuantiteInput)
       console.log(resultatValeurQuantite.value)
       const quanteModifiableProductInput = resultatValeurQuantite.value;
-    
       
-const changeQuantity = (e) => {
-        console.log("test", e.target.value)
-        alert("oohooo")
+      resultatValeurQuantite.innerHTML
+      // localStorage.setItem('modif prix', JSON.stringify (majcart))
+      
+      const changeQuantity = (e) => {
+      console.log("change egal")
+      console.log("test", e.target.value)
+
       } 
         allArticleQuantiteInput.forEach( input => { 
     
     input.addEventListener( 'change', changeQuantity)
+    console.log("change egal", changeQuantity)
+    console.log(majcart)
+    // localStorage.setItem()
+    },  
 
-      
-    }  
+    // console.log("change egal", changeQuantity)
   ); 
 
         // for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
@@ -188,7 +194,7 @@ const changeQuantity = (e) => {
       const ajoutBtn = document.querySelector('#order');
       ajoutBtn.addEventListener('click', function() {
       console.log('ca paniasse');
-      alert("oooh")
+      // alert("oooh")
       
       // modifQuantite ();
       });
