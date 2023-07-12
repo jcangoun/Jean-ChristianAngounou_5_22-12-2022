@@ -146,10 +146,11 @@ const fetchEtVisualSection = async () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart)
-      console.log(allArticleQuantiteInput)
+      // console.log(allArticleQuantiteInput)
       console.log(resultatValeurQuantite.value)
       const quanteModifiableProductInput = resultatValeurQuantite.value;
       
+
       // resultatValeurQuantite.innerHTML
       // localStorage.setItem('modif prix', JSON.stringify (majcart))
       
@@ -158,39 +159,44 @@ const fetchEtVisualSection = async () => {
       console.log("test", e.target.value)
 
       } 
+            // resultatValeurQuantite.setAttribute('value', `${panelPersoChoix.quantity}`);    
         allArticleQuantiteInput.forEach( input => { 
     
     input.addEventListener( 'change', changeQuantity)
     console.log("change egal", changeQuantity)
     console.log(majcart)
-
-
+    
         for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
           const panelPersoChoix = majcart[linDesChoix];
           console.log(quanteModifiableProductInput)
           console.log(panelPersoChoix.quantity)
 
-          // resultatValeurQuantite.setAttribute('value', `${panelPersoChoix.quantity}`);
-          // localStorage.setItem('modif prix', JSON.stringify(panelPersoChoix))
+          // resultatValeurQuantite.value = panelPersoChoix.quantity;
+          // console.log(resultatValeurQuantite.value)
+
+
+
           // if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
           //   console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
           // elo();
           // ancienlo();
           // quanteModifiableProductInput;
           // console.log(quanteModifiableProductInput)
-
-          // } else { 
-          //   console.log("linput est ds local")
-          // }
+          
+         // }
+ 
 
         }
 
     // localStorage.setItem()
-    },  
-
-    // console.log("change egal", changeQuantity)
+    },
+    
+    console.log("change egal", changeQuantity)
   ); 
 
+
+
+  
         // for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
         //   const panelPersoChoix = majcart[linDesChoix];
         //   console.log(quanteModifiableProductInput)
