@@ -1,6 +1,5 @@
-// recup des infosproduits
+// recup des infos produits
 const info = window.location.search;
-// console.log("valeurs", info);
 const urlParams = new URLSearchParams(info);
 
 const paramIdDePage = urlParams.get("id");
@@ -16,16 +15,16 @@ const fetchEtVisualSection = async () => {
 
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     if (!response.ok) {
-      throw new Error('Il y a 1 erreur lors de la récupération des données.');
+      throw new Error('Il y a une erreur lors de la récupération des données.');
     }
     const dataPanier = await response.json();
-    // console.log(dataPanier);
 
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
     detailArticl.setAttribute('data-color', `${produitPanier.colors}`);
     carteArticle.append(detailArticl);
+
 
     const photoArticleCart = document.createElement('div');
     photoArticleCart.classList.add('cart__item__img');
@@ -94,7 +93,6 @@ const fetchEtVisualSection = async () => {
 
         const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
           
-
         // carteArticle.innerHTML = "";       
           for (let a = 0; a < cartFilterNot.length; a++) {
             const articleCartPanier = cartFilterNot[a];
@@ -142,127 +140,47 @@ const fetchEtVisualSection = async () => {
         console.log("ancienlo");
       }
 
-      function modifQuantite () {
+      const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
-      console.log(majcart)
-      // console.log(allArticleQuantiteInput)
-      console.log(resultatValeurQuantite.value)
-      const quanteModifiableProductInput = resultatValeurQuantite.value;
+      console.log(majcart);
+      console.log(allArticleQuantiteInput);
       
+      // console.log(resultatValeurQuantite);
+      console.log(resultatValeurQuantite.value);
 
-      // resultatValeurQuantite.innerHTML
-      // localStorage.setItem('modif prix', JSON.stringify (majcart))
-      
-      const changeQuantity = (e) => {
-      console.log("change egal")
-      console.log("test", e.target.value)
+      allArticleQuantiteInput.forEach((input, index) => {
+  input.addEventListener('change', function(e) {
+    const quanteModifiableProductInput = e.target.value;
+    const panelPersoChoix = majcart[index];
 
-      } 
-            // resultatValeurQuantite.setAttribute('value', `${panelPersoChoix.quantity}`);    
-        allArticleQuantiteInput.forEach( input => { 
+    if (
+      quanteModifiableProductInput !== panelPersoChoix.quantity &&
+      localStorage.getItem("panier")
+    ) {
+      panelPersoChoix.quantity = quanteModifiableProductInput;
+      localStorage.setItem("panier", JSON.stringify(majcart));
+    }
+  });
+});
+
+    };
+
+    modifQuantite();
     
-    input.addEventListener( 'change', changeQuantity)
-    console.log("change egal", changeQuantity)
-    console.log(majcart)
-    
-        for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
-          const panelPersoChoix = majcart[linDesChoix];
-          console.log(quanteModifiableProductInput)
-          console.log(panelPersoChoix.quantity)
+// Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
 
-          // resultatValeurQuantite.value = panelPersoChoix.quantity;
-          // console.log(resultatValeurQuantite.value)
-
-
-
-          // if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
-          //   console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
-          // elo();
-          // ancienlo();
-          // quanteModifiableProductInput;
-          // console.log(quanteModifiableProductInput)
-          
-         // }
- 
-
-        }
-
-    // localStorage.setItem()
-    },
-    
-    console.log("change egal", changeQuantity)
-  ); 
-
-
-
+    function boutonPanierComander () {
+        const ajoutBtn = document.querySelector('#order');
+        ajoutBtn.addEventListener('click', function() {
+        console.log('ca paniasse');
+        // alert("oooh")
+        
+        // modifQuantite ();
+        });
   
-        // for (let linDesChoix = 0; linDesChoix < majcart.length; linDesChoix++) {
-        //   const panelPersoChoix = majcart[linDesChoix];
-        //   console.log(quanteModifiableProductInput)
-        //   console.log(panelPersoChoix.quantity)
-
-        //   if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
-        //     console.log("input = " + quanteModifiableProductInput + ", # de local" + panelPersoChoix.quantity)
-        //   elo();
-        //   ancienlo();
-        //   quanteModifiableProductInput;
-        //   console.log(quanteModifiableProductInput)
-
-        //   } else { 
-        //     console.log("linput est bon dans local")
-        //   }
-
-        // }
-
-      }
-      modifQuantite ();
-
-      function boutonPanierComander () {
-      const ajoutBtn = document.querySelector('#order');
-      ajoutBtn.addEventListener('click', function() {
-      console.log('ca paniasse');
-      // alert("oooh")
-      
-      // modifQuantite ();
-      });
-
-        }  
-
-
-  }  
+          } 
+  }
 };
+
 fetchEtVisualSection();
-
-// Ici dessous etait la zone articleQuzntite
-
-// const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
-//   const majcart = [...cartPanierGet];
-//   console.log(majcart)
-//         console.log(allArticleQuantiteInput)
-
-//   allArticleQuantiteInput.forEach( input => { 
-    
-//     input.addEventListener( 'change', changeQuantity)
-
-//       const changeQuantity = (e) => {
-//         console.log("test", e.target.value)
-//         alert("oohooo")
-//       } 
-//     }  
-//   ); 
-
-  // const ajoutBtn = document.querySelector('#order');
-  // ajoutBtn.addEventListener('click', function() {
-  // console.log('ca paniasse');
-  // alert("oooh")
-
-
-  // });
-
-  
-  // allArticleQuantiteInput.forEach( input => 
-  //   { 
-  //       input.addEventListener( 'change', changeQuantity)
-  //   }  
-  // ); 
