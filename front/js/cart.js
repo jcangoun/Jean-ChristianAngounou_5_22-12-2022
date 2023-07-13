@@ -167,7 +167,7 @@ const fetchEtVisualSection = async () => {
       let cityUserForm =  localStorage.setItem("city", document.querySelector("#city").value)
       let emailUserForm =  localStorage.setItem("email", document.querySelector("#email").value)
 
-        const formulaireUser = {
+        const contact = {
         prénom: localStorage.getItem("firstName"),
         nom: localStorage.getItem("lastNameUserForm"),
         addresse: localStorage.getItem("addressUserForm"),
@@ -176,9 +176,13 @@ const fetchEtVisualSection = async () => {
         
       }
 
+
+      console.log('contact')
+      console.log(contact)
+      
       // Ici je peux regrouper les objets que je dois transmettre
       const userFormToSend = {
-        cartPanierGet, formulaireUser
+        cartPanierGet, contact
       }
       console.log("userFormToSend");
       console.log(userFormToSend);
