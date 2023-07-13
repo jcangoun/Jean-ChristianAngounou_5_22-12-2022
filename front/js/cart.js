@@ -128,6 +128,7 @@ const fetchEtVisualSection = async () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart);
+
       console.log(allArticleQuantiteInput);
       
       console.log(resultatValeurQuantite.value);
@@ -141,6 +142,7 @@ const fetchEtVisualSection = async () => {
         { 
           panelPersoChoix.quantity = quanteModifiableProductInput;
           localStorage.setItem("panier", JSON.stringify(majcart));
+
         }
       });
       });
@@ -151,7 +153,6 @@ const fetchEtVisualSection = async () => {
     modifQuantite();
     
 // Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
-
     function boutonPanierComander () {
       const ajoutBtn = document.querySelector('#order');
       ajoutBtn.addEventListener('click', function(e) {
@@ -166,7 +167,7 @@ const fetchEtVisualSection = async () => {
       let cityUserForm =  localStorage.setItem("city", document.querySelector("#city").value)
       let emailUserForm =  localStorage.setItem("email", document.querySelector("#email").value)
 
-            const formulaireUser = {
+        const formulaireUser = {
         prénom: localStorage.getItem("firstName"),
         nom: localStorage.getItem("lastNameUserForm"),
         addresse: localStorage.getItem("addressUserForm"),
@@ -174,6 +175,13 @@ const fetchEtVisualSection = async () => {
         email: localStorage.getItem("emailUserForm")
         
       }
+
+      // Ici je peux regrouper les objets que je dois transmettre
+      const userFormToSend = {
+        cartPanierGet, formulaireUser
+      }
+      console.log("userFormToSend");
+      console.log(userFormToSend);
       
       });
   
@@ -182,6 +190,9 @@ const fetchEtVisualSection = async () => {
     boutonPanierComander ();
   }
 };
+
+// tous les éléments de l'user a envoyer au serveur
+
 
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
