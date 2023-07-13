@@ -85,7 +85,7 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    
+    console.log(cartPanierGet)
     
     console.log(resultatValeurQuantite.value)
       supprimerArticl.addEventListener('click', function () {
@@ -114,6 +114,14 @@ const fetchEtVisualSection = async () => {
           }                               
           location.reload(true)
       });
+
+      cartPanierGet.forEach((article) => { 
+        console.log(article._id)
+        console.log(dataPanier._id)
+        console.log(dataPanier.price)
+
+        const niveauTotal = dataPanier.price
+      } ) 
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
 
