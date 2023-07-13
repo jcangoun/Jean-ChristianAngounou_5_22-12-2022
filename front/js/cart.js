@@ -117,27 +117,11 @@ const fetchEtVisualSection = async () => {
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
 
-      console.log(resultatValeurQuantite.value)
-
-      // Ici articleQuantite ........
-      
-      // const modifQuantityValue = resultatValeurQuantite.value
-      // modifQuantityValue;
-      //   const majcart = [...cartPanierGet];
-      //   console.log(majcart)
-      //           console.log(modifQuantityValue)
-      //           majcart.forEach(input => {
-      //             console.log("each")
-
-      //           });
-// En haut  fin de la 1ere version test de muted qui est en bas de fecthVisual
-
-
       const elo = () => {
-        console.log("elo")
+        console.log("elo premier type d essais")
       }
       function ancienlo () {
-        console.log("ancienlo");
+        console.log("ancienlo c est un 2e essai");
       }
 
       const modifQuantite = () => {
@@ -146,41 +130,58 @@ const fetchEtVisualSection = async () => {
       console.log(majcart);
       console.log(allArticleQuantiteInput);
       
-      // console.log(resultatValeurQuantite);
       console.log(resultatValeurQuantite.value);
 
       allArticleQuantiteInput.forEach((input, index) => {
-  input.addEventListener('change', function(e) {
-    const quanteModifiableProductInput = e.target.value;
-    const panelPersoChoix = majcart[index];
+      input.addEventListener('change', function(e) {
+        const quanteModifiableProductInput = e.target.value;
+        const panelPersoChoix = majcart[index];
 
-    if (
-      quanteModifiableProductInput !== panelPersoChoix.quantity &&
-      localStorage.getItem("panier")
-    ) {
-      panelPersoChoix.quantity = quanteModifiableProductInput;
-      localStorage.setItem("panier", JSON.stringify(majcart));
-    }
-  });
-});
+        if ( quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) 
+        { 
+          panelPersoChoix.quantity = quanteModifiableProductInput;
+          localStorage.setItem("panier", JSON.stringify(majcart));
+        }
+      });
+      });
 
     };
 
+    // J'appele en bas la fonction de modification de la quantite. 
     modifQuantite();
     
 // Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
 
     function boutonPanierComander () {
-        const ajoutBtn = document.querySelector('#order');
-        ajoutBtn.addEventListener('click', function() {
-        console.log('ca paniasse');
-        // alert("oooh")
-        
-        // modifQuantite ();
-        });
+      const ajoutBtn = document.querySelector('#order');
+      ajoutBtn.addEventListener('click', function(e) {
+      console.log('ca paniasse');
+      e.preventDefault();
   
-          } 
+      // modifQuantite ();
+
+      let firstNameUserForm = localStorage.setItem("firstName", document.querySelector("#firstName").value)
+      let lastNameUserForm =  localStorage.setItem("lastName", document.querySelector("#lastName").value)
+      let addressUserForm =  localStorage.setItem("address", document.querySelector("#address").value)
+      let cityUserForm =  localStorage.setItem("city", document.querySelector("#city").value)
+      let emailUserForm =  localStorage.setItem("email", document.querySelector("#email").value)
+
+            const formulaireUser = {
+        prénom: localStorage.getItem("firstName"),
+        nom: localStorage.getItem("lastNameUserForm"),
+        addresse: localStorage.getItem("addressUserForm"),
+        ville: localStorage.getItem("cityUserForm"),
+        email: localStorage.getItem("emailUserForm")
+        
+      }
+      
+      });
+  
+
+    } 
+    boutonPanierComander ();
   }
 };
 
+// Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
