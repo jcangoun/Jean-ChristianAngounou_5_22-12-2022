@@ -88,19 +88,17 @@ const fetchEtVisualSection = async () => {
     console.log(cartPanierGet)
     
     console.log(resultatValeurQuantite.value)
-      supprimerArticl.addEventListener('click', function () {
+    supprimerArticl.addEventListener('click', function () {
         console.log("ca supprime")
 
         const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
-          
-        // carteArticle.innerHTML = "";       
+              
           for (let a = 0; a < cartFilterNot.length; a++) {
             const articleCartPanier = cartFilterNot[a];
-            console.log(cartFilterNot[a])
-            console.log(cartFilterNot.indexOf(cartFilterNot[a]));
+            console.log(articleCartPanier)
+            console.log(cartFilterNot.indexOf(articleCartPanier));
             console.log(cartFilterNot)
             console.log(cartPanierGet)
-
 
             localStorage.setItem("panier", JSON.stringify(cartFilterNot));        
               console.log(resultatValeurQuantite.Value)
@@ -113,54 +111,102 @@ const fetchEtVisualSection = async () => {
             console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
           }                               
           location.reload(true)
-      });
+    });
 
-      cartPanierGet.forEach((article) => { 
+    cartPanierGet.forEach((article) => { 
         console.log(article._id)
         console.log(dataPanier._id)
         console.log(dataPanier.price)
 
         const niveauTotal = dataPanier.price
-      } ) 
+        console.log(niveauTotal)
+    }) 
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
 
-      const elo = () => {
-        console.log("elo premier type d essais")
-      }
-      function ancienlo () {
-        console.log("ancienlo c est un 2e essai");
-      }
+    const leDataPanier = () => {
+      console.log("elo premier type d essais")
+      console.log(dataPanier)
+    }
+    function leProduitPAnier () {
+      console.log("ancienlo c est un 2e essai");
+      console.log(produitPanier)
+    }
 
-      const modifQuantite = () => {
+    const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart);
-
-      console.log(allArticleQuantiteInput);
-      
+      console.log(allArticleQuantiteInput);      
       console.log(resultatValeurQuantite.value);
 
       allArticleQuantiteInput.forEach((input, index) => {
-      input.addEventListener('change', function(e) {
-        const quanteModifiableProductInput = e.target.value;
-        const panelPersoChoix = majcart[index];
+        input.addEventListener('change', function(e) {
+          const quanteModifiableProductInput = e.target.value;
+          const panelPersoChoix = majcart[index];
 
-        if ( quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) 
-        { 
-          panelPersoChoix.quantity = quanteModifiableProductInput;
-          localStorage.setItem("panier", JSON.stringify(majcart));
+          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) { 
+          
+            panelPersoChoix.quantity = quanteModifiableProductInput;
+            localStorage.setItem("panier", JSON.stringify(majcart));
 
-        }
+          }
       });
       });
 
     };
-
-    // J'appele en bas la fonction de modification de la quantite. 
+    // Et j'appele en bas la fonction de modification de la quantite. 
     modifQuantite();
+
+    //  zone de test
+
+    function panierFinal () {
+      JSON.parse(localStorage.getItem("panier"))
+      console.log(JSON.parse(localStorage.getItem("panier")))
+  
+    }
+    panierFinal();
+
+    const calculDesPrixPRoduits = []; 
+
+    console.log(dataPanier)
+    console.log(produitPanier)
+
     
-// Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
+    for (let p = 0; p<dataPanier.length; p++) {
+      console.log(dataPanier[p])
+      // let prixCanapesDsPanier = dataPanier[p].price;
+      // console.log(calculDesPrixPRoduits)
+      
+      // console.log(calculDesPrixPRoduits.push(prixCanapesDsPanier))
+      // console.log(prixCanapesDsPanier)
+      // console.log(calculDesPrixPRoduits)
+    }
+    // const fusionneur = (accumulateur, valeurDeBase) => accumulateur + valeurDeBase;
+    // const totalPrice = calculDesPrixPRoduits.reduce(fusionneur);
+
+    // console.log(totalPrice)
+
+
+    // Test bonne pratique
+
+
+//     const array1 = [1, 2, 3, 4];
+
+// // 0 + 1 + 2 + 3 + 4
+// const initialValue = 0;
+// const sumWithInitial = array1.reduce(
+//   (accumulator, currentValue) => accumulator + currentValue,
+//   initialValue
+// );
+
+// console.log(sumWithInitial);
+
+
+    // zone de test
+    // Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
+    
+    
     function boutonPanierComander () {
       const ajoutBtn = document.querySelector('#order');
       ajoutBtn.addEventListener('click', function(e) {
@@ -169,26 +215,19 @@ const fetchEtVisualSection = async () => {
   
       // modifQuantite ();
 
-      let firstNameUserForm = localStorage.setItem("firstName", document.querySelector("#firstName").value)
-      let lastNameUserForm =  localStorage.setItem("lastName", document.querySelector("#lastName").value)
-      let addressUserForm =  localStorage.setItem("address", document.querySelector("#address").value)
-      let cityUserForm =  localStorage.setItem("city", document.querySelector("#city").value)
-      let emailUserForm =  localStorage.setItem("email", document.querySelector("#email").value)
-
+      // valeurs du formulaire dans contact 
         const contact = {
-        prénom: localStorage.getItem("firstName"),
-        nom: localStorage.getItem("lastNameUserForm"),
-        addresse: localStorage.getItem("addressUserForm"),
-        ville: localStorage.getItem("cityUserForm"),
-        email: localStorage.getItem("emailUserForm")
+        prénom: document.querySelector("#firstName").value,
+        nom: document.querySelector("#lastName").value,
+        addresse: document.querySelector("#address").value,
+        ville: document.querySelector("#city").value,
+        email: document.querySelector("#email").value
         
       }
+      localStorage.setItem("contact", JSON.stringify(contact))
 
 
-      console.log('contact')
-      console.log(contact)
-      
-      // Ici je peux regrouper les objets que je dois transmettre
+      // Ici en bas je peux regrouper les objets que je dois transmettre
       const userFormToSend = {
         cartPanierGet, contact
       }
