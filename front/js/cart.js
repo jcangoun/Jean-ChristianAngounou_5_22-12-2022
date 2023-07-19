@@ -154,7 +154,7 @@ const fetchEtVisualSection = async () => {
         // tousLesPrix.push(dataPanier.price)
         // console.log(tousLesPrix)
         // // lePrix ();
-        // const niveauTotal = dataPanier.price
+        // const niveauParELement = dataPanier.price
         // console.log(niveauTotal)
 
         //  zone de test
@@ -167,6 +167,30 @@ const fetchEtVisualSection = async () => {
       console.log("nomproduit", produitPanier.name, "nomDataname", dataPanier.name)
       produitPanier.price = dataPanier.price;
       console.log(produitPanier.price)
+      console.log(produitPanier.quantity)
+
+      // appelation de la section des quantites totales
+      const totalQuantityChiffre = document.querySelector("#totalQuantity")
+
+      const qteTotale = [];
+      for (let qte = 0; qte < produitPanier.length; qte++) {
+        JSON.parse(localStorage.getItem("panier"))
+        qteTotale;
+        const qteInitiale = produitPanier[qte]
+        qteTotale.push(qteInitiale)
+        console.log(qteTotale)
+
+        // const qteTotale = [1, 2, 3, 4];
+        // // 0 + 1 + 2 + 3 + 4
+        // const initialValue = 0;
+        // const sumWithInitial = array1.reduce(
+        //   (accumulator, currentValue) => accumulator + currentValue, initialValue);
+
+        // console.log(sumWithInitial);
+ 
+        // ci dessous ca marche je le mute en attendant dele rendre fonctionnel
+        // totalQuantityChiffre.innerHTML = "2"
+      }
 
       console.log("bout")
   }
@@ -178,7 +202,7 @@ const fetchEtVisualSection = async () => {
     // }
     panierFinal();
 
-    const calculDesPrixPRoduits = []; 
+    // const calculDesPrixPRoduits = []; 
 
     console.log(dataPanier)
     console.log(produitPanier)
