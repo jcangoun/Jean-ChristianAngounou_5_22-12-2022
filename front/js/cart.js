@@ -160,21 +160,23 @@ const fetchEtVisualSection = async () => {
         //  zone de test
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
+    for (let elm = 0; elm < produitPanier.length; elm++) {
+      totalQuantity += produitPanier[elm].quantity;
+      console.log(totalQuantity)
+      console.log(totalQuantityChiffre)
+    }
+    const totalQuantityChiffre = document.querySelector("#totalQuantity");
+    totalQuantityChiffre.textContent = totalQuantity.toString();
 
+    
     function panierFinal () {
       console.log("bam",dataPanier.price)
-      const tabloPrix = [];
       console.log("nomproduit", produitPanier.name, "nomDataname", dataPanier.name)
+      console.log("nomproduit", produitPanier.price, "nomDataname", dataPanier.price)
       produitPanier.price = dataPanier.price;
       console.log(produitPanier.price)
       console.log(produitPanier.quantity)
 
-      // appelation de la section des quantites totales
-      const totalQuantityChiffre = document.querySelector("#totalQuantity")
-
-      for (let elm = 0; elm < produitPanier.length; elm++) {
-
-        // const qteTotale = [1, 2, 3, 4];
         // // 0 + 1 + 2 + 3 + 4
         // const initialValue = 0;
         // const sumWithInitial = array1.reduce(
@@ -183,12 +185,13 @@ const fetchEtVisualSection = async () => {
         // console.log(sumWithInitial);
  
         // ci dessous ca marche je le mute en attendant dele rendre fonctionnel
-        // totalQuantityChiffre.innerHTML = "2"
-      }
-
+        totalQuantityChiffre.innerHTML = `${totalQuantity.toString()}`
+  
       console.log("bout")
   }
-  // const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
+
+  
+  const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
     //   // console.log(listeProduitFinal[list])
     //   // ensemblFinal.push(listeProduitFinal[list])
     //   // console.log("ensemblFinal", ensemblFinal.)
@@ -197,9 +200,6 @@ const fetchEtVisualSection = async () => {
     panierFinal();
 
     // const calculDesPrixPRoduits = []; 
-
-    console.log(dataPanier)
-    console.log(produitPanier)
 
     
     for (let p = 0; p<dataPanier.length; p++) {
