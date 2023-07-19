@@ -48,7 +48,6 @@ function getArticle(product) {
   console.log(panier);
 
   // creation de la page de section de produits avec le DOM
-
   const blocDeLaPageProduit = () => {};
   // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
 
@@ -82,12 +81,10 @@ function getArticle(product) {
 
   // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch   
   for (let i in colors) {
-    // console.log(colors[i]);
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
-    // console.log(optionValue);
     firstSelectForm.append(optionValue);    
   }
 

@@ -1,4 +1,4 @@
-// recup des infos produits
+// recup des infos produits ici c'est l'id
 const info = window.location.search;
 const urlParams = new URLSearchParams(info);
 
@@ -18,7 +18,7 @@ const fetchEtVisualSection = async () => {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
     const dataPanier = await response.json();
-
+    console.log(dataPanier)
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
@@ -126,7 +126,7 @@ const fetchEtVisualSection = async () => {
 
     const leDataPanier = () => {
       console.log("elo premier type d essais")
-      console.log(dataPanier)
+      // console.log(dataPanier)
     }
     function leProduitPAnier () {
       console.log("ancienlo c est un 2e essai");
@@ -137,7 +137,7 @@ const fetchEtVisualSection = async () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
       console.log(majcart);
-      console.log(allArticleQuantiteInput);      
+     
       console.log(resultatValeurQuantite.value);
 
       allArticleQuantiteInput.forEach((input, index) => {
@@ -161,8 +161,15 @@ const fetchEtVisualSection = async () => {
     //  zone de test
 
     function panierFinal () {
-      JSON.parse(localStorage.getItem("panier"))
-      console.log(JSON.parse(localStorage.getItem("panier")))
+      const plussProduit = [];
+    const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
+      console.log(listeProduitFinal)
+      for (let list = 0; list < listeProduitFinal.length; list++){
+        console.log(listeProduitFinal[list])
+        plussProduit.push(listeProduitFinal[list])
+        console.log("pluss", plussProduit)
+
+      }
   
     }
     panierFinal();

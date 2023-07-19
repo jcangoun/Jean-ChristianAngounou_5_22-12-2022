@@ -1,7 +1,6 @@
 const api = fetch(`http://localhost:3000/api/products`)
   .then(function (res) {
     if (res.ok) {
-
       return res.json();
     }
   })
@@ -26,7 +25,7 @@ const articlePage = (product) => {
   // chargement du noeud section ou on va creer la page
   const newDiv = document.querySelector("section#items");
 
-  // creation du noe <a> pas d'attributs
+  // creation du noeud <a> pas d'attributs
   const lienBloc = document.createElement("a");
   //  a revoir
   lienBloc.setAttribute("href", `./product.html?id=${_id}`);
