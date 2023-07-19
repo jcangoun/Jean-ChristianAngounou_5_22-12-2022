@@ -172,13 +172,7 @@ const fetchEtVisualSection = async () => {
       // appelation de la section des quantites totales
       const totalQuantityChiffre = document.querySelector("#totalQuantity")
 
-      const qteTotale = [];
-      for (let qte = 0; qte < produitPanier.length; qte++) {
-        JSON.parse(localStorage.getItem("panier"))
-        qteTotale;
-        const qteInitiale = produitPanier[qte]
-        qteTotale.push(qteInitiale)
-        console.log(qteTotale)
+      for (let elm = 0; elm < produitPanier.length; elm++) {
 
         // const qteTotale = [1, 2, 3, 4];
         // // 0 + 1 + 2 + 3 + 4
