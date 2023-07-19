@@ -5,7 +5,6 @@ const urlParams = new URLSearchParams(info);
 const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
-console.log(cartPanierGet);
 
 const carteArticle = document.querySelector('.cart > #cart__items');
 
@@ -85,9 +84,38 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    console.log(cartPanierGet)
-    
-    console.log(resultatValeurQuantite.value)
+    console.log(cartPanierGet)    
+    const leDataPanier = () => {
+      console.log("1stessais", dataPanier)
+
+    }
+    function leProduitPAnier () {
+      console.log(" 2e essai",produitPanier);
+
+    }
+
+    const modifQuantite = () => {
+      const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
+      const majcart = [...cartPanierGet];
+      console.log(majcart);
+     
+      allArticleQuantiteInput.forEach((input, index) => {
+        input.addEventListener('change', function(e) {
+          const quanteModifiableProductInput = e.target.value;
+          const panelPersoChoix = majcart[index];
+          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
+            panelPersoChoix.quantity = quanteModifiableProductInput;
+            localStorage.setItem("panier", JSON.stringify(majcart));
+
+          }
+      });
+      });
+
+    };
+    // Et j'appele en bas la fonction de modification de la quantite. 
+    modifQuantite();
+
+    // bouton supprimé créé ci dessous
     supprimerArticl.addEventListener('click', function () {
         console.log("ca supprime")
 
@@ -112,66 +140,42 @@ const fetchEtVisualSection = async () => {
           }                               
           location.reload(true)
     });
+        // // function lePrix () {
+        // //   console.log(dataPanier.price)
+        // //   return dataPanier.price
+        // // }
+        // // lePrix();
 
-    cartPanierGet.forEach((article) => { 
-        console.log(article._id)
-        console.log(dataPanier._id)
-        console.log(dataPanier.price)
+        // console.log(article)
+        // console.log(produitPanier)
+        // console.log(dataPanier)
+        // const tousLesPrix = []
+        // dataPanier.price
+        // tousLesPrix.push(dataPanier.price)
+        // console.log(tousLesPrix)
+        // // lePrix ();
+        // const niveauTotal = dataPanier.price
+        // console.log(niveauTotal)
 
-        const niveauTotal = dataPanier.price
-        console.log(niveauTotal)
-    }) 
+        //  zone de test
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
 
-    const leDataPanier = () => {
-      console.log("elo premier type d essais")
-      // console.log(dataPanier)
-    }
-    function leProduitPAnier () {
-      console.log("ancienlo c est un 2e essai");
-      console.log(produitPanier)
-    }
-
-    const modifQuantite = () => {
-      const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
-      const majcart = [...cartPanierGet];
-      console.log(majcart);
-     
-      console.log(resultatValeurQuantite.value);
-
-      allArticleQuantiteInput.forEach((input, index) => {
-        input.addEventListener('change', function(e) {
-          const quanteModifiableProductInput = e.target.value;
-          const panelPersoChoix = majcart[index];
-
-          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) { 
-          
-            panelPersoChoix.quantity = quanteModifiableProductInput;
-            localStorage.setItem("panier", JSON.stringify(majcart));
-
-          }
-      });
-      });
-
-    };
-    // Et j'appele en bas la fonction de modification de la quantite. 
-    modifQuantite();
-
-    //  zone de test
-
     function panierFinal () {
-      const plussProduit = [];
-    const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
-      console.log(listeProduitFinal)
-      for (let list = 0; list < listeProduitFinal.length; list++){
-        console.log(listeProduitFinal[list])
-        plussProduit.push(listeProduitFinal[list])
-        console.log("pluss", plussProduit)
+      console.log("bam",dataPanier.price)
+      const tabloPrix = [];
+      console.log("nomproduit", produitPanier.name, "nomDataname", dataPanier.name)
+      produitPanier.price = dataPanier.price;
+      console.log(produitPanier.price)
 
-      }
+      console.log("bout")
+  }
+  // const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
+    //   // console.log(listeProduitFinal[list])
+    //   // ensemblFinal.push(listeProduitFinal[list])
+    //   // console.log("ensemblFinal", ensemblFinal.)
   
-    }
+    // }
     panierFinal();
 
     const calculDesPrixPRoduits = []; 

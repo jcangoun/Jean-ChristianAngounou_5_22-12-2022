@@ -33,7 +33,7 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
   console.log(product.colors);
-
+console.log(product)
   let panier = 
     {
       _id,
@@ -103,9 +103,6 @@ function getArticle(product) {
     console.log("capasse le bouton");
     e.preventDefault;
 
-    // ======   Nouveau bloc conditon ========================
-
-    
     // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
     const nouveauProduit = {};
 
