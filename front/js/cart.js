@@ -140,22 +140,11 @@ const fetchEtVisualSection = async () => {
           }                               
           location.reload(true)
     });
-        // // function lePrix () {
-        // //   console.log(dataPanier.price)
-        // //   return dataPanier.price
-        // // }
-        // // lePrix();
 
-        // console.log(article)
-        // console.log(produitPanier)
-        // console.log(dataPanier)
+
         // const tousLesPrix = []
-        // dataPanier.price
         // tousLesPrix.push(dataPanier.price)
         // console.log(tousLesPrix)
-        // // lePrix ();
-        // const niveauParELement = dataPanier.price
-        // console.log(niveauTotal)
 
         //  zone de test
 
@@ -168,27 +157,6 @@ const fetchEtVisualSection = async () => {
     const totalQuantityChiffre = document.querySelector("#totalQuantity");
     totalQuantityChiffre.textContent = totalQuantity.toString();
 
-    
-    function panierFinal () {
-      console.log("bam",dataPanier.price)
-      console.log("nomproduit", produitPanier.name, "nomDataname", dataPanier.name)
-      console.log("nomproduit", produitPanier.price, "nomDataname", dataPanier.price)
-      produitPanier.price = dataPanier.price;
-      console.log(produitPanier.price)
-      console.log(produitPanier.quantity)
-
-        // // 0 + 1 + 2 + 3 + 4
-        // const initialValue = 0;
-        // const sumWithInitial = array1.reduce(
-        //   (accumulator, currentValue) => accumulator + currentValue, initialValue);
-
-        // console.log(sumWithInitial);
- 
-        // ci dessous ca marche je le mute en attendant dele rendre fonctionnel
-        totalQuantityChiffre.innerHTML = `${totalQuantity.toString()}`
-  
-      console.log("bout")
-  }
 
   
   const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
