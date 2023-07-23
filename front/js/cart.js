@@ -84,15 +84,16 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    console.log(cartPanierGet)    
-    const leDataPanier = () => {
-      console.log("1stessais", dataPanier)
+    console.log(cartPanierGet)
+    console.log(dataPanier)
 
+    const tablo = [];
+    for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
+      tablo.push(elDataPan)
+      console.log("tablo",tablo)
     }
-    function leProduitPAnier () {
-      console.log(" 2e essai",produitPanier);
-
-    }
+    // console.map("tablo",tablo)
+    console.log("tablo",tablo)
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
@@ -142,30 +143,22 @@ const fetchEtVisualSection = async () => {
     });
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
-          
-     
-    console.log(cartPanierGet)
-  const caseTotalQty = document.querySelector("#totalQuantity")  
- const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);
-    
-//  console.log(totalQuantity.toString());
+          function qtyTotal () {
+            console.log(cartPanierGet)
+            const caseTotalQty = document.querySelector("#totalQuantity")  
+            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
+            caseTotalQty.innerHTML = affichTotalQuantity.toString()
+        
+          }     
 
-    caseTotalQty.innerHTML = affichTotalQuantity
+          qtyTotal();
 
-
- 
-    // Test bonne pratique
-
- //     const array1 = [1, 2, 3, 4];
-
-// // 0 + 1 + 2 + 3 + 4
-// const initialValue = 0;
-// const sumWithInitial = array1.reduce(
-//   (accumulator, currentValue) => accumulator + currentValue,
-//   initialValue
-// );
-
-// console.log(sumWithInitial);
+          function prixTotal () {
+            const caseTotalPrice = document.querySelector("#totalPrice")
+            
+                      caseTotalPrice.innerHTML = "2"
+          }
+          prixTotal ();
 
 
   //   function panierFinal () {
