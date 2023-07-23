@@ -141,54 +141,22 @@ const fetchEtVisualSection = async () => {
           location.reload(true)
     });
 
-
-        // const tousLesPrix = []
-        // tousLesPrix.push(dataPanier.price)
-        // console.log(tousLesPrix)
-
-        //  zone de test
-
           // C'est ici que je dois ajouter mes essais du btomm bouton 
-    for (let elm = 0; elm < produitPanier.length; elm++) {
-      totalQuantity += produitPanier[elm].quantity;
-      console.log(totalQuantity)
-      console.log(totalQuantityChiffre)
-    }
-    const totalQuantityChiffre = document.querySelector("#totalQuantity");
-    totalQuantityChiffre.textContent = totalQuantity.toString();
-
-
-  
-  const listeProduitFinal = JSON.parse(localStorage.getItem("panier"))
-    //   // console.log(listeProduitFinal[list])
-    //   // ensemblFinal.push(listeProduitFinal[list])
-    //   // console.log("ensemblFinal", ensemblFinal.)
-  
-    // }
-    panierFinal();
-
-    // const calculDesPrixPRoduits = []; 
-
+          
+     
+    console.log(cartPanierGet)
+  const caseTotalQty = document.querySelector("#totalQuantity")  
+ const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);
     
-    for (let p = 0; p<dataPanier.length; p++) {
-      console.log(dataPanier[p])
-      // let prixCanapesDsPanier = dataPanier[p].price;
-      // console.log(calculDesPrixPRoduits)
-      
-      // console.log(calculDesPrixPRoduits.push(prixCanapesDsPanier))
-      // console.log(prixCanapesDsPanier)
-      // console.log(calculDesPrixPRoduits)
-    }
-    // const fusionneur = (accumulateur, valeurDeBase) => accumulateur + valeurDeBase;
-    // const totalPrice = calculDesPrixPRoduits.reduce(fusionneur);
+//  console.log(totalQuantity.toString());
 
-    // console.log(totalPrice)
+    caseTotalQty.innerHTML = affichTotalQuantity
 
 
+ 
     // Test bonne pratique
 
-
-//     const array1 = [1, 2, 3, 4];
+ //     const array1 = [1, 2, 3, 4];
 
 // // 0 + 1 + 2 + 3 + 4
 // const initialValue = 0;
@@ -198,6 +166,20 @@ const fetchEtVisualSection = async () => {
 // );
 
 // console.log(sumWithInitial);
+
+
+  //   function panierFinal () {
+  //     console.log("bam")
+  //     // const cartPanierGet = JSON.parse(localStorage.getItem("panier"))
+  //     // cartPanierGet;
+ 
+  //     console.log("bout")
+  // }
+  //   panierFinal();
+
+ 
+
+
 
 
     // zone de test
