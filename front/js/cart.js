@@ -12,10 +12,12 @@ const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
 
+    
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
+
     const dataPanier = await response.json();
     console.log(dataPanier)
     const detailArticl = document.createElement('article');
@@ -89,11 +91,9 @@ const fetchEtVisualSection = async () => {
 
     const tablo = [];
     for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
-      tablo.push(elDataPan)
+      tablo.push(dataPanier.name)
       console.log("tablo",tablo)
     }
-    // console.map("tablo",tablo)
-    console.log("tablo",tablo)
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
@@ -148,18 +148,27 @@ const fetchEtVisualSection = async () => {
             const caseTotalQty = document.querySelector("#totalQuantity")  
             const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
             caseTotalQty.innerHTML = affichTotalQuantity.toString()
-        
+            console.log(produitPanier)
           }     
 
           qtyTotal();
 
-          function prixTotal () {
-            const caseTotalPrice = document.querySelector("#totalPrice")
-            
-                      caseTotalPrice.innerHTML = "2"
-          }
-          prixTotal ();
+          
+          // const qtePanierPrixTotal = JSON.parse(localStorage.getItem("panier"))
+          // // console.log(qtePanierPrixTotal[1].)
+          // const tableauPrix = cartPanierGet.map((dataPanier) => dataPanier.price);
+          // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
+          // console.log(dataPanier.price)
 
+          const caseTotalPrice = document.querySelector("#totalPrice");
+          caseTotalPrice.innerHTML = totalPrice.toString();
+          
+          // function prixTotal () {
+          //   const caseTotalPrice = document.querySelector("#totalPrice")
+            
+          //   caseTotalPrice.innerHTML = "2"
+          // }
+          // prixTotal ();
 
   //   function panierFinal () {
   //     console.log("bam")
@@ -169,10 +178,6 @@ const fetchEtVisualSection = async () => {
   //     console.log("bout")
   // }
   //   panierFinal();
-
- 
-
-
 
 
     // zone de test
