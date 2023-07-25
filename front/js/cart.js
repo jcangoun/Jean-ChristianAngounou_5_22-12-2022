@@ -162,6 +162,9 @@ const fetchEtVisualSection = async () => {
           }     
           qtyTotal();
 
+          const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
+          const valeurPrixProdt = lePrix.textContent;
+          console.log(valeurPrixProdt)
           
           // const qtePanierPrixTotal = JSON.parse(localStorage.getItem("panier"))
           // // console.log(qtePanierPrixTotal[1].)
@@ -227,7 +230,10 @@ const fetchEtVisualSection = async () => {
     boutonPanierComander ();
   }
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
-    console.log(laDescriptonContenuCartItem)
+    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+    console.log(lePrix)
+    const valeurPrixProdt = lePrix.textContent;
+    console.log(valeurPrixProdt)
   // for (let entrees = 0; entrees < allArticlePrixInput.length; entrees++) {
   //   console.log(entrees)
   // }
