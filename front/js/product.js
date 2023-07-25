@@ -33,7 +33,7 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
   console.log(product.colors);
-console.log(product)
+  console.log(product)
   let panier = 
     {
       _id,

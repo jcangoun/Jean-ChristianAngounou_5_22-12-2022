@@ -1,25 +1,28 @@
-const api = fetch(`http://localhost:3000/api/products`)
-  .then(function (res) {
-    if (res.ok) {
-      return res.json();
+ const api = fetch(`http://localhost:3000/api/products`)
+ .then(function (res) {
+   if (res.ok) {
+     return res.json();
     }
   })
   .then(function (products) {
     articles(products);
           console.log(products);
-  })
-  .catch(function (err) {
-    // Une erreur est survenue
-  });
-
-function articles(products) {
-  products.forEach((product) => {
-    // console.log(product);
-    articlePage(product);
-  });
-}
-
-const articlePage = (product) => {
+        })
+        .catch(function (err) {
+          // Une erreur est survenue
+        });
+        
+        function articles(products) {
+          products.forEach((product) => {
+            // console.log(product);
+            articlePage(product);
+          });
+        }
+        
+        console.log(api)
+  //  fetch(`http://localhost:3000/api/products`)
+  // console.log(testo)
+  const articlePage = (product) => {
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
 
   // chargement du noeud section ou on va creer la page

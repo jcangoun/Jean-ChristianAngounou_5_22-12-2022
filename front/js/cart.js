@@ -12,7 +12,6 @@ const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
 
-    
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
