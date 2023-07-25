@@ -13,12 +13,17 @@ const fetchEtVisualSection = async () => {
     const produitPanier = cartPanierGet[canap];
 
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
+    console.log("icica marchenom",produitPanier.name, produitPanier.price)
+    
+
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
 
     const dataPanier = await response.json();
-    console.log(dataPanier)
+    const efa = produitPanier.price;
+    console.log(efa)
+    console.log("avatpage aussi",dataPanier.price)
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
@@ -84,15 +89,21 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
-
-    console.log(cartPanierGet)
+    console.log("fin1 page",dataPanier.price)
     console.log(dataPanier)
 
-    const tablo = [];
-    for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
-      tablo.push(dataPanier.name)
-      console.log("tablo",tablo)
-    }
+          // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
+          // console.log(dataPanier.price)
+
+    console.log("fin 2 avant les funstions",dataPanier.price)
+    // const tablo = [];
+    // console.log(tablo)
+    // for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
+    //   tablo.push(elDataPan)
+    //   console.log("tablo",tablo)
+    //   console.log("eldata", elDataPan)
+    // }
+    
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
@@ -147,9 +158,8 @@ const fetchEtVisualSection = async () => {
             const caseTotalQty = document.querySelector("#totalQuantity")  
             const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
             caseTotalQty.innerHTML = affichTotalQuantity.toString()
-            console.log(produitPanier)
+            // console.log(produitPanier)
           }     
-
           qtyTotal();
 
           
@@ -216,6 +226,7 @@ const fetchEtVisualSection = async () => {
     } 
     boutonPanierComander ();
   }
+  
 };
 
 // tous les éléments de l'user a envoyer au serveur
