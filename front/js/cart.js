@@ -226,7 +226,11 @@ const fetchEtVisualSection = async () => {
     } 
     boutonPanierComander ();
   }
-  
+    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
+    console.log(laDescriptonContenuCartItem)
+  // for (let entrees = 0; entrees < allArticlePrixInput.length; entrees++) {
+  //   console.log(entrees)
+  // }
 };
 
 // tous les éléments de l'user a envoyer au serveur
