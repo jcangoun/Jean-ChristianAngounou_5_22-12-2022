@@ -7,25 +7,26 @@ const paramIdDePage = urlParams.get("id");
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 
 const carteArticle = document.querySelector('.cart > #cart__items');
-    const tabloPrix = [];
+
+const tabloPrix = [];
+
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
 
     
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
-    console.log("icica marchenom",produitPanier.name, produitPanier.price)
+    // console.log("icica marchenom",produitPanier.name, produitPanier.price)
     
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
     
     const dataPanier = await response.json();
-    console.log(dataPanier.price)
-    tabloPrix.push(dataPanier.price)
-    console.log(tabloPrix)
+    // console.log(dataPanier.price)
+    // tabloPrix.push(dataPanier.price)
+    // console.log(tabloPrix)
 
-    console.log("avatpage aussi",dataPanier.price)
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
@@ -91,34 +92,30 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-
-    console.log("fin1 page",dataPanier.price)
-    console.log(dataPanier)
-
-          // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
+    
+    // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
+    // console.log(dataPanier)
           // console.log(dataPanier.price)
 
           const tableo = [];
           const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
-          console.log(lePrix)
           const valeurPrixProdt = lePrix.textContent;
           const indvPrix = tableo.valeurPrixProdt;
-          console.log(valeurPrixProdt)
+          // console.log(valeurPrixProdt)
 
 
           const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
-          console.log(prixDescendt.textContent)
+          // console.log(prixDescendt.textContent)
+          // console.log(valeurPrixProdt)
+          // tableo.push(valeurPrixProdt)
+          // console.log("tableo", tableo)
 
-          console.log(valeurPrixProdt)
-          tableo.push(valeurPrixProdt)
-          console.log(tableo)
           
           // if (dataPanier !== undefined && dataPanier._id !== indivProdt._id) {
           //   tableo.push(valeurPrixProdt)
           // }
           
-    console.log("fin 2 avant les functions",dataPanier.price)
-    localStorage.setItem("les prix", tableo)
+    // localStorage.setItem("les prix", tableo)
 
     // A  suivre là mais c'est un peu rude  :D  lol a guetter les elements et enfants et tout 
 
@@ -134,7 +131,7 @@ const fetchEtVisualSection = async () => {
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
       const majcart = [...cartPanierGet];
-      console.log(majcart);
+      // console.log(majcart);
      
       allArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener('change', function(e) {
@@ -188,6 +185,11 @@ const fetchEtVisualSection = async () => {
           }     
           qtyTotal();
 
+
+          console.log(dataPanier.price)
+          tabloPrix.push(dataPanier.price)
+          console.log(tabloPrix)
+      
           // const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
           // const valeurPrixProdt = lePrix.textContent;
           // console.log(valeurPrixProdt)
