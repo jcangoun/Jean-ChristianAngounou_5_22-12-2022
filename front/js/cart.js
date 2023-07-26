@@ -7,29 +7,30 @@ const paramIdDePage = urlParams.get("id");
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 
 const carteArticle = document.querySelector('.cart > #cart__items');
-
+    const tabloPrix = [];
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
 
+    
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     console.log("icica marchenom",produitPanier.name, produitPanier.price)
     
-
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
-
+    
     const dataPanier = await response.json();
-    const efa = produitPanier.price;
-    console.log(efa)
+    console.log(dataPanier.price)
+    tabloPrix.push(dataPanier.price)
+    console.log(tabloPrix)
+
     console.log("avatpage aussi",dataPanier.price)
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
     detailArticl.setAttribute('data-color', `${produitPanier.colors}`);
     carteArticle.append(detailArticl);
-
 
     const photoArticleCart = document.createElement('div');
     photoArticleCart.classList.add('cart__item__img');
@@ -89,13 +90,38 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.classList.add('deleteItem');
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
+
+
     console.log("fin1 page",dataPanier.price)
     console.log(dataPanier)
 
           // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
           // console.log(dataPanier.price)
 
-    console.log("fin 2 avant les funstions",dataPanier.price)
+          const tableo = [];
+          const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
+          console.log(lePrix)
+          const valeurPrixProdt = lePrix.textContent;
+          const indvPrix = tableo.valeurPrixProdt;
+          console.log(valeurPrixProdt)
+
+
+          const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
+          console.log(prixDescendt.textContent)
+
+          console.log(valeurPrixProdt)
+          tableo.push(valeurPrixProdt)
+          console.log(tableo)
+          
+          // if (dataPanier !== undefined && dataPanier._id !== indivProdt._id) {
+          //   tableo.push(valeurPrixProdt)
+          // }
+          
+    console.log("fin 2 avant les functions",dataPanier.price)
+    localStorage.setItem("les prix", tableo)
+
+    // A  suivre là mais c'est un peu rude  :D  lol a guetter les elements et enfants et tout 
+
     // const tablo = [];
     // console.log(tablo)
     // for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
@@ -154,7 +180,7 @@ const fetchEtVisualSection = async () => {
 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
           function qtyTotal () {
-            console.log(cartPanierGet)
+
             const caseTotalQty = document.querySelector("#totalQuantity")  
             const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
             caseTotalQty.innerHTML = affichTotalQuantity.toString()
@@ -162,9 +188,9 @@ const fetchEtVisualSection = async () => {
           }     
           qtyTotal();
 
-          const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
-          const valeurPrixProdt = lePrix.textContent;
-          console.log(valeurPrixProdt)
+          // const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
+          // const valeurPrixProdt = lePrix.textContent;
+          // console.log(valeurPrixProdt)
           
           // const qtePanierPrixTotal = JSON.parse(localStorage.getItem("panier"))
           // // console.log(qtePanierPrixTotal[1].)
@@ -173,12 +199,11 @@ const fetchEtVisualSection = async () => {
           // console.log(dataPanier.price)
 
           const caseTotalPrice = document.querySelector("#totalPrice");
-          caseTotalPrice.innerHTML = totalPrice.toString();
+          caseTotalPrice.innerHTML = valeurPrixProdt.toString();
           
-          // function prixTotal () {
-          //   const caseTotalPrice = document.querySelector("#totalPrice")
-            
+          // function prixTotal () {    
           //   caseTotalPrice.innerHTML = "2"
+
           // }
           // prixTotal ();
 
