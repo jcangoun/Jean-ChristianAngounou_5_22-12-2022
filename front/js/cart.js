@@ -6,9 +6,7 @@ const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 
-const carteArticle = document.querySelector('.cart > #cart__items');
-
-const tabloPrix = [];
+const carteArticle = document.querySelector('.cart > #cart__items');tableauPrix = [];
 
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
@@ -24,8 +22,8 @@ const fetchEtVisualSection = async () => {
     
     const dataPanier = await response.json();
     // console.log(dataPanier.price)
-    // tabloPrix.push(dataPanier.price)
-    // console.log(tabloPrix)
+    // tableauPrix.push(dataPanier.price)
+    // console.log(tableauPrix)
 
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
@@ -95,7 +93,7 @@ const fetchEtVisualSection = async () => {
     
     // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
     // console.log(dataPanier)
-          // console.log(dataPanier.price)
+    // console.log(dataPanier.price)
 
           const tableo = [];
           const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
@@ -180,34 +178,24 @@ const fetchEtVisualSection = async () => {
 
             const caseTotalQty = document.querySelector("#totalQuantity")  
             const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
-            caseTotalQty.innerHTML = affichTotalQuantity.toString()
+            caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
             // console.log(produitPanier)
           }     
           qtyTotal();
 
 
+          function prixTotal () {    
+            // caseTotalPrice.innerHTML = "2"
           console.log(dataPanier.price)
-          tabloPrix.push(dataPanier.price)
-          console.log(tabloPrix)
-      
-          // const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
-          // const valeurPrixProdt = lePrix.textContent;
-          // console.log(valeurPrixProdt)
-          
-          // const qtePanierPrixTotal = JSON.parse(localStorage.getItem("panier"))
-          // // console.log(qtePanierPrixTotal[1].)
-          // const tableauPrix = cartPanierGet.map((dataPanier) => dataPanier.price);
-          // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
-          // console.log(dataPanier.price)
+          tableauPrix.push(dataPanier.price)
+          console.log(tableauPrix)
+          const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
 
           const caseTotalPrice = document.querySelector("#totalPrice");
-          caseTotalPrice.innerHTML = valeurPrixProdt.toString();
-          
-          // function prixTotal () {    
-          //   caseTotalPrice.innerHTML = "2"
-
-          // }
-          // prixTotal ();
+          caseTotalPrice.innerHTML = totalPrice.toString();
+          // modifQuantite();
+          }
+          prixTotal ();
 
   //   function panierFinal () {
   //     console.log("bam")
