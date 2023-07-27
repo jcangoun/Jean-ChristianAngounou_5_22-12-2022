@@ -177,12 +177,32 @@ const fetchEtVisualSection = async () => {
           function qtyTotal () {
 
             const caseTotalQty = document.querySelector("#totalQuantity")  
-            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);    
+            
+            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
+
             caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
             // console.log(produitPanier)
           }     
           qtyTotal();
 
+          console.log(dataPanier.price)
+          function prixTtlPrPRoduit () {
+            console.log(resultatValeurQuantite.value)
+            console.log(typeof(dataPanier.price))
+            console.log(typeof(resultatValeurQuantite.value))
+            console.log(typeof(parseInt(resultatValeurQuantite.value)))
+
+            const vlueQtenumerisee = typeof(parseInt(resultatValeurQuantite.value))
+            const toutProdt = vlueQtenumerisee * dataPanier.price
+            console.log(typeof(toutProdt))
+            console.log(toutProdt.toString)
+
+
+            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
+          
+            affichTotalQuantity;
+        }
+          prixTtlPrPRoduit ();
 
           function prixTotal () {    
             // caseTotalPrice.innerHTML = "2"
