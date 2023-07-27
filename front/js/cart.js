@@ -119,6 +119,7 @@ const fetchEtVisualSection = async () => {
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
             qtyTotal();
+            prixTotal ();
             localStorage.setItem("panier", JSON.stringify(majcart));
 
           }
@@ -188,16 +189,17 @@ const fetchEtVisualSection = async () => {
           prixTtlPrProduit ();
 
           function prixTotal () {    
+            const caseTotalPrice = document.querySelector("#totalPrice");
             console.log(tableauCalculTest)
             const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);
             
-            const caseTotalPrice = document.querySelector("#totalPrice");
             caseTotalPrice.innerHTML = totalPrice.toString();
             prixTtlPrProduit ();
+            
             // modifQuantite();
             }
             prixTotal ();
-
+            
 
   //   function panierFinal () {
   //     console.log("bam")
