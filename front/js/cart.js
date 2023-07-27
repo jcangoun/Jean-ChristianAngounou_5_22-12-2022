@@ -173,6 +173,9 @@ const fetchEtVisualSection = async () => {
           location.reload(true)
     });
 
+
+
+    
           // C'est ici que je dois ajouter mes essais du btomm bouton 
           function qtyTotal () {
 
@@ -184,32 +187,29 @@ const fetchEtVisualSection = async () => {
             // console.log(produitPanier)
           }     
           qtyTotal();
+          // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
+          const prixElemt =  parseInt(dataPanier.price)
 
-          console.log(dataPanier.price)
+
           function prixTtlPrProduit () {
             // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
 
-            
+          console.log(prixElemt)
+          console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
+          console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))
+          const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+          console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+          console.log(vlueQtenumerisee, prixElemt)
+          const calculTest = vlueQtenumerisee * prixElemt
+          console.log(calculTest)
+          const tableauCalculTest = [];
+          tableauCalculTest.push(calculTest)
+          console.log(tableauCalculTest)
 
           }
           prixTtlPrProduit ();
 
-          // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
-          console.log(resultatValeurQuantite.value)
-          console.log(typeof(dataPanier.price))
-          console.log(typeof(resultatValeurQuantite.value))
-          console.log(typeof(parseInt(resultatValeurQuantite.value)))
-          
-          const vlueQtenumerisee = typeof(parseInt(resultatValeurQuantite.value))
-          const toutProdt = vlueQtenumerisee * dataPanier.price
-          console.log(typeof(toutProdt))
-          console.log(toutProdt.toString)
-          
-          
           function prixTotal () {    
-            // caseTotalPrice.innerHTML = "2"
-          console.log(dataPanier.price)
-          tableauPrix.push(dataPanier.price)
           console.log(tableauPrix)
           const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
           // const totalPrice = prixTtlPrProduit.reduce((acc, curr) => acc + curr, 0);
