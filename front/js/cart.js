@@ -186,32 +186,36 @@ const fetchEtVisualSection = async () => {
           qtyTotal();
 
           console.log(dataPanier.price)
-          function prixTtlPrPRoduit () {
-            console.log(resultatValeurQuantite.value)
-            console.log(typeof(dataPanier.price))
-            console.log(typeof(resultatValeurQuantite.value))
-            console.log(typeof(parseInt(resultatValeurQuantite.value)))
+          function prixTtlPrProduit () {
+            // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
 
-            const vlueQtenumerisee = typeof(parseInt(resultatValeurQuantite.value))
-            const toutProdt = vlueQtenumerisee * dataPanier.price
-            console.log(typeof(toutProdt))
-            console.log(toutProdt.toString)
+            
 
+          }
+          prixTtlPrProduit ();
 
-            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
+          // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
+          console.log(resultatValeurQuantite.value)
+          console.log(typeof(dataPanier.price))
+          console.log(typeof(resultatValeurQuantite.value))
+          console.log(typeof(parseInt(resultatValeurQuantite.value)))
           
-            affichTotalQuantity;
-        }
-          prixTtlPrPRoduit ();
-
+          const vlueQtenumerisee = typeof(parseInt(resultatValeurQuantite.value))
+          const toutProdt = vlueQtenumerisee * dataPanier.price
+          console.log(typeof(toutProdt))
+          console.log(toutProdt.toString)
+          
+          
           function prixTotal () {    
             // caseTotalPrice.innerHTML = "2"
           console.log(dataPanier.price)
           tableauPrix.push(dataPanier.price)
           console.log(tableauPrix)
           const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
-
+          // const totalPrice = prixTtlPrProduit.reduce((acc, curr) => acc + curr, 0);
+          
           const caseTotalPrice = document.querySelector("#totalPrice");
+          caseTotalPrice.innerHTML = totalPrice.toString();
           caseTotalPrice.innerHTML = totalPrice.toString();
           // modifQuantite();
           }
