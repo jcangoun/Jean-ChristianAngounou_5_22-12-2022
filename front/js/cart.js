@@ -116,7 +116,9 @@ const fetchEtVisualSection = async () => {
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
             qtyTotal();
-            prixTotal ();
+            prixTtlPrProduit (); 
+            
+            // prixTotal ();
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
         });
@@ -153,7 +155,8 @@ const fetchEtVisualSection = async () => {
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")  
       
-      const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
+      console.log(typeof(cartPanierGet[0].quantity), cartPanierGet[0].quantity)
+      const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);   
       console.log(typeof(affichTotalQuantity), affichTotalQuantity)
       const quantiteTotaleParsee = parseInt(affichTotalQuantity) 
       
@@ -187,8 +190,8 @@ const fetchEtVisualSection = async () => {
       const caseTotalPrice = document.querySelector("#totalPrice");
       console.log(tableauCalculTest)
       const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
-      caseTotalPrice.innerHTML = totalPrice.toString();
-      prixTtlPrProduit ();
+      caseTotalPrice.innerHTML = tableauCalculTest.toString();
+      // prixTtlPrProduit ();
       
       // modifQuantite();
     }
@@ -258,11 +261,11 @@ const fetchEtVisualSection = async () => {
     } 
     boutonPanierComander ();
   }
-    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
-    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-    console.log(lePrix)
-    const valeurPrixProdt = lePrix.textContent;
-    console.log(valeurPrixProdt)
+    // const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
+    // const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+    // console.log(lePrix)
+    // const valeurPrixProdt = lePrix.textContent;
+    // console.log(valeurPrixProdt)
   // for (let entrees = 0; entrees < allArticlePrixInput.length; entrees++) {
   //   console.log(entrees)
   // }
