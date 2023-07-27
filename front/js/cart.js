@@ -88,14 +88,12 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-          const tableo = [];
-          const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
-          const valeurPrixProdt = lePrix.textContent;
-          const indvPrix = tableo.valeurPrixProdt;
-          // console.log(valeurPrixProdt)
-
-
-          const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
+    const tableo = [];
+    const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
+    const valeurPrixProdt = lePrix.textContent;
+    const indvPrix = tableo.valeurPrixProdt;
+    // console.log(valeurPrixProd
+    const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
 
 
     // const tablo = [];
@@ -104,8 +102,7 @@ const fetchEtVisualSection = async () => {
     //   tablo.push(elDataPan)
     //   console.log("tablo",tablo)
     //   console.log("eldata", elDataPan)
-    // }
-    
+    // }   
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
@@ -121,11 +118,9 @@ const fetchEtVisualSection = async () => {
             qtyTotal();
             prixTotal ();
             localStorage.setItem("panier", JSON.stringify(majcart));
-
           }
+        });
       });
-      });
-
     };
 
     // Et j'appele en bas la fonction de modification de la quantite. 
@@ -133,82 +128,81 @@ const fetchEtVisualSection = async () => {
 
     // bouton supprimé créé ci dessous
     supprimerArticl.addEventListener('click', function () {
-        console.log("ca supprime")
-
-        const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
-              
-          for (let a = 0; a < cartFilterNot.length; a++) {
-            const articleCartPanier = cartFilterNot[a];
-            console.log(articleCartPanier)
-            console.log(cartFilterNot.indexOf(articleCartPanier));
-            console.log(cartFilterNot)
-            console.log(cartPanierGet)
-
-            localStorage.setItem("panier", JSON.stringify(cartFilterNot));        
-              console.log(resultatValeurQuantite.Value)
-
-          }
-          if (cartFilterNot.length === 1) {
-            console.log("il y a 1 produit dans le localS et le panier")
-          } else if ( cartFilterNot.length < 1) {
-            localStorage.removeItem("panier");
-            console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
-          }                               
-          location.reload(true)
+      console.log("ca supprime")
+      const cartFilterNot = cartPanierGet.filter(canap => canap._id !== produitPanier._id  && canap.colors !== produitPanier.colors|| canap._id === produitPanier._id  && canap.colors !== produitPanier.colors );
+            
+      for (let a = 0; a < cartFilterNot.length; a++) {
+        const articleCartPanier = cartFilterNot[a];
+        console.log(articleCartPanier)
+        console.log(cartFilterNot.indexOf(articleCartPanier));
+        console.log(cartFilterNot)
+        console.log(cartPanierGet)
+        localStorage.setItem("panier", JSON.stringify(cartFilterNot));        
+        console.log(resultatValeurQuantite.Value)
+      }
+      if (cartFilterNot.length === 1) {
+        console.log("il y a 1 produit dans le localS et le panier")
+      } else if ( cartFilterNot.length < 1) {
+        localStorage.removeItem("panier");
+        console.log("il n'y a plus de produits ni dans la page panier, ni dans le localStorage");
+      }                               
+      location.reload(true)
     });
  
-          // C'est ici que je dois ajouter mes essais du btomm bouton 
-          function qtyTotal () {
+    // C'est ici que je dois ajouter mes essais du btomm bouton 
+    function qtyTotal () {
+      const caseTotalQty = document.querySelector("#totalQuantity")  
+      
+      const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
+      console.log(typeof(affichTotalQuantity), affichTotalQuantity)
+      const quantiteTotaleParsee = parseInt(affichTotalQuantity) 
+      
+      console.log("qtetotlParsée", typeof(quantiteTotaleParsee), quantiteTotaleParsee)
+      caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
+    }     
+    qtyTotal();
 
-            const caseTotalQty = document.querySelector("#totalQuantity")  
+    // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
+    const prixElemt =  parseInt(dataPanier.price)
+    const tableauCalculTest = [];
+
+    function prixTtlPrProduit () {
+      // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
+      
+      console.log(prixElemt)
+      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
+      console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))
+      const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+      console.log(vlueQtenumerisee, prixElemt)
+      const calculTest = vlueQtenumerisee * prixElemt
+      console.log(calculTest)
+      tableauCalculTest;
+      tableauCalculTest.push(calculTest)
+      console.log(tableauCalculTest)
+    }
+    prixTtlPrProduit ();
+
+    function prixTotal () {    
+      const caseTotalPrice = document.querySelector("#totalPrice");
+      console.log(tableauCalculTest)
+      const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
+      caseTotalPrice.innerHTML = totalPrice.toString();
+      prixTtlPrProduit ();
+      
+      // modifQuantite();
+    }
+
+    prixTotal ();
             
-            const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
-
-            caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
-          }     
-          qtyTotal();
-          // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
-          const prixElemt =  parseInt(dataPanier.price)
-
-          const tableauCalculTest = [];
-          function prixTtlPrProduit () {
-          // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
-
-          console.log(prixElemt)
-          console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
-          console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))
-          const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-          console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-          console.log(vlueQtenumerisee, prixElemt)
-          const calculTest = vlueQtenumerisee * prixElemt
-          console.log(calculTest)
-          tableauCalculTest;
-          tableauCalculTest.push(calculTest)
-          console.log(tableauCalculTest)
-          }
-          prixTtlPrProduit ();
-
-          function prixTotal () {    
-            const caseTotalPrice = document.querySelector("#totalPrice");
-            console.log(tableauCalculTest)
-            const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);
+    //   function panierFinal () {
+    //     console.log("bam")
+    //     // const cartPanierGet = JSON.parse(localStorage.getItem("panier"))
+    //     // cartPanierGet;
             
-            caseTotalPrice.innerHTML = totalPrice.toString();
-            prixTtlPrProduit ();
-            
-            // modifQuantite();
-            }
-            prixTotal ();
-            
-
-  //   function panierFinal () {
-  //     console.log("bam")
-  //     // const cartPanierGet = JSON.parse(localStorage.getItem("panier"))
-  //     // cartPanierGet;
- 
-  //     console.log("bout")
-  // }
-  //   panierFinal();
+    //     console.log("bout")
+    // }
+    //   panierFinal();
 
 
     // zone de test
@@ -216,11 +210,11 @@ const fetchEtVisualSection = async () => {
     
     // là je vais tester les funstions pour les input regex
 
-const prenom =document.querySelector("#firstName").value
-const nom = document.querySelector("#lastName").value
-const adresse =  document.querySelector("#address").value          
-const ville = document.querySelector("#city").value
-const email = document.querySelector("#email").value
+    const prenom =document.querySelector("#firstName").value
+    const nom = document.querySelector("#lastName").value
+    const adresse =  document.querySelector("#address").value          
+    const ville = document.querySelector("#city").value
+    const email = document.querySelector("#email").value
  
 
 
