@@ -21,9 +21,6 @@ const fetchEtVisualSection = async () => {
     }
     
     const dataPanier = await response.json();
-    // console.log(dataPanier.price)
-    // tableauPrix.push(dataPanier.price)
-    // console.log(tableauPrix)
 
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
@@ -90,11 +87,6 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    
-    // const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
-    // console.log(dataPanier)
-    // console.log(dataPanier.price)
-
           const tableo = [];
           const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
           const valeurPrixProdt = lePrix.textContent;
@@ -103,19 +95,7 @@ const fetchEtVisualSection = async () => {
 
 
           const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
-          // console.log(prixDescendt.textContent)
-          // console.log(valeurPrixProdt)
-          // tableo.push(valeurPrixProdt)
-          // console.log("tableo", tableo)
 
-          
-          // if (dataPanier !== undefined && dataPanier._id !== indivProdt._id) {
-          //   tableo.push(valeurPrixProdt)
-          // }
-          
-    // localStorage.setItem("les prix", tableo)
-
-    // A  suivre là mais c'est un peu rude  :D  lol a guetter les elements et enfants et tout 
 
     // const tablo = [];
     // console.log(tablo)
@@ -144,6 +124,7 @@ const fetchEtVisualSection = async () => {
       });
 
     };
+
     // Et j'appele en bas la fonction de modification de la quantite. 
     modifQuantite();
 
@@ -172,10 +153,7 @@ const fetchEtVisualSection = async () => {
           }                               
           location.reload(true)
     });
-
-
-
-    
+ 
           // C'est ici que je dois ajouter mes essais du btomm bouton 
           function qtyTotal () {
 
@@ -184,15 +162,14 @@ const fetchEtVisualSection = async () => {
             const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0);   
 
             caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
-            // console.log(produitPanier)
           }     
           qtyTotal();
           // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
           const prixElemt =  parseInt(dataPanier.price)
 
-
+          const tableauCalculTest = [];
           function prixTtlPrProduit () {
-            // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
+          // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
 
           console.log(prixElemt)
           console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
@@ -202,24 +179,23 @@ const fetchEtVisualSection = async () => {
           console.log(vlueQtenumerisee, prixElemt)
           const calculTest = vlueQtenumerisee * prixElemt
           console.log(calculTest)
-          const tableauCalculTest = [];
+          tableauCalculTest;
           tableauCalculTest.push(calculTest)
           console.log(tableauCalculTest)
-
           }
           prixTtlPrProduit ();
 
           function prixTotal () {    
-          console.log(tableauPrix)
-          const totalPrice = tableauPrix.reduce((acc, curr) => acc + curr, 0);
-          // const totalPrice = prixTtlPrProduit.reduce((acc, curr) => acc + curr, 0);
-          
-          const caseTotalPrice = document.querySelector("#totalPrice");
-          caseTotalPrice.innerHTML = totalPrice.toString();
-          caseTotalPrice.innerHTML = totalPrice.toString();
-          // modifQuantite();
-          }
-          prixTotal ();
+            console.log(tableauCalculTest)
+            const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);
+            
+            const caseTotalPrice = document.querySelector("#totalPrice");
+            caseTotalPrice.innerHTML = totalPrice.toString();
+            caseTotalPrice.innerHTML = totalPrice.toString();
+            // modifQuantite();
+            }
+            prixTotal ();
+
 
   //   function panierFinal () {
   //     console.log("bam")
