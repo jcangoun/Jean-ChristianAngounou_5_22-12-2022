@@ -6,7 +6,8 @@ const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 
-const carteArticle = document.querySelector('.cart > #cart__items');tableauPrix = [];
+const carteArticle = document.querySelector('.cart > #cart__items');
+tableauPrix = [];
 
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
@@ -117,6 +118,7 @@ const fetchEtVisualSection = async () => {
           const panelPersoChoix = majcart[index];
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
+            qtyTotal();
             localStorage.setItem("panier", JSON.stringify(majcart));
 
           }
@@ -191,7 +193,7 @@ const fetchEtVisualSection = async () => {
             
             const caseTotalPrice = document.querySelector("#totalPrice");
             caseTotalPrice.innerHTML = totalPrice.toString();
-            caseTotalPrice.innerHTML = totalPrice.toString();
+            prixTtlPrProduit ();
             // modifQuantite();
             }
             prixTotal ();
@@ -210,7 +212,17 @@ const fetchEtVisualSection = async () => {
     // zone de test
     // Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
     
-    
+    // là je vais tester les funstions pour les input regex
+
+const prenom =document.querySelector("#firstName").value
+const nom = document.querySelector("#lastName").value
+const adresse =  document.querySelector("#address").value          
+const ville = document.querySelector("#city").value
+const email = document.querySelector("#email").value
+ 
+
+
+
     function boutonPanierComander () {
       const ajoutBtn = document.querySelector('#order');
       ajoutBtn.addEventListener('click', function(e) {
@@ -218,6 +230,12 @@ const fetchEtVisualSection = async () => {
       e.preventDefault();
   
       // modifQuantite ();
+
+      function noNumber () { }
+      function prenomComposed () {}
+      function addresseValide () {}
+      function contientMajuscule () {}
+
 
       // valeurs du formulaire dans contact 
         const contact = {
