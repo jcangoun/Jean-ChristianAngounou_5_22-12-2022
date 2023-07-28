@@ -117,6 +117,7 @@ const fetchEtVisualSection = async () => {
             panelPersoChoix.quantity = quanteModifiableProductInput;
             qtyTotal();
             prixTtlPrProduit (); 
+
             
             // prixTotal ();
             localStorage.setItem("panier", JSON.stringify(majcart));
@@ -166,7 +167,7 @@ const fetchEtVisualSection = async () => {
     qtyTotal();
 
     // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
-    const prixElemt =  parseInt(dataPanier.price)
+const prixElemt =  parseInt(dataPanier.price)
     const tableauCalculTest = [];
 
     function prixTtlPrProduit () {
@@ -175,7 +176,7 @@ const fetchEtVisualSection = async () => {
       console.log(prixElemt)
       console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
       console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))
-      const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+  const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
       console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
       console.log(vlueQtenumerisee, prixElemt)
       const calculTest = vlueQtenumerisee * prixElemt
