@@ -88,13 +88,6 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    const tableo = [];
-    const lePrix = descriptonContenuCartItem.querySelector("p:last-child")
-    const valeurPrixProdt = lePrix.textContent;
-    const indvPrix = tableo.valeurPrixProdt;
-    // console.log(valeurPrixProd
-    const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
-
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
@@ -108,8 +101,7 @@ const fetchEtVisualSection = async () => {
             panelPersoChoix.quantity = quanteModifiableProductInput;
             qtyTotal();
             // prixTtlPrProduit (); 
-            // location.reload(true)
-            // document.querySelector("#totalPrice").innerHTML = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
+            // location.reload(true)           
 
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
@@ -146,41 +138,52 @@ const fetchEtVisualSection = async () => {
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")        
-      console.log(typeof(cartPanierGet[0].quantity), cartPanierGet[0].quantity)
+      // console.log(typeof(cartPanierGet[0].quantity), cartPanierGet[0].quantity)
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);   
-      console.log(typeof(affichTotalQuantity), affichTotalQuantity)
+      // console.log(typeof(affichTotalQuantity), affichTotalQuantity)
       const quantiteTotaleParsee = parseInt(affichTotalQuantity)       
-      console.log("qtetotlParsée", typeof(quantiteTotaleParsee), quantiteTotaleParsee)
+      // console.log("qtetotlParsée", typeof(quantiteTotaleParsee), quantiteTotaleParsee)
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
     }     
     qtyTotal();
 
     // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
-const prixElemt =  parseInt(dataPanier.price)
+    const prixElemt =  parseInt(dataPanier.price)
+    console.log(prixElemt
+      )
     const tableauCalculTest = [];
 
-    function prixTtlPrProduit () {
-      
+    function prixTtlPrProduit () {      
       console.log(prixElemt)
-      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-      console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
+      // console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+      // console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
       console.log(vlueQtenumerisee, prixElemt)
       const calculTest = vlueQtenumerisee * prixElemt
       console.log(calculTest)
-      tableauCalculTest;
+      console.log(tableauCalculTest);
       tableauCalculTest.push(calculTest)
       console.log(tableauCalculTest)
     }
     prixTtlPrProduit ();
 
+    const leTabloDeTableau = [] 
+
     function prixTotal () {    
+      for (let selections = 0; selections < cartPanierGet.length; selections++) {
+        const qteSelections = cartPanierGet[selections].quantity
+        console.log(qteSelections)
+        console.log(prixElemt)
+      }
+      
       const caseTotalPrice = document.querySelector("#totalPrice");
       console.log(tableauCalculTest)
+      leTabloDeTableau.push(tableauCalculTest)
+      // console.log(leTabloDeTableau)
       const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
       caseTotalPrice.innerHTML = lePrixTotal.toString();
-
+      
     }
     prixTotal ();
             
