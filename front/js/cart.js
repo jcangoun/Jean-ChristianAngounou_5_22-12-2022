@@ -95,17 +95,8 @@ const fetchEtVisualSection = async () => {
     // console.log(valeurPrixProd
     const prixDescendt = document.querySelector(".cart #cart__items .cart__item .cart__item__content__description p:last-child")         
 
-
-    // const tablo = [];
-    // console.log(tablo)
-    // for  (let elDataPan =0; elDataPan < dataPanier.length; elDataPan++) {
-    //   tablo.push(elDataPan)
-    //   console.log("tablo",tablo)
-    //   console.log("eldata", elDataPan)
-    // }   
-
     const modifQuantite = () => {
-      const allArticleQuantiteInput = document.querySelectorAll('.itemQuantity');
+      const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
       // console.log(majcart);
      
@@ -116,10 +107,10 @@ const fetchEtVisualSection = async () => {
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
             qtyTotal();
-            prixTtlPrProduit (); 
+            // prixTtlPrProduit (); 
+            // location.reload(true)
+            // document.querySelector("#totalPrice").innerHTML = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
 
-            
-            // prixTotal ();
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
         });
@@ -154,13 +145,11 @@ const fetchEtVisualSection = async () => {
  
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
-      const caseTotalQty = document.querySelector("#totalQuantity")  
-      
+      const caseTotalQty = document.querySelector("#totalQuantity")        
       console.log(typeof(cartPanierGet[0].quantity), cartPanierGet[0].quantity)
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);   
       console.log(typeof(affichTotalQuantity), affichTotalQuantity)
-      const quantiteTotaleParsee = parseInt(affichTotalQuantity) 
-      
+      const quantiteTotaleParsee = parseInt(affichTotalQuantity)       
       console.log("qtetotlParsée", typeof(quantiteTotaleParsee), quantiteTotaleParsee)
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
     }     
@@ -171,12 +160,11 @@ const prixElemt =  parseInt(dataPanier.price)
     const tableauCalculTest = [];
 
     function prixTtlPrProduit () {
-      // prixtotalparprodt = vlueQtenumerisee * dataPanier.price;
       
       console.log(prixElemt)
-      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))
-      console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))
-  const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+      console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
+    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
       console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
       console.log(vlueQtenumerisee, prixElemt)
       const calculTest = vlueQtenumerisee * prixElemt
@@ -190,15 +178,13 @@ const prixElemt =  parseInt(dataPanier.price)
     function prixTotal () {    
       const caseTotalPrice = document.querySelector("#totalPrice");
       console.log(tableauCalculTest)
-      const totalPrice = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
-      caseTotalPrice.innerHTML = tableauCalculTest.toString();
-      // prixTtlPrProduit ();
-      
-      // modifQuantite();
-    }
+      const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
+      caseTotalPrice.innerHTML = lePrixTotal.toString();
 
+    }
     prixTotal ();
             
+
     //   function panierFinal () {
     //     console.log("bam")
     //     // const cartPanierGet = JSON.parse(localStorage.getItem("panier"))
@@ -218,8 +204,7 @@ const prixElemt =  parseInt(dataPanier.price)
     const nom = document.querySelector("#lastName").value
     const adresse =  document.querySelector("#address").value          
     const ville = document.querySelector("#city").value
-    const email = document.querySelector("#email").value
- 
+    const email = document.querySelector("#email").value 
 
 
 
@@ -262,14 +247,12 @@ const prixElemt =  parseInt(dataPanier.price)
     } 
     boutonPanierComander ();
   }
-    // const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
-    // const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-    // console.log(lePrix)
-    // const valeurPrixProdt = lePrix.textContent;
-    // console.log(valeurPrixProdt)
-  // for (let entrees = 0; entrees < allArticlePrixInput.length; entrees++) {
-  //   console.log(entrees)
-  // }
+    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
+    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+    console.log(lePrix)
+    const valeurPrixProdt = lePrix.textContent;
+    console.log(valeurPrixProdt)
+
 };
 
 // tous les éléments de l'user a envoyer au serveur
