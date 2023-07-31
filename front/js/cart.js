@@ -23,6 +23,9 @@ const fetchEtVisualSection = async () => {
     
     const dataPanier = await response.json();
 
+
+    console.log("dataPanier",typeof(dataPanier.price), "produit.name >", produitPanier.name, typeof(produitPanier.quantity))
+    console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name , produitPanier.quantity)
     const detailArticl = document.createElement('article');
     detailArticl.classList.add('cart__item');
     detailArticl.setAttribute('data-id', `${dataPanier._id}`);
@@ -108,7 +111,6 @@ const fetchEtVisualSection = async () => {
         });
       });
     };
-
     // Et j'appele en bas la fonction de modification de la quantite. 
     modifQuantite();
 
@@ -138,20 +140,22 @@ const fetchEtVisualSection = async () => {
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")        
-      // console.log(typeof(cartPanierGet[0].quantity), cartPanierGet[0].quantity)
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);   
-      // console.log(typeof(affichTotalQuantity), affichTotalQuantity)
       const quantiteTotaleParsee = parseInt(affichTotalQuantity)       
-      // console.log("qtetotlParsée", typeof(quantiteTotaleParsee), quantiteTotaleParsee)
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
     }     
     qtyTotal();
 
     // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     const prixElemt =  parseInt(dataPanier.price)
-    console.log(prixElemt
-      )
+
+
     const tableauCalculTest = [];
+    function calculTest (vlueQtenumerisee, prixElemt) {
+      const calculTest = vlueQtenumerisee * prixElemt;
+      return calculTest
+
+    }
 
     function prixTtlPrProduit () {      
       console.log(prixElemt)
@@ -160,29 +164,51 @@ const fetchEtVisualSection = async () => {
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
       // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
       console.log(vlueQtenumerisee, prixElemt)
-      const calculTest = vlueQtenumerisee * prixElemt
-      console.log(calculTest)
+      // console.log(calculTest)
       console.log(tableauCalculTest);
-      tableauCalculTest.push(calculTest)
+      calculTest();
+      // tableauCalculTest.push(calculTest)
+
       console.log(tableauCalculTest)
     }
     prixTtlPrProduit ();
 
     const leTabloDeTableau = [] 
+    
+    console.log("datapanier1", prixElemt, dataPanier.name,)
 
     function prixTotal () {    
       for (let selections = 0; selections < cartPanierGet.length; selections++) {
         const qteSelections = cartPanierGet[selections].quantity
-        console.log(qteSelections)
-        console.log(prixElemt)
+        console.log(cartPanierGet[selections]._id, cartPanierGet[selections].name, qteSelections)
+        console.log("datapanier", prixElemt, dataPanier.name,)
+        
       }
       
       const caseTotalPrice = document.querySelector("#totalPrice");
+
+      console.log(prixElemt)
+      // console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+      // console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
+    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+
+      // console.log(vlueQtenumerisee, prixElemt)
+      // const calculTest = vlueQtenumerisee * prixElemt
+
+      // console.log(calculTest)
+      // console.log(tableauCalculTest);
+      // tableauCalculTest.push(calculTest)
+      // console.log(tableauCalculTest)
+
       console.log(tableauCalculTest)
       leTabloDeTableau.push(tableauCalculTest)
       // console.log(leTabloDeTableau)
-      const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
-      caseTotalPrice.innerHTML = lePrixTotal.toString();
+      // const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
+      // caseTotalPrice.innerHTML = lePrixTotal.toString();
+
+
+      caseTotalPrice.innerHTML = "2";
       
     }
     prixTotal ();
@@ -197,10 +223,6 @@ const fetchEtVisualSection = async () => {
     // }
     //   panierFinal();
 
-
-    // zone de test
-    // Quand j'aurai fini la configuration du bouton panierCommander je mettrai modifQuantite ci dessus , et ben dans functi boutoncommandeur
-    
     // là je vais tester les funstions pour les input regex
 
     const prenom =document.querySelector("#firstName").value
@@ -252,9 +274,11 @@ const fetchEtVisualSection = async () => {
   }
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-    console.log(lePrix)
-    const valeurPrixProdt = lePrix.textContent;
-    console.log(valeurPrixProdt)
+
+    // Ici on devrait avoir tous les produits sous condition de promesses
+    // for (let ess = 0; ess < dataPanier.length; ess++) {
+    //   console.log(ess)
+    // }
 
 };
 
