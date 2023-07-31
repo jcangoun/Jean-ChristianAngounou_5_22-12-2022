@@ -148,14 +148,13 @@ const fetchEtVisualSection = async () => {
 
     // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     const prixElemt =  parseInt(dataPanier.price)
-
-
+    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
     const tableauCalculTest = [];
-    function calculTest (vlueQtenumerisee, prixElemt) {
-      const calculTest = vlueQtenumerisee * prixElemt;
-      return calculTest
+    // function calculTest (vlueQtenumerisee, prixElemt) {
+    //   const calculTest = vlueQtenumerisee * prixElemt;
+    //   return calculTest
 
-    }
+    // }
 
     function prixTtlPrProduit () {      
       console.log(prixElemt)
@@ -166,10 +165,11 @@ const fetchEtVisualSection = async () => {
       console.log(vlueQtenumerisee, prixElemt)
       // console.log(calculTest)
       console.log(tableauCalculTest);
-      calculTest();
+      // calculTest();
       // tableauCalculTest.push(calculTest)
-
       console.log(tableauCalculTest)
+      const totlprixTypProduit = vlueQtenumerisee * prixElemt
+      return totlprixTypProduit
     }
     prixTtlPrProduit ();
 
@@ -177,7 +177,7 @@ const fetchEtVisualSection = async () => {
     
     console.log("datapanier1", prixElemt, dataPanier.name,)
 
-    function prixTotal () {    
+    function prixTotal (totlprixTypProduit, ) {    
       for (let selections = 0; selections < cartPanierGet.length; selections++) {
         const qteSelections = cartPanierGet[selections].quantity
         console.log(cartPanierGet[selections]._id, cartPanierGet[selections].name, qteSelections)
@@ -283,6 +283,7 @@ const fetchEtVisualSection = async () => {
 };
 
 // tous les éléments de l'user a envoyer au serveur
+
 
 
 // Affichage de toutes les procedures incluses quand on appele le fetch
