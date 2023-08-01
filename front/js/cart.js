@@ -169,8 +169,11 @@ const fetchEtVisualSection = async () => {
       console.log(tableauCalculTest)
       const totlprixTypProduit = vlueQtenumerisee * prixElemt
       console.log(totlprixTypProduit)
-
+      tableauCalculTest.push(totlprixTypProduit)
+      console.log(tableauCalculTest)
     console.log("datapanier1", prixElemt, dataPanier.name,)
+    tableauCalculTest.push(totlprixTypProduit)
+    console.log(tableauCalculTest)
 
     function prixTotal (totlprixTypProduit, ) {    
       for (let selections = 0; selections < cartPanierGet.length; selections++) {
