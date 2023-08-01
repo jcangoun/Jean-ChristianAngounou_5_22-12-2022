@@ -137,6 +137,7 @@ const fetchEtVisualSection = async () => {
       location.reload(true)
     });
  
+    
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")        
@@ -153,28 +154,22 @@ const fetchEtVisualSection = async () => {
     // function calculTest (vlueQtenumerisee, prixElemt) {
     //   const calculTest = vlueQtenumerisee * prixElemt;
     //   return calculTest
-
     // }
-
+    console.log(cartPanierGet)
     function prixTtlPrProduit () {      
-      console.log(prixElemt)
-      // console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-      // console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
-    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-      console.log(vlueQtenumerisee, prixElemt)
-      // console.log(calculTest)
-      console.log(tableauCalculTest);
-      // calculTest();
-      // tableauCalculTest.push(calculTest)
-      console.log(tableauCalculTest)
-      const totlprixTypProduit = vlueQtenumerisee * prixElemt
-      return totlprixTypProduit
     }
     prixTtlPrProduit ();
-
-    const leTabloDeTableau = [] 
     
+      console.log(prixElemt)
+      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+    // const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
+      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+      console.log(vlueQtenumerisee, prixElemt)
+
+      console.log(tableauCalculTest)
+      const totlprixTypProduit = vlueQtenumerisee * prixElemt
+      console.log(totlprixTypProduit)
+
     console.log("datapanier1", prixElemt, dataPanier.name,)
 
     function prixTotal (totlprixTypProduit, ) {    
@@ -202,7 +197,6 @@ const fetchEtVisualSection = async () => {
       // console.log(tableauCalculTest)
 
       console.log(tableauCalculTest)
-      leTabloDeTableau.push(tableauCalculTest)
       // console.log(leTabloDeTableau)
       // const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
       // caseTotalPrice.innerHTML = lePrixTotal.toString();
@@ -211,8 +205,7 @@ const fetchEtVisualSection = async () => {
       caseTotalPrice.innerHTML = "2";
       
     }
-    prixTotal ();
-            
+    prixTotal ();            
 
     //   function panierFinal () {
     //     console.log("bam")
@@ -238,14 +231,12 @@ const fetchEtVisualSection = async () => {
       ajoutBtn.addEventListener('click', function(e) {
       console.log('ca paniasse');
       e.preventDefault();
-  
       // modifQuantite ();
 
       function noNumber () { }
       function prenomComposed () {}
       function addresseValide () {}
       function contientMajuscule () {}
-
 
       // valeurs du formulaire dans contact 
         const contact = {
@@ -268,7 +259,6 @@ const fetchEtVisualSection = async () => {
       
       });
   
-
     } 
     boutonPanierComander ();
   }
@@ -283,7 +273,6 @@ const fetchEtVisualSection = async () => {
 };
 
 // tous les éléments de l'user a envoyer au serveur
-
 
 
 // Affichage de toutes les procedures incluses quand on appele le fetch
