@@ -160,30 +160,22 @@ const fetchEtVisualSection = async () => {
     const prixElemt =  parseInt(dataPanier.price)
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
     const tableauCalculTest = [];
-    // function calculTest (vlueQtenumerisee, prixElemt) {
-    //   const calculTest = vlueQtenumerisee * prixElemt;
-    //   return calculTest
-    // }
+
     console.log(cartPanierGet)
-    // function prixTtlPrProduit () {      
-    // }
-    // prixTtlPrProduit ();
+
     const testtable = [];
     testtable.push(prixElemt)
-      console.log(testtable)
-      console.log(prixElemt)
-      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-    // const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-      console.log(vlueQtenumerisee, prixElemt)
+    console.log(testtable)
+    console.log(prixElemt)
+    console.log(vlueQtenumerisee, prixElemt)
+    console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+    console.log(tableauCalculTest)
+    const totlprixTypProduit = vlueQtenumerisee * prixElemt
+    console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
 
-      console.log(tableauCalculTest)
-      const totlprixTypProduit = vlueQtenumerisee * prixElemt
-      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-
-      console.log(totlprixTypProduit)
-      tableauCalculTest.push(totlprixTypProduit)
-      console.log(tableauCalculTest)
+    console.log(totlprixTypProduit)
+    tableauCalculTest.push(totlprixTypProduit)
+    console.log(tableauCalculTest)
     console.log("datapanier1", prixElemt, dataPanier.name,)
     tableauCalculTest.push(totlprixTypProduit)
     console.log(tableauCalculTest)
