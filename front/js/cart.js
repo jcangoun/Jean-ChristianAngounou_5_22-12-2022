@@ -1,5 +1,6 @@
 // recup des infos produits ici c'est l'id
 const info = window.location.search;
+
 const urlParams = new URLSearchParams(info);
 
 const paramIdDePage = urlParams.get("id");
@@ -8,7 +9,7 @@ const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 
 const carteArticle = document.querySelector('.cart > #cart__items');
 tableauPrix = [];
-
+totalPanier = [];
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
@@ -22,7 +23,15 @@ const fetchEtVisualSection = async () => {
     }
     
     const dataPanier = await response.json();
-
+    totalPanier.push(parseInt(dataPanier.price)) 
+    for (let u = 0; u < dataPanier.length; u++) {
+      lemDeTotalPanier = dataPanier[u]
+      console.log(lemDeTotalPanier)
+    }
+    // Ce consolelog ci dessous montre lde dernier
+     console.log(dataPanier)
+     console.log(produitPanier)
+     
 
     console.log("dataPanier",typeof(dataPanier.price), "produit.name >", produitPanier.name, typeof(produitPanier.quantity))
     console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name , produitPanier.quantity)
@@ -156,10 +165,12 @@ const fetchEtVisualSection = async () => {
     //   return calculTest
     // }
     console.log(cartPanierGet)
-    function prixTtlPrProduit () {      
-    }
-    prixTtlPrProduit ();
-    
+    // function prixTtlPrProduit () {      
+    // }
+    // prixTtlPrProduit ();
+    const testtable = [];
+    testtable.push(prixElemt)
+      console.log(testtable)
       console.log(prixElemt)
       console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
     // const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
@@ -168,6 +179,8 @@ const fetchEtVisualSection = async () => {
 
       console.log(tableauCalculTest)
       const totlprixTypProduit = vlueQtenumerisee * prixElemt
+      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+
       console.log(totlprixTypProduit)
       tableauCalculTest.push(totlprixTypProduit)
       console.log(tableauCalculTest)
@@ -175,58 +188,47 @@ const fetchEtVisualSection = async () => {
     tableauCalculTest.push(totlprixTypProduit)
     console.log(tableauCalculTest)
 
-    function prixTotal (totlprixTypProduit, ) {    
-      for (let selections = 0; selections < cartPanierGet.length; selections++) {
-        const qteSelections = cartPanierGet[selections].quantity
-        console.log(cartPanierGet[selections]._id, cartPanierGet[selections].name, qteSelections)
-        console.log("datapanier", prixElemt, dataPanier.name,)
-        
-      }
-      
+  
       const caseTotalPrice = document.querySelector("#totalPrice");
 
-      console.log(prixElemt)
-      // console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-      // console.log("resultatValeurQuantite.value =", typeof(resultatValeurQuantite.value), "/", "dataPanier =", typeof(prixElemt))  
-    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
 
-      // console.log(vlueQtenumerisee, prixElemt)
-      // const calculTest = vlueQtenumerisee * prixElemt
+      // vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
 
-      // console.log(calculTest)
-      // console.log(tableauCalculTest);
-      // tableauCalculTest.push(calculTest)
-      // console.log(tableauCalculTest)
-
-      console.log(tableauCalculTest)
-      // console.log(leTabloDeTableau)
-      // const lePrixTotal = tableauCalculTest.reduce((acc, curr) => acc + curr, 0);            
-      // caseTotalPrice.innerHTML = lePrixTotal.toString();
-
-
-      caseTotalPrice.innerHTML = "2";
-      
-    }
-    prixTotal ();            
-
-    //   function panierFinal () {
-    //     console.log("bam")
-    //     // const cartPanierGet = JSON.parse(localStorage.getItem("panier"))
-    //     // cartPanierGet;
-            
-    //     console.log("bout")
-    // }
-    //   panierFinal();
+      console.log(typeof(totlprixTypProduit));
+      caseTotalPrice.innerHTML = totlprixTypProduit;      
 
     // là je vais tester les funstions pour les input regex
 
+    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+    function pasDeChiffres (value) {
+      return /^\D*$/.test(value);
+    }
+    // Je créé là une fonction la partie du form qui sera composé de un prénom ou alors de deux ou plusieurs prénoms composés
+    // avec un tiret 
+    function prenomCompose (value) {
+      return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
+    }
+    
+    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+    function addresseValide(value) {
+      return /^[0-9\s\p{Lu}]+$/.test(value);
+    }
+
+    // 
+    function debutdeMAjuscule(value) {
+      return /^[A-Z]+$/.test(value) 
+    }
+    
+    function aSymbole () {
+      return /@/.test(value);
+    }
+
+    const form = document.querySelector("cart__order__form");
     const prenom =document.querySelector("#firstName").value
     const nom = document.querySelector("#lastName").value
     const adresse =  document.querySelector("#address").value          
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
-
 
 
     function boutonPanierComander () {
@@ -267,6 +269,13 @@ const fetchEtVisualSection = async () => {
   }
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+  // console.log(dataPanier)
+  console.log(cartPanierGet)
+  console.log(totalPanier)
+  totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  console.log("juste exemple total", totalPanier[0] + totalPanier[1])
+const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(totalSupreme)
 
     // Ici on devrait avoir tous les produits sous condition de promesses
     // for (let ess = 0; ess < dataPanier.length; ess++) {
