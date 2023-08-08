@@ -30,6 +30,7 @@ const fetchEtVisualSection = async () => {
     }
     // Ce consolelog ci dessous montre lde dernier
      console.log(dataPanier)
+     console.log(totalPanier)
      console.log(produitPanier)
      
 
@@ -111,6 +112,9 @@ const fetchEtVisualSection = async () => {
           const panelPersoChoix = majcart[index];
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
+
+
+            
             qtyTotal();
             // prixTtlPrProduit (); 
             // location.reload(true)           
@@ -153,10 +157,10 @@ const fetchEtVisualSection = async () => {
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);   
       const quantiteTotaleParsee = parseInt(affichTotalQuantity)       
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString())
+      // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     }     
     qtyTotal();
 
-    // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     const prixElemt =  parseInt(dataPanier.price)
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
     const tableauCalculTest = [];
@@ -165,29 +169,21 @@ const fetchEtVisualSection = async () => {
 
     const testtable = [];
     testtable.push(prixElemt)
-    console.log(testtable)
-    console.log(prixElemt)
-    console.log(vlueQtenumerisee, prixElemt)
-    console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-    console.log(tableauCalculTest)
-    const totlprixTypProduit = vlueQtenumerisee * prixElemt
-    console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-
-    console.log(totlprixTypProduit)
-    tableauCalculTest.push(totlprixTypProduit)
-    console.log(tableauCalculTest)
+      console.log(testtable)
+      console.log(prixElemt)
+      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+      console.log(vlueQtenumerisee, prixElemt)
+      console.log(tableauCalculTest)
+      const totlprixTypProduit = vlueQtenumerisee * prixElemt
+      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+      console.log(totlprixTypProduit)
     console.log("datapanier1", prixElemt, dataPanier.name,)
     tableauCalculTest.push(totlprixTypProduit)
     console.log(tableauCalculTest)
+    console.log(totalPanier)
+    totalPanier = [];
+    // const totalPanierTotauxPrix; 
 
-  
-      const caseTotalPrice = document.querySelector("#totalPrice");
-
-
-      // vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-
-      console.log(typeof(totlprixTypProduit));
-      caseTotalPrice.innerHTML = totlprixTypProduit;      
 
     // là je vais tester les funstions pour les input regex
 
@@ -222,6 +218,9 @@ const fetchEtVisualSection = async () => {
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
 
+    // form.addEventListener('click', function() {
+    //   console.log("ah form marche");
+    // })
 
     function boutonPanierComander () {
       const ajoutBtn = document.querySelector('#order');
@@ -264,15 +263,18 @@ const fetchEtVisualSection = async () => {
   // console.log(dataPanier)
   console.log(cartPanierGet)
   console.log(totalPanier)
+  function toutTotalPrix () {
   totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  console.log("juste exemple total", totalPanier[0] + totalPanier[1])
+  console.log(totalPanier[0] + totalPanier[1])
 const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log(totalSupreme)
+    
+const caseTotalPrice = document.querySelector("#totalPrice");
+caseTotalPrice.innerHTML = totalSupreme;
+  }
+  toutTotalPrix ();
 
-    // Ici on devrait avoir tous les produits sous condition de promesses
-    // for (let ess = 0; ess < dataPanier.length; ess++) {
-    //   console.log(ess)
-    // }
+
 
 };
 
