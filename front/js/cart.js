@@ -21,9 +21,10 @@ const fetchEtVisualSection = async () => {
     if (!response.ok) {
       throw new Error('Il y a une erreur lors de la récupération des données.');
     }
-    
     const dataPanier = await response.json();
+    
     totalPanier.push(parseInt(dataPanier.price)) 
+
     for (let u = 0; u < dataPanier.length; u++) {
       lemDeTotalPanier = dataPanier[u]
       console.log(lemDeTotalPanier)
@@ -33,7 +34,6 @@ const fetchEtVisualSection = async () => {
      console.log(totalPanier)
      console.log(produitPanier)
      
-
     console.log("dataPanier",typeof(dataPanier.price), "produit.name >", produitPanier.name, typeof(produitPanier.quantity))
     console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name , produitPanier.quantity)
     const detailArticl = document.createElement('article');
@@ -170,18 +170,18 @@ const fetchEtVisualSection = async () => {
     const testtable = [];
     testtable.push(prixElemt)
       console.log(testtable)
-      console.log(prixElemt)
+      // console.log(prixElemt)
       console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-      console.log(vlueQtenumerisee, prixElemt)
-      console.log(tableauCalculTest)
+      // console.log(vlueQtenumerisee, prixElemt)
+      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+      // console.log(tableauCalculTest)
       const totlprixTypProduit = vlueQtenumerisee * prixElemt
-      console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-      console.log(totlprixTypProduit)
+      // console.log(totlprixTypProduit)
     console.log("datapanier1", prixElemt, dataPanier.name,)
     tableauCalculTest.push(totlprixTypProduit)
     console.log(tableauCalculTest)
     console.log(totalPanier)
-    totalPanier = [];
+
     // const totalPanierTotauxPrix; 
 
 
@@ -221,6 +221,22 @@ const fetchEtVisualSection = async () => {
     // form.addEventListener('click', function() {
     //   console.log("ah form marche");
     // })
+    const tableauPrixFinal = [];
+    // Ici ca prend les vlue et prixElement
+    for(let prod = 0; prod < totalPanier.length; prod++) {
+      const prixCatProdt = totalPanier[prod]
+      
+      // console.log(prixCatProdt)
+      // console.log(prixElemt)
+
+      // console.log(vlueQtenumerisee)
+      const finalPrice = prixCatProdt * vlueQtenumerisee
+      console.log(finalPrice)
+      tableauPrixFinal.push(finalPrice)
+    }
+    console.log("tablo final",tableauPrixFinal)
+    totalPanier = tableauPrixFinal;
+    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
 
     function boutonPanierComander () {
       const ajoutBtn = document.querySelector('#order');
@@ -257,12 +273,15 @@ const fetchEtVisualSection = async () => {
   
     } 
     boutonPanierComander ();
+    
   }
+
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
   // console.log(dataPanier)
-  console.log(cartPanierGet)
-  console.log(totalPanier)
+  // console.log(cartPanierGet)
+  // console.log(totalPanier)
+
   function toutTotalPrix () {
   totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   console.log(totalPanier[0] + totalPanier[1])
