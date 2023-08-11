@@ -229,7 +229,7 @@ const fetchEtVisualSection = async () => {
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
-      console.log('ca paniasse');
+      // console.log('ca paniasse');
       e.preventDefault();
 
       function noNumber () { }
@@ -239,13 +239,36 @@ const fetchEtVisualSection = async () => {
 
       // // valeurs du formulaire dans contact 
         const contact = {
-        prénom: document.querySelector("#firstName").value,
+        prenom: document.querySelector("#firstName").value,
         nom: document.querySelector("#lastName").value,
         addresse: document.querySelector("#address").value,
         ville: document.querySelector("#city").value,
         email: document.querySelector("#email").value
       }
-        
+      // Vérif prénom voir le regex de de prenomcomposé là
+        if (pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
+          console.log(" prenom, hey ton prenom n'est pas seulement de lettre et ou de deux prenoms composés")
+          return;
+        } else {
+          console.log("prénom ok")
+        }
+
+        // verif nom
+        if (!pasDeChiffres(nom)) {
+          console.log(" nom,  le nom doit etre composé que de lettres") 
+          return;
+        } else {
+          console.log("nom ok")
+        }
+        // addresse
+        if (!addresseValide(addresse.value)) {
+          console.log("addresse, l'adresse doit contenir seulement des chiffres espaces et ou majuscules")
+          return;
+        } else {
+          console.log("addresse ok")
+        }
+
+        // ville
       localStorage.setItem("contact", JSON.stringify(contact))
 
       // Ici en bas je peux regrouper les objets que je dois transmettre
