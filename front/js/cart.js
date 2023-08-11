@@ -1,8 +1,6 @@
 // recup des infos produits ici c'est l'id
 const info = window.location.search;
-
 const urlParams = new URLSearchParams(info);
-
 const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
@@ -104,8 +102,7 @@ const fetchEtVisualSection = async () => {
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
-      // console.log(majcart);
-     
+      // console.log(majcart);     
       allArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener('change', function(e) {
           const quanteModifiableProductInput = e.target.value;
@@ -113,12 +110,15 @@ const fetchEtVisualSection = async () => {
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
 
-
+            // const changeQuantity = parseInt(panelPersoChoix.quantity)
+            // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+            // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
+            // console.log(typeof(prixDsBalisePrix))
+            // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
+            // console.log(onChangeSectionTotal)
             
             qtyTotal();
-            // prixTtlPrProduit (); 
-            // location.reload(true)           
-
+            
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
         });
@@ -150,7 +150,6 @@ const fetchEtVisualSection = async () => {
       location.reload(true)
     });
  
-    
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")        
@@ -163,31 +162,39 @@ const fetchEtVisualSection = async () => {
 
     const prixElemt =  parseInt(dataPanier.price)
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-    const tableauCalculTest = [];
 
     console.log(cartPanierGet)
 
-    const testtable = [];
-    testtable.push(prixElemt)
-      console.log(testtable)
       // console.log(prixElemt)
       console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
       // console.log(vlueQtenumerisee, prixElemt)
       // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-      // console.log(tableauCalculTest)
       const totlprixTypProduit = vlueQtenumerisee * prixElemt
-      // console.log(totlprixTypProduit)
+      console.log(totlprixTypProduit)
     console.log("datapanier1", prixElemt, dataPanier.name,)
-    tableauCalculTest.push(totlprixTypProduit)
-    console.log(tableauCalculTest)
     console.log(totalPanier)
 
-    // const totalPanierTotauxPrix; 
-
-
+    const tableauPrixFinal = [];
+    // Ici ca prend les vlue et prixElement
+    
+    for(let prod = 0; prod < totalPanier.length; prod++) {
+      const prixCatProdt = totalPanier[prod]
+      
+      console.log(prixCatProdt)
+      console.log(prixElemt)
+      
+      // console.log(vlueQtenumerisee)
+      const finalPrice = prixCatProdt * vlueQtenumerisee
+      console.log(vlueQtenumerisee, prixCatProdt, ' = ', finalPrice)
+      tableauPrixFinal.push(finalPrice)
+    }
+    totalPanier = tableauPrixFinal;
+    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
     // là je vais tester les funstions pour les input regex
 
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+    
+    
     function pasDeChiffres (value) {
       return /^\D*$/.test(value);
     }
@@ -221,29 +228,12 @@ const fetchEtVisualSection = async () => {
     // form.addEventListener('click', function() {
     //   console.log("ah form marche");
     // })
-    const tableauPrixFinal = [];
-    // Ici ca prend les vlue et prixElement
-    for(let prod = 0; prod < totalPanier.length; prod++) {
-      const prixCatProdt = totalPanier[prod]
-      
-      // console.log(prixCatProdt)
-      // console.log(prixElemt)
-
-      // console.log(vlueQtenumerisee)
-      const finalPrice = prixCatProdt * vlueQtenumerisee
-      console.log(finalPrice)
-      tableauPrixFinal.push(finalPrice)
-    }
-    console.log("tablo final",tableauPrixFinal)
-    totalPanier = tableauPrixFinal;
-    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
-
+    
     function boutonPanierComander () {
-      const ajoutBtn = document.querySelector('#order');
-      ajoutBtn.addEventListener('click', function(e) {
+      const commanderBtn = document.querySelector('#order');
+      commanderBtn.addEventListener('click', function(e) {
       console.log('ca paniasse');
       e.preventDefault();
-      // modifQuantite ();
 
       function noNumber () { }
       function prenomComposed () {}
@@ -261,7 +251,6 @@ const fetchEtVisualSection = async () => {
       }
       localStorage.setItem("contact", JSON.stringify(contact))
 
-
       // Ici en bas je peux regrouper les objets que je dois transmettre
       const userFormToSend = {
         cartPanierGet, contact
@@ -275,7 +264,7 @@ const fetchEtVisualSection = async () => {
     boutonPanierComander ();
     
   }
-
+  console.log("totalPnaier",totalPanier)
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
   // console.log(dataPanier)
