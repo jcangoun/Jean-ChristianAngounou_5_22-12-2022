@@ -218,17 +218,14 @@ const fetchEtVisualSection = async () => {
       return /@/.test(value);
     }
 
-    const form = document.querySelector("cart__order__form");
+    const form = document.querySelector("#order");
     const prenom =document.querySelector("#firstName").value
     const nom = document.querySelector("#lastName").value
     const adresse =  document.querySelector("#address").value          
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
 
-    // form.addEventListener('click', function() {
-    //   console.log("ah form marche");
-    // })
-    
+
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
@@ -240,15 +237,15 @@ const fetchEtVisualSection = async () => {
       function addresseValide () {}
       function contientMajuscule () {}
 
-      // valeurs du formulaire dans contact 
+      // // valeurs du formulaire dans contact 
         const contact = {
         prénom: document.querySelector("#firstName").value,
         nom: document.querySelector("#lastName").value,
         addresse: document.querySelector("#address").value,
         ville: document.querySelector("#city").value,
         email: document.querySelector("#email").value
-        
       }
+        
       localStorage.setItem("contact", JSON.stringify(contact))
 
       // Ici en bas je peux regrouper les objets que je dois transmettre
