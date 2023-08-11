@@ -201,7 +201,8 @@ const fetchEtVisualSection = async () => {
     // Je créé là une fonction la partie du form qui sera composé de un prénom ou alors de deux ou plusieurs prénoms composés
     // avec un tiret 
     function prenomCompose (value) {
-      return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
+      // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
+      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z]+)?/
     }
     
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
@@ -209,8 +210,8 @@ const fetchEtVisualSection = async () => {
       return /^[0-9\s\p{Lu}]+$/.test(value);
     }
 
+    function debutdeMajuscule(value) {
     // 
-    function debutdeMAjuscule(value) {
       return /^[A-Z]+$/.test(value) 
     }
     
@@ -246,29 +247,50 @@ const fetchEtVisualSection = async () => {
         email: document.querySelector("#email").value
       }
       // Vérif prénom voir le regex de de prenomcomposé là
-        if (pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
-          console.log(" prenom, hey ton prenom n'est pas seulement de lettre et ou de deux prenoms composés")
-          return;
-        } else {
-          console.log("prénom ok")
-        }
+      
+        // if (!pasDeChiffres(prenom.value) || prenomCompose(prenom.value)) {
+        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
 
-        // verif nom
-        if (!pasDeChiffres(nom)) {
-          console.log(" nom,  le nom doit etre composé que de lettres") 
-          return;
-        } else {
-          console.log("nom ok")
-        }
-        // addresse
-        if (!addresseValide(addresse.value)) {
-          console.log("addresse, l'adresse doit contenir seulement des chiffres espaces et ou majuscules")
-          return;
-        } else {
-          console.log("addresse ok")
-        }
+        //   return;
+        // } else if ( prenomCompose(prenom.value)){
+        //   console.log("prénom ok")
+        //   return
+        // }
 
-        // ville
+
+
+
+
+        
+        // // verif nom
+        // if (!pasDeChiffres(nom)) {
+        //   console.log(" nom,  le nom doit etre composé que de lettres") 
+ 
+        //   return;
+        // } else {
+        //   console.log("nom ok")
+        // }
+        // // addresse
+        // if (!addresseValide(addresse.value)) {
+        //   console.log("addresse, l'adresse doit contenir seulement des chiffres espaces et ou majuscules")
+
+        //   return;
+        // } else {
+        //   console.log("addresse ok")
+        // }
+
+        // // ville
+        // if(pasDeChiffres(ville.value) || !debutdeMajuscule(ville.value)) {
+        //   console.log("la ville doit contenir des lettres en majuscule")
+        //   return;
+        // }
+
+        // // email
+        // if (!aSymbole(email.value)) {
+
+        //   console.log("email pas arobase")
+        //   return;
+        // }
       localStorage.setItem("contact", JSON.stringify(contact))
 
       // Ici en bas je peux regrouper les objets que je dois transmettre
