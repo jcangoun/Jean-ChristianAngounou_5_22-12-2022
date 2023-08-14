@@ -109,20 +109,30 @@ const fetchEtVisualSection = async () => {
           const panelPersoChoix = majcart[index];
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
-
+            
+            // const tableauPrixFinal = [];
+            // console.log(tableauPrixFinal)
             // const changeQuantity = parseInt(panelPersoChoix.quantity)
             // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
             // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
             // console.log(typeof(prixDsBalisePrix))
             // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
             // console.log(onChangeSectionTotal)
+            // tableauPrixFinal.push(onChangeSectionTotal)
+            // console.log(tableauPrixFinal)
             
+
             qtyTotal();
+            toutTotalPrix ();
             
             localStorage.setItem("panier", JSON.stringify(majcart));
+          } else  {
+            
+            console.log("quantite client dejà egal qt input")
           }
         });
       });
+
     };
     // Et j'appele en bas la fonction de modification de la quantite. 
     modifQuantite();
@@ -159,42 +169,63 @@ const fetchEtVisualSection = async () => {
       // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     }     
     qtyTotal();
-
+    
+    //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
     const prixElemt =  parseInt(dataPanier.price)
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-
+    
     console.log(cartPanierGet)
-
-      // console.log(prixElemt)
-      console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
-      // console.log(vlueQtenumerisee, prixElemt)
-      // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
-      const totlprixTypProduit = vlueQtenumerisee * prixElemt
-      console.log(totlprixTypProduit)
+    // console.log(prixElemt)
+    console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
+    // console.log(vlueQtenumerisee, prixElemt)
+    // console.log(typeof(vlueQtenumerisee), typeof(prixElemt))
+    const totlprixTypProduit = vlueQtenumerisee * prixElemt
+    console.log(totlprixTypProduit)
     console.log("datapanier1", prixElemt, dataPanier.name,)
     console.log(totalPanier)
-
+    
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
     
     for(let prod = 0; prod < totalPanier.length; prod++) {
-      const prixCatProdt = totalPanier[prod]
-      
+      const prixCatProdt = totalPanier[prod]      
       console.log(prixCatProdt)
       console.log(prixElemt)
       
       // console.log(vlueQtenumerisee)
       const finalPrice = prixCatProdt * vlueQtenumerisee
       console.log(vlueQtenumerisee, prixCatProdt, ' = ', finalPrice)
+      console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
       tableauPrixFinal.push(finalPrice)
+      console.log(finalPrice)
     }
     totalPanier = tableauPrixFinal;
     console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
-    // là je vais tester les funstions pour les input regex
-
+    
+    console.log("totalPnaier",totalPanier)
+      const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
+      const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+    // console.log(dataPanier)
+    // console.log(cartPanierGet)
+    // console.log(totalPanier)
+    
+    function toutTotalPrix () {
+    totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(totalPanier[0] + totalPanier[1])
+    const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(totalSupreme)
+      
+    const caseTotalPrice = document.querySelector("#totalPrice");
+    caseTotalPrice.innerHTML = totalSupreme;
+    
+    
+    }
+    toutTotalPrix ();
+    
+    
+    // là je vais tester les funstions pour les input regex ------------------------------------------------------
+    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    
-    
     function pasDeChiffres (value) {
       return /^\D*$/.test(value);
     }
@@ -202,14 +233,12 @@ const fetchEtVisualSection = async () => {
     // avec un tiret 
     function prenomCompose (value) {
       // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
-      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z]+)?/
-    }
-    
+      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/
+    }    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
     function addresseValide(value) {
       return /^[0-9\s\p{Lu}]+$/.test(value);
     }
-
     function debutdeMajuscule(value) {
     // 
       return /^[A-Z]+$/.test(value) 
@@ -239,58 +268,25 @@ const fetchEtVisualSection = async () => {
       function contientMajuscule () {}
 
       // // valeurs du formulaire dans contact 
-        const contact = {
-        prenom: document.querySelector("#firstName").value,
-        nom: document.querySelector("#lastName").value,
-        addresse: document.querySelector("#address").value,
-        ville: document.querySelector("#city").value,
-        email: document.querySelector("#email").value
-      }
+      //   const contact = {
+      //   prenom: document.querySelector("#firstName").value,
+      //   nom: document.querySelector("#lastName").value,
+      //   addresse: document.querySelector("#address").value,
+      //   ville: document.querySelector("#city").value,
+      //   email: document.querySelector("#email").value
+      // }
       // Vérif prénom voir le regex de de prenomcomposé là
       
-        // if (!pasDeChiffres(prenom.value) || prenomCompose(prenom.value)) {
-        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
+        if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
+          console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
 
-        //   return;
-        // } else if ( prenomCompose(prenom.value)){
-        //   console.log("prénom ok")
-        //   return
-        // }
-
-
+          return;
+        } else if ( prenomCompose(prenom.value)){
+          console.log("prénom ok")
+          return
+        }
 
 
-
-        
-        // // verif nom
-        // if (!pasDeChiffres(nom)) {
-        //   console.log(" nom,  le nom doit etre composé que de lettres") 
- 
-        //   return;
-        // } else {
-        //   console.log("nom ok")
-        // }
-        // // addresse
-        // if (!addresseValide(addresse.value)) {
-        //   console.log("addresse, l'adresse doit contenir seulement des chiffres espaces et ou majuscules")
-
-        //   return;
-        // } else {
-        //   console.log("addresse ok")
-        // }
-
-        // // ville
-        // if(pasDeChiffres(ville.value) || !debutdeMajuscule(ville.value)) {
-        //   console.log("la ville doit contenir des lettres en majuscule")
-        //   return;
-        // }
-
-        // // email
-        // if (!aSymbole(email.value)) {
-
-        //   console.log("email pas arobase")
-        //   return;
-        // }
       localStorage.setItem("contact", JSON.stringify(contact))
 
       // Ici en bas je peux regrouper les objets que je dois transmettre
@@ -306,23 +302,6 @@ const fetchEtVisualSection = async () => {
     boutonPanierComander ();
     
   }
-  console.log("totalPnaier",totalPanier)
-    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
-    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-  // console.log(dataPanier)
-  // console.log(cartPanierGet)
-  // console.log(totalPanier)
-
-  function toutTotalPrix () {
-  totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  console.log(totalPanier[0] + totalPanier[1])
-const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-console.log(totalSupreme)
-    
-const caseTotalPrice = document.querySelector("#totalPrice");
-caseTotalPrice.innerHTML = totalSupreme;
-  }
-  toutTotalPrix ();
 
 
 
