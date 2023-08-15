@@ -8,6 +8,7 @@ const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 const carteArticle = document.querySelector('.cart > #cart__items');
 tableauPrix = [];
 totalPanier = [];
+let totalChange = [];
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
@@ -111,11 +112,10 @@ const fetchEtVisualSection = async () => {
             panelPersoChoix.quantity = quanteModifiableProductInput;
             
             // const tableauPrixFinal = [];
-            console.log(tableauPrixFinal)
+            // console.log(tableauPrixFinal)
             const changeQuantity = parseInt(panelPersoChoix.quantity)
             const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
             const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
-
             const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
             console.log(onChangeSectionTotal)
             console.log(baliseChangePrix)
@@ -124,7 +124,8 @@ const fetchEtVisualSection = async () => {
             console.log("totaPrix", caseTotalPrice.textContent)
             caseTotalPrice.innerHTML = ""
             console.log("totaPrix", caseTotalPrice.textContent)
-            caseTotalPrice.innerHTML = onChangeSectionTotal
+            caseTotalPrice.innerHTML = "2"
+            console.log(caseTotalPrice.textContent)
             
             // tableauPrixFinal.push(onChangeSectionTotal)
             // console.log(tableauPrixFinal)
@@ -136,6 +137,7 @@ const fetchEtVisualSection = async () => {
             
             console.log("quantite client dejà egal qt input")
           }
+          
         });
       });
 
@@ -178,35 +180,35 @@ const fetchEtVisualSection = async () => {
     
     //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
     const prixElemt =  parseInt(dataPanier.price)
-    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)
-    
-    // console.log(prixElemt)
+    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value)    
     console.log(typeof(resultatValeurQuantite.value), typeof(dataPanier))      
     const totlprixTypProduit = vlueQtenumerisee * prixElemt
     console.log(totlprixTypProduit)
     console.log("datapanier1", prixElemt, dataPanier.name,)
     console.log(totalPanier)
     
+    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
+    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+  // console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
+  
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
     
     for(let prod = 0; prod < totalPanier.length; prod++) {
-      const prixCatProdt = totalPanier[prod]      
-      
+      const prixCatProdt = totalPanier[prod]            
       // console.log(vlueQtenumerisee)
+
       const finalPrice = prixCatProdt * vlueQtenumerisee
       console.log(vlueQtenumerisee, prixCatProdt, ' = ', finalPrice)
       console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
       tableauPrixFinal.push(finalPrice)
       console.log(finalPrice)
       console.log(tableauPrixFinal)
+
     }
     totalPanier = tableauPrixFinal;
-    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)    
-      const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
-      const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-    // console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
-
+    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)  
+      
     function toutTotalPrix () {
     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     console.log(totalPanier[0] + totalPanier[1])
