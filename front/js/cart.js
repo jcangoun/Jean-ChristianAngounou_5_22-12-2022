@@ -189,14 +189,13 @@ const fetchEtVisualSection = async () => {
     
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-  // console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
+  console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
   
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
     
     for(let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod]            
-      // console.log(vlueQtenumerisee)
 
       const finalPrice = prixCatProdt * vlueQtenumerisee
       console.log(vlueQtenumerisee, prixCatProdt, ' = ', finalPrice)
@@ -207,7 +206,7 @@ const fetchEtVisualSection = async () => {
 
     }
     totalPanier = tableauPrixFinal;
-    console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)  
+    console.log("totalPanier",totalPanier,"egal", "tableauPrixFinal" , tableauPrixFinal)  
       
     function toutTotalPrix () {
     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -217,8 +216,8 @@ const fetchEtVisualSection = async () => {
       
     const caseTotalPrice = document.querySelector("#totalPrice");
     caseTotalPrice.innerHTML = totalSupreme;
-    
-    
+    // caseTotalPrice.innerHTML = "4";
+        
     }
     toutTotalPrix ();
     
@@ -267,24 +266,25 @@ const fetchEtVisualSection = async () => {
       function addresseValide () {}
       function contientMajuscule () {}
 
-      // // valeurs du formulaire dans contact 
-      //   const contact = {
-      //   prenom: document.querySelector("#firstName").value,
-      //   nom: document.querySelector("#lastName").value,
-      //   addresse: document.querySelector("#address").value,
-      //   ville: document.querySelector("#city").value,
-      //   email: document.querySelector("#email").value
-      // }
+      
+      // valeurs du formulaire qui seront sauvegardés dans contact 
+        const contact = {
+        prenom: document.querySelector("#firstName").value,
+        nom: document.querySelector("#lastName").value,
+        addresse: document.querySelector("#address").value,
+        ville: document.querySelector("#city").value,
+        email: document.querySelector("#email").value
+      }
       // Vérif prénom voir le regex de de prenomcomposé là
       
-        if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
-          console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
+        // if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
+        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
 
-          return;
-        } else if ( prenomCompose(prenom.value)){
-          console.log("prénom ok")
-          return
-        }
+        //   return;
+        // } else if ( prenomCompose(prenom.value)){
+        //   console.log("prénom ok")
+        //   return
+        // }
 
 
       localStorage.setItem("contact", JSON.stringify(contact))
