@@ -111,8 +111,9 @@ const fetchEtVisualSection = async () => {
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
             panelPersoChoix.quantity = quanteModifiableProductInput;
             
-            // const tableauPrixFinal = [];
-            // console.log(tableauPrixFinal)
+            let caseTotalPrice = document.querySelector("#totalPrice");
+            caseTotalPrice = ''
+            console.log(caseTotalPrice)
             // localStorage.getItem(JSON.parse('panier'))
             const changeQuantity = parseInt(panelPersoChoix.quantity)
             const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
@@ -124,9 +125,9 @@ const fetchEtVisualSection = async () => {
             totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
             console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
             const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log(totalPanier)
             console.log(totalSupreme)
               
-            let caseTotalPrice = document.querySelector("#totalPrice");
             console.log("totaPrix", caseTotalPrice.textContent)
             caseTotalPrice = `${totalSupreme}` 
             console.log(caseTotalPrice.textContent)
@@ -217,6 +218,7 @@ const fetchEtVisualSection = async () => {
     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(totalPanier)
     console.log(totalSupreme)
       
     const caseTotalPrice = document.querySelector("#totalPrice");
