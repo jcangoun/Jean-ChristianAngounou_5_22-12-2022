@@ -121,13 +121,11 @@ const fetchEtVisualSection = async () => {
             console.log(onChangeSectionTotal)
             console.log(baliseChangePrix)
             
-            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
-            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log(totalSupreme)
-              
-
-            
+            // totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            // console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+            // const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            // console.log(totalSupreme)
+                          
             let caseTotalPrice = document.querySelector("#totalPrice");
             // console.log("totaPrix", caseTotalPrice.textContent)
             // caseTotalPrice.innerHTML = ""
