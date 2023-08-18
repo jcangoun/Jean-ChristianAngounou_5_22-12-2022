@@ -121,14 +121,12 @@ const fetchEtVisualSection = async () => {
             console.log(onChangeSectionTotal)
             console.log(baliseChangePrix)
             
-            // totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            // console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
-            // const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            // console.log(totalSupreme)
-                          
+            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log(totalSupreme)
+              
             let caseTotalPrice = document.querySelector("#totalPrice");
-            // console.log("totaPrix", caseTotalPrice.textContent)
-            // caseTotalPrice.innerHTML = ""
             console.log("totaPrix", caseTotalPrice.textContent)
             caseTotalPrice = `${totalSupreme}` 
             console.log(caseTotalPrice.textContent)
@@ -143,7 +141,7 @@ const fetchEtVisualSection = async () => {
             
             console.log("quantite client dejà egal qt input")
           }
-          
+          location.reload(true)
         });
       });
 
@@ -209,6 +207,7 @@ const fetchEtVisualSection = async () => {
       tableauPrixFinal.push(finalPrice)
       console.log(finalPrice)
       console.log(tableauPrixFinal)
+
     }
     totalPanier = tableauPrixFinal;
     console.log("totalPanier",totalPanier,"egal", "tableauPrixFinal" , tableauPrixFinal)        
@@ -232,13 +231,13 @@ const fetchEtVisualSection = async () => {
     
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
     function pasDeChiffres (value) {
-      return /^\D*$/.test(value);
+      return /^[^\d]*$/.test(value);
     }
     // Je créé là une fonction la partie du form qui sera composé de un prénom ou alors de deux ou plusieurs prénoms composés
     // avec un tiret 
     function prenomCompose (value) {
       // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
-      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/
+      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
     }    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
     function addresseValide(value) {
@@ -260,19 +259,12 @@ const fetchEtVisualSection = async () => {
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
 
-
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
       // console.log('ca paniasse');
       e.preventDefault();
 
-      function noNumber () { }
-      function prenomComposed () {}
-      function addresseValide () {}
-      function contientMajuscule () {}
-
-      
       // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
         const contact = {
         prenom: document.querySelector("#firstName").value,
@@ -283,15 +275,13 @@ const fetchEtVisualSection = async () => {
       }
       // Vérif prénom voir le regex de de prenomcomposé là
       
-        // if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
-        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
-
-        //   return;
-        // } else if ( prenomCompose(prenom.value)){
-        //   console.log("prénom ok")
-        //   return
-        // }
-
+        if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
+          console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
+          return;
+        } else if ( prenomCompose(prenom.value) && (pasDeChiffres(prenom.value))){
+          console.log("prénom ok")
+          return
+        }
 
       localStorage.setItem("contact", JSON.stringify(contact))
 
@@ -300,8 +290,7 @@ const fetchEtVisualSection = async () => {
         cartPanierGet, contact
       }
       console.log("userFormToSend");
-      console.log(userFormToSend);
-      
+      console.log(userFormToSend);      
       });
   
     } 
