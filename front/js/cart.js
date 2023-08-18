@@ -113,6 +113,7 @@ const fetchEtVisualSection = async () => {
             
             // const tableauPrixFinal = [];
             // console.log(tableauPrixFinal)
+            // localStorage.getItem(JSON.parse('panier'))
             const changeQuantity = parseInt(panelPersoChoix.quantity)
             const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
             const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
@@ -120,18 +121,25 @@ const fetchEtVisualSection = async () => {
             console.log(onChangeSectionTotal)
             console.log(baliseChangePrix)
             
-            const caseTotalPrice = document.querySelector("#totalPrice");
+            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log(totalSupreme)
+              
+
+            
+            let caseTotalPrice = document.querySelector("#totalPrice");
+            // console.log("totaPrix", caseTotalPrice.textContent)
+            // caseTotalPrice.innerHTML = ""
             console.log("totaPrix", caseTotalPrice.textContent)
-            caseTotalPrice.innerHTML = ""
-            console.log("totaPrix", caseTotalPrice.textContent)
-            caseTotalPrice.innerHTML = "2"
+            caseTotalPrice = `${totalSupreme}` 
             console.log(caseTotalPrice.textContent)
             
             // tableauPrixFinal.push(onChangeSectionTotal)
-            // console.log(tableauPrixFinal)
-            
+            // console.log(tableauPrixFinal)            
             qtyTotal();
             // toutTotalPrix ();            
+            console.log("chargelocale")
             localStorage.setItem("panier", JSON.stringify(majcart));
           } else  {
             
@@ -193,7 +201,7 @@ const fetchEtVisualSection = async () => {
   
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
-    
+    console.log(totalPanier)
     for(let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod]            
 
@@ -203,14 +211,14 @@ const fetchEtVisualSection = async () => {
       tableauPrixFinal.push(finalPrice)
       console.log(finalPrice)
       console.log(tableauPrixFinal)
-
     }
     totalPanier = tableauPrixFinal;
-    console.log("totalPanier",totalPanier,"egal", "tableauPrixFinal" , tableauPrixFinal)  
-      
+    console.log("totalPanier",totalPanier,"egal", "tableauPrixFinal" , tableauPrixFinal)        
+    console.log(totalPanier)
+
     function toutTotalPrix () {
     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    console.log(totalPanier[0] + totalPanier[1])
+    console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     console.log(totalSupreme)
       
@@ -248,7 +256,7 @@ const fetchEtVisualSection = async () => {
     }
 
     const form = document.querySelector("#order");
-    const prenom =document.querySelector("#firstName").value
+    const prenom = document.querySelector("#firstName").value
     const nom = document.querySelector("#lastName").value
     const adresse =  document.querySelector("#address").value          
     const ville = document.querySelector("#city").value
@@ -267,7 +275,7 @@ const fetchEtVisualSection = async () => {
       function contientMajuscule () {}
 
       
-      // valeurs du formulaire qui seront sauvegardés dans contact 
+      // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
         const contact = {
         prenom: document.querySelector("#firstName").value,
         nom: document.querySelector("#lastName").value,
