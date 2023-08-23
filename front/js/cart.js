@@ -100,7 +100,60 @@ const fetchEtVisualSection = async () => {
     supprimerArticl.innerHTML = 'Supprimer';
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
-    
+    const modifQuantite = () => {
+      const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
+      const majcart = [...cartPanierGet];
+      // console.log(majcart);     
+      allArticleQuantiteInput.forEach((input, index) => {
+        input.addEventListener('change', function(e) {
+          const quanteModifiableProductInput = e.target.value;
+          const panelPersoChoix = majcart[index];
+          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {   
+            console.log("avantchargelocale")        
+            panelPersoChoix.quantity = quanteModifiableProductInput;
+            // if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+            //   "la, valeur d'input changée c'est egal à quantityLocal"
+            // }  
+
+            let caseTotalPrice = document.querySelector("#totalPrice");
+            caseTotalPrice = " "
+            console.log("case a ceci =", caseTotalPrice)
+            // localStorage.getItem(JSON.parse('panier'))
+            const changeQuantity = parseInt(panelPersoChoix.quantity)
+            const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+            const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
+            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
+            console.log(onChangeSectionTotal)
+            console.log(baliseChangePrix)
+            
+            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            console.log(totalPanier)
+            console.log(totalSupreme)
+              
+            console.log("totaPrix", caseTotalPrice.textContent)
+            caseTotalPrice = `${totalSupreme}` 
+            console.log(caseTotalPrice.textContent)
+            
+            // tableauPrixFinal.push(onChangeSectionTotal)
+            // console.log(tableauPrixFinal)            
+            qtyTotal();
+            // toutTotalPrix ();            
+            console.log("chargelocale")
+            localStorage.setItem("panier", JSON.stringify(majcart));
+          } else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+            
+            console.log("quantite client dejà egal qt input")
+          }
+          // location.reload(true)
+        });
+      });
+
+    };
+    // Et j'appele en bas la fonction de modification de la quantite. 
+    modifQuantite();
+
     // bouton supprimé créé ci dessous
     supprimerArticl.addEventListener('click', function () {
       console.log("ca supprime")
@@ -123,7 +176,7 @@ const fetchEtVisualSection = async () => {
       }                               
       location.reload(true)
     });
-    
+ 
     // C'est ici que je dois ajouter mes essais du btomm bouton 
     function qtyTotal () {
       const caseTotalQty = document.querySelector("#totalQuantity")        
@@ -145,89 +198,40 @@ const fetchEtVisualSection = async () => {
     
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description")
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-    console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
-    
+  console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier)
+  
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
     console.log(totalPanier)
     for(let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod]            
-      
+
       const finalPrice = prixCatProdt * vlueQtenumerisee
       console.log(vlueQtenumerisee, prixCatProdt, ' = ', finalPrice)
       console.log("totalPanier",totalPanier, "tableauPrixFinal" , tableauPrixFinal)
       tableauPrixFinal.push(finalPrice)
       console.log(finalPrice)
       console.log(tableauPrixFinal)
-      
+
     }
     totalPanier = tableauPrixFinal;
     console.log("totalPanier",totalPanier,"egal", "tableauPrixFinal" , tableauPrixFinal)        
     console.log(totalPanier)
-    
+
     function toutTotalPrix () {
-      totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-      console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
-      const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-      console.log(totalPanier)
-      console.log(totalSupreme)
+    totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+    const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(totalPanier)
+    console.log(totalSupreme)
       
-      const caseTotalPrice = document.querySelector("#totalPrice");
-      caseTotalPrice.innerHTML = totalSupreme;
-      // caseTotalPrice.innerHTML = "4";
-      
+    const caseTotalPrice = document.querySelector("#totalPrice");
+    caseTotalPrice.innerHTML = totalSupreme;
+    // caseTotalPrice.innerHTML = "4";
+        
     }
     toutTotalPrix ();
     
-    const modifQuantite = () => {
-      const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
-      const majcart = [...cartPanierGet];
-      // console.log(majcart);     
-      allArticleQuantiteInput.forEach((input, index) => {
-        input.addEventListener('change', function(e) {
-          const quanteModifiableProductInput = e.target.value;
-          const panelPersoChoix = majcart[index];
-          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {           
-            panelPersoChoix.quantity = quanteModifiableProductInput;
-            
-            let caseTotalPrice = document.querySelector("#totalPrice");
-            caseTotalPrice = ''
-            console.log(caseTotalPrice)
-            // localStorage.getItem(JSON.parse('panier'))
-            const changeQuantity = parseInt(panelPersoChoix.quantity)
-            const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-            const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
-            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
-            console.log(onChangeSectionTotal)
-            console.log(baliseChangePrix)
-            
-            // totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            // console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
-            // const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            // console.log(totalPanier)
-            // console.log(totalSupreme)
-              
-            // console.log("totaPrix", caseTotalPrice.textContent)
-            // caseTotalPrice = `${totalSupreme}` 
-            // console.log(caseTotalPrice.textContent)
-            
-            // tableauPrixFinal.push(onChangeSectionTotal)
-            // console.log(tableauPrixFinal)            
-            qtyTotal();
-            toutTotalPrix ();            
-            console.log("chargelocale")
-            localStorage.setItem("panier", JSON.stringify(majcart));
-          } else  {
-            
-            console.log("quantite client dejà egal qt input")
-          }
-          location.reload(true)
-        });
-      });
-
-    };
-    // Et j'appele en bas la fonction de modification de la quantite. 
-    modifQuantite();
     
     // là je vais tester les funstions pour les input regex ------------------------------------------------------
     
@@ -267,7 +271,7 @@ const fetchEtVisualSection = async () => {
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
-      console.log('ca paniasse');
+      // console.log('ca paniasse');
       e.preventDefault();
 
       // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
