@@ -109,22 +109,25 @@ const fetchEtVisualSection = async () => {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {   
-            console.log("avantchargelocale")        
+            // localStorage.setItem("panier", JSON.stringify('panier'))
+            console.log("avantchargelocale")
+            console.log(panelPersoChoix._id, panelPersoChoix.name)        
             panelPersoChoix.quantity = quanteModifiableProductInput;
+            console.log(panelPersoChoix._id, panelPersoChoix.name)        
             // if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
             //   "la, valeur d'input changée c'est egal à quantityLocal"
             // }  
 
             let caseTotalPrice = document.querySelector("#totalPrice");
             caseTotalPrice = " "
-            console.log("case a ceci =", caseTotalPrice)
+            console.log("case a ceci =", "' " + caseTotalPrice + "' ")
             // localStorage.getItem(JSON.parse('panier'))
             const changeQuantity = parseInt(panelPersoChoix.quantity)
             const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
             const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
             const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
-            console.log(onChangeSectionTotal)
             console.log(baliseChangePrix)
+            console.log(onChangeSectionTotal)
             
             totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
             console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
