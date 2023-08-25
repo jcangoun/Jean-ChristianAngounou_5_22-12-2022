@@ -150,7 +150,7 @@ const fetchEtVisualSection = async () => {
           console.log(totalPanier)
           localStorage.setItem("panier", JSON.stringify(majcart));
           }
-          // location.reload(true)
+          location.reload(true)
         });
       });
 
@@ -267,6 +267,7 @@ const fetchEtVisualSection = async () => {
     function pasDeChiffres (value) {
       return /\D*/.test(value);
     }
+
     function verifNom (value) {
       return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]/.test(value);
     }
@@ -276,53 +277,49 @@ const fetchEtVisualSection = async () => {
     // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
     // avec un tiret ou espace
     function prenomCompose (value) {
-      // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
-      return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
-    }  
-
-  
+   // return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
+      return /^[a-zéèïîçA-Z]+([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
+    }    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
     function addresseValide(value) {
-      return /[0-9\s\p{Lu}]/.test(value);
+      // return /[0-9\s\p{Lu}]/.test(value);
     }
     function debutdeMajuscule(value) {
-    // 
       return /^[A-Z]/.test(value) 
-    }
-    
+    }    
     function aSymbole (value) {
       return /[^a-zA-Z0-9_]/.test(value);
     }
     function arobase (value) {
       return /@/.test(value)
     }
-      // Vérif prénom voir le regex de de prenomcomposé là
-      
+
+    // Vérif prénom voir le regex de de prenomcomposé là      
     if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)){
       console.log(prenom.value)
-      const prenomError = document.getElementById('firstNameErrorMessage');
+      const prenomError = document.getElementById('firstNameErrorMsg');
       prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. "
     } else {
-      console.log("problmù")
+      console.log("autre about prenom")
+      // return;
     }
 
-
-
     // verif nom
-    if (!verifNom(nom.value) || (aSymbole(nom.value)) )
-    console.log(nom.value)
+    if (!verifNom(nom.value) || (aSymbole(nom.value)) ) {   
+       console.log(nom.value)
 
-    const nomError = document.getElementById('lastNameErrorMessage');
+    const nomError = document.getElementById('lastNameErrorMsg');
     nomError.textContent = "Vérifiez le nom écrit. Mauvais format "
-    
-        // if (!pasDeChiffres(prenom.value) || aSymbole(prenom.value)) {
-        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
-        //   return;
-        // } else if ( prenomCompose(prenom.value) && (pasDeChiffres(prenom.value)) && (!aSymbole(prenom.value))){
-        //   console.log("prénom ok")
-        //   return
-        // }
-        
+    }
+    // Continuer avec l'adresse valide
+
+    if (!addresseValide(adresse.value) || aSymbole(adresse.value)) {
+      const addresseError = document.getElementById('addressErrorMsg')
+      addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier"
+    }
+       
+
+    // if (!prenomCompose())
         // Ici en bas je peux regrouper les objets que je dois transmettre
         const userFormToSend = {
           cartPanierGet, contact
@@ -332,6 +329,8 @@ const fetchEtVisualSection = async () => {
 
         // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
         localStorage.setItem("contact", JSON.stringify(contact))
+
+        // const formulaireValide = 
       });
   
     } 
