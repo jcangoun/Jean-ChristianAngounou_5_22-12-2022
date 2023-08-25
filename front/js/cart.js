@@ -102,52 +102,53 @@ const fetchEtVisualSection = async () => {
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
+      const unArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
       // console.log(majcart);     
-      allArticleQuantiteInput.forEach((input, index) => {
+      unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener('change', function(e) {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
-          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {   
-            // localStorage.setItem("panier", JSON.stringify('panier'))
-            console.log("avantchargelocale")
-            console.log(panelPersoChoix._id, panelPersoChoix.name)        
-            panelPersoChoix.quantity = quanteModifiableProductInput;
-            console.log(panelPersoChoix._id, panelPersoChoix.name)        
-            // if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-            //   "la, valeur d'input changée c'est egal à quantityLocal"
-            // }  
-
-            let caseTotalPrice = document.querySelector("#totalPrice");
-            caseTotalPrice = " "
-            console.log("case a ceci =", "' " + caseTotalPrice + "' ")
-            // localStorage.getItem(JSON.parse('panier'))
-            const changeQuantity = parseInt(panelPersoChoix.quantity)
-            const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
-            const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
-            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
-            console.log(baliseChangePrix)
-            console.log(onChangeSectionTotal)
-            
-            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
-            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log(totalPanier)
-            console.log(totalSupreme)
-              
-            console.log("totaPrix", caseTotalPrice.textContent)
-            caseTotalPrice = `${totalSupreme}` 
-            console.log(caseTotalPrice.textContent)
-            
-            // tableauPrixFinal.push(onChangeSectionTotal)
-            // console.log(tableauPrixFinal)            
-            qtyTotal();
-            // toutTotalPrix ();            
-            console.log("chargelocale")
-            localStorage.setItem("panier", JSON.stringify(majcart));
-          } else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+           if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
             
             console.log("quantite client dejà egal qt input")
+            console.log(totalPanier)
+          } else if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier"))  {
+          // localStorage.setItem("panier", JSON.stringify('panier'))
+          console.log("avantchargelocale")
+          console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name)        
+          panelPersoChoix.quantity = quanteModifiableProductInput;
+          // console.log(panelPersoChoix._id, panelPersoChoix.name)
+          
+          let caseTotalPrice = document.querySelector("#totalPrice");
+          caseTotalPrice = " "
+          console.log("case a ceci =", "' " + caseTotalPrice + "' ")
+          // localStorage.getItem(JSON.parse('panier'))
+          const changeQuantity = parseInt(panelPersoChoix.quantity)
+          const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child")
+          const prixDsBalisePrix = parseInt(baliseChangePrix.textContent)
+          const onChangeSectionTotal = changeQuantity * prixDsBalisePrix
+          console.log(baliseChangePrix)
+          console.log(onChangeSectionTotal)
+          console.log(totalPanier)
+          
+          totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          console.log("1", typeof(totalPanier[0]) + "2", typeof(totalPanier[1]))
+          const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          console.log(totalPanier)
+          console.log(totalSupreme)
+            
+          console.log("totaPrix", caseTotalPrice.textContent)
+          caseTotalPrice = `${totalSupreme}` 
+          console.log(caseTotalPrice.textContent)
+          
+          // tableauPrixFinal.push(onChangeSectionTotal)
+          // console.log(tableauPrixFinal)            
+          qtyTotal();
+          // toutTotalPrix ();            
+          console.log("chargelocale")
+          console.log(totalPanier)
+          localStorage.setItem("panier", JSON.stringify(majcart));
           }
           // location.reload(true)
         });
@@ -235,35 +236,6 @@ const fetchEtVisualSection = async () => {
     }
     toutTotalPrix ();
     
-    
-    // là je vais tester les funstions pour les input regex ------------------------------------------------------
-    
-    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    function pasDeChiffres (value) {
-      return /^[\d]*$/.test(value);
-    }
-    // Je créé là une fonction la partie du form qui sera composé de un prénom ou alors de deux ou plusieurs prénoms composés
-    // avec un tiret 
-    function prenomCompose (value) {
-      // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
-      return /^[a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
-    }    
-    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    function addresseValide(value) {
-      return /^[0-9\s\p{Lu}]+$/.test(value);
-    }
-    function debutdeMajuscule(value) {
-    // 
-      return /^[A-Z]+$/.test(value) 
-    }
-    
-    function aSymbole () {
-      return /[^a-zA-Z0-9_]/.test(value);
-    }
-    function arobase () {
-      return /@/.test(value)
-    }
-
     const form = document.querySelector("#order");
     const prenom = document.querySelector("#firstName").value
     const nom = document.querySelector("#lastName").value
@@ -271,11 +243,13 @@ const fetchEtVisualSection = async () => {
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
 
+
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
       // console.log('ca paniasse');
-      e.preventDefault();
+      
+      // e.preventDefault();
 
       // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
         const contact = {
@@ -285,24 +259,79 @@ const fetchEtVisualSection = async () => {
         ville: document.querySelector("#city").value,
         email: document.querySelector("#email").value
       }
+
+
+ // là je vais tester les funstions pour les input regex ------------------------------------------------------
+    
+    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+    function pasDeChiffres (value) {
+      return /\D*/.test(value);
+    }
+    function verifNom (value) {
+      return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]/.test(value);
+    }
+    function chiffres (value) {
+      return /\d/.test(value)
+    }
+    // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
+    // avec un tiret ou espace
+    function prenomCompose (value) {
+      // return /^[\p{L}]+[- ]+[\p{L}]+$/.test(value);
+      return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
+    }  
+
+  
+    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+    function addresseValide(value) {
+      return /[0-9\s\p{Lu}]/.test(value);
+    }
+    function debutdeMajuscule(value) {
+    // 
+      return /^[A-Z]/.test(value) 
+    }
+    
+    function aSymbole (value) {
+      return /[^a-zA-Z0-9_]/.test(value);
+    }
+    function arobase (value) {
+      return /@/.test(value)
+    }
       // Vérif prénom voir le regex de de prenomcomposé là
       
-        if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)) {
-          console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
-          return;
-        } else if ( prenomCompose(prenom.value) && (pasDeChiffres(prenom.value))){
-          console.log("prénom ok")
-          return
+    if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)){
+      console.log(prenom.value)
+      const prenomError = document.getElementById('firstNameErrorMessage');
+      prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. "
+    } else {
+      console.log("problmù")
+    }
+
+
+
+    // verif nom
+    if (!verifNom(nom.value) || (aSymbole(nom.value)) )
+    console.log(nom.value)
+
+    const nomError = document.getElementById('lastNameErrorMessage');
+    nomError.textContent = "Vérifiez le nom écrit. Mauvais format "
+    
+        // if (!pasDeChiffres(prenom.value) || aSymbole(prenom.value)) {
+        //   console.log(" prenom, hey ton prenom n'est pas que lettre et ou de prenoms composés")
+        //   return;
+        // } else if ( prenomCompose(prenom.value) && (pasDeChiffres(prenom.value)) && (!aSymbole(prenom.value))){
+        //   console.log("prénom ok")
+        //   return
+        // }
+        
+        // Ici en bas je peux regrouper les objets que je dois transmettre
+        const userFormToSend = {
+          cartPanierGet, contact
         }
+        console.log("userFormToSend");
+        console.log(userFormToSend);      
 
-      localStorage.setItem("contact", JSON.stringify(contact))
-
-      // Ici en bas je peux regrouper les objets que je dois transmettre
-      const userFormToSend = {
-        cartPanierGet, contact
-      }
-      console.log("userFormToSend");
-      console.log(userFormToSend);      
+        // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
+        localStorage.setItem("contact", JSON.stringify(contact))
       });
   
     } 
