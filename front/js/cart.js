@@ -277,12 +277,13 @@ const fetchEtVisualSection = async () => {
     // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
     // avec un tiret ou espace
     function prenomCompose (value) {
-   // return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]+([-\s][a-zéèïîçA-Z])?/.test(value)
-      return /^[a-zéèïîçA-Z]+([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
+      // return /^[a-zéèïîçA-Z]+([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
+      return /^[a-zéèïîçA-Z]([a-zéèïîçA-Z])+?([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
     }    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    function addresseValide(value) {
+    function addresseFrValide(value) {
       // return /[0-9\s\p{Lu}]/.test(value);
+      return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/
     }
     function debutdeMajuscule(value) {
       return /^[A-Z]/.test(value) 
@@ -290,8 +291,9 @@ const fetchEtVisualSection = async () => {
     function aSymbole (value) {
       return /[^a-zA-Z0-9_]/.test(value);
     }
-    function arobase (value) {
-      return /@/.test(value)
+    function aLeMail (value) {
+      // return /[a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
+      return /[a-zA-Z0-6][a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
     }
 
     // Vérif prénom voir le regex de de prenomcomposé là      
@@ -313,7 +315,7 @@ const fetchEtVisualSection = async () => {
     }
     // Continuer avec l'adresse valide
 
-    if (!addresseValide(adresse.value) || aSymbole(adresse.value)) {
+    if (!addresseFrValide(adresse.value) || aSymbole(adresse.value)) {
       const addresseError = document.getElementById('addressErrorMsg')
       addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier"
     }
