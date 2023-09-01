@@ -269,7 +269,7 @@ const fetchEtVisualSection = async () => {
     }
 
     function verifNom (value) {
-      return /^[a-zéèïîçA-Z][a-zéèïîçA-Z]/.test(value);
+      return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
     }
     function chiffres (value) {
       return /\d/.test(value)
@@ -277,13 +277,13 @@ const fetchEtVisualSection = async () => {
     // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
     // avec un tiret ou espace
     function prenomCompose (value) {
-      // return /^[a-zéèïîçA-Z]+([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
-      return /^[a-zéèïîçA-Z]([a-zéèïîçA-Z])+?([-\s])?([a-zéèïîçA-Z]+)?/.test(value)
+
+      return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
     }    
     // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
     function addresseFrValide(value) {
-      // return /[0-9\s\p{Lu}]/.test(value);
-      return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/
+      // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
+      return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([0-9]{2,5})/g
     }
     function debutdeMajuscule(value) {
       return /^[A-Z]/.test(value) 
