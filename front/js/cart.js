@@ -232,120 +232,144 @@ const fetchEtVisualSection = async () => {
     const caseTotalPrice = document.querySelector("#totalPrice");
     caseTotalPrice.innerHTML = totalSupreme;
     // caseTotalPrice.innerHTML = "4";
-        
-    }
-    toutTotalPrix ();
+    
+  }
+  toutTotalPrix ();
     
     const form = document.querySelector("#order");
-    const prenom = document.querySelector("#firstName").value
-    const nom = document.querySelector("#lastName").value
-    const adresse =  document.querySelector("#address").value          
+    const prenom = document.querySelector("#firstName").value;
+    const prenomError = document.getElementById('firstNameErrorMsg');
+    
+    const nom = document.querySelector("#lastName").value;
+    const nomError = document.getElementById('lastNameErrorMsg');
+
+    const adresse =  document.querySelector("#address").value;          
+    const addresseError = document.getElementById('addressErrorMsg');
+
     const ville = document.querySelector("#city").value
     const email = document.querySelector("#email").value 
+    
+    
+    
+    
 
-
+    
+    // A REMETTRE PLUS TARD EN BAS DANS LE BOUTON
+    
+    // a REMETTRE PLUS TARD L0 JUSTE EN BAS DANS LE BOUTON 
+    
     function boutonPanierComander () {
       const commanderBtn = document.querySelector('#order');
       commanderBtn.addEventListener('click', function(e) {
-      // console.log('ca paniasse');
-      
-      // e.preventDefault();
-
-      // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
+        // console.log('ca paniasse');
+        
+        
+        // valeurs du formulaire qui seront sauvegardés dans localstorage key contact 
         const contact = {
-        prenom: document.querySelector("#firstName").value,
-        nom: document.querySelector("#lastName").value,
-        addresse: document.querySelector("#address").value,
-        ville: document.querySelector("#city").value,
-        email: document.querySelector("#email").value
-      }
-
-
- // là je vais tester les funstions pour les input regex ------------------------------------------------------
-    
-    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    function pasDeChiffres (value) {
-      return /\D*/.test(value);
-    }
-
-    function verifNom (value) {
-      return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
-    }
-    function chiffres (value) {
-      return /\d/.test(value)
-    }
-    // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
-    // avec un tiret ou espace
-    function prenomCompose (value) {
-
-      return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
-    }    
-    // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-    function addresseFrValide(value) {
-      // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
-      return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([0-9]{2,5})/g
-    }
-    function debutdeMajuscule(value) {
-      return /^[A-Z]/.test(value) 
-    }    
-    function aSymbole (value) {
-      return /[^a-zA-Z0-9_]/.test(value);
-    }
-    function aLeMail (value) {
-      // return /[a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
-      return /[a-zA-Z0-6][a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
-    }
-
-    // Vérif prénom voir le regex de de prenomcomposé là      
-    if (!pasDeChiffres(prenom.value) || !prenomCompose(prenom.value)){
-      console.log(prenom.value)
-      const prenomError = document.getElementById('firstNameErrorMsg');
-      prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. "
-    } else {
-      console.log("autre about prenom")
-      // return;
-    }
-
-    // verif nom
-    if (!verifNom(nom.value) || (aSymbole(nom.value)) ) {   
-       console.log(nom.value)
-
-    const nomError = document.getElementById('lastNameErrorMsg');
-    nomError.textContent = "Vérifiez le nom écrit. Mauvais format "
-    }
-    // Continuer avec l'adresse valide
-
-    if (!addresseFrValide(adresse.value) || aSymbole(adresse.value)) {
-      const addresseError = document.getElementById('addressErrorMsg')
-      addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier"
-    }
-       
-
-    // if (!prenomCompose())
-        // Ici en bas je peux regrouper les objets que je dois transmettre
-        const userFormToSend = {
-          cartPanierGet, contact
+          prenom: document.querySelector("#firstName").value,
+          nom: document.querySelector("#lastName").value,
+          addresse: document.querySelector("#address").value,
+          ville: document.querySelector("#city").value,
+          email: document.querySelector("#email").value
         }
-        console.log("userFormToSend");
-        console.log(userFormToSend);      
-
-        // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
-        localStorage.setItem("contact", JSON.stringify(contact))
-
-        // const formulaireValide = 
-      });
-  
-    } 
-    boutonPanierComander ();
-    
-  }
-
-
-
-};
-
-// tous les éléments de l'user a envoyer au serveur
-
-
-// Affichage de toutes les procedures incluses quand on appele le fetch
-fetchEtVisualSection();
+      
+      // C 'est  ici qu on remmetrtrra les infos formulaires
+      // ----------------------------------------------------------
+      
+      // là je vais tester les funstions pour les input regex ------------------------------------------------------
+      
+      // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+      function pasDeChiffres (value) {
+           return /\D*/.test(value);
+          }
+          pasDeChiffres();
+          function verifNom (value) {
+            return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
+          }
+          verifNom();
+          function chiffres (value) {
+            return /\d/.test(value)
+          }
+          chiffres();
+          // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
+          // avec un tiret ou espace
+          function prenomCompose (value) {
+            
+            return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
+          }    
+          prenomCompose();
+          // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+          function addresseFrValide(value) {
+            // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
+            return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([0-9]{2,5})/g
+          }
+          addresseFrValide();
+          function debutdeMajuscule(value) {
+            return /^[A-Z]/.test(value) 
+          }    
+          debutdeMajuscule();
+          function aSymbole (value) {
+            return /[^a-zA-Z0-9_]/.test(value);
+         }
+         aSymbole();
+         function aLeMail (value) {
+           // return /[a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
+           return /[a-zA-Z0-6][a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/.test(value)
+          }
+          aLeMail();
+          
+          // Vérif prénom voir le regex de de prenomcomposé là      
+          if (!pasDeChiffres(prenom) || !prenomCompose(prenom)){
+            console.log(prenom)
+            prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. "
+          } else {
+            console.log("autre about prenom")
+            // return;
+          }
+          
+          //  // verif nom
+           if (!verifNom(nom) || (aSymbole(nom)) ) {   
+                console.log(nom)
+      
+             nomError.textContent = "Vérifiez le nom écrit. Mauvais format "
+             }
+             // Continuer avec l'adresse valide
+            
+             if (!addresseFrValide(adresse) || aSymbole(adresse)) {
+                 addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier"
+               }
+              
+              
+              // if (!prenomCompose())
+              
+              
+              
+              // Ici en bas je peux regrouper les objets que je dois transmettre
+              const userFormToSend = {
+                cartPanierGet, contact
+              }
+              console.log("userFormToSend");
+              console.log(userFormToSend);      
+              
+              // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
+              localStorage.setItem("contact", JSON.stringify(contact))
+              
+              e.preventDefault();
+              // const formulaireValide = 
+            });
+            
+          } 
+          boutonPanierComander ();
+          
+        }
+        
+        
+        
+      };
+      
+      
+      // tous les éléments de l'user a envoyer au serveur
+      
+      
+      // Affichage de toutes les procedures incluses quand on appele le fetch
+      fetchEtVisualSection();
