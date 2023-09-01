@@ -278,26 +278,27 @@ const fetchEtVisualSection = async () => {
       
       // là je vais tester les funstions pour les input regex ------------------------------------------------------
       
+      localStorage.setItem("contact", JSON.stringify(contact))
+
       // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
       function pasDeChiffres (value) {
            return /\D*/.test(value);
           }
           pasDeChiffres();
-          function verifNom (value) {
+          // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
+          // avec un tiret ou espace
+          function prenomCompose (value) {            
             return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
+          }    
+          prenomCompose();
+          function verifNom (nom) {
+            return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(nom);
           }
           verifNom();
           function chiffres (value) {
             return /\d/.test(value)
           }
           chiffres();
-          // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
-          // avec un tiret ou espace
-          function prenomCompose (value) {
-            
-            return /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/.test(value);
-          }    
-          prenomCompose();
           // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
           function addresseFrValide(value) {
             // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
@@ -318,6 +319,8 @@ const fetchEtVisualSection = async () => {
           }
           aLeMail();
           
+          JSON.parse(localStorage.getItem("contact"));
+
           // Vérif prénom voir le regex de de prenomcomposé là      
           if (!pasDeChiffres(prenom) || !prenomCompose(prenom)){
             console.log(prenom)
@@ -329,12 +332,12 @@ const fetchEtVisualSection = async () => {
           
           //  // verif nom
            if (!verifNom(nom) || (aSymbole(nom)) ) {   
-                console.log(nom)
+                console.log("le nom est", nom)
       
              nomError.textContent = "Vérifiez le nom écrit. Mauvais format "
              }
-             // Continuer avec l'adresse valide
             
+             // Continuer avec l'adresse valide            
              if (!addresseFrValide(adresse) || aSymbole(adresse)) {
                  addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier"
                }
@@ -352,7 +355,7 @@ const fetchEtVisualSection = async () => {
               console.log(userFormToSend);      
               
               // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
-              localStorage.setItem("contact", JSON.stringify(contact))
+              // localStorage.setItem("contact", JSON.stringify(contact))
               
               e.preventDefault();
               // const formulaireValide = 
