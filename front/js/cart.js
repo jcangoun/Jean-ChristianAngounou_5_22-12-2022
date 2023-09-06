@@ -108,53 +108,57 @@ const fetchEtVisualSection = async () => {
         input.addEventListener("change", function (e) {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
-          console.log(panelPersoChoix)
           console.log(cartPanierGet)
-          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {
-           
-           // localStorage.setItem("panier", JSON.stringify('panier'))
-           console.log("avantchargelocale");
-           console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
-           panelPersoChoix.quantity = quanteModifiableProductInput;
-           // console.log(panelPersoChoix._id, panelPersoChoix.name)
+          console.log(majcart[index])
+          console.log(majcart)
 
-           let caseTotalPrice = document.querySelector("#totalPrice");
-           caseTotalPrice = " ";
-           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
-           // localStorage.getItem(JSON.parse('panier'))
-           const changeQuantity = parseInt(panelPersoChoix.quantity);
-           const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-           const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-           const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-           console.log(baliseChangePrix);
-           console.log(onChangeSectionTotal);
-           console.log(totalPanier);
+           if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
+            // localStorage.setItem("panier", JSON.stringify('panier'))
+            console.log("input inegal");
+            console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+            panelPersoChoix.quantity = quanteModifiableProductInput;
+            // console.log(panelPersoChoix._id, panelPersoChoix.name)
+// ========================================================================================================================
+        //     let caseTotalPrice = document.querySelector("#totalPrice");
+        //     caseTotalPrice = " ";
+        //     console.log("case a ceci =", "' " + caseTotalPrice + "' ");
+        //     // localStorage.getItem(JSON.parse('panier'))
+        //     const changeQuantity = parseInt(panelPersoChoix.quantity);
+        //     const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+        //     const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+        //     const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+        //     console.log(baliseChangePrix);
+        //     console.log(onChangeSectionTotal);
+        //     console.log(totalPanier);
+        //           //============================= ====================
+        //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
+        //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        //     console.log(totalPanier);
+        //     console.log(totalSupreme);
 
-           totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-           console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-           const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-           console.log(totalPanier);
-           console.log(totalSupreme);
-
-           console.log("totaPrix", caseTotalPrice.textContent);
-           caseTotalPrice = `${totalSupreme}`;
-           console.log(caseTotalPrice.textContent);
-
-           // tableauPrixFinal.push(onChangeSectionTotal)
-           // console.log(tableauPrixFinal)
-           qtyTotal();
-           // toutTotalPrix ();
-           console.log("chargelocale");
-           console.log(totalPanier);
-           localStorage.setItem("panier", JSON.stringify(majcart));
-         }
-          else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-            console.log("quantite client dejà egal qt input");
+        //     console.log("totaPrix", caseTotalPrice.textContent);
+        //     caseTotalPrice = `${totalSupreme}`;
+        //     console.log(caseTotalPrice.textContent);
+        // //          =============================================== 
+        //     // tableauPrixFinal.push(onChangeSectionTotal)
+        //     // console.log(tableauPrixFinal)
+        //     qtyTotal();
+            // toutTotalPrix ();
+            // console.log("chargelocale");
             console.log(totalPanier);
-          }           
+            localStorage.setItem("panier", JSON.stringify(majcart));
+          } 
+          else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+            console.log("input quantite client dejà egal qt input");
+            console.log(totalPanier);
+          }
           // location.reload(true);
         });
+        
       });
+      //  On dirait que je pourrai faire mes calculs ici a voir au plus vite
+      console.log(totalPanier)
     };
     // Et j'appele en bas la fonction de modification de la quantite.
     modifQuantite();
@@ -193,7 +197,7 @@ const fetchEtVisualSection = async () => {
       // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     }
     qtyTotal();
-
+    console.log(totalPanier)
     //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
     const prixElemt = parseInt(dataPanier.price);
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value);
@@ -206,10 +210,10 @@ const fetchEtVisualSection = async () => {
     const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
     const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
     console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier);
-
+// on dirait que cest tableaufinal qui double quelquechose
     const tableauPrixFinal = [];
     // Ici ca prend les vlue et prixElement
-    console.log(totalPanier);
+    console.log(totalPanier,"et", tableauPrixFinal);
     for (let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod];
 
@@ -220,6 +224,7 @@ const fetchEtVisualSection = async () => {
       console.log(finalPrice);
       console.log(tableauPrixFinal);
     }
+    console.log(totalPanier, "contre", tableauPrixFinal)
     totalPanier = tableauPrixFinal;
     console.log("totalPanier", totalPanier, "egal", "tableauPrixFinal", tableauPrixFinal);
     console.log(totalPanier);
@@ -230,7 +235,7 @@ const fetchEtVisualSection = async () => {
       const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
       console.log(totalPanier);
       console.log(totalSupreme);
-
+// En haut on dirait que cest tableaufinal qui double quelquechose
       const caseTotalPrice = document.querySelector("#totalPrice");
       caseTotalPrice.innerHTML = totalSupreme;
       // caseTotalPrice.innerHTML = "4";
