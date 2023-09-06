@@ -108,47 +108,51 @@ const fetchEtVisualSection = async () => {
         input.addEventListener("change", function (e) {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
-          if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+          console.log(panelPersoChoix)
+          console.log(cartPanierGet)
+          if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {
+           
+           // localStorage.setItem("panier", JSON.stringify('panier'))
+           console.log("avantchargelocale");
+           console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+           panelPersoChoix.quantity = quanteModifiableProductInput;
+           // console.log(panelPersoChoix._id, panelPersoChoix.name)
+
+           let caseTotalPrice = document.querySelector("#totalPrice");
+           caseTotalPrice = " ";
+           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
+           // localStorage.getItem(JSON.parse('panier'))
+           const changeQuantity = parseInt(panelPersoChoix.quantity);
+           const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+           const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+           const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+           console.log(baliseChangePrix);
+           console.log(onChangeSectionTotal);
+           console.log(totalPanier);
+
+           totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+           console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
+           const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+           console.log(totalPanier);
+           console.log(totalSupreme);
+
+           console.log("totaPrix", caseTotalPrice.textContent);
+           caseTotalPrice = `${totalSupreme}`;
+           console.log(caseTotalPrice.textContent);
+
+           // tableauPrixFinal.push(onChangeSectionTotal)
+           // console.log(tableauPrixFinal)
+           qtyTotal();
+           // toutTotalPrix ();
+           console.log("chargelocale");
+           console.log(totalPanier);
+           localStorage.setItem("panier", JSON.stringify(majcart));
+         }
+          else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
             console.log("quantite client dejà egal qt input");
             console.log(totalPanier);
-          } else if (quanteModifiableProductInput !== panelPersoChoix.quantity && localStorage.getItem("panier")) {
-            // localStorage.setItem("panier", JSON.stringify('panier'))
-            console.log("avantchargelocale");
-            console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
-            panelPersoChoix.quantity = quanteModifiableProductInput;
-            // console.log(panelPersoChoix._id, panelPersoChoix.name)
-
-            let caseTotalPrice = document.querySelector("#totalPrice");
-            caseTotalPrice = " ";
-            console.log("case a ceci =", "' " + caseTotalPrice + "' ");
-            // localStorage.getItem(JSON.parse('panier'))
-            const changeQuantity = parseInt(panelPersoChoix.quantity);
-            const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-            const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-            console.log(baliseChangePrix);
-            console.log(onChangeSectionTotal);
-            console.log(totalPanier);
-
-            totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-            const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-            console.log(totalPanier);
-            console.log(totalSupreme);
-
-            console.log("totaPrix", caseTotalPrice.textContent);
-            caseTotalPrice = `${totalSupreme}`;
-            console.log(caseTotalPrice.textContent);
-
-            // tableauPrixFinal.push(onChangeSectionTotal)
-            // console.log(tableauPrixFinal)
-            qtyTotal();
-            // toutTotalPrix ();
-            console.log("chargelocale");
-            console.log(totalPanier);
-            localStorage.setItem("panier", JSON.stringify(majcart));
-          }
-          location.reload(true);
+          }           
+          // location.reload(true);
         });
       });
     };
@@ -297,24 +301,19 @@ const fetchEtVisualSection = async () => {
             prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. ";
           }
         }
-
-
-
         prenomCompose();
+
         function verifNom(nom) {
           console.log(nom)
           const regexNom = /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/;
           console.log(regexNom.test(nom));
           if (regexNom.test(nom)) {
-
             return nom;
           } else {
             nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
           }
         }
         verifNom();
-
-
 
         function chiffres(value) {
           return /\d/.test(value);

@@ -8,9 +8,8 @@
     articles(products);
           console.log(products);
         })
-        .catch(function (err) {
-          // Une erreur est survenue
-        });
+        .catch(err => console.log("fetch erreur là >>>", " /** " + err + " **/ "));
+        // Une erreur est survenue
         
         function articles(products) {
           products.forEach((product) => {
