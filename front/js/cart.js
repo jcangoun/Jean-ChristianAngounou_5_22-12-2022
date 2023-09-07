@@ -21,8 +21,9 @@ const fetchEtVisualSection = async () => {
     }
     const dataPanier = await response.json();
 
+    console.log(totalPanier)
     totalPanier.push(parseInt(dataPanier.price));
-
+    console.log(totalPanier)
     for (let u = 0; u < dataPanier.length; u++) {
       lemDeTotalPanier = dataPanier[u];
       console.log(lemDeTotalPanier);
@@ -104,18 +105,20 @@ const fetchEtVisualSection = async () => {
       const unArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
       // console.log(majcart);
+      console.log(totalPanier);
+      console.log(produitPanier);
+      
       unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener("change", function (e) {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
-          console.log(cartPanierGet)
-          console.log(majcart[index])
-          console.log(majcart)
+          const toutPanLocal = majcart;
 
            if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
             // localStorage.setItem("panier", JSON.stringify('panier'))
             console.log("input inegal");
             console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+            // if (panelPersoChoix._id === ) {}
             panelPersoChoix.quantity = quanteModifiableProductInput;
             // console.log(panelPersoChoix._id, panelPersoChoix.name)
 // ========================================================================================================================
@@ -187,7 +190,7 @@ const fetchEtVisualSection = async () => {
       }
       location.reload(true);
     });
-
+  
     // C'est ici que je dois ajouter mes essais du btomm bouton
     function qtyTotal() {
       const caseTotalQty = document.querySelector("#totalQuantity");
@@ -212,13 +215,16 @@ const fetchEtVisualSection = async () => {
     console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier);
 // on dirait que cest tableaufinal qui double quelquechose
     const tableauPrixFinal = [];
+    
+    console.log(totalPanier, "contre", tableauPrixFinal)
     // Ici ca prend les vlue et prixElement
-    console.log(totalPanier,"et", tableauPrixFinal);
     for (let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod];
+     console.log(prixCatProdt)
+      console.log(totalPanier, "contre", tableauPrixFinal)
 
       const finalPrice = prixCatProdt * vlueQtenumerisee;
-      console.log(vlueQtenumerisee, prixCatProdt, " = ", finalPrice);
+      console.log("Qte",vlueQtenumerisee, "prix", prixCatProdt, " = final", finalPrice);
       console.log("totalPanier", totalPanier, "tableauPrixFinal", tableauPrixFinal);
       tableauPrixFinal.push(finalPrice);
       console.log(finalPrice);
