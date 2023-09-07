@@ -113,6 +113,18 @@ const fetchEtVisualSection = async () => {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
           const toutPanLocal = majcart;
+          for (let numLoc = 0; numLoc < majcart.length; numLoc++) {
+            const majcartPointNumLoc = majcart[numLoc];
+            console.log(majcartPointNumLoc)
+            console.log(majcartPointNumLoc.quantity)
+
+            // return marche
+            return majcartPointNumLoc.quantity
+          } 
+          
+          if (panelPersoChoix._id === majcartPointNumLoc.quantity) {
+            console.log("return marche et majcartaussi")
+          } else {console.log("y aun truc")}
 
            if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
             // localStorage.setItem("panier", JSON.stringify('panier'))
@@ -251,16 +263,20 @@ const fetchEtVisualSection = async () => {
 
     const form = document.querySelector("#order");
     const prenom = document.querySelector("#firstName").value;
+    prenom;
     const prenomError = document.getElementById("firstNameErrorMsg");
 
     const nom = document.querySelector("#lastName").value;
+    nom;
     const nomError = document.getElementById("lastNameErrorMsg");
 
     const adresse = document.querySelector("#address").value;
     const addresseError = document.getElementById("addressErrorMsg");
 
     const ville = document.querySelector("#city").value;
+    ville;
     const email = document.querySelector("#email").value;
+    email;
 
     // const prenomEcout = document.querySelector("#firstName")
     // prenomEcout.addEventListener ( 'change', function(e){
@@ -280,46 +296,63 @@ const fetchEtVisualSection = async () => {
 
         // valeurs du formulaire qui seront sauvegardés dans localstorage key contact
         const contact = {
-          prenom: document.querySelector("#firstName").value,
-          nom: document.querySelector("#lastName").value,
-          addresse: document.querySelector("#address").value,
-          ville: document.querySelector("#city").value,
-          email: document.querySelector("#email").value,
+          prenom: document.querySelector("#firstName"),
+          nom: document.querySelector("#lastName"),
+          addresse: document.querySelector("#address"),
+          ville: document.querySelector("#city"),
+          email: document.querySelector("#email"),          
         };
 
+        const prenomValue = document.querySelector("#firstName").value;
+        const nomValue = document.querySelector("#lastName").value;
+        const addresseValue = document.querySelector("#address").value;
+        const villeValue = document.querySelector("#city").value;
+        const emailValue = document.querySelector("#email").value;
+
+        prenom.value = prenomValue
+        nom.value = nomValue
+        addresse.value = addresseValue
+        ville.value = villeValue
+        email.value = emailValue
+        
+        console.log(prenomValue)
+        console.log(nomValue)
+        console.log(addresseValue)
+        console.log(emailValue)
         // C 'est  ici qu on remmetrtrra les infos formulaires
         // ----------------------------------------------------------
-
+        
         // là je vais tester les funstions pour les input regex ------------------------------------------------------
-
+        
         // localStorage.setItem("contact", JSON.stringify(contact))
+        console.log(prenom)
+        console.log(nom)
+        console.log(prenom.value)
+        console.log(nom.value)
 
-        // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-        function pasDeChiffres(value) {
-          return /\D*/.test(value);
-        }
-        pasDeChiffres();
+
         // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
         // avec un tiret ou espace
-        function prenomCompose(prenom) {
-          console.log(prenom);
-          const regexPrenom = /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/;
-
-          console.log(regexPrenom.test(prenom));
-          if (regexPrenom.test(prenom)) {
-            return prenom;
-          } else {
+        function prenomCompose(prenomValue) {
+          console.log("prenom" ,"+", prenomValue);
+          const regexPrenomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
+          console.log(regexPrenomValue.test(prenomValue));
+          if (!regexPrenomValue.test(prenomValue)) {            
             prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. ";
+          } else if (regexPrenomValue.test(prenomValue)) {
+            return prenomValue;
+          } else {
+            prenomError.textContent = "OHo Autre problème ";
           }
         }
         prenomCompose();
 
-        function verifNom(nom) {
-          console.log(nom)
-          const regexNom = /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/;
-          console.log(regexNom.test(nom));
-          if (regexNom.test(nom)) {
-            return nom;
+        function verifNom(nomValue) {
+          console.log("nom", "+", nomValue)
+          const regexNomValue = /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/;
+          console.log(regexNomValue.test(nomValue));
+          if (regexNomValue.test(nomValue)) {
+            return nomValue;
           } else {
             nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
           }
@@ -333,7 +366,7 @@ const fetchEtVisualSection = async () => {
         // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
         function addresseFrValide(value) {
           // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
-          return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([0-9]{2,5})/g;
+          return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?((\s)+?([0-9]{2,5}([\ \-\_]+)?(^[a-zA-Z])?[a-zA-Z]+([\-\_\ ])?)?)?/gm;
         }
         addresseFrValide();
         function debutdeMajuscule(value) {
