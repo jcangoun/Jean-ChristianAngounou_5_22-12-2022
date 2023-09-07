@@ -303,39 +303,36 @@ const fetchEtVisualSection = async () => {
           email: document.querySelector("#email"),          
         };
 
-        const prenomValue = document.querySelector("#firstName").value;
-        const nomValue = document.querySelector("#lastName").value;
-        const addresseValue = document.querySelector("#address").value;
-        const villeValue = document.querySelector("#city").value;
-        const emailValue = document.querySelector("#email").value;
-
-        prenom.value = prenomValue
-        nom.value = nomValue
-        addresse.value = addresseValue
-        ville.value = villeValue
-        email.value = emailValue
-        
-        console.log(prenomValue)
-        console.log(nomValue)
-        console.log(addresseValue)
-        console.log(emailValue)
+        let prenomValue = document.querySelector("#firstName").value;
+        let nomValue = document.querySelector("#lastName").value;
+        let addresseValue = document.querySelector("#address").value;
+        let villeValue = document.querySelector("#city").value;
+        let emailValue = document.querySelector("#email").value;
+       
+        console.log("pV", prenomValue)
+        console.log("nV", nomValue)
+        console.log("aV", addresseValue)
+        console.log("vV", villeValue)
+        console.log("eV", emailValue)
         // C 'est  ici qu on remmetrtrra les infos formulaires
         // ----------------------------------------------------------
         
-        // là je vais tester les funstions pour les input regex ------------------------------------------------------
-        
-        // localStorage.setItem("contact", JSON.stringify(contact))
         console.log(prenom)
         console.log(nom)
-        console.log(prenom.value)
-        console.log(nom.value)
+        console.log(adresse.value)
+        console.log(ville.value)
+        console.log(email.value)
+        
+        // localStorage.setItem("contact", JSON.stringify(contact))
 
+      // là je vais tester les funstions pour les input regex ------------------------------------------------------
+        
 
         // Je créé là une fonction la partie du form qui sera composé d'au moins un prénom
         // avec un tiret ou espace
         function prenomCompose(prenomValue) {
           console.log("prenom" ,"+", prenomValue);
-          const regexPrenomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
+          const regexPrenomValue = /^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+([0-9]){1,3}$)?/;
           console.log(regexPrenomValue.test(prenomValue));
           if (!regexPrenomValue.test(prenomValue)) {            
             prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. ";
@@ -349,7 +346,7 @@ const fetchEtVisualSection = async () => {
 
         function verifNom(nomValue) {
           console.log("nom", "+", nomValue)
-          const regexNomValue = /^[A-Za-z][a-z]+([\s\-\_])?[A-Za-z][a-z]+/;
+          const regexNomValue = /^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)?/;
           console.log(regexNomValue.test(nomValue));
           if (regexNomValue.test(nomValue)) {
             return nomValue;
@@ -359,20 +356,13 @@ const fetchEtVisualSection = async () => {
         }
         verifNom();
 
-        function chiffres(value) {
-          return /\d/.test(value);
-        }
-        chiffres();
         // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
         function addresseFrValide(value) {
           // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
-          return /^[0-9]{2,3}[\,\s]([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?((\s)+?([0-9]{2,5}([\ \-\_]+)?(^[a-zA-Z])?[a-zA-Z]+([\-\_\ ])?)?)?/gm;
+          return /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
         }
         addresseFrValide();
-        function debutdeMajuscule(value) {
-          return /^[A-Z]/g.test(value);
-        }
-        debutdeMajuscule();
+
         function aSymbole(value) {
           return /[^a-zA-Z0-9_]/g.test(value);
         }
@@ -394,14 +384,14 @@ const fetchEtVisualSection = async () => {
         // }
 
         // Continuer avec l'adresse valide
-        if (!addresseFrValide(adresse) || aSymbole(adresse)) {
-          addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier";
-          return false;
-        } else if (addresseFrValide == undefined) {
-          addresseError.textContent = "adresse vide";
-        } else {
-          return true;
-        }
+        // if (!addresseFrValide(adresse) || aSymbole(adresse)) {
+        //   addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier";
+        //   return false;
+        // } else if (addresseFrValide == undefined) {
+        //   addresseError.textContent = "adresse vide";
+        // } else {
+        //   return true;
+        // }
 
         // Ici en bas je peux regrouper les objets que je dois transmettre
         const userFormToSend = {
