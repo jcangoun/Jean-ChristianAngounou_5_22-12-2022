@@ -332,7 +332,7 @@ const fetchEtVisualSection = async () => {
         // avec un tiret ou espace
         function prenomCompose(prenomValue) {
           console.log("prenom" ,"+", prenomValue);
-          const regexPrenomValue = /^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+([0-9]){1,3}$)?/;
+          const regexPrenomValue = /^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+/;
           console.log(regexPrenomValue.test(prenomValue));
           if (!regexPrenomValue.test(prenomValue)) {            
             prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. ";
@@ -346,7 +346,7 @@ const fetchEtVisualSection = async () => {
 
         function verifNom(nomValue) {
           console.log("nom", "+", nomValue)
-          const regexNomValue = /^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)?/;
+          const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
           console.log(regexNomValue.test(nomValue));
           if (regexNomValue.test(nomValue)) {
             return nomValue;
@@ -357,9 +357,15 @@ const fetchEtVisualSection = async () => {
         verifNom();
 
         // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
-        function addresseFrValide(value) {
-          // return /[0-9]{2,3}([^a-zA-Z0-9])?(\s)?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+/g
-          return /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
+        function addresseFrValide(addresseValue) {
+          console.log("addresse", "+", addresseValue)
+          const regexAddresseValue = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
+          console.log(regexAddresseValue.test(addresseValue));
+          if (regexAddresseValue.test(addresseValue)) {
+            return addresseValue;
+          } else {
+            addresseError.textContent = "Vérifiez que votre adresse est bien écrite au format d'addresses francaises"
+          }
         }
         addresseFrValide();
 
