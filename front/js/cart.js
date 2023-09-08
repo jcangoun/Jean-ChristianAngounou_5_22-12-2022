@@ -262,6 +262,7 @@ const fetchEtVisualSection = async () => {
   }
 
     const form = document.querySelector("#order");
+    form = commanderBtn;
     const prenom = document.querySelector("#firstName").value;
     prenom;
     const prenomError = document.getElementById("firstNameErrorMsg");
@@ -275,8 +276,11 @@ const fetchEtVisualSection = async () => {
 
     const ville = document.querySelector("#city").value;
     ville;
+    const villeError = document.querySelector("#city") 
+    
     const email = document.querySelector("#email").value;
     email;
+    const emailError = document.querySelector("#email")
 
     // const prenomEcout = document.querySelector("#firstName")
     // prenomEcout.addEventListener ( 'change', function(e){
@@ -309,20 +313,14 @@ const fetchEtVisualSection = async () => {
         let villeValue = document.querySelector("#city").value;
         let emailValue = document.querySelector("#email").value;
        
-        console.log("pV", prenomValue)
-        console.log("nV", nomValue)
-        console.log("aV", addresseValue)
-        console.log("vV", villeValue)
-        console.log("eV", emailValue)
+        console.log("prenomV", prenomValue)
+        console.log("nomV", nomValue)
+        console.log("addresseV", addresseValue)
+        console.log("villeV", villeValue)
+        console.log("emailV", emailValue)
         // C 'est  ici qu on remmetrtrra les infos formulaires
-        // ----------------------------------------------------------
-        
-        console.log(prenom)
-        console.log(nom)
-        console.log(adresse.value)
-        console.log(ville.value)
-        console.log(email.value)
-        
+        // ----------------------------------------------------------       
+
         // localStorage.setItem("contact", JSON.stringify(contact))
 
       // là je vais tester les funstions pour les input regex ------------------------------------------------------
@@ -369,36 +367,33 @@ const fetchEtVisualSection = async () => {
         }
         addresseFrValide();
 
+        function villeValide (villeValue) {
+          console.log("ville + ",villeValue )
+          const regexVilleValue = /^[A-Z][a-z]+(([\-\ ])(([A-Z])?[a-z]+))+/g
+          console.log(regexVilleValue.test(villeValue))
+          if (regexEmailValue.test(villeValue)) {
+            return villeValue;
+          } else {
+            villeError.textContent = "Vérifiez que votre ou vos noms de la ville débutent par une majuscule"
+          }
+        }
+
+        function aLeMail(emailValue) {
+          console.log("email", "+", emailValue)
+          const regexEmailValue = /^[a-zA-Z0-9][a-zA-Z0-9]+[A-Za-z0-9]+(([\ \-\_])?([\-\_\.])?([\ \-\_])?)?([A-Za-z0-9])?[a-zA-Z0-9]+[@][a-z]+[\.][a-z]{2,3}/g;
+          console.log(regexEmailValue.test(emailValue));
+          if (regexEmailValue.test(emailValue)) {
+            return emailValue;
+          } else {
+            emailError.textContent = "Vérifiez que votre email est bien écrite au format email"
+          }
+        }
+        aLeMail();
+        
         function aSymbole(value) {
           return /[^a-zA-Z0-9_]/g.test(value);
         }
         aSymbole();
-        function aLeMail(value) {
-          // return /[a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/
-          return /[a-zA-Z0-6][a-z\.\-\_]+@[a-z]+\.[a-z]{2,3}/g.test(value);
-        }
-        aLeMail();
-
-        // if (!prenomCompose(prenom)) {
-        //   console.log("le nom est", prenom);
-        //   nomError.textContent = "Vérifiez le prenom écrit. Mauvais format ";
-        //   return false;
-        // } else if (prenomCompose == undefined) {
-        //   nomError.textContent = "Cest vide";
-        // } else {
-        //   return true;
-        // }
-
-        // Continuer avec l'adresse valide
-        // if (!addresseFrValide(adresse) || aSymbole(adresse)) {
-        //   addresseError.textContent = "Il y a une erreur dans le format d'ecriture de l'adresse.Re-vérifier";
-        //   return false;
-        // } else if (addresseFrValide == undefined) {
-        //   addresseError.textContent = "adresse vide";
-        // } else {
-        //   return true;
-        // }
-
         // Ici en bas je peux regrouper les objets que je dois transmettre
         const userFormToSend = {
           cartPanierGet,
@@ -407,7 +402,6 @@ const fetchEtVisualSection = async () => {
         console.log("userFormToSend");
         console.log(userFormToSend);
 
-        // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
         // localStorage.setItem("contact", JSON.stringify(contact))
 
         // const formulaireValide =
