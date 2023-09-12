@@ -1,5 +1,8 @@
 {
   "devDependencies": {
+    "@babel/preset-react": "^7.22.15",
+    "eslint": "^8.49.0",
+    "eslint-plugin-react": "^7.33.2",
     "mocha": "^10.2.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
@@ -9,6 +12,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@node-minify/core": "^8.0.6",
+    "@node-minify/uglify-js": "^8.0.6",
     "ansi-colors": "^4.1.1",
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
