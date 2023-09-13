@@ -328,9 +328,18 @@ fetchEtVisualSection();
 
       // là je vais tester les funstions pour les input regex ------------------------------------------------------
      
+      // PRENOM
+      const regexPrenomValue = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
+      // regexPrenomValue.test(prenomValue)
+      console.log(regexPrenomValue.test(prenomValue))
+      if (regexPrenomValue.test(prenomValue)) {
+        return prenomValue;
+      } else {
+        prenomError.textContent = "Vérifiez le prénom vous avez sûrement mis des chiffres ou symboles. ";
+      };
 
       // NOM
-      const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)+/;
+      const regexNomValue = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/;
       console.log(regexNomValue.test(nomValue));
       if (regexNomValue.test(nomValue)) {
         if (nomError.textContent !== null) {
@@ -344,6 +353,8 @@ fetchEtVisualSection();
         nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
       };
 
+
+    //  Exemplaire de Regex en forme FUNCTION  
         // function verifNom(nomValue) {
         //   console.log("nom", "+", nomValue)
         //   const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
@@ -356,18 +367,72 @@ fetchEtVisualSection();
         // }
         // verifNom();
 
+        // Je créé une fonction la partie du form qui n'acceptera pas de chiffres
+        function addresseFrValide(addresseValue) {
+          console.log("addresse", "+", addresseValue)
+          const regexAddresseValue = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
+          console.log(regexAddresseValue.test(addresseValue));
+          if (regexAddresseValue.test(addresseValue)) {
+            return addresseValue;
+          } else {
+            addresseError.textContent = "Vérifiez que votre adresse est bien écrite au format d'addresses francaises"
+          }
+        }
+        addresseFrValide();
 
-        // function addresseFrValide(addresseValue) {
-        //   console.log("addresse", "+", addresseValue)
-        //   const regexAddresseValue = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
-        //   console.log(regexAddresseValue.test(addresseValue));
-        //   if (regexAddresseValue.test(addresseValue)) {
-        //     return addresseValue;
-        //   } else {
-        //     addresseError.textContent = "Vérifiez que votre adresse est bien écrite au format d'addresses francaises"
-        //   }
-        // }
-        // addresseFrValide();
+        function addresseFrValide(addresseValue) {
+          console.log("addresse", "+", addresseValue)
+          const regexAddresseValue = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;
+          console.log(regexAddresseValue.test(addresseValue));
+          if (regexAddresseValue.test(addresseValue)) {
+            return addresseValue;
+          } else {
+            addresseError.textContent = "Vérifiez que votre adresse est bien écrite au format d'addresses francaises"
+          }
+        }
+        addresseFrValide();
+
+        function villeValide (villeValue) {
+          console.log("ville + ",villeValue )
+          const regexVilleValue = /^[A-Z][a-z]+(([\-\ ])(([A-Z])?[a-z]+))+/g
+          console.log(regexVilleValue.test(villeValue))
+          if (regexEmailValue.test(villeValue)) {
+            return villeValue;
+          } else {
+            villeError.textContent = "Vérifiez que votre ou vos noms de la ville débutent par une majuscule"
+          }
+        }
+
+        function aLeMail(emailValue) {
+          console.log("email", "+", emailValue)
+          const regexEmailValue = /^[a-zA-Z0-9][a-zA-Z0-9]+[A-Za-z0-9]+(([\ \-\_])?([\-\_\.])?([\ \-\_])?)?([A-Za-z0-9])?[a-zA-Z0-9]+[@][a-z]+[\.][a-z]{2,3}/g;
+          console.log(regexEmailValue.test(emailValue));
+          if (regexEmailValue.test(emailValue)) {
+            return emailValue;
+          } else {
+            emailError.textContent = "Vérifiez que votre email est bien écrite au format email"
+          }
+        }
+        aLeMail();
+
+        // exemplaire en function des logiques regex 
+
+        function aLeMail(emailValue) {
+          console.log("email", "+", emailValue)
+          const regexEmailValue = /^[a-zA-Z0-9][a-zA-Z0-9]+[A-Za-z0-9]+(([\ \-\_])?([\-\_\.])?([\ \-\_])?)?([A-Za-z0-9])?[a-zA-Z0-9]+[@][a-z]+[\.][a-z]{2,3}/g;
+          console.log(regexEmailValue.test(emailValue));
+          if (regexEmailValue.test(emailValue)) {
+            return emailValue;
+          } else {
+            emailError.textContent = "Vérifiez que votre email est bien écrite au format email"
+          }
+        }
+        aLeMail();
+        
+        function aSymbole(value) {
+          return /[^a-zA-Z0-9_]/g.test(value);
+        }
+        aSymbole();
 
         const prenomValide = regexPrenomValue.test(prenomValue);
         const nomValide = regexNomValue.test(nomValue);
