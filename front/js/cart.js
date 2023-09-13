@@ -113,20 +113,21 @@ const fetchEtVisualSection = async () => {
           const quanteModifiableProductInput = e.target.value;
           const panelPersoChoix = majcart[index];
           const toutPanLocal = majcart;
-          for (let numLoc = 0; numLoc < majcart.length; numLoc++) {
-            const majcartPointNumLoc = majcart[numLoc];
-            console.log(majcartPointNumLoc)
-            console.log(majcartPointNumLoc.quantity)
-            // return marche
-            return majcartPointNumLoc.quantity
-          } 
+          // for (let numLoc = 0; numLoc < majcart.length; numLoc++) {
+          //   const majcartPointNumLoc = majcart[numLoc];
+          //   console.log(majcartPointNumLoc)
+          //   console.log(majcartPointNumLoc.quantity)
+          //   // return marche
+          //   return majcartPointNumLoc.quantity
+          // } 
           
-          if (panelPersoChoix._id === majcartPointNumLoc.quantity) {
-            console.log("return marche et majcartaussi")
-          } else {console.log("y aun truc")}
+          // if (panelPersoChoix._id === majcartPointNumLoc.quantity) {
+          //   console.log("return marche et majcartaussi")
+          // } else {console.log("y aun truc")}
 
            if (quanteModifiableProductInput !== panelPersoChoix.quantity) {
-            // localStorage.setItem("panier", JSON.stringify('panier'))
+             // localStorage.setItem("panier", JSON.stringify('panier'))
+             // qtyTotal();
             console.log("input inegal");
             console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
             // if (panelPersoChoix._id === ) {}
@@ -167,7 +168,7 @@ const fetchEtVisualSection = async () => {
             console.log("input quantite client dejà egal qt input");
             console.log(totalPanier);
           }
-          // location.reload(true);
+          location.reload(true);
         });
         
       });
@@ -208,7 +209,7 @@ const fetchEtVisualSection = async () => {
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);
       const quantiteTotaleParsee = parseInt(affichTotalQuantity);
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString());
-      // const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
+      const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"))
     }
     qtyTotal();
     console.log(totalPanier)
