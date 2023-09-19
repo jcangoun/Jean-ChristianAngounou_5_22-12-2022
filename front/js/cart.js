@@ -9,6 +9,7 @@ const carteArticle = document.querySelector(".cart > #cart__items");
 tableauPrix = [];
 totalPanier = [];
 let totalChange = [];
+console.log("uh")
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
@@ -298,6 +299,12 @@ const emailError = document.getElementById("email");
 
 //  LEs évènements pour le bouton d'envoi commande client
 
+form.setAttribute("method", "POST");
+form.setAttribute("action", "isac.php");
+
+console.log(form)
+console.log("uhaa")
+
 const commanderBtn = document.getElementById("order");
 commanderBtn.addEventListener("submit", function (e) {
   // console.log('ca paniasse');
@@ -307,12 +314,13 @@ commanderBtn.addEventListener("submit", function (e) {
   const villeValue = ville.value.trim();
   const emailValue = email.value.trim();
   console.log(prenomValue, nomValue, adresseValue, villeValue, emailValue )
+  
   // if (prenomValue === "" || nomValue === "" || adresseValue === "" || villeValue === "" || emailValue === "") {
   //   alert("remplir le formulaire lààààà");
     e.preventDefault;
   // }
-
-  formVerif();
+  // commanderBtn.setAttribute("method", "POST");
+  // commanderBtn.setAttribute("action", "isac.php");
   // ----------------------------------------------------------
 
   // localStorage.setItem("contact", JSON.stringify(contact))
@@ -320,18 +328,8 @@ commanderBtn.addEventListener("submit", function (e) {
   // là  input regex ------------------------------------------------------
 
   //  Exemplaire de Regex en forme FUNCTION
-  // function verifNom(nomValue) {
-  //   console.log("nom", "+", nomValue)
-  //   const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
-  //   console.log(regexNomValue.test(nomValue));
-  //   if (regexNomValue.test(nomValue)) {
-  //     return nomValue;
-  //   } else {
-  //     nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
-  //   }
-  // }
-  // verifNom();
-
+  verifNom();
+  
   // Ici en bas je peux regrouper les objets que je dois transmettre
   const userFormToSend = {
     cartPanierGet,
@@ -339,56 +337,20 @@ commanderBtn.addEventListener("submit", function (e) {
   };
   console.log("userFormToSend");
   console.log(userFormToSend);
-
+  
   // ICi en bas on va mettre des conditions aavnt de permettre le localSotrage .
   // localStorage.setItem("contact", JSON.stringify(contact))
-
+  
   // const formulaireValide =
 });
-function formVerif() {
-  // Verifie prenom
-  if (prenomValue === "") {
-    let message = "prenomValue ou prenom, ne doit pas etre vide";
-    setError(prenomValue, message);
-  } else if (!prenomValue.match(/^[A-Za-z][a-zA-Z]+(-[a-zA-Z]+){0,2}$/)) {
-    let message = "Prénom doit commencer Par une lettre et pas de symboles";
-    setError(username, message);
+
+function verifNom(nomValue) {
+  console.log("nom", "+", nomValue)
+  const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
+  console.log(regexNomValue.test(nomValue));
+  if (regexNomValue.test(nomValue)) {
+    return nomValue;
   } else {
-    let letterNum = prenomValue.length;
-    if (letterNum < 3) {
-      let message = " prenomValue ou alors le prenom, doit conteinr au moins 3 caracteres";
-      setError(prenomValue, message);
-    } else {
-      setSuccess(prenom);
-    }
+    nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
   }
-
-  // verifie email
-  if (emailValue === "") {
-    let message = "L'email doit être remplie";
-    console.log("email rempli");
-    setError(email, message);
-  } else if (!emailVerify(email)) {
-    console.log("email non rempli");
-    let message = "E-mail non valide";
-    setError(email, message);
-  }
-}
-
-function setError(elem, message) {
-  const cartOrderFormQuestion = elem.parentElement;
-  const errorMessage = document.querySelector("p");
-
-  // Ajout message d'erreur
-  prenomError.innerHTML = message;
-}
-
-function setSuccess(elem) {
-  // je teste un ajout la classe error
-  // cartOrderFormQuestion.className = "cartOrderFormQuestion success"
-  console.log("function succes");
-}
-function emailVerify(email) {
-  console.log("emailverifié");
-  return /^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@][a-z\.\-\_]+[\.][a-z]{2,4}$/g;
 }
