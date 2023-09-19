@@ -9,7 +9,6 @@ const carteArticle = document.querySelector(".cart > #cart__items");
 tableauPrix = [];
 totalPanier = [];
 let totalChange = [];
-console.log("uh")
 const fetchEtVisualSection = async () => {
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
@@ -277,15 +276,15 @@ fetchEtVisualSection();
 // LEs éléments pour formulaire
 const form = document.getElementById("order");
 const prenom = document.getElementById("firstName");
-const prenomError = document.getElementById("firstNameErrorMsg");
+const prenomError = prenom.nextElementSibling;
 const nom = document.getElementById("lastName");
-const nomError = document.getElementById("lastNameErrorMsg");
+const nomError = prenom.nextElementSibling;
 const adresse = document.getElementById("address");
-const addresseError = document.getElementById("addressErrorMsg");
+const addresseError = adresse.nextElementSibling;
 const ville = document.getElementById("city");
-const villeError = document.getElementById("city");
+const villeError = ville.nextElementSibling;
 const email = document.getElementById("email");
-const emailError = document.getElementById("email");
+const emailError = email.nextElementSibling;
 // ---------------------------------------------------valeurs du formulaire qui seront sauvegardés dans localstorage key contact
 // const contact = {
 //   prenom: document.querySelector("#firstName"),
@@ -298,12 +297,6 @@ const emailError = document.getElementById("email");
 // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
 
 //  LEs évènements pour le bouton d'envoi commande client
-
-form.setAttribute("method", "POST");
-form.setAttribute("action", "isac.php");
-
-console.log(form)
-console.log("uhaa")
 
 const commanderBtn = document.getElementById("order");
 commanderBtn.addEventListener("submit", function (e) {
@@ -319,8 +312,6 @@ commanderBtn.addEventListener("submit", function (e) {
   //   alert("remplir le formulaire lààààà");
     e.preventDefault;
   // }
-  // commanderBtn.setAttribute("method", "POST");
-  // commanderBtn.setAttribute("action", "isac.php");
   // ----------------------------------------------------------
 
   // localStorage.setItem("contact", JSON.stringify(contact))
@@ -344,13 +335,49 @@ commanderBtn.addEventListener("submit", function (e) {
   // const formulaireValide =
 });
 
-function verifNom(nomValue) {
-  console.log("nom", "+", nomValue)
-  const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
-  console.log(regexNomValue.test(nomValue));
-  if (regexNomValue.test(nomValue)) {
-    return nomValue;
+// function verifNom(nomValue) {
+//   console.log("nom", "+", nomValue)
+//   const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
+//   console.log(regexNomValue.test(nomValue));
+//   if (regexNomValue.test(nomValue)) {
+//     return nomValue;
+//   } else {
+//     nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
+//   }
+// }
+
+
+// J'ecoute la modification d'E-MAiL
+form.prenom.addEventListener('change', function() {
+  validPrenom(this);
+});
+
+// J'ecoute la modification d'E-MAiL
+form.email.addEventListener('change', function() {
+  validEmail(this);
+});
+
+
+//  ----------------------------ETAPE DE VALIDATION E-MAIL -----------------
+
+const validEmail = function(email) {
+  // JE fais du coup une regex pour la valider l'email
+  let regexEmail = new RegExp(
+    '^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@]{1}[a-z\.\-\_]+[\.]{1}[a-z]{2,10}$', 'g'
+  );
+  // Là je recupere la balise de message error "emailErrormsg"
+  let emailError = email.nextElementSibling;
+
+  // Là je teste l'expression reguliere
+  if (regexEmail.test(email.value)) {
+    emailError.innerHtml = "";
+    emailError.classList.remove('text-bad')
+    emailError.classList.add('text-success')
+   emailError.style.display = "none";
+   return true;
   } else {
-    nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
+    emailError.innerHtml = "Adresse non conforme au format email";
+    emailError.classList.add('text-bad')
+    return false;
   }
 }
