@@ -357,8 +357,37 @@ form.email.addEventListener('change', function() {
   validEmail(this);
 });
 
+// ------------------------------ VALIDATION PRENOM ------------------------
 
-//  ----------------------------ETAPE DE VALIDATION E-MAIL -----------------
+const validPrenom = function(prenom) {
+  // creation regex pour valider le prenom 
+  let regexPRenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
+  // Je prends la balise de message error "firstNameErrorMsg"
+  let prenomError = prenom.nextElementSibling;
+
+  // Je testeavec l'expression réguliere
+  if (regexPRenom.test(prenom.value)) {
+    prenomError.innerHTML = "";
+    prenomError.classList.remove('text-bad');
+    emailError.classList.add('text-success')
+    emailError.style.display = "none";
+    return true;
+  } else {
+    prenomError.innerHTML = "Adresse non conforme au format prenom";
+    prenomError.classList.add('text-bad')
+    return false;
+  }
+}
+
+
+// ------------------------------- VALIDATION NOM ----------------------------------------------
+
+const validNom = function(nom) {
+  // creation regex pour valider le nom
+  let regexNom = new RegExp('[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?', 'g')
+   // Balise message error "lastNameErrorMsg"
+}
+//  ---------------------------- VALIDATION E-MAIL -----------------
 
 const validEmail = function(email) {
   // JE fais du coup une regex pour la valider l'email
@@ -370,13 +399,13 @@ const validEmail = function(email) {
 
   // Là je teste l'expression reguliere
   if (regexEmail.test(email.value)) {
-    emailError.innerHtml = "";
+    emailError.innerHTML = "";
     emailError.classList.remove('text-bad')
     emailError.classList.add('text-success')
    emailError.style.display = "none";
    return true;
   } else {
-    emailError.innerHtml = "Adresse non conforme au format email";
+    emailError.innerHTML = "Adresse non conforme au format email";
     emailError.classList.add('text-bad')
     return false;
   }
