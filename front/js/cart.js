@@ -384,12 +384,14 @@ const validPrenom = function(prenom) {
 
   // Je testeavec l'expression réguliere
   if (regexPrenom.test(prenom.value)) {
+    console.log('prenom ok')
     prenomError.innerHTML = "";
     prenomError.classList.remove('text-bad');
     prenomError.classList.add('text-success')
     prenomError.style.display = "none";
     return true;
   } else {
+    console.log(' validprenom ne va pas bien là')
     prenomError.innerHTML = "Prenom non conforme au format prenom";
     prenomError.classList.add('text-bad');
     return false;
@@ -406,12 +408,14 @@ const validNom = function(nom) {
    let nomError = nom.nextElementSibling;
 
    if (regexNom.test(nom.value)) {
+    console.log("nom ok")
     nomError.innerHTML = "";
     nomError.classList.remove('text-bad');
     nomError.classList.add('text-success');
     prenomError.style.display = "none";
     return true;
    } else {    
+    console.log("validnom ne va pas là")
     nomError.innerHTML = "nom non conforme au format nom";
     nomError.innerHTML.classList.add('text-bad');
     return false;
@@ -427,12 +431,14 @@ const validAdresse = function(adresse) {
   let adresseError = adresse.nextElementSibling;
 
   if (regexAdresse.test(adresse.value)) {
+    console.log("adresse ok")
     adresseError.innerHTML = "";
     adresseError.classList.remove('text-bad');
     adresseError.classList.add('text-success');
     adresseError.style.display = "none";
     return true;
   } else {
+    console.log("validprenom ne va pas là")
     adresseError.innerHTML = "adresse non conforme au format adresse";
     adresseError.innerHTML.classList.add('text-bad');
     return false;
@@ -448,12 +454,14 @@ const validVille = function(ville) {
   let villeError = ville.nextElementSibling;
 
   if (regexVille.test(ville.value)) {
+    console.log("ville ok")
     villeError.innerHTML = "";
     villeError.classList.remove('text-bad');
     villeError.classList.add('text-success');
     villeError.style.display = "none";
     return true;
   } else {
+    console.log("validville ne va pas là")
     villeError.innerHTML = "ville non conforme au format ville";
     villeError.innerHTML.classList.add('text-bad');
     return false;
@@ -472,12 +480,14 @@ const validEmail = function(email) {
 
   // Là je teste l'expression reguliere
   if (regexEmail.test(email.value)) {
+    console.log("email ok")
     emailError.innerHTML = "";
     emailError.classList.remove('text-bad')
     emailError.classList.add('text-success')
    emailError.style.display = "none";
    return true;
   } else {
+    console.log("validemail ne va pas là")
     emailError.innerHTML = "email non conforme au format email";
     emailError.classList.add('text-bad')
     return false;
