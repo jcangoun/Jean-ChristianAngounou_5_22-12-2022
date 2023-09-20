@@ -280,7 +280,7 @@ const prenomError = prenom.nextElementSibling;
 const nom = document.getElementById("lastName");
 const nomError = prenom.nextElementSibling;
 const adresse = document.getElementById("address");
-const addresseError = adresse.nextElementSibling;
+const adresseError = adresse.nextElementSibling;
 const ville = document.getElementById("city");
 const villeError = ville.nextElementSibling;
 const email = document.getElementById("email");
@@ -346,10 +346,25 @@ commanderBtn.addEventListener("submit", function (e) {
 //   }
 // }
 
-
-// J'ecoute la modification d'E-MAiL
+// J'ecoute la modification du prenom
 form.prenom.addEventListener('change', function() {
   validPrenom(this);
+});
+
+// J'ecoute la modification du nom
+form.nom.addEventListener('change', function() {
+  validNom(this);
+});
+
+
+// J'ecoute la modification de l'adresse
+form.adresse.addEventListener('change', function() {
+  validAdresse(this);
+});
+
+// J'ecoute la modification de la ville
+form.ville.addEventListener('change', function() {
+  validVille(this);
 });
 
 // J'ecoute la modification d'E-MAiL
@@ -357,24 +372,26 @@ form.email.addEventListener('change', function() {
   validEmail(this);
 });
 
+
+
 // ------------------------------ VALIDATION PRENOM ------------------------
 
 const validPrenom = function(prenom) {
   // creation regex pour valider le prenom 
-  let regexPRenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
+  let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
   // Je prends la balise de message error "firstNameErrorMsg"
   let prenomError = prenom.nextElementSibling;
 
   // Je testeavec l'expression réguliere
-  if (regexPRenom.test(prenom.value)) {
+  if (regexPrenom.test(prenom.value)) {
     prenomError.innerHTML = "";
     prenomError.classList.remove('text-bad');
-    emailError.classList.add('text-success')
-    emailError.style.display = "none";
+    prenomError.classList.add('text-success')
+    prenomError.style.display = "none";
     return true;
   } else {
-    prenomError.innerHTML = "Adresse non conforme au format prenom";
-    prenomError.classList.add('text-bad')
+    prenomError.innerHTML = "Prenom non conforme au format prenom";
+    prenomError.classList.add('text-bad');
     return false;
   }
 }
@@ -386,7 +403,63 @@ const validNom = function(nom) {
   // creation regex pour valider le nom
   let regexNom = new RegExp('[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?', 'g')
    // Balise message error "lastNameErrorMsg"
+   let nomError = nom.nextElementSibling;
+
+   if (regexNom.test(nom.value)) {
+    nomError.innerHTML = "";
+    nomError.classList.remove('text-bad');
+    nomError.classList.add('text-success');
+    prenomError.style.display = "none";
+    return true;
+   } else {    
+    nomError.innerHTML = "nom non conforme au format nom";
+    nomError.innerHTML.classList.add('text-bad');
+    return false;
+   }
 }
+
+//  ---------------------------- VALIDATION ADRESSE ---------------------------------------------
+
+const validAdresse = function(adresse) {
+  // je crée un regex qui valide l'adresse
+  let regexAdresse = new RegExp('(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}', 'g')
+  // stock de la balise message error "addressErrorMsg"
+  let adresseError = adresse.nextElementSibling;
+
+  if (regexAdresse.test(adresse.value)) {
+    adresseError.innerHTML = "";
+    adresseError.classList.remove('text-bad');
+    adresseError.classList.add('text-success');
+    adresseError.style.display = "none";
+    return true;
+  } else {
+    adresseError.innerHTML = "adresse non conforme au format adresse";
+    adresseError.innerHTML.classList.add('text-bad');
+    return false;
+  }
+}
+
+// ------------------------------ VLIDATION VILLE ---------------------------
+
+const validVille = function(ville) {
+  // creation d'un regex pour valider la ville
+  let regexVille = new RegExp('^[A-Z][a-z]+(([\-\ ])(([A-Z])?[a-z]+))+', 'g')
+  // Stockage de la balise message error "cityErrorMsg"
+  let villeError = ville.nextElementSibling;
+
+  if (regexVille.test(ville.value)) {
+    villeError.innerHTML = "";
+    villeError.classList.remove('text-bad');
+    villeError.classList.add('text-success');
+    villeError.style.display = "none";
+    return true;
+  } else {
+    villeError.innerHTML = "ville non conforme au format ville";
+    villeError.innerHTML.classList.add('text-bad');
+    return false;
+  }
+}
+
 //  ---------------------------- VALIDATION E-MAIL -----------------
 
 const validEmail = function(email) {
@@ -405,7 +478,7 @@ const validEmail = function(email) {
    emailError.style.display = "none";
    return true;
   } else {
-    emailError.innerHTML = "Adresse non conforme au format email";
+    emailError.innerHTML = "email non conforme au format email";
     emailError.classList.add('text-bad')
     return false;
   }
