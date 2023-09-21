@@ -116,70 +116,72 @@ const fetchEtVisualSection = async () => {
           console.log(panelPersoChoix.colors);
           console.log(panelPersoChoix.quantity);
           //----------- Ici, j'ai rajoute ce for let pour essayer de regler le bug du problème de quantité ,et malgré tout, il ne se passe rien de bon, je ne voies pas mon erreur
-          for (let indice = 0; indice < majcart.length; indice++) {
-            const majcartTablIndice = majcart[indice];
-            const lastMajcartTablIndice = majcart.length;
-            console.log(majcartTablIndice);
-            console.log(majcartTablIndice);
-            if (lastMajcartTablIndice) {
-              if (panelPersoChoix._id === produitPanier._id) {
-                console.log("id sont pareils")
-                if (panelPersoChoix.quantity !== produitPanier.quantity && panelPersoChoix.colors === produitPanier.colors) {
-                  quanteModifiableProductInput === panelPersoChoix.quantity;
-                }
-              }
-            }
-            console.log(majcartTablIndice);
-            console.log(majcartTablIndice.quantity);
+          // for (let indice = 0; indice < majcart.length; indice++) {
+          //   const majcartTablIndice = majcart[indice];
+          //   const lastMajcartTablIndice = majcart.length;
+          //   console.log(majcartTablIndice);
+          //   console.log(majcartTablIndice);
+          //   if (lastMajcartTablIndice) {
+          //     if (panelPersoChoix._id === produitPanier._id) {
+          //       console.log("id sont pareils")
+          //       if (panelPersoChoix.quantity !== produitPanier.quantity && panelPersoChoix.colors === produitPanier.colors) {
+          //         quanteModifiableProductInput === panelPersoChoix.quantity;
+          //       }
+          //     }
+          //   }
+          //   console.log(majcartTablIndice);
+          //   console.log(majcartTablIndice.quantity);
 
-            // return majcartPointIndice.quantity
-          }
+          //   // return majcartPointIndice.quantity
+          // }
+
+          //         quanteModifiableProductInput === panelPersoChoix.quantity;
 
           // ------------------------------------ Fin du for let d essai ci dessus ----------------------------------------
 
-          //            if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
-          //              // localStorage.setItem("panier", JSON.stringify('panier'))
+                     if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
+                       // localStorage.setItem("panier", JSON.stringify('panier'))
 
-          //             console.log("input inegal");
-          //             console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+                      console.log("input inegal");
+                      console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
 
-          //             panelPersoChoix.quantity = quanteModifiableProductInput;
-          //             console.log(panelPersoChoix._id, panelPersoChoix.name)
-          // // ========================================================================================================================
-          //         //     let caseTotalPrice = document.querySelector("#totalPrice");
-          //         //     caseTotalPrice = " ";
-          //         //     console.log("case a ceci =", "' " + caseTotalPrice + "' ");
-          //         //     // localStorage.getItem(JSON.parse('panier'))
-          //         //     const changeQuantity = parseInt(panelPersoChoix.quantity);
-          //         //     const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-          //         //     const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-          //         //     const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-          //         //     console.log(baliseChangePrix);
-          //         //     console.log(onChangeSectionTotal);
-          //         //     console.log(totalPanier);
-          //         //           //============================= ====================
-          //         //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          //         //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-          //         //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          //         //     console.log(totalPanier);
-          //         //     console.log(totalSupreme);
+                      panelPersoChoix.quantity = quanteModifiableProductInput;
+                      console.log(panelPersoChoix._id, panelPersoChoix.name)
+          // ========================================================================================================================
+                      let caseTotalPrice = document.querySelector("#totalPrice");
+                      caseTotalPrice = " ";
+                      console.log("case a ceci =", "' " + caseTotalPrice + "' ");
+                      // localStorage.getItem(JSON.parse('panier'))
+                      // const changeQuantity = parseInt(panelPersoChoix.quantity);
+                      // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+                      // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+                      // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+                      // console.log(baliseChangePrix);
+                      // console.log(onChangeSectionTotal);
+                      // console.log(totalPanier);
+                  //           //============================= ====================
+                  //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                  //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
+                  //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                  //     console.log(totalPanier);
+                  //     console.log(totalSupreme);
 
-          //         //     console.log("totaPrix", caseTotalPrice.textContent);
-          //         //     caseTotalPrice = `${totalSupreme}`;
-          //         //     console.log(caseTotalPrice.textContent);
-          //         // //          ===============================================
-          //         //     // tableauPrixFinal.push(onChangeSectionTotal)
-          //         //     // console.log(tableauPrixFinal)
-          //         //     qtyTotal();
-          //             // toutTotalPrix ();
-          //             // console.log("chargelocale");
-          //             console.log(totalPanier);
-          //             localStorage.setItem("panier", JSON.stringify(majcart));
-          //           }
-          //           else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-          //             console.log("input quantite client dejà egal qt input");
-          //             console.log(totalPanier);
-          //           }
+                  //     console.log("totaPrix", caseTotalPrice.textContent);
+                  //     caseTotalPrice = `${totalSupreme}`;
+                  //     console.log(caseTotalPrice.textContent);
+                  // //          ===============================================
+                  //     // tableauPrixFinal.push(onChangeSectionTotal)
+                  //     // console.log(tableauPrixFinal)
+                  //     qtyTotal();
+                      // toutTotalPrix ();
+                      // console.log("chargelocale");
+                      console.log(totalPanier);
+                      localStorage.setItem("panier", JSON.stringify(majcart));
+                    }
+                    else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+                      console.log("input quantite client dejà egal qt input");
+                      console.log(totalPanier);
+                    }
           // location.reload(true);
         });
       });
@@ -298,8 +300,8 @@ const emailError = email.nextElementSibling;
 //   ville: document.querySelector("#city"),
 //   email: document.querySelector("#email"),
 // };
-// A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
 
+// A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
 
 //  LEs évènements pour le bouton d'envoi commande client
 
