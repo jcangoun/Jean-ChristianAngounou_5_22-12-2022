@@ -115,6 +115,7 @@ const fetchEtVisualSection = async () => {
           const toutPanLocal = majcart;
           console.log(panelPersoChoix.colors);
           console.log(panelPersoChoix.quantity);
+          //----------- Ici, j'ai rajoute ce for let pour essayer de regler le bug du problème de quantité ,et malgré tout, il ne se passe rien de bon, je ne voies pas mon erreur
           for (let indice = 0; indice < majcart.length; indice++) {
             const majcartTablIndice = majcart[indice];
             const lastMajcartTablIndice = majcart.length;
@@ -122,6 +123,7 @@ const fetchEtVisualSection = async () => {
             console.log(majcartTablIndice);
             if (lastMajcartTablIndice) {
               if (panelPersoChoix._id === produitPanier._id) {
+                console.log("id sont pareils")
                 if (panelPersoChoix.quantity !== produitPanier.quantity && panelPersoChoix.colors === produitPanier.colors) {
                   quanteModifiableProductInput === panelPersoChoix.quantity;
                 }
@@ -132,6 +134,8 @@ const fetchEtVisualSection = async () => {
 
             // return majcartPointIndice.quantity
           }
+
+          // ------------------------------------ Fin du for let d essai ci dessus ----------------------------------------
 
           //            if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
           //              // localStorage.setItem("panier", JSON.stringify('panier'))
@@ -285,7 +289,8 @@ const ville = document.getElementById("city");
 const villeError = ville.nextElementSibling;
 const email = document.getElementById("email");
 const emailError = email.nextElementSibling;
-// ---------------------------------------------------valeurs du formulaire qui seront sauvegardés dans localstorage key contact
+
+// --------------------------------------------------- A démuter ci dessous plus tard: valeurs du formulaire qui seront sauvegardés dans localstorage key contact
 // const contact = {
 //   prenom: document.querySelector("#firstName"),
 //   nom: document.querySelector("#lastName"),
@@ -293,14 +298,15 @@ const emailError = email.nextElementSibling;
 //   ville: document.querySelector("#city"),
 //   email: document.querySelector("#email"),
 // };
-
 // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
+
 
 //  LEs évènements pour le bouton d'envoi commande client
 
 const commanderBtn = document.getElementById("order");
 commanderBtn.addEventListener("submit", function (e) {
   // console.log('ca paniasse');
+  // e.preventDefault();
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
   const adresseValue = adresse.value.trim();
@@ -308,10 +314,11 @@ commanderBtn.addEventListener("submit", function (e) {
   const emailValue = email.value.trim();
   console.log(prenomValue, nomValue, adresseValue, villeValue, emailValue )
   
-  // if (prenomValue === "" || nomValue === "" || adresseValue === "" || villeValue === "" || emailValue === "") {
-  //   alert("remplir le formulaire lààààà");
-    e.preventDefault;
-  // }
+  if (prenomValue === "" || nomValue === "" || adresseValue === "" || villeValue === "" || emailValue === "") {
+    alert("remplir le formulaire lààààà");
+    e.preventDefault();
+    // e.stopPropagation();
+  }
   // ----------------------------------------------------------
 
   // localStorage.setItem("contact", JSON.stringify(contact))
@@ -319,7 +326,7 @@ commanderBtn.addEventListener("submit", function (e) {
   // là  input regex ------------------------------------------------------
 
   //  Exemplaire de Regex en forme FUNCTION
-  verifNom();
+  // verifNom();
   
   // Ici en bas je peux regrouper les objets que je dois transmettre
   const userFormToSend = {
@@ -333,103 +340,103 @@ commanderBtn.addEventListener("submit", function (e) {
   // localStorage.setItem("contact", JSON.stringify(contact))
   
   // const formulaireValide =
-});
-
-// function verifNom(nomValue) {
-//   console.log("nom", "+", nomValue)
-//   const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
-//   console.log(regexNomValue.test(nomValue));
-//   if (regexNomValue.test(nomValue)) {
-//     return nomValue;
-//   } else {
-//     nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
-//   }
-// }
-
-// J'ecoute la modification du prenom
-form.prenom.addEventListener('change', function() {
-  validPrenom(this);
-});
-
-// J'ecoute la modification du nom
-form.nom.addEventListener('change', function() {
-  validNom(this);
-});
-
-
-// J'ecoute la modification de l'adresse
-form.adresse.addEventListener('change', function() {
-  validAdresse(this);
-});
-
-// J'ecoute la modification de la ville
-form.ville.addEventListener('change', function() {
-  validVille(this);
-});
-
-// J'ecoute la modification d'E-MAiL
-form.email.addEventListener('change', function() {
-  validEmail(this);
-});
+  // J'ecoute la modification du prenom
+  form.prenom.addEventListener('change', function() {
+    validPrenom(this);
+  });
+  
+  // J'ecoute la modification du nom
+  form.nom.addEventListener('change', function() {
+    validNom(this);
+  });
+  
+  
+  // J'ecoute la modification de l'adresse
+  form.adresse.addEventListener('change', function() {
+    validAdresse(this);
+  });
+  
+  // J'ecoute la modification de la ville
+  form.ville.addEventListener('change', function() {
+    validVille(this);
+  });
+  
+  // J'ecoute la modification d'E-MAiL
+  form.email.addEventListener('change', function() {
+    validEmail(this);
+  });
 
 
-
-// ------------------------------ VALIDATION PRENOM ------------------------
-
-const validPrenom = function(prenom) {
-  // creation regex pour valider le prenom 
-  let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
-  // Je prends la balise de message error "firstNameErrorMsg"
-  let prenomError = prenom.nextElementSibling;
-
-  // Je testeavec l'expression réguliere
-  if (regexPrenom.test(prenom.value)) {
-    console.log('prenom ok')
-    prenomError.innerHTML = "";
-    prenomError.classList.remove('text-bad');
-    prenomError.classList.add('text-success')
-    prenomError.style.display = "none";
-    return true;
-  } else {
-    console.log(' validprenom ne va pas bien là')
-    prenomError.innerHTML = "Prenom non conforme au format prenom";
-    prenomError.classList.add('text-bad');
-    return false;
-  }
-}
-
-
-// ------------------------------- VALIDATION NOM ----------------------------------------------
-
-const validNom = function(nom) {
-  // creation regex pour valider le nom
-  let regexNom = new RegExp('[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?', 'g')
-   // Balise message error "lastNameErrorMsg"
-   let nomError = nom.nextElementSibling;
-
-   if (regexNom.test(nom.value)) {
-    console.log("nom ok")
-    nomError.innerHTML = "";
-    nomError.classList.remove('text-bad');
-    nomError.classList.add('text-success');
-    prenomError.style.display = "none";
-    return true;
-   } else {    
-    console.log("validnom ne va pas là")
-    nomError.innerHTML = "nom non conforme au format nom";
-    nomError.innerHTML.classList.add('text-bad');
-    return false;
-   }
-}
-
-//  ---------------------------- VALIDATION ADRESSE ---------------------------------------------
-
-const validAdresse = function(adresse) {
+  
+  
+  // function verifNom(nomValue) {
+    //   console.log("nom", "+", nomValue)
+    //   const regexNomValue = /[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?/;
+    //   console.log(regexNomValue.test(nomValue));
+    //   if (regexNomValue.test(nomValue)) {
+      //     return nomValue;
+      //   } else {
+        //     nomError.textContent = "Vérifiez le nom vous avez sûrement mis des chiffres ou symboles. ";
+        //   }
+        // }
+        
+        
+        
+        // ------------------------------ VALIDATION PRENOM ------------------------
+        
+        const validPrenom = function(prenom) {
+          // creation regex pour valider le prenom 
+          let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
+          // Je prends la balise de message error "firstNameErrorMsg"
+          let prenomError = prenom.nextElementSibling;
+          
+          // Je testeavec l'expression réguliere
+          if (regexPrenom.test(prenom.value)) {
+            console.log('prenom ok')
+            prenomError.innerHTML = "";
+            prenomError.classList.remove('text-bad');
+            prenomError.classList.add('text-success')
+            prenomError.style.display = "none";
+            return true;
+          } else {
+            console.log(' validprenom ne va pas bien là')
+            prenomError.innerHTML = "Prenom non conforme au format prenom";
+            prenomError.classList.add('text-bad');
+            return false;
+          }
+        }
+        
+        // ------------------------------- VALIDATION NOM ----------------------------------------------
+        
+        const validNom = function(nom) {
+          // creation regex pour valider le nom
+          let regexNom = new RegExp('[A-Za-z][a-z]+([\s\-\_][A-Za-z][a-z]+)?', 'g')
+          // Balise message error "lastNameErrorMsg"
+          let nomError = nom.nextElementSibling;
+          
+          if (regexNom.test(nom.value)) {
+            console.log("nom ok")
+            nomError.innerHTML = "";
+            nomError.classList.remove('text-bad');
+            nomError.classList.add('text-success');
+            prenomError.style.display = "none";
+            return true;
+          } else {    
+            console.log("validnom ne va pas là")
+            nomError.innerHTML = "nom non conforme au format nom";
+            nomError.innerHTML.classList.add('text-bad');
+            return false;
+          }
+        }
+        
+        //  ---------------------------- VALIDATION ADRESSE ---------------------------------------------
+        
+        const validAdresse = function(adresse) {
   // je crée un regex qui valide l'adresse
   let regexAdresse = new RegExp('(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}', 'g')
   // stock de la balise message error "addressErrorMsg"
   let adresseError = adresse.nextElementSibling;
-
+  
   if (regexAdresse.test(adresse.value)) {
     console.log("adresse ok")
     adresseError.innerHTML = "";
@@ -452,7 +459,7 @@ const validVille = function(ville) {
   let regexVille = new RegExp('^[A-Z][a-z]+(([\-\ ])(([A-Z])?[a-z]+))+', 'g')
   // Stockage de la balise message error "cityErrorMsg"
   let villeError = ville.nextElementSibling;
-
+  
   if (regexVille.test(ville.value)) {
     console.log("ville ok")
     villeError.innerHTML = "";
@@ -474,22 +481,23 @@ const validEmail = function(email) {
   // JE fais du coup une regex pour la valider l'email
   let regexEmail = new RegExp(
     '^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@]{1}[a-z\.\-\_]+[\.]{1}[a-z]{2,10}$', 'g'
-  );
-  // Là je recupere la balise de message error "emailErrormsg"
-  let emailError = email.nextElementSibling;
-
-  // Là je teste l'expression reguliere
-  if (regexEmail.test(email.value)) {
-    console.log("email ok")
-    emailError.innerHTML = "";
-    emailError.classList.remove('text-bad')
-    emailError.classList.add('text-success')
-   emailError.style.display = "none";
-   return true;
-  } else {
-    console.log("validemail ne va pas là")
-    emailError.innerHTML = "email non conforme au format email";
-    emailError.classList.add('text-bad')
-    return false;
+    );
+    // Là je recupere la balise de message error "emailErrormsg"
+    let emailError = email.nextElementSibling;
+    
+    // Là je teste l'expression reguliere
+    if (regexEmail.test(email.value)) {
+      console.log("email ok")
+      emailError.innerHTML = "";
+      emailError.classList.remove('text-bad')
+      emailError.classList.add('text-success')
+      emailError.style.display = "none";
+      return true;
+    } else {
+      console.log("validemail ne va pas là")
+      emailError.innerHTML = "email non conforme au format email";
+      emailError.classList.add('text-bad')
+      return false;
+    }
   }
-}
+});
