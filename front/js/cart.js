@@ -146,6 +146,7 @@ const fetchEtVisualSection = async () => {
                       console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
 
                       panelPersoChoix.quantity = quanteModifiableProductInput;
+                      console.log(panelPersoChoix.quantity = quanteModifiableProductInput);
                       console.log(panelPersoChoix._id, panelPersoChoix.name)
           // ========================================================================================================================
                       let caseTotalPrice = document.querySelector("#totalPrice");
