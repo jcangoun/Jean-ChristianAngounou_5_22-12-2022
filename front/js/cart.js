@@ -303,7 +303,7 @@
 // // LEs éléments pour formulaire
 const form = document.getElementById("contactForm");
 const prenom = document.getElementById("firstName");
-const prenomError = prenom.nextElementSibling;
+const prenomError = document.getElementById("firstNameErrorMsg");
 // const nom = document.getElementById("lastName");
 // const nomError = prenom.nextElementSibling;
 // const adresse = document.getElementById("address");
@@ -332,11 +332,25 @@ form.addEventListener("click", function (e) {
           // // Je prends la balise de message error "firstNameErrorMsg"
           // let prenomError = document.getElementById('firstNameErrorMsg');
      
-          prenom.addEventListener("change", function(a) {
-            a.preventDefault;
+
             let prenomValue = prenom.value;
-            console.log(prenomValue)
-          })
+            console.log(typeof(prenomValue))
+            if (prenomValue === null || undefined) {
+              alert("le prenom est vide . Veuillez le remplir")
+            } else {
+              console.log("else")
+              let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/g;
+              let controlPrenom = regexPrenom.test(prenomValue)
+              console.log(regexPrenom.test(prenomValue))
+              if (controlPrenom === false) {
+                prenomError.innerHTML = "la valeur insérée dans le champ prénom ne respecte pas le fromat prenom. Réssayez"
+              } if (controlPrenom === true) {
+                prenomError.innerHTML = ""
+              }
+            }
+            // let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/g;
+            // console.log(regexPrenom.test(prenomValue))
+
 
 
 });
