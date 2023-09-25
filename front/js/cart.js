@@ -324,32 +324,19 @@ form.addEventListener("click", function (e) {
   e.preventDefault();
   console.log('ca paniasse');
  
- // J'ecoute la modification du prenom
- form.prenom.addEventListener('change', function() {
-   
-   // ------------------------------ VALIDATION PRENOM ------------------------
-           
-   
-   // creation regex pour valider le prenom 
-   let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
-   // Je prends la balise de message error "firstNameErrorMsg"
-   let prenomError = prenom.nextElementSibling;
-   
-   // Je testeavec l'expression réguliere
-   if (regexPrenom.test(prenom.value)) {
-     console.log('prenom ok')
-     prenomError.innerHTML = "";
-     prenomError.classList.remove('text-bad');
-     prenomError.classList.add('text-success')
-     prenomError.style.display = "none";
-     return true;
-   } else {
-     console.log(' validprenom ne va pas bien là')
-     prenomError.innerHTML = "Prenom non conforme au format prenom";
-     prenomError.classList.add('text-bad');
-     return false;
-   }
-});
+// let prenomValue = prenom.value;
+// console.log(prenomValue)
+
+          // creation regex pour valider le prenom 
+          // let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
+          // // Je prends la balise de message error "firstNameErrorMsg"
+          // let prenomError = document.getElementById('firstNameErrorMsg');
+     
+          prenom.addEventListener("change", function(a) {
+            a.preventDefault;
+            let prenomValue = prenom.value;
+            console.log(prenomValue)
+          })
 
 
 });
