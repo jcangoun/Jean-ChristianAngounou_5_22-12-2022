@@ -304,10 +304,10 @@
 const form = document.getElementById("contactForm");
 const prenom = document.getElementById("firstName");
 const prenomError = document.getElementById("firstNameErrorMsg");
-// const nom = document.getElementById("lastName");
-// const nomError = prenom.nextElementSibling;
-// const adresse = document.getElementById("address");
-// const adresseError = adresse.nextElementSibling;
+const nom = document.getElementById("lastName");
+const nomError = document.getElementById("lastNameErrorMsg")
+const adresse = document.getElementById("address");
+const adresseError = adresse.nextElementSibling;
 // const ville = document.getElementById("city");
 // const villeError = ville.nextElementSibling;
 // const email = document.getElementById("email");
@@ -323,33 +323,64 @@ const prenomError = document.getElementById("firstNameErrorMsg");
 form.addEventListener("click", function (e) {
   e.preventDefault();
   console.log('ca paniasse');
- 
-// let prenomValue = prenom.value;
-// console.log(prenomValue)
-
-          // creation regex pour valider le prenom 
-          // let regexPrenom = new RegExp('^[A-Za-z][a-z]+(([\ ])?[\s\-\_]([\ ])?[A-Za-z][a-z]+)+', 'g');
-          // // Je prends la balise de message error "firstNameErrorMsg"
-          // let prenomError = document.getElementById('firstNameErrorMsg');
      
+// ---------------- SECTION PRENOM --------------------------------------------------------
 
-            let prenomValue = prenom.value;
-            console.log(typeof(prenomValue))
-            if (prenomValue === null || undefined) {
+// ---------------  
+
+  let prenomValue = prenom.value;
+  console.log(typeof(prenomValue))
+  if (prenomValue === null || undefined) {
               alert("le prenom est vide . Veuillez le remplir")
-            } else {
-              console.log("else")
-              let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/g;
+  } else {
+              console.log("else prenom pas NULL et ou UNDEFINED")
+
+// --------------- Etape De Validation prenom -----------------------------------------
+              let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
               let controlPrenom = regexPrenom.test(prenomValue)
               console.log(regexPrenom.test(prenomValue))
               if (controlPrenom === false) {
-                prenomError.innerHTML = "la valeur insérée dans le champ prénom ne respecte pas le fromat prenom. Réssayez"
-              } if (controlPrenom === true) {
+                console.log("'" + prenomValue + "'", " est", controlPrenom)
+                prenomError.innerHTML = "la valeur dans le champ prénom ne respecte pas le format prenom. Pas de chiffres ou de symboles Ni espaces entre les PRENOMS et TIRET"
+              }else if (controlPrenom === true) {
+                console.log("'" + prenomValue + "'", " est", controlPrenom)
                 prenomError.innerHTML = ""
               }
-            }
-            // let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/g;
-            // console.log(regexPrenom.test(prenomValue))
+  }
+
+// --------------- FIN PRENOM -----------------------------------------------------------
+
+// ---------------- DEBUT NOM ------------------------------
+
+  let nomValue = nom.value;
+  if (nomValue === null || undefined) {
+    alert("le nom est vide VEuillez remplir son champ NOM")
+  } else {
+    console.log("else nom pas NULL et ou UNDEFINED")
+
+    // Etape De validation Nom ---------
+    let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
+    let controlNom = regexNom.test(nomValue)
+    if (controlNom === false) {
+      console.log("'" + nomValue + "'", " est", controlNom)
+      nomError.innerHTML = "La valeur dans le champ NOM ne respecte le format du nom. Veuillez le re-écrire "
+    } else if (controlNom === true) {
+      console.log("'" + nomValue + "'", " est", controlNom)
+      nomError.innerHTML = "";
+    }
+
+  }
+
+
+  // ------------- FIN NOM ---------------------------------
+
+
+  //  -------------- DEBUT ADRESSE ---------------------------------
+
+let adresseValue = adresse.value
+
+  // ---------------  FIN ADRESSE -----------------------
+
 
 
 
