@@ -308,8 +308,8 @@ const nom = document.getElementById("lastName");
 const nomError = document.getElementById("lastNameErrorMsg")
 const adresse = document.getElementById("address");
 const adresseError = adresse.nextElementSibling;
-// const ville = document.getElementById("city");
-// const villeError = ville.nextElementSibling;
+const ville = document.getElementById("city");
+const villeError = ville.nextElementSibling;
 // const email = document.getElementById("email");
 // const emailError = email.nextElementSibling;
 
@@ -373,7 +373,6 @@ form.addEventListener("click", function (e) {
 
   }
 
-
   // ------------- FIN NOM ---------------------------------
 
 
@@ -386,7 +385,7 @@ form.addEventListener("click", function (e) {
   } else {
   console.log("else, ADRESSE pas NULL et ou UNDEFINED")
 
-  //  ETAPE DE Validation ---------
+  //  ETAPE DE Validation adresse ---------
   let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
   let controlAdresse = regexAdresse.test(adresseValue)
   if (controlAdresse === false) {
@@ -397,10 +396,30 @@ form.addEventListener("click", function (e) {
     adresseError.innerHTML = "";
   }
 }
-
   // ---------------  FIN ADRESSE -----------------------
 
+// ----------- DEBUT VILLE ------------------
 
+let villeValue = ville.value;
+if (villeValue=== null || undefined) {
+  console.log("la ville est vide . Veuillez remplir son champ")
+} else {
+  console.log("else, VILLE pas NULL et ou UNDEFINED")
+
+  // ETAPE DE VALIDATION Ville
+  let regexVille = /[[A-Z][a-z]+([\_\-\ ]?[a-zA-Z]+){2,7}/g;
+  let controlVille = regexVille.test(villeValue)
+  if (controlVille === false) {
+    console.log("Aïe '" + villeValue + "'", " est", controlVille)
+    villeError.innerHTML = "La valeur dans le champ VILLE ne respecte le format _ville_. Veuillez le re-écrire "
+  } else if (controlVille === true) {
+    console.log("'" + villeValue + "'", " est", controlVille)
+    villeError.innerHTML = "";
+  }
+}
+
+
+// ------------- FIN VILLE
 
 
 });
