@@ -331,9 +331,10 @@ form.addEventListener("click", function (e) {
   let prenomValue = prenom.value;
   console.log(typeof(prenomValue))
   if (prenomValue === null || undefined) {
-              alert("le prenom est vide . Veuillez le remplir")
+    console.log("le prenom est vide . Veuillez remplir son champ")
+    alert("le prenom est vide . Veuillez le remplir")
   } else {
-              console.log("else prenom pas NULL et ou UNDEFINED")
+              console.log("else, prenom pas NULL et ou UNDEFINED")
 
 // --------------- Etape De Validation prenom -----------------------------------------
               let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
@@ -354,9 +355,10 @@ form.addEventListener("click", function (e) {
 
   let nomValue = nom.value;
   if (nomValue === null || undefined) {
-    alert("le nom est vide VEuillez remplir son champ NOM")
+    console.log("le nom est vide . Veuillez remplir son champ")
+    alert("le nom est vide Veuillez remplir son champ NOM")
   } else {
-    console.log("else nom pas NULL et ou UNDEFINED")
+    console.log("else, nom pas NULL et ou UNDEFINED")
 
     // Etape De validation Nom ---------
     let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
@@ -377,7 +379,24 @@ form.addEventListener("click", function (e) {
 
   //  -------------- DEBUT ADRESSE ---------------------------------
 
-let adresseValue = adresse.value
+  let adresseValue = adresse.value
+  if (adresseValue === null || undefined) {
+  console.log("l'adresse est vide . Veuillez remplir son champ")
+
+  } else {
+  console.log("else, ADRESSE pas NULL et ou UNDEFINED")
+
+  //  ETAPE DE Validation ---------
+  let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
+  let controlAdresse = regexAdresse.test(adresseValue)
+  if (controlAdresse === false) {
+  console.log("'" + adresseValue + "'", " est", controlAdresse)
+  adresseError.innerHTML = "La valeur dans le champ ADRESSE ne respecte le format _adresse_. Veuillez le re-écrire "
+  } else if (controlAdresse === true) {
+    console.log("'" + adresseValue + "'", " est", controlAdresse)
+    adresseError.innerHTML = "";
+  }
+}
 
   // ---------------  FIN ADRESSE -----------------------
 
