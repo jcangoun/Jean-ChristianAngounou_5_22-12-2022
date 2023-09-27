@@ -282,23 +282,27 @@ const fetchEtVisualSection = async () => {
 
   // tous les éléments de l'user a envoyer au serveur
 };
-// const contact = {
-//   prenom: document.querySelector("#firstName"),
-//   nom: document.querySelector("#lastName"),
-//   addresse: document.querySelector("#address"),
-//   ville: document.querySelector("#city"),
-//   email: document.querySelector("#email"),
-// };
-// localStorage.setItem("contact", JSON.stringify(contact))
-// const userFormToSend = {
-//   cartPanierGet,
-//   contact,
-// };
-// console.log("userFormToSend");
-// console.log(userFormToSend);
+// function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
+function leContact() {
 
+  const contact = {
+    prenom: document.querySelector("#firstName").value,
+    nom: document.querySelector("#lastName").value,
+    addresse: document.querySelector("#address").value,
+    ville: document.querySelector("#city").value,
+    email: document.querySelector("#email").value,
+  };
+localStorage.setItem("contact", JSON.stringify(contact))
+const userFormToSend = {
+  cartPanierGet,
+  contact,
+};
+console.log("userFormToSend");
+console.log(userFormToSend);
+};
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
+
 
 // // LEs éléments pour formulaire
 const form = document.getElementById("contactForm");
@@ -320,15 +324,13 @@ const emailError = email.nextElementSibling;
 // //  LEs évènements pour le bouton d'envoi commande client
 
 
-form.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log('ca paniasse');
   
   // ---------------- SECTION PRENOM --------------------------------------------------------
   
   // ---------------  VALIDATION PRENOM ----------------------
-  
-
   let prenomValue = prenom.value;
   console.log(typeof(prenomValue), "'" + prenomValue + "'")
   if (prenomValue === null || undefined) {
@@ -441,19 +443,25 @@ if (emailValue === null || undefined) {
 
 
 
- if ( prenomValue == true && nomValue == true && adresseValue == true && villeValue == true && emailValue == true) {
+ if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
    console.log('Verdict conditions, tout est bon')
+   leContact();
 
   } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
     console.log("Verdict conditions, un truc est undefined")
+    e.preventDefault(); 
   
 
-} else if (prenomValue !== true || nomValue !== true || adresseValue !== true || villeValue !== true || emailValue !== true) {
+} else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
   console.log("Verdict conditions, un truc est false")
-
+  // normalement je ne devrais pas mettre le formulaire ici, 
+  // mais ca donne une idée de principe de fonctionnement
+  e.preventDefault(); 
+  
 } else  {
-  console.log('contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
-  // e.preventDefault 
+  console.log('Autre .... contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
+  // e.preventDefault(); 
+  leContact();
 
 
 }
