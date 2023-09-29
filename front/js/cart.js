@@ -140,55 +140,55 @@ const fetchEtVisualSection = async () => {
 
           // ------------------------------------ Fin du for let d essai ci dessus ----------------------------------------
           
-                                console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
-                                console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
-                                panelPersoChoix.quantity = quanteModifiableProductInput;
+          console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
+          console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
+          panelPersoChoix.quantity = quanteModifiableProductInput;
 
-                     if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
-                       // localStorage.setItem("panier", JSON.stringify('panier'))
+          if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
+           // localStorage.setItem("panier", JSON.stringify('panier'))
 
-                      console.log("input inegal");
-                      console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+          console.log("input inegal");
+          console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
 
-                      panelPersoChoix.quantity = quanteModifiableProductInput;
-                      console.log(panelPersoChoix.quantity = quanteModifiableProductInput);
-                      console.log(panelPersoChoix._id, panelPersoChoix.name)
+          panelPersoChoix.quantity = quanteModifiableProductInput;
+          console.log(panelPersoChoix.quantity = quanteModifiableProductInput);
+          console.log(panelPersoChoix._id, panelPersoChoix.name)
           // ========================================================================================================================
-                      let caseTotalPrice = document.querySelector("#totalPrice");
-                      caseTotalPrice = " ";
-                      console.log("case a ceci =", "' " + caseTotalPrice + "' ");
-                      // localStorage.getItem(JSON.parse('panier'))
-                      // const changeQuantity = parseInt(panelPersoChoix.quantity);
-                      // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-                      // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-                      // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-                      // console.log(baliseChangePrix);
-                      // console.log(onChangeSectionTotal);
-                      // console.log(totalPanier);
-                  //           //============================= ====================
-                  //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-                  //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-                  //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-                  //     console.log(totalPanier);
-                  //     console.log(totalSupreme);
+          let caseTotalPrice = document.querySelector("#totalPrice");
+          caseTotalPrice = " ";
+          console.log("case a ceci =", "' " + caseTotalPrice + "' ");
+          // localStorage.getItem(JSON.parse('panier'))
+          // const changeQuantity = parseInt(panelPersoChoix.quantity);
+          // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+          // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+          // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+          // console.log(baliseChangePrix);
+          // console.log(onChangeSectionTotal);
+          // console.log(totalPanier);
+          //           //============================= ====================
+          //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
+          //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          //     console.log(totalPanier);
+          //     console.log(totalSupreme);
 
-                  //     console.log("totaPrix", caseTotalPrice.textContent);
-                  //     caseTotalPrice = `${totalSupreme}`;
-                  //     console.log(caseTotalPrice.textContent);
-                  // //          ===============================================
-                  //     // tableauPrixFinal.push(onChangeSectionTotal)
-                  //     // console.log(tableauPrixFinal)
-                  //     qtyTotal();
-                      // toutTotalPrix ();
-                      // console.log("chargelocale");
-                      console.log(totalPanier);
-                      localStorage.setItem("panier", JSON.stringify(majcart));
-                    }
-                    else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+          //     console.log("totaPrix", caseTotalPrice.textContent);
+          //     caseTotalPrice = `${totalSupreme}`;
+          //     console.log(caseTotalPrice.textContent);
+          // //          ===============================================
+          //     // tableauPrixFinal.push(onChangeSectionTotal)
+          //     // console.log(tableauPrixFinal)
+          //     qtyTotal();
+            // toutTotalPrix ();
+            // console.log("chargelocale");
+            console.log(totalPanier);
+            localStorage.setItem("panier", JSON.stringify(majcart));
+          }
+          else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
                       console.log("input quantite client dejà egal qt input");
                       console.log(totalPanier);
-                    }
-          // location.reload(true);
+          }
+          location.reload(true);
         });
       });
       //  On dirait que je pourrai faire mes calculs ici a voir au plus vite
