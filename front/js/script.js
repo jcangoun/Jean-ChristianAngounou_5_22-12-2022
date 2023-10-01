@@ -20,7 +20,7 @@
   }
   console.log(api)
 
-  // Création detaillée de l'articlePage
+  // --------------   Création detaillée de la constitution de page Article de produits --------------
   const articlePage = (product) => {
     // variable par principe de decomposition
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
@@ -32,7 +32,7 @@
   const lienBloc = document.createElement("a");
   lienBloc.setAttribute("href", `./product.html?id=${_id}`);
   newDiv.append(lienBloc);
-  console.log(lienBloc);
+  // console.log(lienBloc);
 
   // creation du noeud <article>, pas attributs
   const articleDuLienProdt = document.createElement("article");
@@ -62,3 +62,4 @@
   articleDuLienProdt.append(phraseCleProdt);
 };
 
+// ---------- PAge d'acceuil finie

@@ -5,7 +5,7 @@ console.log("valeurs", info);
 const urlParams = new URLSearchParams(info);
 
 const paramId = urlParams.get("id");
-// console.log(paramId);
+console.log(paramId);
 
 // Recuperation dans variable du formulaire section choix de la couleur
 const caseOptionSelectionPAnier = document.querySelector("#colors");
@@ -16,6 +16,7 @@ const ajoutPanier = document.querySelector("#addToCart");
 // là je rajoute le premier élément image d'article
 const elemtItemImg = document.querySelector("div.item__img");
 
+// Je recupere l'idparam du produi qui a été choisi dans la page d'accueil
 fetch(`http://localhost:3000/api/products/${paramId}`)
   .then(function (res) {
     if (res.ok === true) {
@@ -24,7 +25,7 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   })
   .then(function (product) {
     getArticle(product);
-    console.log("c'est l'article que je viens de fetcher", product);
+    console.log("c'est l'article que je viens de fetcher", product, "notre " + product.name, product._id,"est bien  le meme id que", paramId);
   })
 .catch(function (error) {
   console.error(`probleme : ${error}`);
@@ -47,14 +48,11 @@ function getArticle(product) {
     };
   console.log(panier);
 
-  // creation de la page de section de produits avec le DOM
-  const blocDeLaPageProduit = () => {};
   // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
 
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
-  let newProductImg = productPhotoArticle.append(productImg);
   productImg.setAttribute("src", "../images/logo.png");
   productImg.setAttribute("alt", "Photographie d'un canapé");
 
@@ -62,9 +60,7 @@ function getArticle(product) {
   const produitNomPrix = document.querySelector("h1#title");
   produitNomPrix.innerHTML = name;
 
-  const valeurPrix = (document.querySelector("span#price").innerHTML = price);
-
-  // console.log("console suite produit explique")
+  // console.log("console suite produit explication")
   const phraseDescription = document.querySelector("p#description");
   phraseDescription.innerHTML = description;
   // console.log(phraseDescription)

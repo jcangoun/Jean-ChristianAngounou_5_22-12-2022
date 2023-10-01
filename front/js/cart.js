@@ -269,10 +269,10 @@ const fetchEtVisualSection = async () => {
 function leContact() {
 
   const contact = {
-    prenom: document.querySelector("#firstName").value,
-    nom: document.querySelector("#lastName").value,
-    addresse: document.querySelector("#address").value,
-    ville: document.querySelector("#city").value,
+    firstName: document.querySelector("#firstName").value,
+    lastName: document.querySelector("#lastName").value,
+    address: document.querySelector("#address").value,
+    city: document.querySelector("#city").value,
     email: document.querySelector("#email").value,
   };
 localStorage.setItem("contact", JSON.stringify(contact))
@@ -444,6 +444,7 @@ if (emailValue === null || undefined) {
 } else  {
   console.log('Autre .... contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
   // e.preventDefault(); 
+  // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
   leContact();
 
 
