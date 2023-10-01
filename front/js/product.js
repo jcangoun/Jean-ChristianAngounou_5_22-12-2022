@@ -7,13 +7,13 @@ const urlParams = new URLSearchParams(info);
 const paramId = urlParams.get("id");
 // console.log(paramId);
 
-// variable deu formulaire section choix de la couleur
+// Recuperation dans variable du formulaire section choix de la couleur
 const caseOptionSelectionPAnier = document.querySelector("#colors");
 
 // variable bouton ajoutPanier
 const ajoutPanier = document.querySelector("#addToCart");
 
-// là je rajoute le premier élément test
+// là je rajoute le premier élément image d'article
 const elemtItemImg = document.querySelector("div.item__img");
 
 fetch(`http://localhost:3000/api/products/${paramId}`)

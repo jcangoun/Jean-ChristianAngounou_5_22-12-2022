@@ -1,3 +1,4 @@
+// Grâce à la variable ci dessous, on recupere dans le server les infos de produits disponibles
  const api = fetch(`http://localhost:3000/api/products`)
  .then(function (res) {
    if (res.ok) {
@@ -6,22 +7,22 @@
   })
   .then(function (products) {
     articles(products);
-          console.log(products);
-        })
-        .catch(err => console.log("fetch erreur là >>>", " /** " + err + " **/ "));
-        // Une erreur est survenue
+    console.log(products);
+  })
+  .catch(err => console.log("fetch erreur là >>>", " /** " + err + " **/ "));
+  // Une erreur est survenue
         
-        function articles(products) {
-          products.forEach((product) => {
-            // console.log(product);
-            articlePage(product);
-          });
-        }
-        
-        console.log(api)
-  //  fetch(`http://localhost:3000/api/products`)
-  // console.log(testo)
+  function articles(products) {
+    products.forEach((product) => {
+      articlePage(product);
+      console.log(product);
+    });
+  }
+  console.log(api)
+
+  // Création detaillée de l'articlePage
   const articlePage = (product) => {
+    // variable par principe de decomposition
   const { _id, imageUrl, altTxt, name, description, price, colors } = product;
 
   // chargement du noeud section ou on va creer la page
@@ -29,10 +30,9 @@
 
   // creation du noeud <a> pas d'attributs
   const lienBloc = document.createElement("a");
-  //  a revoir
   lienBloc.setAttribute("href", `./product.html?id=${_id}`);
-  // console.log(lienBloc);
   newDiv.append(lienBloc);
+  console.log(lienBloc);
 
   // creation du noeud <article>, pas attributs
   const articleDuLienProdt = document.createElement("article");

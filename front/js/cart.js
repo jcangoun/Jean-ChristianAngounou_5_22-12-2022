@@ -11,15 +11,18 @@ tableauPrix = [];
 totalPanier = [];
 let totalChange = [];
 const fetchEtVisualSection = async () => {
+  // Je recupere les différents canapé choisis deans la page produit
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
 
+// A chaque canap qui s'ajoute, on recupere l'id du produit(produit._id) qui ici s'appele aussi produitPanier (produitPAnier._id)
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
-    // console.log("icica marchenom",produitPanier.name, produitPanier.price)
+    console.log("icica marchenom",produitPanier.name, produitPanier.price)
 
     if (!response.ok) {
       throw new Error("Il y a une erreur lors de la récupération des données.");
     }
+    // 
     const dataPanier = await response.json();
 
     console.log(totalPanier);
@@ -157,30 +160,10 @@ const fetchEtVisualSection = async () => {
           let caseTotalPrice = document.querySelector("#totalPrice");
           caseTotalPrice = " ";
           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
-          // localStorage.getItem(JSON.parse('panier'))
-          // const changeQuantity = parseInt(panelPersoChoix.quantity);
-          // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-          // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-          // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-          // console.log(baliseChangePrix);
-          // console.log(onChangeSectionTotal);
-          // console.log(totalPanier);
-          //           //============================= ====================
-          //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-          //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          //     console.log(totalPanier);
-          //     console.log(totalSupreme);
 
-          //     console.log("totaPrix", caseTotalPrice.textContent);
-          //     caseTotalPrice = `${totalSupreme}`;
-          //     console.log(caseTotalPrice.textContent);
-          // //          ===============================================
-          //     // tableauPrixFinal.push(onChangeSectionTotal)
-          //     // console.log(tableauPrixFinal)
-          //     qtyTotal();
-            // toutTotalPrix ();
-            // console.log("chargelocale");
+            // PArtie ou j ai enleve les elements mutes de changements prixElement et autres.
+            // A retrouver dans le fichier des test au bureau 
+
             console.log(totalPanier);
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
@@ -441,7 +424,7 @@ if (emailValue === null || undefined) {
 }
 // ------------- FIN E-MAIL ----------------------------
 
-
+// Conditions pour selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
  if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
    console.log('Verdict conditions, tout est bon')
