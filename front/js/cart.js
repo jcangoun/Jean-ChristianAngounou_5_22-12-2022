@@ -267,7 +267,6 @@ const fetchEtVisualSection = async () => {
 };
 // function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
 function leContact() {
-
   const contact = {
     firstName: document.querySelector("#firstName").value,
     lastName: document.querySelector("#lastName").value,
@@ -275,17 +274,24 @@ function leContact() {
     city: document.querySelector("#city").value,
     email: document.querySelector("#email").value,
   };
-localStorage.setItem("contact", JSON.stringify(contact))
+// localStorage.setItem("contact", JSON.stringify(contact))
+// console.log(typeof("f",contact.firstName))
+// console.log(typeof("l",contact.lastName))
+// console.log(typeof("a",contact.address))
+// console.log(typeof("c",contact.city))
+// console.log(typeof("e",contact.email))
 const userFormToSend = {
   cartPanierGet,
   contact,
 };
 console.log("userFormToSend");
 console.log(userFormToSend);
+
+// essai pour requête POST 
+
 };
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
-
 
 // // LEs éléments pour formulaire
 const form = document.getElementById("contactForm");
@@ -303,11 +309,9 @@ const emailError = email.nextElementSibling;
 // // --------------------------------------------------- A démuter ci dessous plus tard: valeurs du formulaire qui seront sauvegardés dans localstorage key contact
 
 // // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
+      // //  LEs évènements pour le bouton d'envoi commande client
 
-// //  LEs évènements pour le bouton d'envoi commande client
-
-
-form.addEventListener("submit", function (e) {
+form.addEventListener("click", function (e) {
   e.preventDefault();
   console.log('ca paniasse');
   
@@ -424,7 +428,7 @@ if (emailValue === null || undefined) {
 }
 // ------------- FIN E-MAIL ----------------------------
 
-// Conditions pour selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
+// Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
  if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
    console.log('Verdict conditions, tout est bon')
@@ -446,8 +450,17 @@ if (emailValue === null || undefined) {
   // e.preventDefault(); 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
   leContact();
-
-
+  // let url = await fetch(),
+  let envoi = fetch(": http://localhost:3000/api/order", {
+    method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: JSON.stringify( userFormToSend)
+  });  envoi;
+  let result = response.json();
+  alert(result.message+ "envoyé");
+  
 }
 
 });

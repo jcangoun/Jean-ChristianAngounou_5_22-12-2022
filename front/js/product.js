@@ -1,8 +1,9 @@
 // recup des infosproduits
 const info = window.location.search;
-console.log("valeurs", info);
+console.log("valeur ID =", info);
 // console.log("window Location:", window.location);
 const urlParams = new URLSearchParams(info);
+console.log("parmetrr", urlParams);
 
 const paramId = urlParams.get("id");
 console.log(paramId);
