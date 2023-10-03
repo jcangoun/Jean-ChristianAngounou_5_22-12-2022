@@ -161,9 +161,30 @@ const fetchEtVisualSection = async () => {
           caseTotalPrice = " ";
           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
 
-            // PArtie ou j ai enleve les elements mutes de changements prixElement et autres.
-            // A retrouver dans le fichier des test au bureau 
+       // localStorage.getItem(JSON.parse('panier'))
+       // const changeQuantity = parseInt(panelPersoChoix.quantity);
+       // const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+       // const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+       // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+       // console.log(baliseChangePrix);
+       // console.log(onChangeSectionTotal);
+       // console.log(totalPanier);
+   //           //============================= ====================
+   //     totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+   //     console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
+   //     const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+   //     console.log(totalPanier);
+   //     console.log(totalSupreme);
 
+   //     console.log("totaPrix", caseTotalPrice.textContent);
+   //     caseTotalPrice = `${totalSupreme}`;
+   //     console.log(caseTotalPrice.textContent);
+   // //          ===============================================
+   //  // tableauPrixFinal.push(onChangeSectionTotal)
+   //  // console.log(tableauPrixFinal)
+   //     qtyTotal();
+     //   toutTotalPrix ();
+     //   console.log("chargelocale");
             console.log(totalPanier);
             localStorage.setItem("panier", JSON.stringify(majcart));
           }
@@ -436,7 +457,7 @@ if (emailValue === null || undefined) {
 
   } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
     console.log("Verdict conditions, un truc est undefined")
-    e.preventDefault(); 
+    // e.preventDefault(); 
   
 
 } else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
