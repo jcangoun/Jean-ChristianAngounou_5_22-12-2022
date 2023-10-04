@@ -115,11 +115,14 @@ const fetchEtVisualSection = async () => {
       unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener("change", function (e) {
           const quanteModifiableProductInput = e.target.value;
+          console.log(quanteModifiableProductInput);
           const panelPersoChoix = majcart[index];
           const toutPanLocal = majcart;
           console.log(panelPersoChoix.colors);
           console.log(panelPersoChoix.quantity);
+
           //----------- Ici, j'ai rajoute ce for let pour essayer de regler le bug du problème de quantité ,et malgré tout, il ne se passe rien de bon, je ne voies pas mon erreur
+          
           // for (let indice = 0; indice < majcart.length; indice++) {
           //   const majcartTablIndice = majcart[indice];
           //   const lastMajcartTablIndice = majcart.length;
@@ -139,12 +142,13 @@ const fetchEtVisualSection = async () => {
           //   // return majcartPointIndice.quantity
           // }
 
-                  quanteModifiableProductInput === panelPersoChoix.quantity;
+          console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
+          quanteModifiableProductInput === panelPersoChoix.quantity;
+          console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
 
           // ------------------------------------ Fin du for let d essai ci dessus ----------------------------------------
           
-          console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
-          console.log(panelPersoChoix.quantity, quanteModifiableProductInput);
+          console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
           panelPersoChoix.quantity = quanteModifiableProductInput;
 
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
