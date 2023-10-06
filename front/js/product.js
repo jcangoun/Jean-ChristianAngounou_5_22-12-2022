@@ -61,6 +61,10 @@ function getArticle(product) {
   const produitNomPrix = document.querySelector("h1#title");
   produitNomPrix.innerHTML = name;
 
+  // Affichage du prix qui était normalement déjà écrit 
+  const affichagePrix = document.querySelector("#price");
+  affichagePrix.innerHTML = price
+
   // console.log("console suite produit explication")
   const phraseDescription = document.querySelector("p#description");
   phraseDescription.innerHTML = description;
@@ -134,7 +138,7 @@ function getArticle(product) {
         )[0];
 
         if (produitExiste) {
-          produitExiste.quantity = produitExiste.quantity + nouveauProduit.quantity;
+          produitExiste.quantity = Number (produitExiste.quantity) + Number (nouveauProduit.quantity);
           localStorage.setItem("panier", JSON.stringify(panierCourant));
         } else {
           const panierCourantFiltrer = panierCourant.filter(

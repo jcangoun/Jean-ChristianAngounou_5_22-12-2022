@@ -117,7 +117,9 @@ const fetchEtVisualSection = async () => {
           const quanteModifiableProductInput = e.target.value;
           console.log(quanteModifiableProductInput);
           const panelPersoChoix = majcart[index];
+          console.log("panelPersoChoix", panelPersoChoix);
           const toutPanLocal = majcart;
+          console.log("toutpanLocal quiest majcart", toutPanLocal);
           console.log(panelPersoChoix.colors);
           console.log(panelPersoChoix.quantity);
 
@@ -145,11 +147,10 @@ const fetchEtVisualSection = async () => {
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
           quanteModifiableProductInput === panelPersoChoix.quantity;
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
+          
+          
 
           // ------------------------------------ Fin du for let d essai ci dessus ----------------------------------------
-          
-          console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
-          panelPersoChoix.quantity = quanteModifiableProductInput;
 
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
            // localStorage.setItem("panier", JSON.stringify('panier'))
@@ -160,12 +161,14 @@ const fetchEtVisualSection = async () => {
           panelPersoChoix.quantity = quanteModifiableProductInput;
           console.log(panelPersoChoix.quantity = quanteModifiableProductInput);
           console.log(panelPersoChoix._id, panelPersoChoix.name)
+
           // ========================================================================================================================
+
           let caseTotalPrice = document.querySelector("#totalPrice");
           caseTotalPrice = " ";
           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
 
-          localStorage.getItem(JSON.parse('panier'))
+          // localStorage.getItem(JSON.parse('panier'))
           const changeQuantity = parseInt(panelPersoChoix.quantity);
           const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
           const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
@@ -241,6 +244,8 @@ const fetchEtVisualSection = async () => {
     qtyTotal();
     console.log(totalPanier);
     //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
+
+
     const prixElemt = parseInt(dataPanier.price);
     const vlueQtenumerisee = parseInt(resultatValeurQuantite.value);
     console.log(typeof resultatValeurQuantite.value, typeof dataPanier);
@@ -260,7 +265,7 @@ const fetchEtVisualSection = async () => {
     for (let prod = 0; prod < totalPanier.length; prod++) {
       const prixCatProdt = totalPanier[prod];
       console.log(prixCatProdt);
-      console.log(totalPanier, "contre", tableauPrixFinal);
+      console.log(totalPanier, "contre", tableauPrixFinal); 
 
       const finalPrice = prixCatProdt * vlueQtenumerisee;
       console.log("Qte", vlueQtenumerisee, "prix", prixCatProdt, " = final", finalPrice);
@@ -319,7 +324,7 @@ console.log(userFormToSend);
 fetchEtVisualSection();
 
 // // LEs éléments pour formulaire
-const form = document.getElementById("contactForm");
+const form = document.getElementById("order");
 const prenom = document.getElementById("firstName");
 const prenomError = document.getElementById("firstNameErrorMsg");
 const nom = document.getElementById("lastName");
@@ -345,7 +350,7 @@ form.addEventListener("click", function (e) {
   // ---------------  VALIDATION PRENOM ----------------------
   let prenomValue = prenom.value;
   console.log(typeof(prenomValue), "'" + prenomValue + "'")
-  if (prenomValue === null || undefined) {
+  if (prenomValue === null || prenomValue === undefined) {
     console.log("le prenom est vide . Veuillez remplir son champ")
     alert("le prenom est vide . Veuillez le remplir")
   } else {
@@ -369,7 +374,7 @@ form.addEventListener("click", function (e) {
 
   let nomValue = nom.value;
   console.log(typeof(nomValue), "'" + nomValue + "'")
-  if (nomValue === null || undefined) {
+  if (nomValue === null || nomValue === undefined) {
     console.log("le nom est vide . Veuillez remplir son champ")
     alert("le nom est vide Veuillez remplir son champ NOM")
   } else {
@@ -393,7 +398,7 @@ form.addEventListener("click", function (e) {
   //  -------------- DEBUT ADRESSE ---------------------------------
   let adresseValue = adresse.value;
   console.log(typeof(adresseValue), "'" + adresseValue + "'")
-  if (adresseValue === null || undefined) {
+  if (adresseValue === null || adresseValue === undefined) {
   console.log("l'adresse est vide . Veuillez remplir son champ")
 
   } else {
@@ -415,7 +420,7 @@ form.addEventListener("click", function (e) {
 // ----------- DEBUT VILLE ------------------
 let villeValue = ville.value;
 console.log(typeof(villeValue), "'" + villeValue + "'")
-if (villeValue === null || undefined) {
+if (villeValue === null || villeValue === undefined) {
   console.log("la ville est vide . Veuillez remplir son champ")
 } else {
   console.log("else, VILLE pas NULL et ou UNDEFINED")
@@ -435,7 +440,7 @@ if (villeValue === null || undefined) {
  
 // -----------  Debut E-MAIL ---------------------------
 let emailValue = email.value;
-if (emailValue === null || undefined) {
+if (emailValue === null || emailValue === undefined) {
   console.log("le champ email est vide . Veuillez le remplir")
 } else {
   console.log("else, email pas NULL et ou UNDEFINED")
