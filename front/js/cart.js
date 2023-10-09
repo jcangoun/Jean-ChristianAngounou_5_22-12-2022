@@ -491,6 +491,20 @@ if (emailValue === null || emailValue === undefined) {
   let result = response.json();
   alert(result.message+ "envoyé");
   
+// Voici un bon exemple de ce que j'ai fait dans l'exercice juste en bas 
+  
+  // Création de la charge utile au format JSON
+    // const chargeUtile = JSON.stringify(avis);
+
+  // Appel de la fonction fetch avec toutes les informations nécessaires
+//     fetch("http://localhost:3000/api/", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: chargeUtile
+// });
+
+// 
+
 }
 
 });
