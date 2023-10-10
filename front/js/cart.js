@@ -5,6 +5,7 @@ const urlParams = new URLSearchParams(info);
 const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
+console.log(cartPanierGet)
 
 const carteArticle = document.querySelector(".cart > #cart__items");
 tableauPrix = [];
@@ -22,7 +23,7 @@ const fetchEtVisualSection = async () => {
     if (!response.ok) {
       throw new Error("Il y a une erreur lors de la récupération des données.");
     }
-    // 
+
     const dataPanier = await response.json();
 
     console.log(totalPanier);
@@ -32,13 +33,14 @@ const fetchEtVisualSection = async () => {
       lemDeTotalPanier = dataPanier[u];
       console.log(lemDeTotalPanier);
     }
+
     // Ce consolelog ci dessous montre lde dernier
     console.log(dataPanier);
     console.log(totalPanier);
     console.log(produitPanier);
-
     console.log("dataPanier", typeof dataPanier.price, "produit.name >", produitPanier.name, typeof produitPanier.quantity);
     console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name, produitPanier.quantity);
+
     const detailArticl = document.createElement("article");
     detailArticl.classList.add("cart__item");
     detailArticl.setAttribute("data-id", `${dataPanier._id}`);
@@ -304,20 +306,18 @@ const fetchEtVisualSection = async () => {
     city: document.querySelector("#city").value,
     email: document.querySelector("#email").value,
   };
-// localStorage.setItem("contact", JSON.stringify(contact))
+  // Sauvegarde localStorage ci dessous juste avant declaration fetch
+
+  const userFormToSend = { cartPanierGet, contact };
+  // localStorage.setItem("contact", JSON.stringify(contact))
+  console.log("userFormToSend", userFormToSend);
+
+ // localStorage.setItem("contact", JSON.stringify(contact))
 // console.log(typeof("f",contact.firstName))
 // console.log(typeof("l",contact.lastName))
 // console.log(typeof("a",contact.address))
 // console.log(typeof("c",contact.city))
 // console.log(typeof("e",contact.email))
-const userFormToSend = {
-  cartPanierGet,
-  contact,
-};
-console.log("userFormToSend");
-console.log(userFormToSend);
-
-// essai pour requête POST 
 
 
 // Affichage de toutes les procedures incluses quand on appele le fetch
@@ -354,7 +354,7 @@ form.addEventListener("click", function (e) {
     console.log("le prenom est vide . Veuillez remplir son champ")
     alert("le prenom est vide . Veuillez le remplir")
   } else {
-              console.log("else, prenom pas NULL et ou UNDEFINED")
+              console.log("else, prenom pas NULL et ou UNDEFINED", typeof(prenomValue))
 
 // --------------- Etape De Validation prenom -----------------------------------------
               let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
@@ -378,7 +378,7 @@ form.addEventListener("click", function (e) {
     console.log("le nom est vide . Veuillez remplir son champ")
     alert("le nom est vide Veuillez remplir son champ NOM")
   } else {
-    console.log("else, nom pas NULL et ou UNDEFINED")
+    console.log("else, nom pas NULL et ou UNDEFINED", typeof(nomValue))
 
     // Etape De validation Nom ---------
     let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
@@ -402,7 +402,7 @@ form.addEventListener("click", function (e) {
   console.log("l'adresse est vide . Veuillez remplir son champ")
 
   } else {
-  console.log("else, ADRESSE pas NULL et ou UNDEFINED")
+  console.log("else, ADRESSE pas NULL et ou UNDEFINED", typeof(adresseValue))
 
   //  ETAPE DE Validation adresse ---------
   let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
@@ -423,7 +423,7 @@ console.log(typeof(villeValue), "'" + villeValue + "'")
 if (villeValue === null || villeValue === undefined) {
   console.log("la ville est vide . Veuillez remplir son champ")
 } else {
-  console.log("else, VILLE pas NULL et ou UNDEFINED")
+  console.log("else, VILLE pas NULL et ou UNDEFINED", typeof(villeValue))
 
   // ETAPE DE VALIDATION Ville
   let regexVille = /[[A-Z][a-z]+([\_\-\ ]?[a-zA-Z]+){2,7}/g;
@@ -443,7 +443,7 @@ let emailValue = email.value;
 if (emailValue === null || emailValue === undefined) {
   console.log("le champ email est vide . Veuillez le remplir")
 } else {
-  console.log("else, email pas NULL et ou UNDEFINED")
+  console.log("else, email pas NULL et ou UNDEFINED", typeof(emailValue))
 
   // Etape De validation d'EMAIL
   let regexEmail = /^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@][a-z\.\-\_]+[\.][a-z]{2,4}$/g;
@@ -460,50 +460,50 @@ if (emailValue === null || emailValue === undefined) {
 
 // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
- if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
-   console.log('Verdict conditions, tout est bon')
-   leContact();
+//  if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
+//    console.log('Verdict conditions, tout est bon')
+//    leContact();
 
-  } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
-    console.log("Verdict conditions, un truc est undefined")
-    // e.preventDefault(); 
+//   } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
+//     console.log("Verdict conditions, un truc est undefined")
+//     // e.preventDefault(); 
   
 
-} else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
-  console.log("Verdict conditions, un truc est false")
-  // normalement je ne devrais pas mettre le formulaire ici, 
-  // mais ca donne une idée de principe de fonctionnement
-  e.preventDefault(); 
+// } else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
+//   console.log("Verdict conditions, un truc est false")
+//   // normalement je ne devrais pas mettre le formulaire ici, 
+//   // mais ca donne une idée de principe de fonctionnement
+//   e.preventDefault(); 
   
-} else  {
-  console.log('Autre .... contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
-  // e.preventDefault(); 
-  // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-const userStringForm = JSON.stringify(userFormToSend)
-  // let url = await fetch(),
-  let envoi = fetch(": http://localhost:3000/api/products/order", {
-    method: 'POST',
-  headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  body: userStringForm
-  });  envoi;
-  // let result = response.json();
-  // alert(result.message+ "envoyé");
+// } else  {
+//   console.log('Autre .... contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
+//   // e.preventDefault(); 
+//   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
+// // const userStringForm = JSON.stringify(userFormToSend)
+// //   // let url = await fetch(),
+// //   let envoi = fetch(": http://localhost:3000/api/products/order", {
+// //     method: 'POST',
+// //   headers: { 'Content-Type': 'application/json;charset=utf-8' },
+// //   body: userStringForm
+// //   });  envoi;
+//   // let result = response.json();
+//   // alert(result.message+ "envoyé");
   
-// Voici un bon exemple de ce que j'ai fait dans l'exercice POST juste en bas 
+// // Voici un bon exemple de ce que j'ai fait dans l'exercice POST juste en bas 
   
-  // Création de la charge utile au format JSON
-    // const chargeUtile = JSON.stringify(avis);
+//   // Création de la charge utile au format JSON
+//     // const chargeUtile = JSON.stringify(avis);
 
-  // Appel de la fonction fetch avec toutes les informations nécessaires
-//     fetch("http://localhost:3000/api/", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: chargeUtile
-// });
+//   // Appel de la fonction fetch avec toutes les informations nécessaires
+// //     fetch("http://localhost:3000/api/", {
+// //     method: "POST",
+// //     headers: { "Content-Type": "application/json" },
+// //     body: chargeUtile
+// // });
 
-// 
+// // 
 
-}
+// }
 
 });
 
