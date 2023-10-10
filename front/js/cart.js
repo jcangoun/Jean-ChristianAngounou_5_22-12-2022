@@ -296,7 +296,7 @@ const fetchEtVisualSection = async () => {
   // tous les éléments de l'user a envoyer au serveur
 };
 // function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
-function leContact() {
+
   const contact = {
     firstName: document.querySelector("#firstName").value,
     lastName: document.querySelector("#lastName").value,
@@ -319,7 +319,7 @@ console.log(userFormToSend);
 
 // essai pour requête POST 
 
-};
+
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
 
@@ -479,19 +479,17 @@ if (emailValue === null || emailValue === undefined) {
   console.log('Autre .... contact pas bon',"prenomValue =", typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
   // e.preventDefault(); 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-  leContact();
+const userStringForm = JSON.stringify(userFormToSend)
   // let url = await fetch(),
-  let envoi = fetch(": http://localhost:3000/api/order", {
+  let envoi = fetch(": http://localhost:3000/api/products/order", {
     method: 'POST',
-  headers: {
-    'Content-Type': 'application/json;charset=utf-8'
-  },
-  body: JSON.stringify( userFormToSend)
+  headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  body: userStringForm
   });  envoi;
-  let result = response.json();
-  alert(result.message+ "envoyé");
+  // let result = response.json();
+  // alert(result.message+ "envoyé");
   
-// Voici un bon exemple de ce que j'ai fait dans l'exercice juste en bas 
+// Voici un bon exemple de ce que j'ai fait dans l'exercice POST juste en bas 
   
   // Création de la charge utile au format JSON
     // const chargeUtile = JSON.stringify(avis);
