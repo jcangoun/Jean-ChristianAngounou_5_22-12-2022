@@ -26,31 +26,29 @@ fetch(`http://localhost:3000/api/products/${paramId}`)
   })
   .then(function (product) {
     getArticle(product);
-    console.log("c'est l'article que je viens de fetcher", product, "notre " + product.name, product._id,"est bien  le meme id que", paramId);
+    console.log("c'est l'article que je viens de fetcher", product, "notre " + product.name, product._id, "est bien  le meme id que", paramId);
   })
-.catch(function (error) {
-  console.error(`probleme : ${error}`);
-});
+  .catch(function (error) {
+    console.error(`probleme : ${error}`);
+  });
 
 function getArticle(product) {
   const { _id, colors, imageUrl, altTxt, name, description, price } = product;
   console.log(product.colors);
-  console.log(product.price)
-  let panier = 
-    {
-      _id,
-      imageUrl,
-      altTxt,
-      name,
-      description,
-      price,
-      quantity,
-      colors,
-    };
+  console.log(product.price);
+  let panier = {
+    _id,
+    imageUrl,
+    altTxt,
+    name,
+    description,
+    price,
+    quantity,
+    colors,
+  };
   console.log(panier);
 
   // on m mettra toute la section de page qui est en bas ... dans la fonction là dessus.
-
   let b = document.main;
   const productPhotoArticle = document.querySelector("div.item__img");
   let productImg = document.createElement("img");
@@ -61,9 +59,9 @@ function getArticle(product) {
   const produitNomPrix = document.querySelector("h1#title");
   produitNomPrix.innerHTML = name;
 
-  // Affichage du prix qui était normalement déjà écrit 
+  // Affichage du prix qui était normalement déjà écrit
   const affichagePrix = document.querySelector("#price");
-  affichagePrix.innerHTML = price
+  affichagePrix.innerHTML = price;
 
   // console.log("console suite produit explication")
   const phraseDescription = document.querySelector("p#description");
@@ -80,13 +78,13 @@ function getArticle(product) {
   //Debt section btn
   const ajoutBtn = document.querySelector("#addToCart");
 
-  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch   
+  // Ici, pour notre balise selectavec id = colors, on on ajoute les valeurs color de notre fetch
   for (let i in colors) {
     const selectForm = document.createElement("option"[i]);
     const optionValue = document.createElement("option");
     optionValue.setAttribute("value", colors[i]);
     optionValue.innerHTML = colors[i];
-    firstSelectForm.append(optionValue);    
+    firstSelectForm.append(optionValue);
   }
 
   panier._id = product._id;
@@ -107,9 +105,8 @@ function getArticle(product) {
     // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
     const nouveauProduit = {};
 
- // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
+    // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
     if (quantity.value > 0 && choixKanapCouleur.value !== undefined) {
-
       nouveauProduit._id = _id;
       nouveauProduit.name = name;
       nouveauProduit.description = description;
@@ -133,18 +130,12 @@ function getArticle(product) {
         const panierCourant = JSON.parse(panier);
         console.log("pc", panierCourant);
 
-        const produitExiste = panierCourant.filter(
-          (item) => item._id === _id && item.colors === choixKanapCouleur.value
-        )[0];
+        const produitExiste = panierCourant.filter((item) => item._id === _id && item.colors === choixKanapCouleur.value)[0];
 
-        if (produitExiste) {
-          produitExiste.quantity = Number (produitExiste.quantity) + Number (nouveauProduit.quantity);
+        if (produitExiste) {produitExiste.quantity = Number(produitExiste.quantity) + Number(nouveauProduit.quantity);
           localStorage.setItem("panier", JSON.stringify(panierCourant));
         } else {
-          const panierCourantFiltrer = panierCourant.filter(
-            (item) =>
-              !(item._id === _id && item.colors === choixKanapCouleur.value)
-          );
+          const panierCourantFiltrer = panierCourant.filter((item) => !(item._id === _id && item.colors === choixKanapCouleur.value));
 
           // ici on remet l'ancien panier sans le meme id d'office
           const majPanier = [...panierCourantFiltrer];
@@ -157,10 +148,7 @@ function getArticle(product) {
         console.log("produitExiste", produitExiste);
       }
     } else {
-      alert(
-        "pas de bras pas de chocolat :), sans blaque faut au moin une quatity"
-      );
+      alert("pas de bras pas de chocolat :), sans blaque faut au moin une quatity");
     }
   });
 }
-
