@@ -310,7 +310,7 @@ const fetchEtVisualSection = async () => {
 
   const userFormToSend = { cartPanierGet, contact };
   console.log("userFormToSend", userFormToSend);
-
+console.log("rdff")
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
 
@@ -326,147 +326,130 @@ const ville = document.getElementById("city");
 const villeError = ville.nextElementSibling;
 const email = document.getElementById("email");
 const emailError = email.nextElementSibling;
-
+console.log("hegy")
 // // --------------------------------------------------- A démuter ci dessous plus tard: valeurs du formulaire qui seront sauvegardés dans localstorage key contact
 
 // // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
       // //  LEs évènements pour le bouton d'envoi commande client
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  console.log('ca paniasse');
+// form.addEventListener("submit", function (e) {
+//   // e.preventDefault();
+//   console.log('ca paniasse');
   
-  // ---------------- SECTION PRENOM --------------------------------------------------------
+//   // ---------------- SECTION PRENOM --------------------------------------------------------
   
-  // ---------------  VALIDATION PRENOM ----------------------
-  let prenomValue = prenom.value;
-  console.log(typeof(prenomValue), "'" + prenomValue + "'")
-  if (prenomValue === null || prenomValue === undefined) {
-    console.log("le prenom est vide . Veuillez remplir son champ")
-    alert("le prenom est vide . Veuillez le remplir")
-  } else {
-     console.log("else, prenom pas NULL et ou UNDEFINED", typeof(prenomValue))
+//   // ---------------  VALIDATION PRENOM ----------------------
+//   let prenomValue = prenom.value;
+//   console.log(typeof(prenomValue), "'" + prenomValue + "'")
+//   if (prenomValue === null || prenomValue === undefined) {
+//     console.log("le prenom est vide . Veuillez remplir son champ")
+//     alert("le prenom est vide . Veuillez le remplir")
+//   } else {
+//      console.log("else, prenom pas NULL et ou UNDEFINED", typeof(prenomValue))
 
-// --------------- Etape De Validation prenom -----------------------------------------
-              let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
-              let controlPrenom = regexPrenom.test(prenomValue)
-              console.log(regexPrenom.test(prenomValue))
-              if (controlPrenom === false) {
-                console.log("'" + prenomValue + "'", " est", controlPrenom)
-                prenomError.innerHTML = "la valeur dans le champ prénom ne respecte pas le format prenom. Pas de chiffres ou de symboles Ni espaces entre les PRENOMS et TIRET"
-              }else if (controlPrenom === true) {
-                console.log("'" + prenomValue + "'", " est", controlPrenom)
-                prenomError.innerHTML = ""
-              }
-  }
-// --------------- FIN PRENOM -----------------------------------------------------------
+// // --------------- Etape De Validation prenom -----------------------------------------
+//               let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
+//               let controlPrenom = regexPrenom.test(prenomValue)
+//               console.log(regexPrenom.test(prenomValue))
+//               if (controlPrenom === false) {
+//                 console.log("'" + prenomValue + "'", " est", controlPrenom)
+//                 prenomError.innerHTML = "la valeur dans le champ prénom ne respecte pas le format prenom. Pas de chiffres ou de symboles Ni espaces entre les PRENOMS et TIRET"
+//               }else if (controlPrenom === true) {
+//                 console.log("'" + prenomValue + "'", " est", controlPrenom)
+//                 prenomError.innerHTML = ""
+//               }
+//   }
+// // --------------- FIN PRENOM -----------------------------------------------------------
 
-// ---------------- DEBUT NOM ------------------------------
+// // ---------------- DEBUT NOM ------------------------------
 
-  let nomValue = nom.value;
-  console.log(typeof(nomValue), "'" + nomValue + "'")
-  if (nomValue === null || nomValue === undefined) {
-    console.log("le nom est vide . Veuillez remplir son champ")
-    alert("le nom est vide Veuillez remplir son champ NOM")
-  } else {
-    console.log("else, nom pas NULL et ou UNDEFINED", typeof(nomValue))
+//   let nomValue = nom.value;
+//   console.log(typeof(nomValue), "'" + nomValue + "'")
+//   if (nomValue === null || nomValue === undefined) {
+//     console.log("le nom est vide . Veuillez remplir son champ")
+//     alert("le nom est vide Veuillez remplir son champ NOM")
+//   } else {
+//     console.log("else, nom pas NULL et ou UNDEFINED", typeof(nomValue))
 
-    // Etape De validation Nom ---------
-    let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
-    let controlNom = regexNom.test(nomValue)
-    if (controlNom === false) {
-      console.log("'" + nomValue + "'", " est", controlNom)
-      nomError.innerHTML = "La valeur dans le champ NOM ne respecte le format du nom. Veuillez le re-écrire "
-    } else if (controlNom === true) {
-      console.log("'" + nomValue + "'", " est", controlNom)
-      nomError.innerHTML = "";
-    }
+//     // Etape De validation Nom ---------
+//     let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
+//     let controlNom = regexNom.test(nomValue)
+//     if (controlNom === false) {
+//       console.log("'" + nomValue + "'", " est", controlNom)
+//       nomError.innerHTML = "La valeur dans le champ NOM ne respecte le format du nom. Veuillez le re-écrire "
+//     } else if (controlNom === true) {
+//       console.log("'" + nomValue + "'", " est", controlNom)
+//       nomError.innerHTML = "";
+//     }
 
-  }
-  // ------------- FIN NOM ---------------------------------
+//   }
+//   // ------------- FIN NOM ---------------------------------
 
 
-  //  -------------- DEBUT ADRESSE ---------------------------------
-  let adresseValue = adresse.value;
-  console.log(typeof(adresseValue), "'" + adresseValue + "'")
-  if (adresseValue === null || adresseValue === undefined) {
-  console.log("l'adresse est vide . Veuillez remplir son champ")
+//   //  -------------- DEBUT ADRESSE ---------------------------------
+//   let adresseValue = adresse.value;
+//   console.log(typeof(adresseValue), "'" + adresseValue + "'")
+//   if (adresseValue === null || adresseValue === undefined) {
+//   console.log("l'adresse est vide . Veuillez remplir son champ")
 
-  } else {
-  console.log("else, ADRESSE pas NULL et ou UNDEFINED", typeof(adresseValue))
+//   } else {
+//   console.log("else, ADRESSE pas NULL et ou UNDEFINED", typeof(adresseValue))
 
-  //  ETAPE DE Validation adresse ---------
-  let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
-  let controlAdresse = regexAdresse.test(adresseValue)
-  if (controlAdresse === false) {
-  console.log("'" + adresseValue + "'", " est", controlAdresse)
-  adresseError.innerHTML = "La valeur dans le champ ADRESSE ne respecte le format _adresse_. Veuillez le re-écrire "
-  } else if (controlAdresse === true) {
-    console.log("'" + adresseValue + "'", " est", controlAdresse)
-    adresseError.innerHTML = "";
-  }
-}
-  // ---------------  FIN ADRESSE -----------------------
+//   //  ETAPE DE Validation adresse ---------
+//   let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
+//   let controlAdresse = regexAdresse.test(adresseValue)
+//   if (controlAdresse === false) {
+//   console.log("'" + adresseValue + "'", " est", controlAdresse)
+//   adresseError.innerHTML = "La valeur dans le champ ADRESSE ne respecte le format _adresse_. Veuillez le re-écrire "
+//   } else if (controlAdresse === true) {
+//     console.log("'" + adresseValue + "'", " est", controlAdresse)
+//     adresseError.innerHTML = "";
+//   }
+// }
+//   // ---------------  FIN ADRESSE -----------------------
 
-// ----------- DEBUT VILLE ------------------
-let villeValue = ville.value;
-console.log(typeof(villeValue), "'" + villeValue + "'")
-if (villeValue === null || villeValue === undefined) {
-  console.log("la ville est vide . Veuillez remplir son champ")
-} else {
-  console.log("else, VILLE pas NULL et ou UNDEFINED", typeof(villeValue))
+// // ----------- DEBUT VILLE ------------------
+// let villeValue = ville.value;
+// console.log(typeof(villeValue), "'" + villeValue + "'")
+// if (villeValue === null || villeValue === undefined) {
+//   console.log("la ville est vide . Veuillez remplir son champ")
+// } else {
+//   console.log("else, VILLE pas NULL et ou UNDEFINED", typeof(villeValue))
 
-  // ETAPE DE VALIDATION Ville
-  let regexVille = /[[A-Z][a-z]+([\_\-\ ]?[a-zA-Z]+){2,7}/g;
-  let controlVille = regexVille.test(villeValue)
-  if (controlVille === false) {
-    console.log("Aïe '" + villeValue + "'", " est", controlVille)
-    villeError.innerHTML = "La valeur dans le champ VILLE ne respecte le format _ville_. Veuillez le re-écrire "
-  } else if (controlVille === true) {
-    console.log("'" + villeValue + "'", " est", controlVille)
-    villeError.innerHTML = "";
-  }
-}
-// ------------- FIN VILLE
+//   // ETAPE DE VALIDATION Ville
+//   let regexVille = /[[A-Z][a-z]+([\_\-\ ]?[a-zA-Z]+){2,7}/g;
+//   let controlVille = regexVille.test(villeValue)
+//   if (controlVille === false) {
+//     console.log("Aïe '" + villeValue + "'", " est", controlVille)
+//     villeError.innerHTML = "La valeur dans le champ VILLE ne respecte le format _ville_. Veuillez le re-écrire "
+//   } else if (controlVille === true) {
+//     console.log("'" + villeValue + "'", " est", controlVille)
+//     villeError.innerHTML = "";
+//   }
+// }
+// // ------------- FIN VILLE
  
-// -----------  Debut E-MAIL ---------------------------
-let emailValue = email.value;
-if (emailValue === null || emailValue === undefined) {
-  console.log("le champ email est vide . Veuillez le remplir")
-} else {
-  console.log("else, email pas NULL et ou UNDEFINED", typeof(emailValue))
+// // -----------  Debut E-MAIL ---------------------------
+// let emailValue = email.value;
+// if (emailValue === null || emailValue === undefined) {
+//   console.log("le champ email est vide . Veuillez le remplir")
+// } else {
+//   console.log("else, email pas NULL et ou UNDEFINED", typeof(emailValue))
 
-  // Etape De validation d'EMAIL
-  let regexEmail = /^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@][a-z\.\-\_]+[\.][a-z]{2,4}$/g;
-  let controlEmail = regexEmail.test(emailValue)
-  if (controlEmail === false) {
-    console.log("Aïe email '" + emailValue + "'", " est", controlEmail)   
-    emailError.innerHTML = "La valeur dans le champ E-MAIL ne respecte le format _d'E-MAIL_. Veuillez le re-écrire " 
-  }else if (controlEmail === true) {
-    console.log("'" + emailValue + "'", " est", controlEmail)
-    emailError.innerHTML = "";
-  }
-}
-// ------------- FIN E-MAIL ----------------------------
+//   // Etape De validation d'EMAIL
+//   let regexEmail = /^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@][a-z\.\-\_]+[\.][a-z]{2,4}$/g;
+//   let controlEmail = regexEmail.test(emailValue)
+//   if (controlEmail === false) {
+//     console.log("Aïe email '" + emailValue + "'", " est", controlEmail)   
+//     emailError.innerHTML = "La valeur dans le champ E-MAIL ne respecte le format _d'E-MAIL_. Veuillez le re-écrire " 
+//   }else if (controlEmail === true) {
+//     console.log("'" + emailValue + "'", " est", controlEmail)
+//     emailError.innerHTML = "";
+//   }
+// }
+// // ------------- FIN E-MAIL ----------------------------
 
-
-let response = fetch('http://localhost:3000/api/products/order', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(userFormToSend)
-});
-
-let apiResult = response.json();
-alert(result.message);
-
-// return apiResult.json();
-
-
-
-
-// Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
+// // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
 //  if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
 //    console.log('Verdict conditions, tout est bon')
@@ -489,7 +472,7 @@ alert(result.message);
 //   // e.preventDefault(); 
 
 //   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-// let response = fetch('http://localhost:3000/api/products', {
+// let responsePost = fetch('http://localhost:3000/api/products', {
 //   method: 'POST',
 //   headers: {
 //     'Content-Type': 'application/json'
@@ -497,12 +480,17 @@ alert(result.message);
 //   body: JSON.stringify(userFormToSend)
 // });
 
-// let apiResultesult = response.json();
-// alert(result.message);
+// responsePost.then(async(reponse) => {
+//   try {
+//     console.log(reponse);
+//   } catch (e) {
+//     console.log(e)
+//   }
+// })
 
 // return apiResult.json();
 
 // }
 
-});
+// });
 
