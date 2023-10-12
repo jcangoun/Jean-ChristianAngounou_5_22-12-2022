@@ -308,17 +308,8 @@ const fetchEtVisualSection = async () => {
   };
   // Sauvegarde localStorage ci dessous juste avant declaration fetch
 
-  // const userFormToSend = { cartPanierGet, contact };
-  // localStorage.setItem("contact", JSON.stringify(contact))
-  // console.log("userFormToSend", userFormToSend);
-
- // localStorage.setItem("contact", JSON.stringify(contact))
-// console.log(typeof("f",contact.firstName))
-// console.log(typeof("l",contact.lastName))
-// console.log(typeof("a",contact.address))
-// console.log(typeof("c",contact.city))
-// console.log(typeof("e",contact.email))
-
+  const userFormToSend = { cartPanierGet, contact };
+  console.log("userFormToSend", userFormToSend);
 
 // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
@@ -341,7 +332,7 @@ const emailError = email.nextElementSibling;
 // // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
       // //  LEs évènements pour le bouton d'envoi commande client
 
-form.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log('ca paniasse');
   
@@ -458,56 +449,60 @@ if (emailValue === null || emailValue === undefined) {
 }
 // ------------- FIN E-MAIL ----------------------------
 
+
+let response = fetch('http://localhost:3000/api/products/order', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(userFormToSend)
+});
+
+let apiResult = response.json();
+alert(result.message);
+
+// return apiResult.json();
+
+
+
+
 // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
- if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
-   console.log('Verdict conditions, tout est bon')
+//  if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
+//    console.log('Verdict conditions, tout est bon')
   
 
-  } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
-    console.log("Verdict conditions, un truc est undefined")
-    // e.preventDefault(); 
+//   } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
+//     console.log("Verdict conditions, un truc est undefined")
+//     // e.preventDefault(); 
   
 
-} else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
-  console.log("Verdict conditions, un truc est false")
-  // normalement je ne devrais pas mettre le formulaire ici, 
-  // mais ca donne une idée de principe de fonctionnement
-  e.preventDefault(); 
+// } else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
+//   console.log("Verdict conditions, un truc est false")
+//   // normalement je ne devrais pas mettre le formulaire ici, 
+//   // mais ca donne une idée de principe de fonctionnement
+//   e.preventDefault(); 
   
-} else  {
-  console.log('Autre .... contact pas bon',"prenomValue =",
-  typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
-  // e.preventDefault(); 
-  // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-  const userFormToSend = { cartPanierGet, contact };
-  localStorage.setItem("contact", JSON.stringify(userFormToSend))
-  console.log("userFormToSend", userFormToSend);
-  const userStringForm = JSON.stringify(userFormToSend)
-  // let url = await fetch(),
-  let envoi = fetch(": http://localhost:3000/api/products/order", {
-    method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: userStringForm
-  });  envoi;
-  // let result = response.json();
-  // alert(result.message+ "envoyé");
-  
-// Voici un bon exemple de ce que j'ai fait dans l'exercice POST juste en bas 
-  
-  // Création de la charge utile au format JSON
-    const chargeUtile = JSON.stringify(avis);
+// } else  {
+//   console.log('Autre VAlidation verdict  .... contact pas bon',"prenomValue =",
+//   typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
+//   // e.preventDefault(); 
 
-  // Appel de la fonction fetch avec toutes les informations nécessaires
-    // fetch("http://localhost:3000/api/", {
-    // method: "POST",
-    // headers: { "Content-Type": "application/json" },
-    // body: chargeUtile
+//   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
+// let response = fetch('http://localhost:3000/api/products', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(userFormToSend)
 // });
 
-// 
+// let apiResultesult = response.json();
+// alert(result.message);
 
-}
+// return apiResult.json();
+
+// }
 
 });
 
