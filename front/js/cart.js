@@ -12,6 +12,7 @@ tableauPrix = [];
 totalPanier = [];
 let totalChange = [];
 console.log("avetn")
+
 const fetchEtVisualSection = async () => {
   console.log("avantPendant")
 
@@ -32,10 +33,6 @@ const fetchEtVisualSection = async () => {
     console.log(totalPanier);
     totalPanier.push(parseInt(dataPanier.price));
     console.log(totalPanier);
-    for (let u = 0; u < dataPanier.length; u++) {
-      lemDeTotalPanier = dataPanier[u];
-      console.log(lemDeTotalPanier);
-    }
 
     // Ce consolelog ci dessous montre lde dernier
     console.log(dataPanier);
@@ -124,30 +121,12 @@ const fetchEtVisualSection = async () => {
           const panelPersoChoix = majcart[index];
           console.log("panelPersoChoix", panelPersoChoix);
           const toutPanLocal = majcart;
+          console.log(majcart);
           console.log("toutpanLocal quiest majcart", toutPanLocal);
           console.log(panelPersoChoix.colors);
           console.log(panelPersoChoix.quantity);
-
-          //----------- Ici, j'ai rajoute ce for let pour essayer de regler le bug du problème de quantité ,et malgré tout, il ne se passe rien de bon, je ne voies pas mon erreur
           
-          // for (let indice = 0; indice < majcart.length; indice++) {
-          //   const majcartTablIndice = majcart[indice];
-          //   const lastMajcartTablIndice = majcart.length;
-          //   console.log(majcartTablIndice);
-          //   console.log(majcartTablIndice);
-          //   if (lastMajcartTablIndice) {
-          //     if (panelPersoChoix._id === produitPanier._id) {
-          //       console.log("id sont pareils")
-          //       if (panelPersoChoix.quantity !== produitPanier.quantity && panelPersoChoix.colors === produitPanier.colors) {
-          //         quanteModifiableProductInput === panelPersoChoix.quantity;
-          //       }
-          //     }
-          //   }
-          //   console.log(majcartTablIndice);
-          //   console.log(majcartTablIndice.quantity);
-
-          //   // return majcartPointIndice.quantity
-          // }
+          // ------------------------------------------------------ test ------------------------ 
 
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
           quanteModifiableProductInput === panelPersoChoix.quantity;
@@ -175,27 +154,19 @@ const fetchEtVisualSection = async () => {
 
           // localStorage.getItem(JSON.parse('panier'))
           const changeQuantity = parseInt(panelPersoChoix.quantity);
+          const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
           const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
           const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
           const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
           console.log(baliseChangePrix);
           console.log(onChangeSectionTotal);
           console.log(totalPanier);
-  //  //           //============================= ====================
-          totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-          const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-          console.log(totalPanier);
-          console.log(totalSupreme);
 
-          console.log("totaPrix", caseTotalPrice.textContent);
-          caseTotalPrice = `${totalSupreme}`;
-          console.log(caseTotalPrice.textContent);
-  //  // //          ===============================================
+ //          ===============================================
   //         tableauPrixFinal.push(onChangeSectionTotal)
   //         console.log(tableauPrixFinal)
        qtyTotal();
-       toutTotalPrix ();
+
        console.log("chargelocale");
             console.log(totalPanier);
             localStorage.setItem("panier", JSON.stringify(majcart));
@@ -251,51 +222,64 @@ const fetchEtVisualSection = async () => {
     //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
 
 
-    const prixElemt = parseInt(dataPanier.price);
-    const vlueQtenumerisee = parseInt(resultatValeurQuantite.value);
-    console.log(typeof resultatValeurQuantite.value, typeof dataPanier);
-    const totlprixTypProduit = vlueQtenumerisee * prixElemt;
-    console.log(totlprixTypProduit);
-    console.log("datapanier1", prixElemt, dataPanier.name);
-    console.log(totalPanier);
+    // const prixElemt = parseInt(dataPanier.price);
+    // const vlueQtenumerisee = parseInt(resultatValeurQuantite.value);
+    // console.log(typeof resultatValeurQuantite.value, typeof dataPanier);
+    // const totlprixTypProduit = vlueQtenumerisee * prixElemt;
+    // console.log(totlprixTypProduit);
+    // console.log("datapanier1", prixElemt, dataPanier.name);
+    // console.log(totalPanier);
 
-    const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
-    const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-    console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier);
-    // on dirait que cest tableaufinal qui double quelquechose
-    const tableauPrixFinal = [];
+    // const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
+    // const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+    // console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier);
+    // // on dirait que cest tableaufinal qui double quelquechose
+    // const tableauPrixFinal = [];
 
-    console.log(totalPanier, "contre", tableauPrixFinal);
-    // Ici ca prend les vlue et prixElement
-    for (let prod = 0; prod < totalPanier.length; prod++) {
-      const prixCatProdt = totalPanier[prod];
-      console.log(prixCatProdt);
-      console.log(totalPanier, "contre", tableauPrixFinal); 
+    // console.log(totalPanier, "contre", tableauPrixFinal);
+    // // Ici ca prend les vlue et prixElement
+    // for (let prod = 0; prod < totalPanier.length; prod++) {
+    //   const prixCatProdt = totalPanier[prod];
+    //   console.log(prixCatProdt);
+    //   console.log(totalPanier, "contre", tableauPrixFinal); 
 
-      const finalPrice = prixCatProdt * vlueQtenumerisee;
-      console.log("Qte", vlueQtenumerisee, "prix", prixCatProdt, " = final", finalPrice);
-      console.log("totalPanier", totalPanier, "tableauPrixFinal", tableauPrixFinal);
-      tableauPrixFinal.push(finalPrice);
-      console.log(finalPrice);
-      console.log(tableauPrixFinal);
+    //   const finalPrice = prixCatProdt * vlueQtenumerisee;
+    //   console.log("Qte", vlueQtenumerisee, "prix", prixCatProdt, " = final", finalPrice);
+    //   console.log("totalPanier", totalPanier, "tableauPrixFinal", tableauPrixFinal);
+    //   tableauPrixFinal.push(finalPrice);
+    //   console.log(finalPrice);
+
+    //   console.log(tableauPrixFinal);
+    //   // const caseTotalPrice = document.querySelector("#totalPrice");
+    //   let cumulTotal =finalPrice;
+    //   console.log(cumulTotal)
+    //   cumulTotal += finalPrice; 
+    //   console.log(cumulTotal)
+    // }
+    // console.log(totalPanier, "contre", tableauPrixFinal);
+    // totalPanier = tableauPrixFinal;
+    // console.log("totalPanier", totalPanier, "egal", "tableauPrixFinal", tableauPrixFinal);
+    // console.log(totalPanier);
+
+    const PrixU = parseInt(dataPanier.price)
+    const valueParseQty = parseInt(resultatValeurQuantite.value)
+    const totaltPrixRow = PrixU * valueParseQty
+    console.log(totaltPrixRow)
+    console.log(totalPanier)
+    let montantCommnd = 0;
+    for (let produitCanape = 0; produitCanape < totalPanier.length; produitCanape++) {
+      const prixDuProduit = totalPanier[produitCanape]
+      // console.log(prixDuProduit, typeof(prixDuProduit))
+      
+      montantCommnd = montantCommnd + totalPanier[produitCanape]
     }
-    console.log(totalPanier, "contre", tableauPrixFinal);
-    totalPanier = tableauPrixFinal;
-    console.log("totalPanier", totalPanier, "egal", "tableauPrixFinal", tableauPrixFinal);
-    console.log(totalPanier);
+    console.log(montantCommnd)
 
-    function toutTotalPrix() {
-      totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-      console.log("1", typeof totalPanier[0] + "2", typeof totalPanier[1]);
-      const totalSupreme = totalPanier.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-      console.log(totalPanier);
-      console.log(totalSupreme);
-      // En haut on dirait que cest tableaufinal qui double quelquechose
       const caseTotalPrice = document.querySelector("#totalPrice");
-      caseTotalPrice.innerHTML = totalSupreme;
-      // caseTotalPrice.innerHTML = "4";
-    }
-    toutTotalPrix();
+            caseTotalPrice.innerHTML = montantCommnd;
+
+
+
   }
 console.log("avantApres")
   // tous les éléments de l'user a envoyer au serveur
@@ -303,8 +287,8 @@ console.log("avantApres")
 // Fin de fetch où console. log marche plus
 console.log("dernierle ligne là où ca marche");
 };
-// // function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
 
+// // function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
   const contact = {
     firstName: document.querySelector("#firstName").value,
     lastName: document.querySelector("#lastName").value,
@@ -314,8 +298,8 @@ console.log("dernierle ligne là où ca marche");
   };
 //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
 
-//   const userFormToSend = { cartPanierGet, contact };
-//   console.log("userFormToSend", userFormToSend);
+  // const userFormToSend = { cartPanierGet, contact };
+  // console.log("userFormToSend", userFormToSend);
 
 // // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
@@ -478,24 +462,29 @@ if (emailValue === null || emailValue === undefined) {
   // e.preventDefault(); 
 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-let responsePost = fetch('api/products/order', {
+  
+  // [{"_id":"8906dfda133f4c20a9d0e34f18adcf06","name":"Kanap Eurydomé","description":"Ut laoreet vulputate neque in commodo. Suspendisse maximus quis erat in sagittis. Donec hendrerit purus at congue aliquam.","colors":"Grey","quantity":1},{"_id":"77711f0e466b4ddf953f677d30b0efc9","name":"Kanap Hélicé","description":"Curabitur vel augue sit amet arcu aliquet interdum. Integer vel quam mi. Morbi nec vehicula mi, sit amet vestibulum.","colors":"Grey","quantity":1}]  //  fetch('https://jsonplaceholder.typicode.com/users')
+    //  fetch('https://jsonplaceholder.typicode.com/users')
+
+  fetch(': http://localhost:3000/api/products/order', { 
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify(userFormToSend)
+  body: JSON.stringify(cartPanierGet)
 });
+
 console.log(typeof(userFormToSend))
 
-responsePost.then(async(reponse) => {
-  try {
-    console.log(reponse);
-  } catch (e) {
-    console.log(e)
-  }
-})
+// responsePost.then(async(reponse) => {
+//   try {
+//     console.log(reponse);
+//   } catch (e) {
+//     console.log(e)
+//   }
+// })
 
- return apiResult.json();
+//  return apiResult.json();
 
 }
 
