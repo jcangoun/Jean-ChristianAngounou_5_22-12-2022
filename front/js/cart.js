@@ -10,7 +10,7 @@ console.log(cartPanierGet)
 const carteArticle = document.querySelector(".cart > #cart__items");
 tableauPrix = [];
 totalPanier = [];
-let totalChange = [];
+let totalPrixRow = [];
 console.log("avetn")
 
 const fetchEtVisualSection = async () => {
@@ -111,11 +111,11 @@ const fetchEtVisualSection = async () => {
       const unArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
       // console.log(majcart);
-      console.log(totalPanier);
-      console.log(produitPanier);
+      // console.log(produitPanier);
 
       unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener("change", function (e) {
+          console.log(majcart);
           const quanteModifiableProductInput = e.target.value;
           console.log(quanteModifiableProductInput);
           const panelPersoChoix = majcart[index];
@@ -152,28 +152,23 @@ const fetchEtVisualSection = async () => {
           caseTotalPrice = " ";
           console.log("case a ceci =", "' " + caseTotalPrice + "' ");
 
-          // localStorage.getItem(JSON.parse('panier'))
-          const changeQuantity = parseInt(panelPersoChoix.quantity);
-          const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
-          const baliseChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-          const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
-          const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-          console.log(baliseChangePrix);
-          console.log(onChangeSectionTotal);
-          console.log(totalPanier);
+          // // localStorage.getItem(JSON.parse('panier'))
+          // const quantityOnChange = parseInt(panelPersoChoix.quantity);
+          // const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
+          // const baliseOnChangePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
+          // const prixDsBalisePrix = parseInt(baliseOnChangePrix.textContent);
+          // const onChangeSectionTotal = quantityOnChange * prixDsBalisePrix;
+          // console.log(baliseOnChangePrix);
+          // console.log(onChangeSectionTotal);
+          // console.log(totalPanier);
 
- //          ===============================================
-  //         tableauPrixFinal.push(onChangeSectionTotal)
-  //         console.log(tableauPrixFinal)
-       qtyTotal();
+      //  qtyTotal();
 
        console.log("chargelocale");
-            console.log(totalPanier);
-            localStorage.setItem("panier", JSON.stringify(majcart));
+
           }
           else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-                      console.log("input quantite client dejà egal qt input");
-                      console.log(totalPanier);
+
           }
           // location.reload(true);
         });
@@ -218,60 +213,23 @@ const fetchEtVisualSection = async () => {
       const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"));
     }
     qtyTotal();
-    console.log(totalPanier);
+    // le tableau là en bas ne doit pas s appeler totalPrixrow comme le cons de la multitplication de prixU * valueParseQty 
+    console.log(totalPrixRow)
     //  Ici demarche pour trouver  tous les ptotaux de chaque section de produit
-
-
-    // const prixElemt = parseInt(dataPanier.price);
-    // const vlueQtenumerisee = parseInt(resultatValeurQuantite.value);
-    // console.log(typeof resultatValeurQuantite.value, typeof dataPanier);
-    // const totlprixTypProduit = vlueQtenumerisee * prixElemt;
-    // console.log(totlprixTypProduit);
-    // console.log("datapanier1", prixElemt, dataPanier.name);
-    // console.log(totalPanier);
-
-    // const laDescriptonContenuCartItem = document.querySelector("div.cart__item__content__description");
-    // const lePrix = laDescriptonContenuCartItem.querySelector("p:last-child");
-    // console.log("datapanier", dataPanier, "cartPanierGet", cartPanierGet, "totalPanier", totalPanier);
-    // // on dirait que cest tableaufinal qui double quelquechose
-    // const tableauPrixFinal = [];
-
-    // console.log(totalPanier, "contre", tableauPrixFinal);
-    // // Ici ca prend les vlue et prixElement
-    // for (let prod = 0; prod < totalPanier.length; prod++) {
-    //   const prixCatProdt = totalPanier[prod];
-    //   console.log(prixCatProdt);
-    //   console.log(totalPanier, "contre", tableauPrixFinal); 
-
-    //   const finalPrice = prixCatProdt * vlueQtenumerisee;
-    //   console.log("Qte", vlueQtenumerisee, "prix", prixCatProdt, " = final", finalPrice);
-    //   console.log("totalPanier", totalPanier, "tableauPrixFinal", tableauPrixFinal);
-    //   tableauPrixFinal.push(finalPrice);
-    //   console.log(finalPrice);
-
-    //   console.log(tableauPrixFinal);
-    //   // const caseTotalPrice = document.querySelector("#totalPrice");
-    //   let cumulTotal =finalPrice;
-    //   console.log(cumulTotal)
-    //   cumulTotal += finalPrice; 
-    //   console.log(cumulTotal)
-    // }
-    // console.log(totalPanier, "contre", tableauPrixFinal);
-    // totalPanier = tableauPrixFinal;
-    // console.log("totalPanier", totalPanier, "egal", "tableauPrixFinal", tableauPrixFinal);
-    // console.log(totalPanier);
-
     const PrixU = parseInt(dataPanier.price)
     const valueParseQty = parseInt(resultatValeurQuantite.value)
-    const totaltPrixRow = PrixU * valueParseQty
-    console.log(totaltPrixRow)
-    console.log(totalPanier)
+    const valueSectionTotaltPrixRow = PrixU * valueParseQty
+    console.log("prixU",PrixU ,"valuParseQty", valueParseQty)
+    console.log("valueSectionTotalRow", valueSectionTotaltPrixRow)
+
+    totalPrixRow.push(valueSectionTotaltPrixRow)
+    console.log(totalPrixRow)
     let montantCommnd = 0;
-    for (let produitCanape = 0; produitCanape < totalPanier.length; produitCanape++) {
-      const prixDuProduit = totalPanier[produitCanape]
-      // console.log(prixDuProduit, typeof(prixDuProduit))
-      
-      montantCommnd = montantCommnd + totalPanier[produitCanape]
+    for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
+      const prixDuProduit = totalPrixRow[produitCanape]
+      console.log(prixDuProduit, typeof(prixDuProduit))
+      console.log(totalPrixRow)
+      montantCommnd = montantCommnd + totalPrixRow[produitCanape]
     }
     console.log(montantCommnd)
 
@@ -281,7 +239,6 @@ const fetchEtVisualSection = async () => {
 
 
   }
-console.log("avantApres")
   // tous les éléments de l'user a envoyer au serveur
 
 // Fin de fetch où console. log marche plus
@@ -319,7 +276,7 @@ const emailError = email.nextElementSibling;
 
  // --------------------------------------------------- A démuter ci dessous plus tard: valeurs du formulaire qui seront sauvegardés dans localstorage key contact
 
- // A REMETTRE PEut etre PLUS TARD EN BAS DANS LE BOUTON
+ // A REMETTRE Peut etre PLUS TARD EN BAS DANS LE BOUTON
  //  LEs évènements pour le bouton d'envoi commande client
 
 form.addEventListener("submit", function (e) {
