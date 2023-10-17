@@ -146,7 +146,7 @@ const fetchEtVisualSection = async () => {
     // function ensembleTotalPrix() {
 
   //  ----------------  Ici demarche pour trouver  tous les ptotaux de chaque section de produit -------------------
-    
+
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
       const valueParseQty = parseInt(resultatValeurQuantite.value)
@@ -158,6 +158,7 @@ const fetchEtVisualSection = async () => {
       
       totalPrixRow.push(valueSectionTotaltPrixRow)
     console.log(totalPrixRow)
+
     let montantCommnd = 0;
     for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
       const prixDuProduit = totalPrixRow[produitCanape]
@@ -197,7 +198,7 @@ const fetchEtVisualSection = async () => {
           let ifChangeQty = [];
           ifChangeQty = majcart
           console.log(ifChangeQty);
-
+          console.log(dataPanier);
 
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
           console.log("input inegal");
@@ -218,36 +219,68 @@ const fetchEtVisualSection = async () => {
           qtyTotal();
 
        console.log("chargelocale");
+
+      console.log(totalPrixRow)
+       
        const onChangePrixPiece = parseInt(dataPanier.price)
        const onChangeValueParsedQty = parseInt(resultatValeurQuantite.value)
        const onChangeSectionTotaltPrix = onChangePrixPiece * onChangeValueParsedQty
 
        console.log("onChangePrixPiece" ,onChangePrixPiece,"onChangeValueParsedQty", onChangeValueParsedQty)
        console.log("onChangeSectionTotaltPrix", onChangeSectionTotaltPrix)
+
+       console.log("lastNewTotal", onChangeSectionTotaltPrix)
+       console.log(totalPrixRow)
+       totalPrixRow.pop();
+       totalPrixRow.push(onChangeSectionTotaltPrix)
+       console.log("lastNewTotal mis", onChangeSectionTotaltPrix)
+       console.log(totalPrixRow)
+
+       let changeMontantByLastProd = 0;
+       console.log("debutchangemontant", changeMontantByLastProd)
+       for (let changeSurProduit = 0; changeSurProduit < totalPrixRow.length; changeSurProduit++) {
+        const totalLastProduit = totalPrixRow[changeSurProduit]
+        console.log(totalPrixRow)
+        changeMontantByLastProd = changeMontantByLastProd + totalPrixRow[changeSurProduit]
+
+       console.log(changeMontantByLastProd)    
+       const caseTotalPrice = document.querySelector("#totalPrice");
+       caseTotalPrice.innerHTML = changeMontantByLastProd; 
        
-      //  onChangeTableauPrix.push(onChangeSectionTotaltPrix)
-     console.log(onChangeTableauPrix)
+      }
+
+
+
+
+      //  let montantCommnd = 0;
+      //  for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
+      //    const prixDuProduit = totalPrixRow[produitCanape]
+      //    console.log(totalPrixRow)
+      //    montantCommnd = montantCommnd + totalPrixRow[produitCanape]
+      //  }
+      //  console.log(montantCommnd)    
+      //  const caseTotalPrice = document.querySelector("#totalPrice");
+      //  caseTotalPrice.innerHTML = montantCommnd; 
+
+
+
+       console.log(totalPrixRow)
+
 
      let changedPrixtotal = 0;
-
      
      for (let p = 0; p < majcart.length; p++); {
        
       console.log(majcart)
-      console.log(onChangeSectionTotaltPrix)
+
     }
     
   }
   else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
     
   }
-  // location.reload(true);
-  console.log(onChangeTableauPrix)
-  
+  // location.reload(true);  
         });
-
-
-
 
       });
 
