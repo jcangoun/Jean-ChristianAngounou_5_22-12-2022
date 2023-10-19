@@ -195,11 +195,6 @@ const fetchEtVisualSection = async () => {
           localStorage.setItem("panier", JSON.stringify(majcart))
 
           console.log(onChangeTableauPrix)
-          let ifChangeQty = [];
-          ifChangeQty = majcart
-          console.log(ifChangeQty);
-          console.log(dataPanier);
-
           if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
           console.log("input inegal");
           console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
@@ -248,52 +243,33 @@ const fetchEtVisualSection = async () => {
        caseTotalPrice.innerHTML = changeMontantByLastProd; 
        
       }
-
-
-
-
-      //  let montantCommnd = 0;
-      //  for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
-      //    const prixDuProduit = totalPrixRow[produitCanape]
-      //    console.log(totalPrixRow)
-      //    montantCommnd = montantCommnd + totalPrixRow[produitCanape]
-      //  }
-      //  console.log(montantCommnd)    
-      //  const caseTotalPrice = document.querySelector("#totalPrice");
-      //  caseTotalPrice.innerHTML = montantCommnd; 
-
-
-
-       console.log(totalPrixRow)
-
-
-     let changedPrixtotal = 0;
-     
-     for (let p = 0; p < majcart.length; p++); {
-       
-      console.log(majcart)
-
-    }
     
   }
   else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-    
+    console.log("le totalPRixRow", totalPrixRow)
+
   }
   // location.reload(true);  
         });
-
       });
-
     };
     // Et j'appele en bas la fonction de modification de la quantite.
     modifQuantite();
   }
+
   // tous les éléments de l'user a envoyer au serveur
+  
+  let LesIdProduits = [];
+  //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
+  for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
+    const leID = cartPanierGet[lesProduits]
+    console.log(leID._id, typeof(leID._id))
+    LesIdProduits.push(leID._id)
+  }
+  // SOIT!!!!!  Ici c est juste un CONTACT de TEST
+  // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
-console.log("dernierle ligne de fetch et aussi où console marche");
-};
-
-// // function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
+  // SOIT!!!!! function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
   const contact = {
     firstName: document.querySelector("#firstName").value,
     lastName: document.querySelector("#lastName").value,
@@ -301,45 +277,86 @@ console.log("dernierle ligne de fetch et aussi où console marche");
     city: document.querySelector("#city").value,
     email: document.querySelector("#email").value,
   };
-//   // Sauvegarde localStorage ci dessous juste avant declaration fetch
 
-  // const userFormToSend = { cartPanierGet, contact };
-  // console.log("userFormToSend", userFormToSend);
+  const produits = JSON.stringify(LesIdProduits)
+  const userFormToSend = {contact, produits};
+  console.log("userFormToSend", userFormToSend);
+  console.log("typeuserFormToSend", typeof(userFormToSend));
+  console.log(JSON.stringify(userFormToSend))
+  console.log("et là autre typage userFormToSend", typeof(userFormToSend));
+  
+  console.log(typeof(contact), "contaact", typeof(produits), "produits")
+  console.log(contact, produits)
+  console.log(contact, JSON.stringify(produits))
 
+  
+  // localStorage.setItem("contact", JSON.stringify(contact))
+  // localStorage.setItem("produits", JSON.stringify(produits))
+  console.log("contact et produits ", contact, produits)
+  
+
+  // Grand Fetch1
+  // fetch(': http://localhost:3000/api/products/order', { 
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(userFormToSend)
+  // });
+
+// responsePost.then(async(reponse) => {
+//     try {
+//         console.log(reponse);
+//       } catch (e) {
+//           console.log(e)
+//         }
+//       })
+
+zoneForm();
+
+console.log("dernierle ligne de fetch et aussi où console marche");
+
+  // Derniere ligne ici ou tout code est encore lu  
+};
+
+console.log(" du coup cette ligne de console.log sans  fonction, ne marchera pas")
+  
 // // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
-console.log("hey")
-// // LEs éléments pour formulaire
-const form = document.getElementById("order");
-const prenom = document.getElementById("firstName");
-const prenomError = document.getElementById("firstNameErrorMsg");
-const nom = document.getElementById("lastName");
-const nomError = document.getElementById("lastNameErrorMsg")
-const adresse = document.getElementById("address");
-const adresseError = adresse.nextElementSibling;
-const ville = document.getElementById("city");
-const villeError = ville.nextElementSibling;
-const email = document.getElementById("email");
-const emailError = email.nextElementSibling;
 
- // --------------------------------------------------- A démuter ci dessous plus tard: valeurs du formulaire qui seront sauvegardés dans localstorage key contact
+
+function zoneForm() {
+  console.log("zoneForm")
+
+  // // LEs éléments pour formulaire
+  const form = document.getElementById("order");
+  const prenom = document.getElementById("firstName");
+  const prenomError = document.getElementById("firstNameErrorMsg");
+  const nom = document.getElementById("lastName");
+  const nomError = document.getElementById("lastNameErrorMsg")
+  const adresse = document.getElementById("address");
+  const adresseError = adresse.nextElementSibling;
+  const ville = document.getElementById("city");
+  const villeError = ville.nextElementSibling;
+  const email = document.getElementById("email");
+  const emailError = email.nextElementSibling;
 
  // A REMETTRE Peut etre PLUS TARD EN BAS DANS LE BOUTON
  //  LEs évènements pour le bouton d'envoi commande client
 
-form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", function (e) {
    // e.preventDefault();
    console.log('ca paniasse');
   
-   // ---------------- SECTION PRENOM --------------------------------------------------------
+    // ---------------- SECTION PRENOM --------------------------------------------------------
   
    // ---------------  VALIDATION PRENOM ----------------------
-  let prenomValue = prenom.value;
-  console.log(typeof(prenomValue), "'" + prenomValue + "'")
-  if (prenomValue === null || prenomValue === undefined) {
+    let prenomValue = prenom.value;
+    console.log(typeof(prenomValue), "'" + prenomValue + "'")
+    if (prenomValue === null || prenomValue === undefined) {
     console.log("le prenom est vide . Veuillez remplir son champ")
     alert("le prenom est vide . Veuillez le remplir")
-  } else {
+    } else {
      console.log("else, prenom pas NULL et ou UNDEFINED", typeof(prenomValue))
 
 // --------------- Etape De Validation prenom -----------------------------------------
@@ -353,17 +370,17 @@ form.addEventListener("submit", function (e) {
                 console.log("'" + prenomValue + "'", " est", controlPrenom)
                 prenomError.innerHTML = ""
               }
-  }
- // --------------- FIN PRENOM -----------------------------------------------------------
+    }
+    // --------------- FIN PRENOM -----------------------------------------------------------
 
 // // // ---------------- DEBUT NOM ------------------------------
 
-  let nomValue = nom.value;
-  console.log(typeof(nomValue), "'" + nomValue + "'")
-  if (nomValue === null || nomValue === undefined) {
+    let nomValue = nom.value;
+    console.log(typeof(nomValue), "'" + nomValue + "'")
+    if (nomValue === null || nomValue === undefined) {
     console.log("le nom est vide . Veuillez remplir son champ")
     alert("le nom est vide Veuillez remplir son champ NOM")
-  } else {
+    } else {
     console.log("else, nom pas NULL et ou UNDEFINED", typeof(nomValue))
 
     // Etape De validation Nom ---------
@@ -377,17 +394,17 @@ form.addEventListener("submit", function (e) {
       nomError.innerHTML = "";
     }
 
-  }
-   // ------------- FIN NOM ---------------------------------
+    }
+     // ------------- FIN NOM ---------------------------------
 
 
 // //   //  -------------- DEBUT ADRESSE ---------------------------------
-  let adresseValue = adresse.value;
-  console.log(typeof(adresseValue), "'" + adresseValue + "'")
-  if (adresseValue === null || adresseValue === undefined) {
+    let adresseValue = adresse.value;
+    console.log(typeof(adresseValue), "'" + adresseValue + "'")
+    if (adresseValue === null || adresseValue === undefined) {
   console.log("l'adresse est vide . Veuillez remplir son champ")
 
-  } else {
+    } else {
   console.log("else, ADRESSE pas NULL et ou UNDEFINED", typeof(adresseValue))
 
   //  ETAPE DE Validation adresse ---------
@@ -400,15 +417,15 @@ form.addEventListener("submit", function (e) {
     console.log("'" + adresseValue + "'", " est", controlAdresse)
     adresseError.innerHTML = "";
   }
-}
+    }
    // ---------------  FIN ADRESSE -----------------------
 
 // // // ----------- DEBUT VILLE ------------------
-let villeValue = ville.value;
-console.log(typeof(villeValue), "'" + villeValue + "'")
-if (villeValue === null || villeValue === undefined) {
+   let villeValue = ville.value;
+   console.log(typeof(villeValue), "'" + villeValue + "'")
+   if (villeValue === null || villeValue === undefined) {
   console.log("la ville est vide . Veuillez remplir son champ")
-} else {
+   } else {
   console.log("else, VILLE pas NULL et ou UNDEFINED", typeof(villeValue))
 
   // ETAPE DE VALIDATION Ville
@@ -421,14 +438,14 @@ if (villeValue === null || villeValue === undefined) {
     console.log("'" + villeValue + "'", " est", controlVille)
     villeError.innerHTML = "";
   }
-}
- // ------------- FIN VILLE
+   }
+    // ------------- FIN VILLE
  
 // // // -----------  Debut E-MAIL ---------------------------
-let emailValue = email.value;
-if (emailValue === null || emailValue === undefined) {
+   let emailValue = email.value;
+   if (emailValue === null || emailValue === undefined) {
   console.log("le champ email est vide . Veuillez le remplir")
-} else {
+   } else {
   console.log("else, email pas NULL et ou UNDEFINED", typeof(emailValue))
 
    // Etape De validation d'EMAIL
@@ -441,58 +458,71 @@ if (emailValue === null || emailValue === undefined) {
     console.log("'" + emailValue + "'", " est", controlEmail)
     emailError.innerHTML = "";
   }
-}
- // ------------- FIN E-MAIL ----------------------------
+   }
+   // ------------- FIN E-MAIL ----------------------------
 
- // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
+   // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
- if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
+    if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
 //    console.log('Verdict conditions, tout est bon')
   
 
-  } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
+    } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
     console.log("Verdict conditions, un truc est undefined")
      // e.preventDefault(); 
   
 
-} else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
+    } else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
   console.log("Verdict conditions, un truc est false")
   // normalement je ne devrais pas mettre le formulaire ici, 
  // mais ca donne une idée de principe de fonctionnement
   e.preventDefault(); 
   
-} else  {
-  console.log('Autre VAlidation verdict  .... contact pas bon',"prenomValue =",
-  typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
-  // e.preventDefault(); 
+    } else  {
+      console.log('Autre VAlidation verdict  .... contact pas bon',"prenomValue =",
+      typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
+      // e.preventDefault(); 
 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
   
-  // [{"_id":"8906dfda133f4c20a9d0e34f18adcf06","name":"Kanap Eurydomé","description":"Ut laoreet vulputate neque in commodo. Suspendisse maximus quis erat in sagittis. Donec hendrerit purus at congue aliquam.","colors":"Grey","quantity":1},{"_id":"77711f0e466b4ddf953f677d30b0efc9","name":"Kanap Hélicé","description":"Curabitur vel augue sit amet arcu aliquet interdum. Integer vel quam mi. Morbi nec vehicula mi, sit amet vestibulum.","colors":"Grey","quantity":1}]  //  fetch('https://jsonplaceholder.typicode.com/users')
-    //  fetch('https://jsonplaceholder.typicode.com/users')
+      // localStorage.setItem("contact", JSON.stringify(contact))
 
-  fetch(': http://localhost:3000/api/products/order', { 
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(cartPanierGet)
-});
+      const produits = JSON.stringify(LesIdProduits)
+      const userFormToSend = {contact, produits};
+      console.log("userFormToSend", userFormToSend);
+      console.log("typeuserFormToSend", typeof(userFormToSend));
+      console.log(JSON.stringify(userFormToSend))
+      console.log("et là autre typage userFormToSend", typeof(userFormToSend));
+    
+      console.log(typeof(contact), "contaact", typeof(produits), "produits")
+      console.log(contact, produits)
+      console.log(contact, JSON.stringify(produits))
 
-console.log(typeof(userFormToSend))
+    
+      // localStorage.setItem("contact", JSON.stringify(contact))
+      // localStorage.setItem("produits", JSON.stringify(produits))
+      console.log("contact et produits ", contact, produits)
+    
 
-// responsePost.then(async(reponse) => {
-//   try {
-//     console.log(reponse);
-//   } catch (e) {
-//     console.log(e)
-//   }
-// })
+      // Grand Fetch 2
+      fetch(': http://localhost:3000/api/products/order', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userFormToSend)
+      });
 
-//  return apiResult.json();
+      responsePost.then(async(reponse) => {
+  try {
+    console.log(reponse);
+  } 
+  catch(e) {
+    console.log(e)
+  }
+      })
+      return responsePost.json();
+    }
 
+  });
 }
-
-});
-
-console.log('eghyuiop')
