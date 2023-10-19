@@ -513,15 +513,15 @@ function zoneForm() {
         body: JSON.stringify(userFormToSend)
       });
 
-      responsePost.then(async(reponse) => {
-  try {
-    console.log(reponse);
-  } 
-  catch(e) {
-    console.log(e)
-  }
-      })
-      return responsePost.json();
+  //     responsePost.then(async(reponse) => {
+  // try {
+  //   console.log(reponse);
+  // } 
+  // catch(e) {
+  //   console.log(e)
+  // }
+  //     })
+  //     return responsePost.json();
     }
 
   });
