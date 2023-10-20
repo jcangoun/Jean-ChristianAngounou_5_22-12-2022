@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(info);
 const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
-console.log(cartPanierGet)
+console.log("tableau de produits selectionnés", cartPanierGet)
 
 const carteArticle = document.querySelector(".cart > #cart__items");
 totalPanier = [];
@@ -13,12 +13,10 @@ let totalPrixRow = [];
 onChangeTableauPrix = [];
 
 const fetchEtVisualSection = async () => {
-  console.log("avantPendant")
 
   // Je recupere les différents canapé choisis deans la page produit
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
-
 // A chaque canap qui s'ajoute, on recupere l'id du produit(produit._id) qui ici s'appele aussi produitPanier (produitPAnier._id)
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     console.log("icica marchenom",produitPanier.name, produitPanier.price)
@@ -29,10 +27,26 @@ const fetchEtVisualSection = async () => {
 
     const dataPanier = await response.json();
 
-    console.log(totalPanier);
+
+    // Test d ajout
+    console.log("totalPanier au début", totalPanier);
     totalPanier.push(parseInt(dataPanier.price));
     console.log(totalPanier);
+    console.log(produitPanier.quantity, typeof(produitPanier.quantity))
+    const qtyProduit = parseInt(produitPanier.quantity)
+    console.log(produitPanier.quantity, typeof(qtyProduit))
+    const firstChangeallsectPrix = parseInt(dataPanier.price) * qtyProduit
+    console.log("firstSectPrix", firstChangeallsectPrix)
+    onChangeTableauPrix.push(firstChangeallsectPrix)
+    console.log("onChangeTableauPrix", onChangeTableauPrix)
 
+    // let upSum = 0; 
+
+    // for (let allSum =0; allSum < onChangeTableauPrix; allSum++) {
+    //   upSum = upSum + firstChangeallsectPrix;
+    //   console.log(upSum)
+    // }
+    
     // Ce consolelog ci dessous montre lde dernier
     console.log(dataPanier);
     console.log(totalPanier);
@@ -106,7 +120,6 @@ const fetchEtVisualSection = async () => {
     caseAnnuleConfigCotenuCartArticl.append(supprimerArticl);
 
 
-
     // bouton "supprimé" créé ci dessous
     supprimerArticl.addEventListener("click", function () {
       console.log("ca supprime");
@@ -145,7 +158,7 @@ const fetchEtVisualSection = async () => {
     console.log(totalPrixRow)
     // function ensembleTotalPrix() {
 
-  //  ----------------  Ici demarche pour trouver  tous les ptotaux de chaque section de produit -------------------
+      //  ----------------  Ici demarche pour trouver  tous les ptotaux de chaque section de produit -------------------
 
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
@@ -156,20 +169,21 @@ const fetchEtVisualSection = async () => {
       console.log("prixU",PrixU ,"valuParseQty", valueParseQty)
       console.log("valueSectionTotalRow", valueSectionTotaltPrixRow)
       
-      totalPrixRow.push(valueSectionTotaltPrixRow)
-    console.log(totalPrixRow)
-
-    let montantCommnd = 0;
-    for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
-      const prixDuProduit = totalPrixRow[produitCanape]
       console.log(totalPrixRow)
+      totalPrixRow.push(valueSectionTotaltPrixRow)
+      console.log(totalPrixRow)
+
+      let montantCommnd = 0;
+      for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
+      const prixDuProduit = totalPrixRow[produitCanape]
+      console.log(prixDuProduit)
       montantCommnd = montantCommnd + totalPrixRow[produitCanape]
-    }
-    console.log(montantCommnd)    
-    const caseTotalPrice = document.querySelector("#totalPrice");
-    caseTotalPrice.innerHTML = montantCommnd;    
-  // } 
-  // ensembleTotalPrix();
+      }
+      console.log("Et total", montantCommnd)    
+      const caseTotalPrice = document.querySelector("#totalPrice");
+      caseTotalPrice.innerHTML = montantCommnd;    
+    // } 
+    // ensembleTotalPrix();
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
@@ -189,67 +203,88 @@ const fetchEtVisualSection = async () => {
           const toutPanLocal = majcart;
           
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
-       // Ci dessous valeur qté dans l'input devient ou reste égal a la qté equivalente de son produit dans le local storage
+          // Ci dessous valeur qté dans l'input devient ou reste égal a la qté equivalente de son produit dans le local storage
           quanteModifiableProductInput === panelPersoChoix.quantity;
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);          
           localStorage.setItem("panier", JSON.stringify(majcart))
 
           console.log(onChangeTableauPrix)
-          if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
-          console.log("input inegal");
-          console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+          if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+            let caseTotalPrice = document.querySelector("#totalPrice");
 
-          panelPersoChoix.quantity = quanteModifiableProductInput;
-          console.log(panelPersoChoix.quantity + " = " + quanteModifiableProductInput);
-          console.log("maintenant égal")
+            // caseTotalPrice = " ";
+            console.log("case a ceci =", "' " + caseTotalPrice.textContent + "' ", "c est ", typeof(caseTotalPrice.textContent));
+            // JSON.parse(localStorage.getItem('panier'))
+            const changeQuantity = parseInt(panelPersoChoix.quantity);
+            const baliseChangePrix = descriptonContenuCartItem.querySelector("p:last-child");
+            const prixDsBalisePrix = parseInt(baliseChangePrix.textContent);
+            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+            console.log("qty", changeQuantity);
+            console.log("Prix", prixDsBalisePrix);
+            console.log("changeQty", changeQuantity, "prixDsBalisePrix", prixDsBalisePrix )
+            console.log("ca donne onChangeSectionTotal", onChangeSectionTotal);
+            console.log(totalPanier);
+            console.log(panelPersoChoix)
 
-          localStorage.setItem("panier", JSON.stringify(majcart))
+            for (let f = 0; f < produitPanier.length; f++) {
+              console.log(produitPanier[f.quantity], "et", )
+            }
 
-          // ========================================================================================================================
+            //           //============================= ====================
 
-          let caseTotalPrice = document.querySelector("#totalPrice");
-          // caseTotalPrice = " ";
-          console.log("case a ceci =", "' " + " mettre la variable du vrai prix total" + "' ");
 
-          qtyTotal();
+          }
+          else if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
+            console.log("input inegal");
+            console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
+            panelPersoChoix.quantity = quanteModifiableProductInput;
+            console.log(panelPersoChoix.quantity + " = " + quanteModifiableProductInput);
+            console.log("maintenant égal")
 
-       console.log("chargelocale");
+            localStorage.setItem("panier", JSON.stringify(majcart))
 
-      console.log(totalPrixRow)
-       
-       const onChangePrixPiece = parseInt(dataPanier.price)
-       const onChangeValueParsedQty = parseInt(resultatValeurQuantite.value)
-       const onChangeSectionTotaltPrix = onChangePrixPiece * onChangeValueParsedQty
+            // ========================================================================================================================
+            let caseTotalPrice = document.querySelector("#totalPrice");
+            // caseTotalPrice = " ";
+            console.log("case a ceci =", "' " + " mettre la variable du vrai prix total" + "' ");
 
-       console.log("onChangePrixPiece" ,onChangePrixPiece,"onChangeValueParsedQty", onChangeValueParsedQty)
-       console.log("onChangeSectionTotaltPrix", onChangeSectionTotaltPrix)
+            qtyTotal();
 
-       console.log("lastNewTotal", onChangeSectionTotaltPrix)
-       console.log(totalPrixRow)
-       totalPrixRow.pop();
-       totalPrixRow.push(onChangeSectionTotaltPrix)
-       console.log("lastNewTotal mis", onChangeSectionTotaltPrix)
-       console.log(totalPrixRow)
+            console.log(totalPrixRow)       
+            const onChangePrixPiece = parseInt(dataPanier.price)
+            const onChangeValueParsedQty = parseInt(resultatValeurQuantite.value)
+            const onChangeSectionTotaltPrix = onChangePrixPiece * onChangeValueParsedQty
 
-       let changeMontantByLastProd = 0;
-       console.log("debutchangemontant", changeMontantByLastProd)
-       for (let changeSurProduit = 0; changeSurProduit < totalPrixRow.length; changeSurProduit++) {
-        const totalLastProduit = totalPrixRow[changeSurProduit]
-        console.log(totalPrixRow)
-        changeMontantByLastProd = changeMontantByLastProd + totalPrixRow[changeSurProduit]
+            console.log("onChangePrixPiece" ,onChangePrixPiece,"onChangeValueParsedQty", onChangeValueParsedQty)
+            console.log("onChangeSectionTotaltPrix", onChangeSectionTotaltPrix)
 
-       console.log(changeMontantByLastProd)    
-       const caseTotalPrice = document.querySelector("#totalPrice");
-       caseTotalPrice.innerHTML = changeMontantByLastProd; 
-       
-      }
-    
-  }
-  else if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-    console.log("le totalPRixRow", totalPrixRow)
+            console.log("lastNewTotal", onChangeSectionTotaltPrix)
+            console.log(totalPrixRow)
+            totalPrixRow.pop();
+            totalPrixRow.push(onChangeSectionTotaltPrix)
+            console.log("lastNewTotal mis", onChangeSectionTotaltPrix)
+            console.log(totalPrixRow)
 
-  }
-  // location.reload(true);  
+            let changeMontantByLastProd = 0;
+            console.log("debutchangemontant", changeMontantByLastProd)
+            for (let changeSurProduit = 0; changeSurProduit < totalPrixRow.length; changeSurProduit++) {
+              const totalLastProduit = totalPrixRow[changeSurProduit]
+              console.log(totalPrixRow)
+              changeMontantByLastProd = changeMontantByLastProd + totalPrixRow[changeSurProduit]
+
+                    // console.log(totalPanier);
+                      // console.log(totalSupreme);
+                      // console.log("totaPrix", caseTotalPrice.textContent);
+                      // caseTotalPrice = `${totalSupreme}`;
+                      // console.log(caseTotalPrice.textContent);
+              console.log(changeMontantByLastProd)    
+              const caseTotalPrice = document.querySelector("#totalPrice");
+              caseTotalPrice.innerHTML = changeMontantByLastProd;        
+            }    
+          } else {
+            console.log("y a un probleme")
+          }
+          // location.reload(true);  
         });
       });
     };
@@ -266,10 +301,10 @@ const fetchEtVisualSection = async () => {
     console.log(leID._id, typeof(leID._id))
     LesIdProduits.push(leID._id)
   }
-  // SOIT!!!!!  Ici c est juste un CONTACT de TEST
+  // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
   // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
-  // SOIT!!!!! function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
+  // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
   const contact = {
     firstName: document.querySelector("#firstName").value,
     lastName: document.querySelector("#lastName").value,
@@ -294,9 +329,8 @@ const fetchEtVisualSection = async () => {
   // localStorage.setItem("produits", JSON.stringify(produits))
   console.log("contact et produits ", contact, produits)
   
-
   // Grand Fetch1
-  // fetch(': http://localhost:3000/api/products/order', { 
+  // fetch('http://localhost:3000/api/products/order', { 
   //   method: 'POST',
   //   headers: {
   //     'Content-Type': 'application/json'
@@ -314,7 +348,7 @@ const fetchEtVisualSection = async () => {
 
 zoneForm();
 
-console.log("dernierle ligne de fetch et aussi où console marche");
+console.log("derniere ligne de fetch et aussi où la console marche");
 
   // Derniere ligne ici ou tout code est encore lu  
 };
@@ -485,27 +519,14 @@ function zoneForm() {
 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
   
-      // localStorage.setItem("contact", JSON.stringify(contact))
-
-      const produits = JSON.stringify(LesIdProduits)
-      const userFormToSend = {contact, produits};
-      console.log("userFormToSend", userFormToSend);
-      console.log("typeuserFormToSend", typeof(userFormToSend));
-      console.log(JSON.stringify(userFormToSend))
-      console.log("et là autre typage userFormToSend", typeof(userFormToSend));
-    
-      console.log(typeof(contact), "contaact", typeof(produits), "produits")
-      console.log(contact, produits)
-      console.log(contact, JSON.stringify(produits))
-
     
       // localStorage.setItem("contact", JSON.stringify(contact))
       // localStorage.setItem("produits", JSON.stringify(produits))
       console.log("contact et produits ", contact, produits)
     
 
-      // Grand Fetch 2
-      fetch(': http://localhost:3000/api/products/order', { 
+      // Grand Fetch2
+      fetch('http://localhost:3000/api/products/order', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
