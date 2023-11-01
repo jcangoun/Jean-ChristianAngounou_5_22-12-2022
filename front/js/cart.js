@@ -243,6 +243,7 @@ console.log("2ONT", onChangeTableauPrix)
           console.log(onChangeTableauPrix)
 
           if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
+            console.log("euh prix au change directement egal")
             // let caseTotalPrice = document.querySelector("#totalPrice");
             // console.log(onChangeTableauPrix)
 
@@ -306,42 +307,13 @@ console.log("2ONT", onChangeTableauPrix)
             console.log("case a ceci =", "' " + " mettre la variable du vrai prix total" + "' ");
 
             qtyTotal();
-
-
-
   
             console.log("icica marchenom",produitPanier.name, produitPanier.price)
         
             if (!response.ok) {
               throw new Error("Il y a une erreur lors de la récupération des données.");
             }
-
-            // console.log(totalPrixRow)       
-            // const onChangePrixPiece = parseInt(dataPanier.price)
-            // const onChangeValueParsedQty = parseInt(resultatValeurQuantite.value)
-            // const onChangeSectionTotaltPrix = onChangePrixPiece * onChangeValueParsedQty
-
-            // console.log("onChangePrixPiece" ,onChangePrixPiece,"onChangeValueParsedQty", onChangeValueParsedQty)
-            // console.log("onChangeSectionTotaltPrix", onChangeSectionTotaltPrix)
-
-            // console.log("lastNewTotal", onChangeSectionTotaltPrix)
-            // console.log(totalPrixRow)
-            // totalPrixRow.pop();
-            // totalPrixRow.push(onChangeSectionTotaltPrix)
-            // console.log("lastNewTotal mis", onChangeSectionTotaltPrix)
-            // console.log(totalPrixRow)
-
-            // let changeMontantByLastProd = 0;
-            // console.log("debutchangemontant", changeMontantByLastProd)
-            // for (let changeSurProduit = 0; changeSurProduit < totalPrixRow.length; changeSurProduit++) {
-            //   const totalLastProduit = totalPrixRow[changeSurProduit]
-            //   console.log(totalPrixRow)
-            //   changeMontantByLastProd = changeMontantByLastProd + totalPrixRow[changeSurProduit]
-
-            //   console.log(changeMontantByLastProd)    
-            //   const caseTotalPrice = document.querySelector("#totalPrice");
-            //   caseTotalPrice.innerHTML = changeMontantByLastProd;        
-            // }    
+  
           } else {
             console.log("y a un probleme")
           }
