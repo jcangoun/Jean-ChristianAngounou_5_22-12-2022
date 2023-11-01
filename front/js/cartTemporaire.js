@@ -8,41 +8,30 @@ const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
 console.log("tableau de produits selectionnés", cartPanierGet)
 
 const carteArticle = document.querySelector(".cart > #cart__items");
-let totalPanier = [];
-let totalTableauQuantity = [];
+totalPanier = [];
 let totalPrixRow = [];
-let onChangeTableauPrix = [];
-
-console.log("ONT", onChangeTableauPrix)
-
+onChangeTableauPrix = [];
 
 const fetchEtVisualSection = async () => {
-console.log("2ONT", onChangeTableauPrix)
+
   // Je recupere les différents canapé choisis deans la page produit
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
-  // A chaque canap qui s'ajoute, on recupere l'id du produit(produit._id) qui ici s'appele aussi produitPanier (produitPAnier._id)
+// A chaque canap qui s'ajoute, on recupere l'id du produit(produit._id) qui ici s'appele aussi produitPanier (produitPAnier._id)
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
     console.log("icica marchenom",produitPanier.name, produitPanier.price)
 
     if (!response.ok) {
       throw new Error("Il y a une erreur lors de la récupération des données.");
     }
+
     const dataPanier = await response.json();
-    console.log(dataPanier)
-    console.log(produitPanier)
     
-    console.log("+ONT", onChangeTableauPrix)
     // Test d ajout
     console.log("totalPanier au début", totalPanier);
+    console.log(dataPanier.price)
     totalPanier.push(parseInt(dataPanier.price));
-    console.log("les prix", totalPanier);
-    totalTableauQuantity.push(parseInt(produitPanier.quantity))
-
-
-    
-// --------- premiere partie d ajout finie 
-
+    console.log(totalPanier);
     console.log(produitPanier.quantity, typeof(produitPanier.quantity))
     const qtyProduit = parseInt(produitPanier.quantity)
     console.log(produitPanier.quantity, typeof(qtyProduit))
@@ -50,11 +39,19 @@ console.log("2ONT", onChangeTableauPrix)
     console.log("firstSectPrix", firstChangeallsectPrix)
     onChangeTableauPrix.push(firstChangeallsectPrix)
     console.log("onChangeTableauPrix", onChangeTableauPrix)
-    console.log("ONT", onChangeTableauPrix)
+
+    let upSum = 0; 
+
+    for (let allSum =0; allSum < onChangeTableauPrix.length; allSum++) {
+      upSum = upSum + firstChangeallsectPrix;
+      console.log(onChangeTableauPrix[allSum])
+      console.log(upSum)
+    }
     
     // Ce consolelog ci dessous montre lde dernier
+    console.log(dataPanier);
     console.log(totalPanier);
-    console.log(produitPanier.quantity);
+    console.log(produitPanier);
     console.log("dataPanier", typeof dataPanier.price, "produit.name >", produitPanier.name, typeof produitPanier.quantity);
     console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name, produitPanier.quantity);
 
@@ -153,6 +150,7 @@ console.log("2ONT", onChangeTableauPrix)
     function qtyTotal() {
       const caseTotalQty = document.querySelector("#totalQuantity");
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);
+      
       const quantiteTotaleParsee = parseInt(affichTotalQuantity);
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString());
       const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"));
@@ -160,14 +158,13 @@ console.log("2ONT", onChangeTableauPrix)
     qtyTotal();
 
     console.log(totalPrixRow)
+    // function ensembleTotalPrix() {
 
-      //  ----------------  Ici demarche pour  tous les ptotaux de chaque section de produit -------------------
+      //  ----------------  Ici demarche pour trouver  tous les ptotaux de chaque section de produit -------------------
 
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
       const valueParseQty = parseInt(resultatValeurQuantite.value)
-      console.log(PrixU)
-      console.log(valueParseQty)
 
       // ci dessous, Formule du total prix par categorie de canapés
       const valueSectionTotaltPrixRow = PrixU * valueParseQty
@@ -180,13 +177,15 @@ console.log("2ONT", onChangeTableauPrix)
 
       let montantCommnd = 0;
       for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
-        const prixDuProduit = totalPrixRow[produitCanape]
-        console.log(prixDuProduit)
-        montantCommnd = montantCommnd + totalPrixRow[produitCanape]
+      const prixDuProduit = totalPrixRow[produitCanape]
+      console.log(prixDuProduit)
+      montantCommnd = montantCommnd + totalPrixRow[produitCanape]
       }
       console.log("Et total", montantCommnd)    
       const caseTotalPrice = document.querySelector("#totalPrice");
       caseTotalPrice.innerHTML = montantCommnd;    
+    // } 
+    // ensembleTotalPrix();
 
     const modifQuantite = () => {
       const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
@@ -195,148 +194,33 @@ console.log("2ONT", onChangeTableauPrix)
       // console.log(majcart);
       // console.log(produitPanier);
 
-      
       unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener("change", function (e) {
           console.log(majcart);
-          let caseTotalPrice = document.querySelector("#totalPrice");
-          caseTotalPrice.textContent = 0;
           
-
           const quanteModifiableProductInput = e.target.value;
           console.log(quanteModifiableProductInput);
           const panelPersoChoix = majcart[index];
           console.log("panelPersoChoix", panelPersoChoix);
           const toutPanLocal = majcart;
-          console.log(toutPanLocal)
-
           
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
           // Ci dessous valeur qté dans l'input devient ou reste égal a la qté equivalente de son produit dans le local storage
           quanteModifiableProductInput === panelPersoChoix.quantity;
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);          
           localStorage.setItem("panier", JSON.stringify(majcart))
-          // caseTotalPrice.textContent = 0;
-
-          console.log("majcart,", majcart)
-          console.log("cartPanierGet,", cartPanierGet)
-          for (let p = 0; p < majcart.length; p++ ) {
-                        fetch(`http://localhost:3000/api/products/${majcart[p]._id}`)
-            .then(response => (response.json()))
-              .then(tablo => {
-                let storageGet = JSON.parse(localStorage.getItem('panier'))
-                console.log(storageGet)
-                console.log(storageGet[p].quantity)
-                let caseTotalPrice = document.querySelector("#totalPrice");
-                
-                caseTotalPrice.textContent = Number(caseTotalPrice.textContent) + Number(majcart[p].quantity) * Number(tablo.price)
-
-                console.log(caseTotalPrice.textContent)
-              })
-          }
-          // JSON.parse(localStorage.getItem('panier'))
-
-          // Nouveauté
 
           console.log(onChangeTableauPrix)
-
-          if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-            let caseTotalPrice = document.querySelector("#totalPrice");
-            console.log(onChangeTableauPrix)
-
-            // caseTotalPrice = " ";
-            console.log("(c est IF) donc case a ceci =", "' " + caseTotalPrice.textContent + "' ", "c est ", typeof(caseTotalPrice.textContent));
-            // JSON.parse(localStorage.getItem('panier'))
-
-            // Tout se passe ici avec le principe de foocntionnement de DataPanier
-            const changeQuantity = parseInt(panelPersoChoix.quantity);
-            const baliseChangePrix = descriptonContenuCartItem.querySelector("p:last-child");
-            const prixDsBalisePrix = parseInt(dataPanier.price);
-            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-            console.log("qty", changeQuantity);
-            console.log("Prix", prixDsBalisePrix);
-            console.log("changeQty", changeQuantity, "prixDsBalisePrix", prixDsBalisePrix )
-            console.log("ca donne onChangeSectionTotal", onChangeSectionTotal);
-            console.log(totalPanier);
-            console.log(panelPersoChoix)
-
-            console.log(dataPanier.price)
-            console.log(produitPanier.quantity)
-            
-          }
-          else if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
-            console.log("input inegal donc, (else if)");
-            console.log(panelPersoChoix._id, panelPersoChoix.name + " = " + dataPanier.name);
-            panelPersoChoix.quantity = quanteModifiableProductInput;
-            console.log(panelPersoChoix.quantity + " = " + quanteModifiableProductInput);
-            console.log("maintenant égal")
-
-            let localStoreSet = localStorage.setItem("panier", JSON.stringify(majcart))            
-            console.log(majcart)
-            let localGet = JSON.parse(localStorage.getItem('panier'))
-            console.log(localGet)
-
-
-
-            console.log(produitPanier.quantity)
-            // ========================================================================================================================
-
-            // caseTotalPrice = " ";
-            console.log("case a ceci =", "' " + " mettre la variable du vrai prix total" + "' ");
-
-            qtyTotal();
-
-
-
-  
-            console.log("icica marchenom",produitPanier.name, produitPanier.price)
-        
-            if (!response.ok) {
-              throw new Error("Il y a une erreur lors de la récupération des données.");
-            }
-
-            // console.log(totalPrixRow)       
-            // const onChangePrixPiece = parseInt(dataPanier.price)
-            // const onChangeValueParsedQty = parseInt(resultatValeurQuantite.value)
-            // const onChangeSectionTotaltPrix = onChangePrixPiece * onChangeValueParsedQty
-
-            // console.log("onChangePrixPiece" ,onChangePrixPiece,"onChangeValueParsedQty", onChangeValueParsedQty)
-            // console.log("onChangeSectionTotaltPrix", onChangeSectionTotaltPrix)
-
-            // console.log("lastNewTotal", onChangeSectionTotaltPrix)
-            // console.log(totalPrixRow)
-            // totalPrixRow.pop();
-            // totalPrixRow.push(onChangeSectionTotaltPrix)
-            // console.log("lastNewTotal mis", onChangeSectionTotaltPrix)
-            // console.log(totalPrixRow)
-
-            // let changeMontantByLastProd = 0;
-            // console.log("debutchangemontant", changeMontantByLastProd)
-            // for (let changeSurProduit = 0; changeSurProduit < totalPrixRow.length; changeSurProduit++) {
-            //   const totalLastProduit = totalPrixRow[changeSurProduit]
-            //   console.log(totalPrixRow)
-            //   changeMontantByLastProd = changeMontantByLastProd + totalPrixRow[changeSurProduit]
-
-            //   console.log(changeMontantByLastProd)    
-            //   const caseTotalPrice = document.querySelector("#totalPrice");
-            //   caseTotalPrice.innerHTML = changeMontantByLastProd;        
-            // }    
-          } else {
-            console.log("y a un probleme")
-          }
-          // location.reload(true); 
-          JSON.parse(localStorage.getItem('panier')) 
-          console.log(totalPrixRow)
+          const newTotal =  parseInt(quanteModifiableProductInput) * parseInt(panelPersoChoix.price)
+          console.log(panelPersoChoix.price) 
+          console.log(newTotal)
+          // location.reload(true);  
         });
-              console.log("dans modif", dataPanier.name)
       });
-
     };
     // Et j'appele en bas la fonction de modification de la quantite.
     modifQuantite();
   }
-  // DataPanier a partir d 'ici ne nous voit plus plus parcequ'on n'est plus dans sa zone de visibilité 
-  console.log(cartPanierGet)
 
   // tous les éléments de l'user a envoyer au serveur
   
@@ -348,16 +232,17 @@ console.log("2ONT", onChangeTableauPrix)
     LesIdProduits.push(leID._id)
   }
   // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
-  let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
+  // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
   // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
-  // const contact = {
-  //   firstName: document.querySelector("#firstName").value,
-  //   lastName: document.querySelector("#lastName").value,
-  //   address: document.querySelector("#address").value,
-  //   city: document.querySelector("#city").value,
-  //   email: document.querySelector("#email").value,
-  // };
+  const contact = {
+    firstName: document.querySelector("#firstName").value,
+    lastName: document.querySelector("#lastName").value,
+    address: document.querySelector("#address").value,
+    city: document.querySelector("#city").value,
+    email: document.querySelector("#email").value,
+
+  };
 
   const produits = JSON.stringify(LesIdProduits)
   const userFormToSend = {contact, produits};
@@ -376,22 +261,16 @@ console.log("2ONT", onChangeTableauPrix)
   console.log("contact et produits ", contact, produits)
   
   // Grand Fetch1
-  fetch('http://localhost:3000/api/products/order', { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userFormToSend)
-  });
+//   fetch('http://localhost:3000/api/products/order', { 
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(userFormToSend)
+//   })
 
-// responsePost.then(async(reponse) => {
-//     try {
-//         console.log(reponse);
-//       } catch (e) {
-//           console.log(e)
-//         }
-//       })
-
+// .then(response=> response.json())
+// .then(data=>{console.log(data)})
 zoneForm();
 
 console.log("derniere ligne de fetch et aussi où la console marche");
@@ -406,7 +285,7 @@ fetchEtVisualSection();
 
 
 function zoneForm() {
-  console.log("zoneForm")
+  console.log("zoneFormFDSYRTUJGYDIHILHOJMHOMUHLMHKOMUKOMHJIOMFYULOFRUKFUY")
 
   // // LEs éléments pour formulaire
   const form = document.getElementById("order");
@@ -570,29 +449,26 @@ function zoneForm() {
       // localStorage.setItem("produits", JSON.stringify(produits))
       console.log("contact et produits ", contact, produits)
     
-
+      console.log("Voici les elements recupérés :" ,firstName, lastName, adresse, city, LesIdProduits)
       // Grand Fetch2
-      // fetch('http://localhost:3000/api/products/order', { 
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8'
-      //   },
-      //   body: JSON.stringify({
-      //     body: userFormToSend
-      //   })
-      // });
+      fetch('http://localhost:3000/api/products/order', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({"firstName": firstName, "lastName":lastName,  "city":city, "address": address, "email": email, "product-ID": LesIdProduits})
+      })
 
-  //     responsePost.then(async(reponse) => {
-  // try {
-  //   console.log(reponse);
-  // } 
-  // catch(e) {
-  //   console.log(e)
-  // }
-  //     })
-  //     return responsePost.json();
+      .then(async(reponse) => {
+  try {
+    console.log(reponse);
+  } 
+  catch(e) {
+    console.log(e)
+  }
+      })
+      return responsePost.json();
     }
 
   });
 }
-
