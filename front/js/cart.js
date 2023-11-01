@@ -216,24 +216,26 @@ console.log("2ONT", onChangeTableauPrix)
           quanteModifiableProductInput === panelPersoChoix.quantity;
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);          
           localStorage.setItem("panier", JSON.stringify(majcart))
+          qtyTotal();
           // caseTotalPrice.textContent = 0;
 
-          console.log("majcart,", majcart)
-          console.log("cartPanierGet,", cartPanierGet)
-          for (let p = 0; p < majcart.length; p++ ) {
-                        fetch(`http://localhost:3000/api/products/${majcart[p]._id}`)
-            .then(response => (response.json()))
-              .then(tablo => {
-                let storageGet = JSON.parse(localStorage.getItem('panier'))
-                console.log(storageGet)
-                console.log(storageGet[p].quantity)
-                let caseTotalPrice = document.querySelector("#totalPrice");
+          // console.log("majcart,", majcart)
+          // console.log("cartPanierGet,", cartPanierGet)
+          // for (let p = 0; p < majcart.length; p++ ) {
+          //               fetch(`http://localhost:3000/api/products/${majcart[p]._id}`)
+          //   .then(response => (response.json()))
+          //     .then(tablo => {
+          //       let storageGet = JSON.parse(localStorage.getItem('panier'))
+          //       console.log(storageGet)
+          //       console.log(storageGet[p].quantity)
+          //       let caseTotalPrice = document.querySelector("#totalPrice");
                 
-                caseTotalPrice.textContent = Number(caseTotalPrice.textContent) + Number(majcart[p].quantity) * Number(tablo.price)
+          //       caseTotalPrice.textContent = Number(caseTotalPrice.textContent) + Number(majcart[p].quantity) * Number(tablo.price)
 
-                console.log(caseTotalPrice.textContent)
-              })
-          }
+          //       console.log(caseTotalPrice.textContent)
+          //     })
+          // }
+
           // JSON.parse(localStorage.getItem('panier'))
 
           // Nouveauté
@@ -241,27 +243,27 @@ console.log("2ONT", onChangeTableauPrix)
           console.log(onChangeTableauPrix)
 
           if (quanteModifiableProductInput === panelPersoChoix.quantity && localStorage.getItem("panier")) {
-            let caseTotalPrice = document.querySelector("#totalPrice");
-            console.log(onChangeTableauPrix)
+            // let caseTotalPrice = document.querySelector("#totalPrice");
+            // console.log(onChangeTableauPrix)
 
-            // caseTotalPrice = " ";
-            console.log("(c est IF) donc case a ceci =", "' " + caseTotalPrice.textContent + "' ", "c est ", typeof(caseTotalPrice.textContent));
-            // JSON.parse(localStorage.getItem('panier'))
+            // // caseTotalPrice = " ";
+            // console.log("(c est IF) donc case a ceci =", "' " + caseTotalPrice.textContent + "' ", "c est ", typeof(caseTotalPrice.textContent));
+            // // JSON.parse(localStorage.getItem('panier'))
 
-            // Tout se passe ici avec le principe de foocntionnement de DataPanier
-            const changeQuantity = parseInt(panelPersoChoix.quantity);
-            const baliseChangePrix = descriptonContenuCartItem.querySelector("p:last-child");
-            const prixDsBalisePrix = parseInt(dataPanier.price);
-            const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
-            console.log("qty", changeQuantity);
-            console.log("Prix", prixDsBalisePrix);
-            console.log("changeQty", changeQuantity, "prixDsBalisePrix", prixDsBalisePrix )
-            console.log("ca donne onChangeSectionTotal", onChangeSectionTotal);
-            console.log(totalPanier);
-            console.log(panelPersoChoix)
+            // // Tout se passe ici avec le principe de foocntionnement de DataPanier
+            // const changeQuantity = parseInt(panelPersoChoix.quantity);
+            // const baliseChangePrix = descriptonContenuCartItem.querySelector("p:last-child");
+            // const prixDsBalisePrix = parseInt(dataPanier.price);
+            // const onChangeSectionTotal = changeQuantity * prixDsBalisePrix;
+            // console.log("qty", changeQuantity);
+            // console.log("Prix", prixDsBalisePrix);
+            // console.log("changeQty", changeQuantity, "prixDsBalisePrix", prixDsBalisePrix )
+            // console.log("ca donne onChangeSectionTotal", onChangeSectionTotal);
+            // console.log(totalPanier);
+            // console.log(panelPersoChoix)
 
-            console.log(dataPanier.price)
-            console.log(produitPanier.quantity)
+            // console.log(dataPanier.price)
+            // console.log(produitPanier.quantity)
             
           }
           else if (quanteModifiableProductInput !== panelPersoChoix.quantity && dataPanier._id === panelPersoChoix._id) {
@@ -276,6 +278,25 @@ console.log("2ONT", onChangeTableauPrix)
             let localGet = JSON.parse(localStorage.getItem('panier'))
             console.log(localGet)
 
+            caseTotalPrice.textContent = 0;
+
+            console.log("majcart,", majcart)
+            console.log("cartPanierGet,", cartPanierGet)
+            for (let p = 0; p < majcart.length; p++ ) {
+                          fetch(`http://localhost:3000/api/products/${majcart[p]._id}`)
+              .then(response => (response.json()))
+                .then(tablo => {
+                  let storageGet = JSON.parse(localStorage.getItem('panier'))
+                  console.log(storageGet)
+                  console.log(storageGet[p].quantity)
+                  let caseTotalPrice = document.querySelector("#totalPrice");
+                  
+                  caseTotalPrice.textContent = Number(caseTotalPrice.textContent) + Number(majcart[p].quantity) * Number(tablo.price)
+  
+                  console.log(caseTotalPrice.textContent)
+                })
+            }
+  
 
 
             console.log(produitPanier.quantity)
