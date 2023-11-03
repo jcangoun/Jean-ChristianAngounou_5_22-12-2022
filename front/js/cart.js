@@ -388,11 +388,9 @@ console.log("2ONT", onChangeTableauPrix)
 zoneForm();
 
 console.log("derniere ligne de fetch et aussi où la console marche");
-
   // Derniere ligne ici ou tout code est encore lu  
 };
-
-console.log(" du coup cette ligne de console.log sans  fonction, ne marchera pas")
+console.log(" du coup cette ligne de console.log sans  fonction, n'apparaitra'ra pas")
   
 // // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
