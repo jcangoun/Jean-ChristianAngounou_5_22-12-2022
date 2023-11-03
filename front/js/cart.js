@@ -40,8 +40,6 @@ console.log("2ONT", onChangeTableauPrix)
     totalTableauQuantity.push(parseInt(produitPanier.quantity))
 
 
-    
-// --------- premiere partie d ajout finie 
 
     console.log(produitPanier.quantity, typeof(produitPanier.quantity))
     const qtyProduit = parseInt(produitPanier.quantity)
@@ -153,7 +151,7 @@ console.log("2ONT", onChangeTableauPrix)
     function qtyTotal() {
       const caseTotalQty = document.querySelector("#totalQuantity");
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);
-      const quantiteTotaleParsee = parseInt(affichTotalQuantity);
+
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString());
       const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"));
     }
@@ -161,7 +159,7 @@ console.log("2ONT", onChangeTableauPrix)
 
     console.log(totalPrixRow)
 
-      //  ----------------  Ici demarche pour  tous les ptotaux de chaque section de produit -------------------
+      //  ----------------  Ici demarche pour  tous le calcul des ptotaux de chaque section de produit -------------------
 
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
@@ -208,9 +206,7 @@ console.log("2ONT", onChangeTableauPrix)
           const panelPersoChoix = majcart[index];
           console.log("panelPersoChoix", panelPersoChoix);
           const toutPanLocal = majcart;
-          console.log(toutPanLocal)
-
-          
+          console.log(toutPanLocal)          
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);
           // Ci dessous valeur qté dans l'input devient ou reste égal a la qté equivalente de son produit dans le local storage
           quanteModifiableProductInput === panelPersoChoix.quantity;
@@ -298,8 +294,6 @@ console.log("2ONT", onChangeTableauPrix)
                 })
             }
   
-
-
             console.log(produitPanier.quantity)
             // ========================================================================================================================
 
@@ -331,8 +325,7 @@ console.log("2ONT", onChangeTableauPrix)
   // DataPanier a partir d 'ici ne nous voit plus plus parcequ'on n'est plus dans sa zone de visibilité 
   console.log(cartPanierGet)
 
-  // tous les éléments de l'user a envoyer au serveur
-  
+  // tous les éléments de l'user a envoyer au serveur  
   let LesIdProduits = [];
   //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
   for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
@@ -341,7 +334,7 @@ console.log("2ONT", onChangeTableauPrix)
     LesIdProduits.push(leID._id)
   }
   // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
-  let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
+  // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
   // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
   // const contact = {
@@ -351,32 +344,34 @@ console.log("2ONT", onChangeTableauPrix)
   //   city: document.querySelector("#city").value,
   //   email: document.querySelector("#email").value,
   // };
+  //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
 
-  const produits = JSON.stringify(LesIdProduits)
-  const userFormToSend = {contact, produits};
-  console.log("userFormToSend", userFormToSend);
-  console.log("typeuserFormToSend", typeof(userFormToSend));
-  console.log(JSON.stringify(userFormToSend))
-  console.log("et là autre typage userFormToSend", typeof(userFormToSend));
+  // // const produits = JSON.stringify(LesIdProduits)
+  // const userFormToSend = {contact, products};
+  // console.log("userFormToSend", userFormToSend);
+  // console.log("typeuserFormToSend", typeof(userFormToSend));
+  // console.log(JSON.stringify(userFormToSend))
+  // console.log("et là autre typage userFormToSend", typeof(userFormToSend));
   
-  console.log(typeof(contact), "contaact", typeof(produits), "produits")
-  console.log(contact, produits)
-  console.log(contact, JSON.stringify(produits))
+  // console.log(typeof(contact), "contaact", typeof(produits), "produits")
+  // console.log(contact, produits)
+  // console.log(contact, JSON.stringify(produits))
 
   
   // localStorage.setItem("contact", JSON.stringify(contact))
   // localStorage.setItem("produits", JSON.stringify(produits))
-  console.log("contact et produits ", contact, produits)
+  
+  // console.log("contact et produits ", contact, produits)
   
   // Grand Fetch1
-  fetch('http://localhost:3000/api/products/order', { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userFormToSend)
-  });
 
+  // fetch('http://localhost:3000/api/products/order', { 
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(userFormToSend)
+  // });
 // responsePost.then(async(reponse) => {
 //     try {
 //         console.log(reponse);
@@ -386,7 +381,6 @@ console.log("2ONT", onChangeTableauPrix)
 //       })
 
 zoneForm();
-
 console.log("derniere ligne de fetch et aussi où la console marche");
   // Derniere ligne ici ou tout code est encore lu  
 };
@@ -415,7 +409,7 @@ function zoneForm() {
  // A REMETTRE Peut etre PLUS TARD EN BAS DANS LE BOUTON
  //  LEs évènements pour le bouton d'envoi commande client
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("click", function (e) {
    // e.preventDefault();
    console.log('ca paniasse');
   
@@ -424,7 +418,7 @@ function zoneForm() {
    // ---------------  VALIDATION PRENOM ----------------------
     let prenomValue = prenom.value;
     console.log(typeof(prenomValue), "'" + prenomValue + "'")
-    if (prenomValue === null || prenomValue === undefined) {
+    if (prenomValue === null || prenomValue === undefined || prenomValue === '') {
     console.log("le prenom est vide . Veuillez remplir son champ")
     alert("le prenom est vide . Veuillez le remplir")
     } else {
@@ -555,35 +549,71 @@ function zoneForm() {
       // e.preventDefault(); 
 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-  
-    
+      
       // localStorage.setItem("contact", JSON.stringify(contact))
       // localStorage.setItem("produits", JSON.stringify(produits))
-      console.log("contact et produits ", contact, produits)
-    
 
-      // Grand Fetch2
+      // console.log("contact et produits ", contact, produits)
+    
+      // const contact = {
+      //   firstName: "jack",
+      //   lastName: "Joe",
+      //   address: "11, rue des ers, 11200",
+      //   city: "Bomvier",
+      //   email: "dre@gmail.com",
+      // };
+      //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
+    
+      // // const produits = JSON.stringify(LesIdProduits)
+      // const userFormToSend = {contact, products};
+
+      // // Grand Fetch2
       // fetch('http://localhost:3000/api/products/order', { 
       //   method: 'POST',
       //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8'
+      //     'Content-Type': 'application/json'
       //   },
-      //   body: JSON.stringify({
-      //     body: userFormToSend
-      //   })
-      // });
-
-  //     responsePost.then(async(reponse) => {
-  // try {
-  //   console.log(reponse);
-  // } 
-  // catch(e) {
-  //   console.log(e)
-  // }
-  //     })
-  //     return responsePost.json();
+      //   body: JSON.stringify(userFormToSend)
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   console.log(data)
+      // })
+      responsePost.then(async(reponse) => {
+  try {
+    console.log(reponse);
+  } 
+  catch(e) {
+    console.log(e)
+  }
+      })
+      return responsePost.json();
     }
 
   });
 }
 
+const contact = {
+  firstName: "jack",
+  lastName: "Joe",
+  address: "11, rue des ers, 11200",
+  city: "Bomvier",
+  email: "dre@gmail.com",
+};
+ let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
+
+// const produits = JSON.stringify(LesIdProduits)
+const userFormToSend = {contact, products};
+
+// Grand Fetch2
+fetch('http://localhost:3000/api/products/order', { 
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(userFormToSend)
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data)
+})
