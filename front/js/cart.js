@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(info);
 const paramIdDePage = urlParams.get("id");
 
 const cartPanierGet = JSON.parse(localStorage.getItem("panier"));
-console.log("tableau de produits selectionnés", cartPanierGet)
+// console.log("tableau de produits selectionnés", cartPanierGet)
 
 const carteArticle = document.querySelector(".cart > #cart__items");
 let totalPanier = [];
@@ -13,48 +13,47 @@ let totalTableauQuantity = [];
 let totalPrixRow = [];
 let onChangeTableauPrix = [];
 
-console.log("ONT", onChangeTableauPrix)
-
+// console.log("ONT", onChangeTableauPrix)
 
 const fetchEtVisualSection = async () => {
-console.log("2ONT", onChangeTableauPrix)
+// console.log("2ONT", onChangeTableauPrix)
+
   // Je recupere les différents canapé choisis deans la page produit
   for (let canap = 0; canap < cartPanierGet.length; canap++) {
     const produitPanier = cartPanierGet[canap];
   // A chaque canap qui s'ajoute, on recupere l'id du produit(produit._id) qui ici s'appele aussi produitPanier (produitPAnier._id)
     const response = await fetch(`http://localhost:3000/api/products/${produitPanier._id}`);
-    console.log("icica marchenom",produitPanier.name, produitPanier.price)
+    // console.log("icica marchenom",produitPanier.name, produitPanier.price)
 
     if (!response.ok) {
       throw new Error("Il y a une erreur lors de la récupération des données.");
     }
     const dataPanier = await response.json();
-    console.log(dataPanier)
-    console.log(produitPanier)
+    // console.log(dataPanier)
+    // console.log(produitPanier)
     
-    console.log("+ONT", onChangeTableauPrix)
+    // console.log("+ONT", onChangeTableauPrix)
     // Test d ajout
-    console.log("totalPanier au début", totalPanier);
+    // console.log("totalPanier au début", totalPanier);
     totalPanier.push(parseInt(dataPanier.price));
-    console.log("les prix", totalPanier);
+    // console.log("les prix", totalPanier);
     totalTableauQuantity.push(parseInt(produitPanier.quantity))
 
-
-
-    console.log(produitPanier.quantity, typeof(produitPanier.quantity))
+    // console.log(produitPanier.quantity, typeof(produitPanier.quantity))
     const qtyProduit = parseInt(produitPanier.quantity)
-    console.log(produitPanier.quantity, typeof(qtyProduit))
+    // console.log(produitPanier.quantity, typeof(qtyProduit))
     const firstChangeallsectPrix = parseInt(dataPanier.price) * qtyProduit
-    console.log("firstSectPrix", firstChangeallsectPrix)
+    // console.log("firstSectPrix", firstChangeallsectPrix)
     onChangeTableauPrix.push(firstChangeallsectPrix)
-    console.log("onChangeTableauPrix", onChangeTableauPrix)
-    console.log("ONT", onChangeTableauPrix)
+    // console.log("onChangeTableauPrix", onChangeTableauPrix)
+    // console.log("ONT", onChangeTableauPrix)
     
-    // Ce consolelog ci dessous montre lde dernier
-    console.log(totalPanier);
-    console.log(produitPanier.quantity);
-    console.log("dataPanier", typeof dataPanier.price, "produit.name >", produitPanier.name, typeof produitPanier.quantity);
-    console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name, produitPanier.quantity);
+    // Ce consolelog ci dessous montre le dernier
+
+    // console.log(totalPanier);
+    // console.log(produitPanier.quantity);
+    // console.log("dataPanier", typeof dataPanier.price, "produit.name >", produitPanier.name, typeof produitPanier.quantity);
+    // console.log("dataPanier", dataPanier.name, dataPanier.price, produitPanier.name, produitPanier.quantity);
 
     const detailArticl = document.createElement("article");
     detailArticl.classList.add("cart__item");
@@ -151,43 +150,40 @@ console.log("2ONT", onChangeTableauPrix)
     function qtyTotal() {
       const caseTotalQty = document.querySelector("#totalQuantity");
       const affichTotalQuantity = cartPanierGet.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue.quantity), 0);
-
       caseTotalQty.innerHTML = parseInt(affichTotalQuantity.toString());
-      const ledatapanier = JSON.parse(localStorage.getItem("dataPanier"));
     }
     qtyTotal();
 
-    console.log(totalPrixRow)
+    // console.log(totalPrixRow)
 
       //  ----------------  Ici demarche pour  tous le calcul des ptotaux de chaque section de produit -------------------
 
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
       const valueParseQty = parseInt(resultatValeurQuantite.value)
-      console.log(PrixU)
-      console.log(valueParseQty)
+      // console.log(PrixU)
+      // console.log(valueParseQty)
 
       // ci dessous, Formule du total prix par categorie de canapés
       const valueSectionTotaltPrixRow = PrixU * valueParseQty
-      console.log("prixU",PrixU ,"valuParseQty", valueParseQty)
-      console.log("valueSectionTotalRow", valueSectionTotaltPrixRow)
+      // console.log("prixU",PrixU ,"valuParseQty", valueParseQty)
+      // console.log("valueSectionTotalRow", valueSectionTotaltPrixRow)
       
-      console.log(totalPrixRow)
+      // console.log(totalPrixRow)
       totalPrixRow.push(valueSectionTotaltPrixRow)
       console.log(totalPrixRow)
 
       let montantCommnd = 0;
       for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
         const prixDuProduit = totalPrixRow[produitCanape]
-        console.log(prixDuProduit)
+        // console.log(prixDuProduit)
         montantCommnd = montantCommnd + totalPrixRow[produitCanape]
       }
-      console.log("Et total", montantCommnd)    
+   
       const caseTotalPrice = document.querySelector("#totalPrice");
       caseTotalPrice.innerHTML = montantCommnd;    
 
     const modifQuantite = () => {
-      const allArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const unArticleQuantiteInput = document.querySelectorAll(".itemQuantity");
       const majcart = [...cartPanierGet];
       // console.log(majcart);
@@ -333,17 +329,27 @@ console.log("2ONT", onChangeTableauPrix)
     console.log(leID._id, typeof(leID._id))
     LesIdProduits.push(leID._id)
   }
+
   // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
   // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
   // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
-  // const contact = {
-  //   firstName: document.querySelector("#firstName").value,
-  //   lastName: document.querySelector("#lastName").value,
-  //   address: document.querySelector("#address").value,
-  //   city: document.querySelector("#city").value,
-  //   email: document.querySelector("#email").value,
-  // };
+  const contact = {
+    firstName: document.querySelector("#firstName").value,
+    lastName: document.querySelector("#lastName").value,
+    address: document.querySelector("#address").value,
+    city: document.querySelector("#city").value,
+    email: document.querySelector("#email").value,
+  };
+//  ------------------------------- mignonne greffe de  healthy fonction test ------------------- 
+console.log ( "test avant greff ici ca marche a coups sur")
+
+
+
+
+  // ------------------------------  Fin de la bonne greffe puis ------------------------------
+  // Suite fetch d 'origine ci dessous 
+
   //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
 
   // // const produits = JSON.stringify(LesIdProduits)
@@ -384,7 +390,7 @@ zoneForm();
 console.log("derniere ligne de fetch et aussi où la console marche");
   // Derniere ligne ici ou tout code est encore lu  
 };
-console.log(" du coup cette ligne de console.log sans  fonction, n'apparaitra'ra pas")
+console.log(" du coup cette ligne de console.log sans  fonction, n'apparait pas en fonction d 'un certain bug non determnd")
   
 // // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
@@ -442,7 +448,7 @@ function zoneForm() {
 
     let nomValue = nom.value;
     console.log(typeof(nomValue), "'" + nomValue + "'")
-    if (nomValue === null || nomValue === undefined) {
+    if (nomValue === null || nomValue === undefined || nomValue === '') {
     console.log("le nom est vide . Veuillez remplir son champ")
     alert("le nom est vide Veuillez remplir son champ NOM")
     } else {
@@ -466,7 +472,7 @@ function zoneForm() {
 // //   //  -------------- DEBUT ADRESSE ---------------------------------
     let adresseValue = adresse.value;
     console.log(typeof(adresseValue), "'" + adresseValue + "'")
-    if (adresseValue === null || adresseValue === undefined) {
+    if (adresseValue === null || adresseValue === undefined || adresseValue === '') {
   console.log("l'adresse est vide . Veuillez remplir son champ")
 
     } else {
@@ -488,7 +494,7 @@ function zoneForm() {
 // // // ----------- DEBUT VILLE ------------------
    let villeValue = ville.value;
    console.log(typeof(villeValue), "'" + villeValue + "'")
-   if (villeValue === null || villeValue === undefined) {
+   if (villeValue === null || villeValue === undefined || villeValue === '') {
   console.log("la ville est vide . Veuillez remplir son champ")
    } else {
   console.log("else, VILLE pas NULL et ou UNDEFINED", typeof(villeValue))
@@ -508,7 +514,7 @@ function zoneForm() {
  
 // // // -----------  Debut E-MAIL ---------------------------
    let emailValue = email.value;
-   if (emailValue === null || emailValue === undefined) {
+   if (emailValue === null || emailValue === undefined || emailValue === '') {
   console.log("le champ email est vide . Veuillez le remplir")
    } else {
   console.log("else, email pas NULL et ou UNDEFINED", typeof(emailValue))
@@ -529,7 +535,7 @@ function zoneForm() {
    // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
 
     if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
-//    console.log('Verdict conditions, tout est bon')
+   console.log('Verdict conditions, tout est bon')
   
 
     } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
@@ -544,7 +550,7 @@ function zoneForm() {
   e.preventDefault(); 
   
     } else  {
-      console.log('Autre VAlidation verdict  .... contact pas bon',"prenomValue =",
+      console.log('Autre verdict VAlidation   .... contact pas bon',"prenomValue =",
       typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
       // e.preventDefault(); 
 
@@ -590,7 +596,11 @@ function zoneForm() {
       return responsePost.json();
     }
 
+    console.log("ADDEVENTzoneForm")
+    // fin FormaddEventListenr ds zone form
   });
+console.log("Fin zoneForm")
+// Fin zoneForm
 }
 
 const contact = {
