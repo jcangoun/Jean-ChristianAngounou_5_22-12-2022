@@ -176,7 +176,7 @@ const fetchEtVisualSection = async () => {
       let montantCommnd = 0;
       for (let produitCanape = 0; produitCanape < totalPrixRow.length; produitCanape++) {
         const prixDuProduit = totalPrixRow[produitCanape]
-        // console.log(prixDuProduit)
+        console.log(prixDuProduit)
         montantCommnd = montantCommnd + totalPrixRow[produitCanape]
       }
    
@@ -322,69 +322,27 @@ const fetchEtVisualSection = async () => {
   console.log(cartPanierGet)
 
   // tous les éléments de l'user a envoyer au serveur  
-  let LesIdProduits = [];
-  //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
-  for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
-    const leID = cartPanierGet[lesProduits]
-    console.log(leID._id, typeof(leID._id))
-    LesIdProduits.push(leID._id)
-  }
+  // let products = [];
+  // //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
+  // for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
+  //   const leID = cartPanierGet[lesProduits]
+  //   console.log(leID._id, typeof(leID._id))
+  //   products.push(leID._id)
+  // }
 
   // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
   // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
 
   // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
-  const contact = {
-    firstName: document.querySelector("#firstName").value,
-    lastName: document.querySelector("#lastName").value,
-    address: document.querySelector("#address").value,
-    city: document.querySelector("#city").value,
-    email: document.querySelector("#email").value,
-  };
+
 //  ------------------------------- mignonne greffe de  healthy fonction test ------------------- 
 console.log ( "test avant greff ici ca marche a coups sur")
-
-
 
 
   // ------------------------------  Fin de la bonne greffe puis ------------------------------
   // Suite fetch d 'origine ci dessous 
 
-  //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
-
-  // // const produits = JSON.stringify(LesIdProduits)
   // const userFormToSend = {contact, products};
-  // console.log("userFormToSend", userFormToSend);
-  // console.log("typeuserFormToSend", typeof(userFormToSend));
-  // console.log(JSON.stringify(userFormToSend))
-  // console.log("et là autre typage userFormToSend", typeof(userFormToSend));
-  
-  // console.log(typeof(contact), "contaact", typeof(produits), "produits")
-  // console.log(contact, produits)
-  // console.log(contact, JSON.stringify(produits))
-
-  
-  // localStorage.setItem("contact", JSON.stringify(contact))
-  // localStorage.setItem("produits", JSON.stringify(produits))
-  
-  // console.log("contact et produits ", contact, produits)
-  
-  // Grand Fetch1
-
-  // fetch('http://localhost:3000/api/products/order', { 
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(userFormToSend)
-  // });
-// responsePost.then(async(reponse) => {
-//     try {
-//         console.log(reponse);
-//       } catch (e) {
-//           console.log(e)
-//         }
-//       })
 
 zoneForm();
 console.log("derniere ligne de fetch et aussi où la console marche");
@@ -416,9 +374,13 @@ function zoneForm() {
  //  LEs évènements pour le bouton d'envoi commande client
 
   form.addEventListener("click", function (e) {
-   // e.preventDefault();
+   e.preventDefault();
    console.log('ca paniasse');
-  
+  let controlPrenom;
+  let controlNom;
+  let controlAdresse;
+  let controlVille;
+  let controlEmail;
     // ---------------- SECTION PRENOM --------------------------------------------------------
   
    // ---------------  VALIDATION PRENOM ----------------------
@@ -432,7 +394,7 @@ function zoneForm() {
 
 // --------------- Etape De Validation prenom -----------------------------------------
               let regexPrenom = /^[A-Za-z][a-z]+(-[a-zA-Z]+){0,2}$/;
-              let controlPrenom = regexPrenom.test(prenomValue)
+               controlPrenom = regexPrenom.test(prenomValue)
               console.log(regexPrenom.test(prenomValue))
               if (controlPrenom === false) {
                 console.log("'" + prenomValue + "'", " est", controlPrenom)
@@ -456,7 +418,7 @@ function zoneForm() {
 
     // Etape De validation Nom ---------
     let regexNom = /^[A-Za-z]+(-[a-zA-Z]+){0,3}$/
-    let controlNom = regexNom.test(nomValue)
+    controlNom = regexNom.test(nomValue)
     if (controlNom === false) {
       console.log("'" + nomValue + "'", " est", controlNom)
       nomError.innerHTML = "La valeur dans le champ NOM ne respecte le format du nom. Veuillez le re-écrire "
@@ -480,7 +442,7 @@ function zoneForm() {
 
   //  ETAPE DE Validation adresse ---------
   let regexAdresse = /(^[0-9]{2,3}[\,\s])?([0-9a-zA-Z])?[a-zA-Z0-9\s\-\_]+([\,\s])?(\s)+?([A-Za-z])?[a-zA-Z0-9]+(((\s)?[\-]{1,2}(\s)?([A-Za-z])[a-zA-Z0-9]+){2,5})?(([\ ])?([\-\_\ ])?([\ ])?)?[0-9]{2,5}/gm;;
-  let controlAdresse = regexAdresse.test(adresseValue)
+  controlAdresse = regexAdresse.test(adresseValue)
   if (controlAdresse === false) {
   console.log("'" + adresseValue + "'", " est", controlAdresse)
   adresseError.innerHTML = "La valeur dans le champ ADRESSE ne respecte le format _adresse_. Veuillez le re-écrire "
@@ -501,7 +463,7 @@ function zoneForm() {
 
   // ETAPE DE VALIDATION Ville
   let regexVille = /[[A-Z][a-z]+([\_\-\ ]?[a-zA-Z]+){2,7}/g;
-  let controlVille = regexVille.test(villeValue)
+  controlVille = regexVille.test(villeValue)
   if (controlVille === false) {
     console.log("Aïe '" + villeValue + "'", " est", controlVille)
     villeError.innerHTML = "La valeur dans le champ VILLE ne respecte le format _ville_. Veuillez le re-écrire "
@@ -521,7 +483,7 @@ function zoneForm() {
 
    // Etape De validation d'EMAIL
   let regexEmail = /^[a-zA-Z0-9][a-zA-Z0-9\.\-\_]+[@][a-z\.\-\_]+[\.][a-z]{2,4}$/g;
-  let controlEmail = regexEmail.test(emailValue)
+  controlEmail = regexEmail.test(emailValue)
   if (controlEmail === false) {
     console.log("Aïe email '" + emailValue + "'", " est", controlEmail)   
     emailError.innerHTML = "La valeur dans le champ E-MAIL ne respecte le format _d'E-MAIL_. Veuillez le re-écrire " 
@@ -536,22 +498,66 @@ function zoneForm() {
 
     if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
    console.log('Verdict conditions, tout est bon')
-  
 
+  //  console.log("userFormToSend", userFormToSend);
+
+  //  console.log("contact et products ", contact, products)
+
+    // JSON.parse(localStorage.getItem("panier"));
+    // JSON.parse(localStorage.getItem("contact"));
+
+   const userFormToSend = {contact, products};
     } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
-    console.log("Verdict conditions, un truc est undefined")
-     // e.preventDefault(); 
+    console.log("J'envoies pas UNDEFINED")
+     e.preventDefault(); 
   
 
-    } else if (prenomValue === false || nomValue === false || adresseValue === false || villeValue === false || emailValue === false) {
-  console.log("Verdict conditions, un truc est false")
+    } else if (controlPrenom === false || controlNom === false || controlAdresse === false || controlVille === false || controlEmail === false) {
+  console.log("J'envoie pas non plus FALSE")
   // normalement je ne devrais pas mettre le formulaire ici, 
  // mais ca donne une idée de principe de fonctionnement
   e.preventDefault(); 
   
     } else  {
-      console.log('Autre verdict VAlidation   .... contact pas bon',"prenomValue =",
-      typeof(prenomValue), "nomValue", typeof(nomValue), "adresseValue", typeof(adresseValue), "villeValue", typeof(villeValue), "emailValue", typeof(emailValue) )
+      console.log('La  j envoie ')
+
+      const contact = {
+        firstName: document.querySelector("#firstName").value,
+        lastName: document.querySelector("#lastName").value,
+        address: document.querySelector("#address").value,
+        city: document.querySelector("#city").value,
+        email: document.querySelector("#email").value,
+      };
+      console.log(contact)
+
+      //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
+
+       let products = [];
+       //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
+       for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
+         const leID = cartPanierGet[lesProduits]
+         console.log(leID._id, typeof(leID._id))
+         products.push(leID._id)
+       }
+       console.log(products)
+
+      // const produits = JSON.stringify(LesIdProduits)
+      const userFormToSend = {contact, products};
+      
+      // // Grand Fetch2
+      fetch('http://localhost:3000/api/products/order', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userFormToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        // recuperer
+      })
+
       // e.preventDefault(); 
 
   // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
@@ -561,39 +567,7 @@ function zoneForm() {
 
       // console.log("contact et produits ", contact, produits)
     
-      // const contact = {
-      //   firstName: "jack",
-      //   lastName: "Joe",
-      //   address: "11, rue des ers, 11200",
-      //   city: "Bomvier",
-      //   email: "dre@gmail.com",
-      // };
-      //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
-    
-      // // const produits = JSON.stringify(LesIdProduits)
-      // const userFormToSend = {contact, products};
 
-      // // Grand Fetch2
-      // fetch('http://localhost:3000/api/products/order', { 
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(userFormToSend)
-      // })
-      // .then(response => response.json())
-      // .then(data => {
-      //   console.log(data)
-      // })
-      responsePost.then(async(reponse) => {
-  try {
-    console.log(reponse);
-  } 
-  catch(e) {
-    console.log(e)
-  }
-      })
-      return responsePost.json();
     }
 
     console.log("ADDEVENTzoneForm")
@@ -603,27 +577,27 @@ console.log("Fin zoneForm")
 // Fin zoneForm
 }
 
-const contact = {
-  firstName: "jack",
-  lastName: "Joe",
-  address: "11, rue des ers, 11200",
-  city: "Bomvier",
-  email: "dre@gmail.com",
-};
- let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
+// const contact = {
+//   firstName: "jack",
+//   lastName: "Joe",
+//   address: "11, rue des ers, 11200",
+//   city: "Bomvier",
+//   email: "dre@gmail.com",
+// };
+//  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
 
-// const produits = JSON.stringify(LesIdProduits)
-const userFormToSend = {contact, products};
+// // const produits = JSON.stringify(LesIdProduits)
+// const userFormToSend = {contact, products};
 
-// Grand Fetch2
-fetch('http://localhost:3000/api/products/order', { 
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(userFormToSend)
-})
-.then(response => response.json())
-.then(data => {
-  console.log(data)
-})
+// // // Grand Fetch2
+// fetch('http://localhost:3000/api/products/order', { 
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(userFormToSend)
+// })
+// .then(response => response.json())
+// .then(data => {
+//   console.log(data)
+// })
