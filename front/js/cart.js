@@ -154,22 +154,14 @@ const fetchEtVisualSection = async () => {
     }
     qtyTotal();
 
-    // console.log(totalPrixRow)
-
       //  ----------------  Ici demarche pour  tous le calcul des ptotaux de chaque section de produit -------------------
 
     // stockage de prix unitaire  et aussi de la quantité du même produit, tous en format nombre 
       const PrixU = parseInt(dataPanier.price)
       const valueParseQty = parseInt(resultatValeurQuantite.value)
-      // console.log(PrixU)
-      // console.log(valueParseQty)
 
       // ci dessous, Formule du total prix par categorie de canapés
       const valueSectionTotaltPrixRow = PrixU * valueParseQty
-      // console.log("prixU",PrixU ,"valuParseQty", valueParseQty)
-      // console.log("valueSectionTotalRow", valueSectionTotaltPrixRow)
-      
-      // console.log(totalPrixRow)
       totalPrixRow.push(valueSectionTotaltPrixRow)
       console.log(totalPrixRow)
 
@@ -188,7 +180,6 @@ const fetchEtVisualSection = async () => {
       const majcart = [...cartPanierGet];
       // console.log(majcart);
       // console.log(produitPanier);
-
       
       unArticleQuantiteInput.forEach((input, index) => {
         input.addEventListener("change", function (e) {
@@ -196,7 +187,6 @@ const fetchEtVisualSection = async () => {
           let caseTotalPrice = document.querySelector("#totalPrice");
           caseTotalPrice.textContent = 0;
           
-
           const quanteModifiableProductInput = e.target.value;
           console.log(quanteModifiableProductInput);
           const panelPersoChoix = majcart[index];
@@ -321,28 +311,9 @@ const fetchEtVisualSection = async () => {
   // DataPanier a partir d 'ici ne nous voit plus plus parcequ'on n'est plus dans sa zone de visibilité 
   console.log(cartPanierGet)
 
-  // tous les éléments de l'user a envoyer au serveur  
-  // let products = [];
-  // //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
-  // for (let lesProduits = 0; lesProduits < cartPanierGet.length; lesProduits++) {
-  //   const leID = cartPanierGet[lesProduits]
-  //   console.log(leID._id, typeof(leID._id))
-  //   products.push(leID._id)
-  // }
-
-  // SOIT!!!!! ce contact là  Ici c est juste un CONTACT de TEST
-  // let contact = {"firstName":"Jean","lastName":"Fzgj","address":"11, rue des ers, 11200","city":"Bombier","email":"dre@gmail.com"}
-
-  // SOIT!!!!! ce contact ci function des infos de contact qui va être donné lors du submit, juste là il est submit apparemment malgré un ptoentiel problème non décrit
-
 //  ------------------------------- mignonne greffe de  healthy fonction test ------------------- 
 console.log ( "test avant greff ici ca marche a coups sur")
 
-
-  // ------------------------------  Fin de la bonne greffe puis ------------------------------
-  // Suite fetch d 'origine ci dessous 
-
-  // const userFormToSend = {contact, products};
 
 zoneForm();
 console.log("derniere ligne de fetch et aussi où la console marche");
@@ -370,7 +341,6 @@ function zoneForm() {
   const email = document.getElementById("email");
   const emailError = email.nextElementSibling;
 
- // A REMETTRE Peut etre PLUS TARD EN BAS DANS LE BOUTON
  //  LEs évènements pour le bouton d'envoi commande client
 
   form.addEventListener("click", function (e) {
@@ -495,28 +465,18 @@ function zoneForm() {
    // ------------- FIN E-MAIL ----------------------------
 
    // Conditions de validation selon lesquelles submit envoie les données de formulaires ou appele L'event PreventDefult
-
     if ( prenomValue === true && nomValue === true && adresseValue === true && villeValue === true && emailValue === true) {
    console.log('Verdict conditions, tout est bon')
-
-  //  console.log("userFormToSend", userFormToSend);
-
-  //  console.log("contact et products ", contact, products)
-
-    // JSON.parse(localStorage.getItem("panier"));
-    // JSON.parse(localStorage.getItem("contact"));
-
    const userFormToSend = {contact, products};
+
     } else if (prenomValue == undefined && nomValue == undefined && adresseValue == undefined && villeValue == undefined && emailValue == undefined) {
     console.log("J'envoies pas UNDEFINED")
      e.preventDefault(); 
   
-
     } else if (controlPrenom === false || controlNom === false || controlAdresse === false || controlVille === false || controlEmail === false) {
-  console.log("J'envoie pas non plus FALSE")
-  // normalement je ne devrais pas mettre le formulaire ici, 
- // mais ca donne une idée de principe de fonctionnement
-  e.preventDefault(); 
+    console.log("J'envoie pas non plus FALSE")
+
+    e.preventDefault(); 
   
     } else  {
       console.log('La  j envoie ')
@@ -528,9 +488,7 @@ function zoneForm() {
         city: document.querySelector("#city").value,
         email: document.querySelector("#email").value,
       };
-      console.log(contact)
-
-      //  let products = ["77711f0e466b4ddf953f677d30b0efc9","107fb5b75607497b96722bda5b504926"]
+      console.log("es infos contact", contact)
 
        let products = [];
        //   // Sauvegarde localStorage ci dessous juste avant declaration fetch
@@ -543,7 +501,7 @@ function zoneForm() {
 
       // const produits = JSON.stringify(LesIdProduits)
       const userFormToSend = {contact, products};
-      
+      let redirectAvecLeOrder
       // // Grand Fetch2
       fetch('http://localhost:3000/api/products/order', { 
         method: 'POST',
@@ -555,18 +513,10 @@ function zoneForm() {
       .then(response => response.json())
       .then(data => {
         console.log(data)
+        console.log(data.orderId)
         // recuperer
+        redirectAvecLeOrder = window.location.replace(`./confirmation.html?orderId=${data.orderId}`)
       })
-
-      // e.preventDefault(); 
-
-  // Ici normalement il n'ya pas l'appel  leContact. MAis c'est pour le faire marcher en attendant de resoudre l'erreur
-      
-      // localStorage.setItem("contact", JSON.stringify(contact))
-      // localStorage.setItem("produits", JSON.stringify(produits))
-
-      // console.log("contact et produits ", contact, produits)
-    
 
     }
 
