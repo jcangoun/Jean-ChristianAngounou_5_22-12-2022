@@ -18,7 +18,6 @@
       console.log(product);
     });
   }
-  console.log(api)
 
   // --------------   Création detaillée de la constitution de page Article de produits --------------
   const articlePage = (product) => {

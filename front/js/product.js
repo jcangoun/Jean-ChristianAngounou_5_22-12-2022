@@ -138,6 +138,7 @@ function getArticle(product) {
 
         if (produitExiste) {produitExiste.quantity = Number(produitExiste.quantity) + Number(nouveauProduit.quantity);
           localStorage.setItem("panier", JSON.stringify(panierCourant));
+          console.log("produitExiste", produitExiste);
         } else {
           const panierCourantFiltrer = panierCourant.filter((item) => !(item._id === _id && item.colors === choixKanapCouleur.value));
 

@@ -11,7 +11,5 @@ const caseNumeroCommande = document.getElementById("orderId");
 
 caseNumeroCommande.textContent = orderIdparams
 
-// console.log(caseNumeroCommande.textContent)
-
 //  Effacer le storage du panier
 localStorage.removeItem('panier');

@@ -199,28 +199,6 @@ const fetchEtVisualSection = async () => {
           console.log("Choixquantity =", panelPersoChoix.quantity, quanteModifiableProductInput);          
           localStorage.setItem("panier", JSON.stringify(majcart))
           qtyTotal();
-          // caseTotalPrice.textContent = 0;
-
-          // console.log("majcart,", majcart)
-          // console.log("cartPanierGet,", cartPanierGet)
-          // for (let p = 0; p < majcart.length; p++ ) {
-          //               fetch(`http://localhost:3000/api/products/${majcart[p]._id}`)
-          //   .then(response => (response.json()))
-          //     .then(tablo => {
-          //       let storageGet = JSON.parse(localStorage.getItem('panier'))
-          //       console.log(storageGet)
-          //       console.log(storageGet[p].quantity)
-          //       let caseTotalPrice = document.querySelector("#totalPrice");
-                
-          //       caseTotalPrice.textContent = Number(caseTotalPrice.textContent) + Number(majcart[p].quantity) * Number(tablo.price)
-
-          //       console.log(caseTotalPrice.textContent)
-          //     })
-          // }
-
-          // JSON.parse(localStorage.getItem('panier'))
-
-          // Nouveauté
 
           console.log(onChangeTableauPrix)
 
@@ -297,7 +275,6 @@ const fetchEtVisualSection = async () => {
           } else {
             console.log("y a un probleme")
           }
-          // location.reload(true); 
           JSON.parse(localStorage.getItem('panier')) 
           console.log(totalPrixRow)
         });
@@ -311,15 +288,8 @@ const fetchEtVisualSection = async () => {
   // DataPanier a partir d 'ici ne nous voit plus plus parcequ'on n'est plus dans sa zone de visibilité 
   console.log(cartPanierGet)
 
-//  ------------------------------- mignonne greffe de  healthy fonction test ------------------- 
-console.log ( "test avant greff ici ca marche a coups sur")
-
-
 zoneForm();
-console.log("derniere ligne de fetch et aussi où la console marche");
-  // Derniere ligne ici ou tout code est encore lu  
 };
-console.log(" du coup cette ligne de console.log sans  fonction, n'apparait pas en fonction d 'un certain bug non determnd")
   
 // // Affichage de toutes les procedures incluses quand on appele le fetch
 fetchEtVisualSection();
