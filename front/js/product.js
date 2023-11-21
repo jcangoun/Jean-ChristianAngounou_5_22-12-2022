@@ -119,7 +119,7 @@ function getArticle(product) {
       if (panier === null && choixKanapCouleur.value === '') {
         console.log("Couleur vide et panier nul")
       } else if (panier === null && choixKanapCouleur.value !== '') {
-        console.log("jusque là on n'avait pas de panier maintenant cest fait");
+        console.log(" 1ere unité de votre prooduit Choisi. Jusque là on n'avait pas de panier maintenant cest fait");
 
         // alors si pas de panier on ajoute un panier
         const nouveauPanier = [];
