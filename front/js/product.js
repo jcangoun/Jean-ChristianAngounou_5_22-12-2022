@@ -106,7 +106,7 @@ function getArticle(product) {
     const nouveauProduit = {};
 
     // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-    if (quantity.value > 0 && choixKanapCouleur.value !== undefined || choixKanapCouleur.value !== null) {
+    if (quantity.value > 0 && choixKanapCouleur.value !== undefined !== null) {
       nouveauProduit._id = _id;
       nouveauProduit.name = name;
       nouveauProduit.description = description;
@@ -115,10 +115,10 @@ function getArticle(product) {
 
       const panier = localStorage.getItem("panier");
 
-      console.log(choixKanapCouleur.value)
-      console.log(choixKanapCouleur.value === true)
       // on check si on a déja un panier actif dans le localStorage
-      if (panier === null) {
+      if (panier === null && choixKanapCouleur.value === '') {
+        console.log("Couleur vide et panier nul")
+      } else if (panier === null && choixKanapCouleur.value !== '') {
         console.log("jusque là on n'avait pas de panier maintenant cest fait");
 
         // alors si pas de panier on ajoute un panier
@@ -127,11 +127,13 @@ function getArticle(product) {
         nouveauPanier.push(nouveauProduit);
 
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
+      } else if (panier !== null && choixKanapCouleur.value === '') {
+        console.log("y'a des problemes rajoutes une couleur")
       } else {
         // console.log("on a deja un panier faut le remplirr");
         const panierCourant = JSON.parse(panier);
         console.log("pc", panierCourant);
-        
+
         const produitExiste = panierCourant.filter((item) => item._id === _id && item.colors === choixKanapCouleur.value)[0];
 
         if (produitExiste) {produitExiste.quantity = Number(produitExiste.quantity) + Number(nouveauProduit.quantity);
