@@ -129,7 +129,7 @@ function getArticle(product) {
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
       } else if (panier !== null && choixKanapCouleur.value === '') {
         console.log("y'a des problemes rajoutes une couleur")
-      } else {
+      } else if (panier !== null && choixKanapCouleur.value !== ''){
         // console.log("on a deja un panier faut le remplirr");
         const panierCourant = JSON.parse(panier);
         console.log("pc", panierCourant);
