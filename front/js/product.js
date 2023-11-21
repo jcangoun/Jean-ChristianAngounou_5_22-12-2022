@@ -99,23 +99,27 @@ function getArticle(product) {
   console.log(panier);
   //Gestion du bouton au click sur rajouter au panier
   ajoutBtn.addEventListener("click", function (e) {
+    console.log("capasse le bouton");
     e.preventDefault;
 
     // on prepare un objet vide pour le future produit qui va etre ajouter et on s'assure d'avoir au moin une quantity > 0 et une couleur
     const nouveauProduit = {};
 
     // Là je fais un objet vide qui sera ajouté après si opn a une quantity.value > 0 et une couleur
-    if (quantity.value > 0 && choixKanapCouleur.value !== undefined || null) {
+    if (quantity.value > 0 && choixKanapCouleur.value !== undefined || choixKanapCouleur.value !== null) {
       nouveauProduit._id = _id;
       nouveauProduit.name = name;
       nouveauProduit.description = description;
       nouveauProduit.colors = choixKanapCouleur.value;
       nouveauProduit.quantity = parseInt(quantity.value);
+
       const panier = localStorage.getItem("panier");
 
+      console.log(choixKanapCouleur.value)
+      console.log(choixKanapCouleur.value === true)
       // on check si on a déja un panier actif dans le localStorage
       if (panier === null) {
-        console.log("ici on a pas de panier");
+        console.log("jusque là on n'avait pas de panier maintenant cest fait");
 
         // alors si pas de panier on ajoute un panier
         const nouveauPanier = [];
@@ -123,19 +127,11 @@ function getArticle(product) {
         nouveauPanier.push(nouveauProduit);
 
         localStorage.setItem("panier", JSON.stringify(nouveauPanier));
-      } else if (!choixKanapCouleur.value) {
-        console.error('probleme',choixKanapCouleur.value)
-        if (panier !== null) {
-          console.log('Voici panier', panier)
-          // alert('La case de choix couleur est vide.Vous devez choisir une couleur');
-        }
-        localStorage.removeItem('panier')
-      }      
-      else {
+      } else {
         // console.log("on a deja un panier faut le remplirr");
         const panierCourant = JSON.parse(panier);
         console.log("pc", panierCourant);
-
+        
         const produitExiste = panierCourant.filter((item) => item._id === _id && item.colors === choixKanapCouleur.value)[0];
 
         if (produitExiste) {produitExiste.quantity = Number(produitExiste.quantity) + Number(nouveauProduit.quantity);
@@ -150,7 +146,6 @@ function getArticle(product) {
           majPanier.push(nouveauProduit);
           localStorage.setItem("panier", JSON.stringify(majPanier));
         }
-
         console.log("produitExiste", produitExiste);
       }
     } else {
