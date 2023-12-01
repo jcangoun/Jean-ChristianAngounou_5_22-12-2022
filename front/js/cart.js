@@ -1,4 +1,3 @@
-// nouvelle cart.js et puis ancien formulaire tout bien
 // recup des infos produits ici c'est l'id
 const info = window.location.search;
 const urlParams = new URLSearchParams(info);
@@ -451,7 +450,10 @@ function zoneForm() {
     } else  {
       console.log('La  j envoie ')
 
-      const contact = {
+      if (JSON.parse(localStorage.getItem('panier')) !== null) {
+        console.error("ah ba c est bon")
+
+              const contact = {
         firstName: document.querySelector("#firstName").value,
         lastName: document.querySelector("#lastName").value,
         address: document.querySelector("#address").value,
@@ -487,6 +489,11 @@ function zoneForm() {
         // recuperer
         redirectAvecLeOrder = window.location.replace(`./confirmation.html?orderId=${data.orderId}`)
       })
+
+      } else { 
+        alert("non là le estpanier vide on n'envoit rien c'est vide")
+      }
+
 
     }
 
